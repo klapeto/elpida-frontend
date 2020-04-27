@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <line-chart
+    <line-chart :styles="myStyles" :width="300" :height="300"
       v-if="loaded"
       :chartData="chartdata"
       :options="options"/>
@@ -15,9 +15,13 @@
       LineChart
     },
     data () {
-      return {
+      return {myStyles: {
+        height: '100%',
+        width: '100%',
+        position: 'relative',
+      },
         loaded: false,
-        chartdata:null,
+        chartdata:null, 
         options:null
       }
     },
@@ -27,7 +31,7 @@
           
           this.fillData()
           this.loaded=true
-      }, 5000);
+      }, 1000);
       
     },
     methods: {
@@ -37,11 +41,15 @@
           datasets: [
             {
               label: 'Data One',
-              backgroundColor: '#f87979',
+              backgroundColor: '#f87979',fill:false,
               data: [this.getRandomInt(), this.getRandomInt()]
             }, {
-              label: 'Data One',
-              backgroundColor: '#f87979',
+              label: 'Data Two',
+              backgroundColor: '#c5a4e3',fill:false,
+              data: [this.getRandomInt(), this.getRandomInt()]
+            }, {
+              label: 'Data Three',
+              backgroundColor: '#1a3b43',fill:false,
               data: [this.getRandomInt(), this.getRandomInt()]
             }
           ]

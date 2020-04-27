@@ -1,32 +1,74 @@
+
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+
+<div class="page-wrapper">
+ <div class="nav-wrapper">
+  <div class="grad-bar"></div>
+  <nav class="navbar" >
+    <img src="assets/logo.png" alt="Company Logo">
+    <div class="menu-toggle" id="mobile-menu" ref="toggler" @click="someFunc()" v-bind:class="{ 'is-active': componentVar }">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
     </div>
-    <router-view/>
+    <ul class="nav" v-bind:class="{ 'mobile-nav': componentVar }">
+     <li class="nav-item"> <router-link to="/"> Get started </router-link></li>
+     <li class="nav-item"> <router-link to="/docs"> Documentation</router-link></li>
+     <li class="nav-item"> <router-link to="/search"> <i class="icon-search"></i> Benchmark </router-link></li>
+     <li class="nav-item"> <router-link to="/test"> Chart </router-link></li>
+    </ul>
+  </nav>
   </div>
+
+    <div class="content">
+        <!--startOfContent--->
+            <router-view/>
+        <!--endOfContent--->
+    </div> <!--/content--->
+
+        <div class="footer">
+         <i class="icon-heart"></i> Klapeto 2020
+        </div>   <!--/footer--->
+
+    </div>  <!--/pageWrapper--->
+  </div>    <!--/app--->
+
 </template>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
 
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
+<script>
+const menuToggle = false;
+  export default {
+    data() {
+      return {
+        componentVar: menuToggle
+      }
+    },
+    methods: {
+      someFunc() {
+          this.componentVar= !this.componentVar
+       // alert(this.componentVar)
+      }
+    },
+    created() {
+      //this.someFunc()
+    }
+  }
+
+
+/*
+ data: {
+        menuToggle: false
+    },
+    methods: {
+        activeLink() {
+            // the line below did not work
+            // document.getElementsByClassName("active").isActive = false,
+            this.menuToggle = !this.menuToggle
+        }
+    },
+    */
+</script>
