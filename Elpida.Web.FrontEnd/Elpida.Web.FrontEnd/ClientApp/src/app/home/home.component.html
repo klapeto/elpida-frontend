@@ -1,20 +1,32 @@
-
 <div class="contentContainer">
 
-  <h1>Hello, world!</h1>
-  <p>Welcome to your new single-page application, built with:</p>
+  <h1>Elpida</h1>
+  <p>Welcome to Elpida!</p>
+  <p>
+    Elpida is an Open Source (GPLv3) Benchmarking framework for measuring performance of computer hardware or
+    algorithms.
+    It's goal is to be as transparent and open as possible as well as exensible by the community. It comes with a
+    library (libelpida), a Qt application and a set of predefined benchmarks for measuring computer hardware
+    capabilities. </p>
+  <p>Elpida has the following features:</p>
   <ul>
-    <li><a href='https://get.asp.net/'>ASP.NET Core</a> and <a href='https://msdn.microsoft.com/en-us/library/67ef8sbd.aspx'>C#</a> for cross-platform server-side code</li>
-    <li><a href='https://angular.io/'>Angular</a> and <a href='http://www.typescriptlang.org/'>TypeScript</a> for client-side code</li>
-    <li><a href='http://getbootstrap.com/'>Bootstrap</a> for layout and styling</li>
+    <li><strong style="font-weight: bold">Variety of pre-defined benchmarks.</strong> stand alone application comes with predefined
+      benchmarks for testing hardware, ranging from Memory bandwidth/Latency to Storage Bandwithdth benchmarks.
+    </li>
+    <li><strong style="font-weight: bold">Easy benchmark creation.</strong> You only create specifications and implementations of the tasks of your benchmark.
+      More technical details are handled by default by the framework.
+    </li>
+    <li><strong style="font-weight: bold">Automatic chunk based Multithreading.</strong> You create a task for a single thread execution. Then if your task can
+      be broken into multiple threads to take a chunk of the input, you only have to set up a flag on your task. The
+      rest will be handled by the framework. You only need to create your task as it would be executed as a single thread.
+    </li>
+    <li><strong style="font-weight: bold">Automatic NUMA-Awareness for tasks.</strong> You don't have to be aware of NUMA when creating your tasks. CPU/Memory pinning
+    happens automatically before each task execution. So your task will always have local memory (if possible) and will
+    be pinned to the nearest CPU to that memory region.</li>
+    <li><strong style="font-weight: bold">Plugin based benchmark loading.</strong> Benchmarks are defined in plugins that are dynamically loaded during
+      execution. This means you can add more plugins on the load folder and the application will detect them as new. This way the community
+      can share plugins to use outside of the official ones.
+    </li>
   </ul>
-  <p>To help you get started, we've also set up:</p>
-  <ul>
-    <li><strong>Client-side navigation</strong>. For example, click <em>Counter</em> then <em>Back</em> to return here.</li>
-    <li><strong>Angular CLI integration</strong>. In development mode, there's no need to run <code>ng serve</code>. It runs in the background automatically, so your client-side resources are dynamically built on demand and the page refreshes when you modify any file.</li>
-    <li><strong>Efficient production builds</strong>. In production mode, development-time features are disabled, and your <code>dotnet publish</code> configuration automatically invokes <code>ng build</code> to produce minified, ahead-of-time compiled JavaScript files.</li>
-  </ul>
-  <p>The <code>ClientApp</code> subdirectory is a standard Angular CLI application. If you open a command prompt in that directory, you can run any <code>ng</code> command (e.g., <code>ng test</code>), or use <code>npm</code> to install extra packages into it.</p>
-
-
+  
 </div>
