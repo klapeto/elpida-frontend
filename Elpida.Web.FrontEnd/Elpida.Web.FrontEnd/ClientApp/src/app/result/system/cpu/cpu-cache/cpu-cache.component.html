@@ -1,11 +1,12 @@
 <div>{{cache.associativity}}</div>
 
-<div class="row row-cols-2">
-  <div class="col col-sm-2">Size:</div>
-  <div class="col">{{valueConverter.convertToSI(cache.size)}}B</div>
+<div class="row">
+  <div class="col-sm-4">Size:</div>
+  <div class="col-sm">{{valueConverter.convertToSI(cache.size, 1)}}B</div>
 </div>
 
-<div class="row row-cols-2">
-  <div class="col col-sm-2">Line Size:</div>
-  <div class="col">{{valueConverter.convertToSI(cache.lineSize)}}B</div>
+<div class="row">
+  <div class="col-sm-4">Line Size:</div>
+  <div class="col-sm">{{valueConverter.convertToSI(cache.lineSize, 1)}}B</div>
 </div>
+
