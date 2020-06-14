@@ -21,6 +21,7 @@ export class CpuNode {
               public readonly name: string,
               public readonly osIndex: number,
               public readonly value: number,
+              public readonly used: boolean,
               public readonly children: CpuNode[],
               public readonly memoryChildren: CpuNode[]) {
   }

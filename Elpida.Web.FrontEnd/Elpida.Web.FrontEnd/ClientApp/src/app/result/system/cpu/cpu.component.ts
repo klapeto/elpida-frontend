@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Cpu} from "../../../../models/cpu";
+import {ValueConverter} from "../../../../services/value-converter";
 
 @Component({
   selector: 'app-cpu',
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CpuComponent implements OnInit {
 
-  constructor() { }
+  @Input() cpu: Cpu;
+
+  constructor(public valueConverter: ValueConverter) { }
 
   ngOnInit() {
   }

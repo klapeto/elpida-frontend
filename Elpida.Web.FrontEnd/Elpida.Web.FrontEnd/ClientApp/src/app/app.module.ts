@@ -16,6 +16,9 @@ import {GroupBoxComponent} from "./group-box/group-box.component";
 import {CpuComponent} from "./result/system/cpu/cpu.component";
 import {TopologyComponent} from "./result/system/topology/topology.component";
 import {MemoryComponent} from "./result/system/memory/memory.component";
+import {CpuCacheComponent} from "./result/system/cpu/cpu-cache/cpu-cache.component";
+import {CpuNodeComponent} from "./result/system/topology/cpu-node/cpu-node.component";
+import {ValueConverter} from "../services/value-converter";
 
 @NgModule({
   declarations: [
@@ -30,7 +33,9 @@ import {MemoryComponent} from "./result/system/memory/memory.component";
     GroupBoxComponent,
     CpuComponent,
     TopologyComponent,
-    MemoryComponent
+    MemoryComponent,
+    CpuCacheComponent,
+    CpuNodeComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
@@ -42,7 +47,7 @@ import {MemoryComponent} from "./result/system/memory/memory.component";
       {path: 'result', component: ResultComponent},
     ])
   ],
-  providers: [],
+  providers: [ValueConverter],
   bootstrap: [AppComponent]
 })
 export class AppModule {

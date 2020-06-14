@@ -1,1 +1,51 @@
-<p>cpu works!</p>
+<div class="row">
+  <div class="col">
+    <div class="row row-cols-2">
+      <div class="col-sm-3">Vendor:</div>
+      <div class="col">{{cpu.vendor}}</div>
+    </div>
+
+    <div class="row row-cols-2">
+      <div class="col-sm-3">Brand:</div>
+      <div class="col">{{cpu.brand}}</div>
+    </div>
+
+    <div class="row row-cols-2">
+      <div class="col-sm-3">Family:</div>
+      <div class="col">{{cpu.family}}</div>
+    </div>
+
+    <div class="row row-cols-2">
+      <div class="col-sm-3">Model:</div>
+      <div class="col">{{cpu.model}}</div>
+    </div>
+
+    <div class="row row-cols-2">
+      <div class="col-sm-3">Stepping:</div>
+      <div class="col">{{cpu.stepping}}</div>
+    </div>
+
+    <div class="row row-cols-2">
+      <div class="col-sm-3">Frequency:</div>
+      <div class="col">{{valueConverter.convertToSI(cpu.frequency)}}Hz</div>
+    </div>
+
+    <div class="row row-cols-2">
+      <div class="col-sm-3">SMT:</div>
+      <div class="col">{{cpu.smt}}</div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="row no-gutters">
+      <div class="col" *ngFor="let cpuCache of cpu.cache">
+        <app-group-box [title]="cpuCache.name">
+          <app-cpu-cache [cache]="cpuCache"></app-cpu-cache>
+        </app-group-box>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

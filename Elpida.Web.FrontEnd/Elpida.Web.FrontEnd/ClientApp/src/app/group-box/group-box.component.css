@@ -1,7 +1,7 @@
 .groupBox {
   background-color: #9bbfed;
-  padding: 1em;
-  border-radius: 0.3em;
+  border-top-left-radius: 0.3em;
+  border-top-right-radius: 0.3em;
   margin: 0.2em;
 }
 

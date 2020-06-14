@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Topology} from "../../../../models/topology/topology";
 
 @Component({
   selector: 'app-topology',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./topology.component.css']
 })
 export class TopologyComponent implements OnInit {
+
+  @Input() public topology: Topology;
 
   constructor() { }
 

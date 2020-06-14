@@ -1,0 +1,25 @@
+<div class="cpuNode" [ngClass]="getBaseClass()">
+  <div class="row">
+    <div class="col">
+      <strong>{{node.name}}</strong>
+      <span *ngIf="node.osIndex !== null">: {{node.osIndex}} </span>
+      <span *ngIf="node.value !== null">: {{valueConverter.convertToSI(node.value)}}B </span>
+    </div>
+    <div class="col-1" *ngIf="node.used">
+      <input class="form-check-input" type="checkbox" onclick="return false;" [ngModel]="node.used">
+    </div>
+  </div>
+  <div *ngIf="node.memoryChildren">
+      <div class="row no-gutters" *ngFor="let child of node.memoryChildren">
+        <div class="col-md">
+          <app-cpu-node [node]="child"></app-cpu-node>
+        </div>
+      </div>
+  </div>
+  <div  *ngIf="node.children" class="row no-gutters" [ngClass]="getRowClass()">
+    <div class="col" *ngFor="let child of node.children">
+      <app-cpu-node [node]="child"></app-cpu-node>
+    </div>
+  </div>
+</div>
+

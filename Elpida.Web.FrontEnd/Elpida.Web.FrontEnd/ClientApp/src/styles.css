@@ -3,7 +3,7 @@
 /* Provide sufficient contrast against white background */
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
 
- body {
+body {
   font-family: "Ubuntu", serif;
   font-weight: lighter;
   background-color: rgb(229,232,253);

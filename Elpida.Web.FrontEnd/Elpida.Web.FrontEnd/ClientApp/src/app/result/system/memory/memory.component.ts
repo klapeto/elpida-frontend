@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Memory} from "../../../../models/memory";
+import {ValueConverter} from "../../../../services/value-converter";
 
 @Component({
   selector: 'app-memory',
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MemoryComponent implements OnInit {
 
-  constructor() { }
+  @Input() public memory: Memory;
+
+  constructor(public valueConverter: ValueConverter) { }
 
   ngOnInit() {
   }
