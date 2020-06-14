@@ -13,6 +13,12 @@ export class CpuComponent implements OnInit {
 
   constructor(public valueConverter: ValueConverter) { }
 
+  public getRowClass(): string {
+    let childrenCountRoot = Math.ceil(Math.sqrt(this.cpu.cpuCaches.length));
+    return "row-cols-"+childrenCountRoot;
+  }
+
+
   ngOnInit() {
   }
 

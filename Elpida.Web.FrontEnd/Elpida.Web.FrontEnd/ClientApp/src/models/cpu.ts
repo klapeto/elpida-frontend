@@ -11,7 +11,7 @@ export class Cpu {
     public readonly turboBoost: boolean,
     public readonly turboBoost3: boolean,
     public readonly smt: boolean,
-    public readonly cache: CpuCache[],
+    public readonly cpuCaches: CpuCache[],
     public readonly features: string[],
   ) {
   }
