@@ -1,3 +1,5 @@
+import {CpuCache} from "./cpu-cache";
+
 export class Cpu {
   constructor(
     public readonly vendor: string,
@@ -9,7 +11,7 @@ export class Cpu {
     public readonly turboBoost: boolean,
     public readonly turboBoost3: boolean,
     public readonly smt: boolean,
-    public readonly cache: Cache[],
+    public readonly cache: CpuCache[],
     public readonly features: string[],
   ) {
   }

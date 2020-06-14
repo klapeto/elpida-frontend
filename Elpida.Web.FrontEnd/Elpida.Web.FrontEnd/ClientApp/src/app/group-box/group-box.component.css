@@ -1,0 +1,15 @@
+.groupBox {
+  background-color: #9bbfed;
+  padding: 1em;
+  border-radius: 0.3em;
+  margin: 0.2em;
+}
+
+.groupBoxHeader {
+  text-align: center;
+}
+
+.groupBoxContent {
+  background-color: #edf4f9;
+}
+
