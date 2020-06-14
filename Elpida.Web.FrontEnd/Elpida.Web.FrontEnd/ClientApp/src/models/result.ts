@@ -6,7 +6,7 @@ export class Result {
   constructor(
     public readonly elpida: Elpida,
     public readonly system: System,
-    public readonly results: BenchmarkResult[]
+    public readonly result: BenchmarkResult
   ) {
   }
 }

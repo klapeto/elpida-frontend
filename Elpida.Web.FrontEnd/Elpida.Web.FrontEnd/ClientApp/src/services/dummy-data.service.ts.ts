@@ -39,13 +39,13 @@ export class DummyDataService {
             new CpuCache("L3", "32-Way", l2dSize, 1, 64),
           ], ["CMOV", "MMX", "MMX+", "SSE", "SSE2", "SSE3", "SSSE3", "SSE4.1", "SSE4.2", "SSE4A", "FMA", "3DNowPrefetch", "AVX", "AES", "ABM", "F16C", "RDRAND"]),
         new Topology(12, 24, 9,
-          new CpuNode(NodeType.Machine, "Machine", machinedId++, null,false,
+          new CpuNode(NodeType.Machine, "Machine", machinedId++, null, false,
             [
               new CpuNode(NodeType.Package, "Package", packageId++, null, false, [
                 new CpuNode(NodeType.Group, "Group", groupId++, null, false, [
-                  new CpuNode(NodeType.L3DCache, "L3D", null, l3dSize,false,  [
-                    new CpuNode(NodeType.L2DCache, "L2D", null, l2dSize,false,  [
-                      new CpuNode(NodeType.L1DCache, "L1D", null, l1dSize,false,  [
+                  new CpuNode(NodeType.L3DCache, "L3D", null, l3dSize, false, [
+                    new CpuNode(NodeType.L2DCache, "L2D", null, l2dSize, false, [
+                      new CpuNode(NodeType.L1DCache, "L1D", null, l1dSize, false, [
                         new CpuNode(NodeType.L1ICache, "L1I", null, l1iSize, false, [
                           new CpuNode(NodeType.Core, "Core", coreId++, null, false, [
                             new CpuNode(NodeType.ExecutionUnit, "EU", euId++, null, true, null, null),
@@ -56,9 +56,9 @@ export class DummyDataService {
                     ], null),
                     new CpuNode(NodeType.L2DCache, "L2D", null, l2dSize, false, [
                       new CpuNode(NodeType.L1DCache, "L1D", null, l1dSize, false, [
-                        new CpuNode(NodeType.L1ICache, "L1I", null, l1iSize,false,  [
+                        new CpuNode(NodeType.L1ICache, "L1I", null, l1iSize, false, [
                           new CpuNode(NodeType.Core, "Core", coreId++, null, false, [
-                            new CpuNode(NodeType.ExecutionUnit, "EU", euId++, null,true,  null, null),
+                            new CpuNode(NodeType.ExecutionUnit, "EU", euId++, null, true, null, null),
                             new CpuNode(NodeType.ExecutionUnit, "EU", euId++, null, false, null, null),
                           ], null),
                         ], null),
@@ -66,9 +66,9 @@ export class DummyDataService {
                     ], null),
                     new CpuNode(NodeType.L2DCache, "L2D", null, l2dSize, false, [
                       new CpuNode(NodeType.L1DCache, "L1D", null, l1dSize, false, [
-                        new CpuNode(NodeType.L1ICache, "L1I", null, l1iSize,false,  [
+                        new CpuNode(NodeType.L1ICache, "L1I", null, l1iSize, false, [
                           new CpuNode(NodeType.Core, "Core", coreId++, null, false, [
-                            new CpuNode(NodeType.ExecutionUnit, "EU", euId++, null,false,  null, null),
+                            new CpuNode(NodeType.ExecutionUnit, "EU", euId++, null, false, null, null),
                             new CpuNode(NodeType.ExecutionUnit, "EU", euId++, null, false, null, null),
                           ], null),
                         ], null),
@@ -182,7 +182,14 @@ export class DummyDataService {
             ]
             , null)),
         new Memory(64 * 1024 * 1024 * 1024, 4096)),
-      [new BenchmarkResult("Memory Latency", [1, 12, 23], [new TaskResult("Read Latency", "Read stuff", 38, "ns", 8192)])]
+      new BenchmarkResult("Memory Latency", [
+        new TaskResult("Read Latency", "Read stuff", 6 / 1000 / 1000 / 1000, "s", 256),
+        new TaskResult("Read Latency", "Read stuff", 8 / 1000 / 1000 / 1000, "s", 512),
+        new TaskResult("Read Latency", "Read stuff", 10 / 1000 / 1000 / 1000, "s", 1024),
+        new TaskResult("Read Latency", "Read stuff", 23 / 1000 / 1000 / 1000, "s", 2048),
+        new TaskResult("Read Latency", "Read stuff", 38 / 1000 / 1000 / 1000, "s", 4096),
+        new TaskResult("Read Latency", "Read stuff", 65 / 1000 / 1000 / 1000, "s", 8192),
+      ])
     );
   }
 }

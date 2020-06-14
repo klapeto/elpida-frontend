@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {BenchmarkResult} from "../../../models/benchmark-result";
+import {ValueConverter} from "../../../services/value-converter";
 
 @Component({
   selector: 'app-benchmark-result',
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BenchmarkResultComponent implements OnInit {
 
-  constructor() { }
+  @Input() public benchmarkResult: BenchmarkResult;
+
+  constructor(public valueConverter: ValueConverter) { }
 
   ngOnInit() {
   }
