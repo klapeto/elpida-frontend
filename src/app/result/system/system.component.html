@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col">
+    <app-group-box title="Os">
+      <app-os [os]="system.os"></app-os>
+    </app-group-box>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <app-group-box title="CPU">
+      <app-cpu [cpu]="system.cpu"></app-cpu>
+    </app-group-box>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <app-group-box title="Memory">
+      <app-memory [memory]="system.memory"></app-memory>
+    </app-group-box>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <app-group-box title="Topology">
+      <app-topology [topology]="system.topology" [affinity]="affinity"></app-topology>
+    </app-group-box>
+  </div>
+</div>
