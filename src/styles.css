@@ -1,0 +1,58 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Provide sufficient contrast against white background */
+
+body {
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: lighter;
+  background-color: rgb(229,232,253);
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: contain;
+  background-attachment: fixed;
+  background-image: url("./assets/Elpida.svg");
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
+app-root > body {
+  min-width: 100vw;
+  min-height: 100vh;
+  background: rgba(229,232,253,0.75);
+}
+
+.contentContainer {
+  background-color: rgba(229,232,253,0.85);
+  -webkit-box-shadow: 0 0 29px 32px rgba(229,232,253,0.85);
+  -moz-box-shadow: 0 0 29px 32px rgba(229,232,253,0.85);
+  box-shadow: 0 0 29px 32px rgba(229,232,253,0.85);
+  padding: 1em;
+  border-radius: 0.5em;
+}
+div {
+  background: transparent;
+}
+
+a {
+  color: #0366d6;
+}
+
+code {
+  color: #e01a76;
+}
+
+.btn-primary {
+  background-color: rgb(203, 199, 247);
+  border: 1px solid rgb(158, 159, 238);
+  min-width: 8em;
+  text-align: center;
+  color: black;
+  border-radius: 0;
+  font-weight: lighter;
+  font-size: 1em;
+}
+
+.btn-primary:hover {
+  background-color: rgb(221, 219, 243);
+  color: black;
+}
