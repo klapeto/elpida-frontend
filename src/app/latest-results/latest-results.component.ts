@@ -1,8 +1,9 @@
 import {Component, Inject} from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
 import {PagedResult} from '../../models/paged-result';
 import {ResultPreview} from '../../models/result-preview';
 import {ValueConverter} from '../../services/value-converter';
+import {ResultsService} from '../../services/results.service';
+import {PageRequest} from '../../models/page-request';
 
 @Component({
   selector: 'app-latest-results',
@@ -17,32 +18,24 @@ export class LatestResultsComponent {
   private resultsPerPage = 10;
 
   constructor(
-    private http: HttpClient,
-    public valueConverter: ValueConverter,
-    @Inject('BASE_URL') public baseUrl: string
+     @Inject('BASE_URL') public baseUrl: string,
+      public valueConverter: ValueConverter,
+      private resultService: ResultsService,
   ) {
     this.getPageResults(0);
   }
 
   private getPageResults(page: number) {
-    this.http.get<PagedResult<ResultPreview>>(this.baseUrl + 'api/result', {params: this.getPageRequestParams(page)})
-      .subscribe(result => {
-        result.list.forEach(x => x.timeStamp = new Date(Date.parse(x.timeStamp.toString())));
-        if (this.maxResultPages === undefined) {
-          this.maxResultPages = Math.ceil(result.totalCount / this.resultsPerPage);
-        }
 
-        this.pageResult = result;
-      }, error => console.error(error));
-  }
+    this.resultService.getPreviews(new PageRequest(page * this.resultsPerPage, this.resultsPerPage, 0))
+        .subscribe(result => {
+          result.list.forEach(x => x.timeStamp = new Date(Date.parse(x.timeStamp.toString())));
+          if (this.maxResultPages === undefined) {
+            this.maxResultPages = Math.ceil(result.totalCount / this.resultsPerPage);
+          }
 
-  private getPageRequestParams(pageNo: number): HttpParams {
-    return new HttpParams({
-      fromObject: {
-        next: (pageNo * this.resultsPerPage).toString(),
-        count: this.resultsPerPage.toString()
-      }
-    });
+          this.pageResult = result;
+        }, error => console.error(error));
   }
 
   public onPageChange(page: number) {

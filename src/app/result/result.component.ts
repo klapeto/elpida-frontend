@@ -1,7 +1,7 @@
-import {Component, Inject} from '@angular/core';
+import {Component} from '@angular/core';
 import {Result} from '../../models/result';
-import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
+import {ResultsService} from '../../services/results.service';
 
 @Component({
   selector: 'app-result',
@@ -13,10 +13,11 @@ export class ResultComponent {
   public result: Result;
 
   constructor(
-    private http: HttpClient,
-    @Inject('BASE_URL') public baseUrl: string,
-    private router: Router) {
-    http.get<Result>(baseUrl + 'api' + this.router.url).subscribe(r => {
+      private resultsService: ResultsService,
+      private router: Router) {
+    console.log(router);
+    const tokens = this.router.url.split('/');
+    resultsService.getSingle(tokens[tokens.length - 1]).subscribe(r => {
       r.timeStamp = new Date(Date.parse(r.timeStamp.toString()));
       this.result = r;
     }, error => console.error(error));

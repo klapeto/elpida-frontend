@@ -22,6 +22,7 @@ import {ValueConverter} from '../services/value-converter';
 import {LatestResultsComponent} from './latest-results/latest-results.component';
 import {PagingComponent} from './paging/paging.component';
 import {OsComponent} from './result/system/os/os.component';
+import {ResultsService} from '../services/results.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import {OsComponent} from './result/system/os/os.component';
     CpuNodeComponent,
     LatestResultsComponent,
     PagingComponent,
-    OsComponent
+    OsComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
@@ -54,7 +55,7 @@ import {OsComponent} from './result/system/os/os.component';
       {path: 'result/:id', component: ResultComponent},
     ])
   ],
-  providers: [ValueConverter],
+  providers: [ValueConverter, ResultsService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
