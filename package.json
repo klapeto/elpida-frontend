@@ -1,11 +1,11 @@
 {
-  "name": "elpida.web.frontend",
+  "name": "elpida.frontend",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:ssr": "ng run Elpida.Web.FrontEnd:server:dev",
+    "build:ssr": "ng run Elpida.FrontEnd:server:dev",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
