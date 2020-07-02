@@ -10,23 +10,23 @@ import {Observable} from 'rxjs';
 @Injectable()
 export class ResultsService implements IResultsService {
 
-    private baseUrl = 'https://beta.elpida.dev/api/result';
-
     constructor(private http: HttpClient) {
     }
 
+    private baseUrl = 'https://beta.elpida.dev/api/result';
+
+    private static getPageRequestParams(obj: any): HttpParams {
+        return new HttpParams({
+            fromObject: obj
+        });
+    }
+
     getPreviews(page: PageRequest): Observable<PagedResult<ResultPreview>> {
-        return this.http.get<PagedResult<ResultPreview>>(this.baseUrl, {params: this.getPageRequestParams(page)});
+        return this.http.get<PagedResult<ResultPreview>>(this.baseUrl, {params: ResultsService.getPageRequestParams(page)});
     }
 
     getSingle(id: string): Observable<Result> {
         console.log(id);
         return this.http.get<Result>(this.baseUrl + '/' + id);
-    }
-
-    private getPageRequestParams(obj: any): HttpParams {
-        return new HttpParams({
-            fromObject: obj
-        });
     }
 }

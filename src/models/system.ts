@@ -1,7 +1,7 @@
-import {Cpu} from "./cpu";
-import {Topology} from "./topology/topology";
-import {Memory} from "./memory";
-import {Os} from "./os";
+import {Cpu} from './cpu';
+import {Topology} from './topology/topology';
+import {Memory} from './memory';
+import {Os} from './os';
 
 export class System {
   constructor(
