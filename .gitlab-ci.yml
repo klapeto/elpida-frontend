@@ -1,4 +1,4 @@
-image: node:8.12.0
+image: node:12.18.1
 
 pages:
   cache:
@@ -9,10 +9,10 @@ pages:
   script:
     - npm install
     - npm run build --prod
+    - mkdir public
     - mv dist/* public/
   artifacts:
     paths:
       - public
   only:
-    - master
-    - pages
+    - develop
