@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 
 import {AppComponent} from './app.component';
@@ -53,7 +53,7 @@ import {ResultsService} from '../services/results.service';
       {path: 'download', component: DownloadComponent},
       {path: 'latest-results', component: LatestResultsComponent},
       {path: 'result/:id', component: ResultComponent},
-    ])
+    ], {useHash: true})
   ],
   providers: [ValueConverter, ResultsService],
   bootstrap: [AppComponent]
