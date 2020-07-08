@@ -4,41 +4,47 @@ import {ResultPreview} from '../../models/result-preview';
 import {ValueConverter} from '../../services/value-converter';
 import {ResultsService} from '../../services/results.service';
 import {PageRequest} from '../../models/page-request';
+import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-latest-results',
-  templateUrl: './latest-results.component.html',
-  styleUrls: ['./latest-results.component.css'],
-  providers: [ValueConverter]
+    selector: 'app-latest-results',
+    templateUrl: './latest-results.component.html',
+    styleUrls: ['./latest-results.component.css'],
+    providers: [ValueConverter]
 })
 export class LatestResultsComponent {
 
-  public pageResult: PagedResult<ResultPreview>;
-  public maxResultPages: number;
-  private resultsPerPage = 10;
+    public pageResult: PagedResult<ResultPreview>;
+    public maxResultPages: number;
+    private resultsPerPage = 10;
 
-  constructor(
-     @Inject('BASE_URL') public baseUrl: string,
-      public valueConverter: ValueConverter,
-      private resultService: ResultsService,
-  ) {
-    this.getPageResults(0);
-  }
+    constructor(
+        @Inject('BASE_URL') public baseUrl: string,
+        public valueConverter: ValueConverter,
+        private resultService: ResultsService,
+        private router: Router
+    ) {
+        this.getPageResults(0);
+    }
 
-  private getPageResults(page: number) {
+    private getUrl(id: string): string {
+        return this.router.createUrlTree(['/result', id]).toString();
+    }
 
-    this.resultService.getPreviews(new PageRequest(page * this.resultsPerPage, this.resultsPerPage, 0))
-        .subscribe(result => {
-          result.list.forEach(x => x.timeStamp = new Date(Date.parse(x.timeStamp.toString())));
-          if (this.maxResultPages === undefined) {
-            this.maxResultPages = Math.ceil(result.totalCount / this.resultsPerPage);
-          }
+    private getPageResults(page: number) {
 
-          this.pageResult = result;
-        }, error => console.error(error));
-  }
+        this.resultService.getPreviews(new PageRequest(page * this.resultsPerPage, this.resultsPerPage, 0))
+            .subscribe(result => {
+                result.list.forEach(x => x.timeStamp = new Date(Date.parse(x.timeStamp.toString())));
+                if (this.maxResultPages === undefined) {
+                    this.maxResultPages = Math.ceil(result.totalCount / this.resultsPerPage);
+                }
 
-  public onPageChange(page: number) {
-    this.getPageResults(page);
-  }
+                this.pageResult = result;
+            }, error => console.error(error));
+    }
+
+    public onPageChange(page: number) {
+        this.getPageResults(page);
+    }
 }

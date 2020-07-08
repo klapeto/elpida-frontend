@@ -13,7 +13,7 @@ export class ResultsService implements IResultsService {
     constructor(private http: HttpClient) {
     }
 
-    private baseUrl = 'https://beta.elpida.dev/api/result';
+    private baseUrl = 'https://elpida-backend.azurewebsites.net/api/v1/result';
 
     private static getPageRequestParams(obj: any): HttpParams {
         return new HttpParams({
