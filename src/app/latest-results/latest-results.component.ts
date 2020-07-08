@@ -21,14 +21,9 @@ export class LatestResultsComponent {
     constructor(
         @Inject('BASE_URL') public baseUrl: string,
         public valueConverter: ValueConverter,
-        private resultService: ResultsService,
-        private router: Router
+        private resultService: ResultsService
     ) {
         this.getPageResults(0);
-    }
-
-    private getUrl(id: string): string {
-        return this.router.createUrlTree(['/result', id]).toString();
     }
 
     private getPageResults(page: number) {
