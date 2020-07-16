@@ -1,40 +1,56 @@
-/* You can add global styles to this file, and also import other style files */
-
-/* Provide sufficient contrast against white background */
-
 body {
   font-family: 'Ubuntu', sans-serif;
   font-weight: lighter;
+  color: #454545;
   background-color: rgb(229,232,253);
   background-repeat: no-repeat;
   background-position: right;
   background-size: contain;
   background-attachment: fixed;
   background-image: url("./assets/Elpida.svg");
-  /*min-width: 100vw;*/
   min-height: 100vh;
+  display: grid;
+  grid-template-columns: auto;
+  grid-auto-rows: auto 1fr;
+  margin: 0;
 }
 
-app-root > body {
-  /*min-width: 100vw;*/
+app-root {
   min-height: 100vh;
   background: rgba(229,232,253,0.75);
 }
 
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
 .contentContainer {
+  padding: 1rem;
   background-color: rgba(229,232,253,0.85);
   -webkit-box-shadow: 0 0 29px 32px rgba(229,232,253,0.85);
   -moz-box-shadow: 0 0 29px 32px rgba(229,232,253,0.85);
   box-shadow: 0 0 29px 32px rgba(229,232,253,0.85);
-  padding: 1em;
-  border-radius: 0.5em;
+  border-radius: 0.5rem;
+  width: 60%;
 }
+
+@media (max-width: 800px){
+  .contentContainer {
+    width: 95%;
+  }
+}
+
 div {
   background: transparent;
 }
 
 a {
-  color: #0366d6;
+  color: #454545;
+  text-decoration: none;
+  background-color: transparent;
 }
 
 code {
@@ -43,16 +59,21 @@ code {
 
 .btn-primary {
   background-color: rgb(203, 199, 247);
-  border: 1px solid rgb(158, 159, 238);
-  min-width: 8em;
+  border: 0.05rem solid rgb(158, 159, 238);
+  min-width: 8rem;
   text-align: center;
   color: black;
   border-radius: 0;
   font-weight: lighter;
-  font-size: 1em;
+  font-size: 1rem;
 }
 
 .btn-primary:hover {
   background-color: rgb(221, 219, 243);
   color: black;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, max-content));
 }
