@@ -14,7 +14,7 @@ export class PagingComponent implements OnInit {
   public pages: number[];
   public currentPage: number;
 
-  private changePage(page: number): void {
+  changePage(page: number): void {
     this.currentPage = page;
 
     const thisMaxButtons = Math.min(this.maxPagerButtons, this.pagesCount);
@@ -49,7 +49,7 @@ export class PagingComponent implements OnInit {
     this.pageChanged.emit(this.currentPage);
   }
 
-  private getNextPage(): void {
+  getNextPage(): void {
     if (this.currentPage + 1 < this.pagesCount) {
       this.changePage(this.currentPage + 1);
     } else {
@@ -57,7 +57,7 @@ export class PagingComponent implements OnInit {
     }
   }
 
-  private getPreviousPage(): void {
+  getPreviousPage(): void {
     if (this.currentPage > 0) {
       this.changePage(this.currentPage - 1);
     } else {

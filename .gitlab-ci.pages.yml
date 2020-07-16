@@ -1,0 +1,18 @@
+image: node:12.18.1
+
+pages:
+  cache:
+    paths:
+      - node_modules/
+
+  stage: deploy
+  script:
+    - npm install
+    - npm run buildProd
+    - mkdir public
+    - mv dist/* public/
+  artifacts:
+    paths:
+      - public
+  only:
+    - develop
