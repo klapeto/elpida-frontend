@@ -1,4 +1,12 @@
 .page-item {
   cursor: pointer;
   user-select: none;
+  min-width: auto;
+  padding: 1rem;
+}
+
+.page-items-container {
+  display: grid;
+  /*grid-template-columns: repeat(auto-fit, minmax(1rem, min-content));*/
+  grid-template-columns: repeat(auto-fit, minmax(1rem, min-content));
 }

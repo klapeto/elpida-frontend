@@ -16,33 +16,3 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, max-content));
 }
-
-.nav-item {
-  background-color: rgb(203, 199, 247);
-  border: 0.05rem solid rgb(158, 159, 238);
-  min-width: 8rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.nav-item:hover {
-  background-color: rgb(221, 219, 243);
-}
-
-.nav-item.link-active {
-  background-color: rgb(137, 142, 226);
-  color: white;
-}
-
-.nav-item > a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-}
-
-.nav-item.link-active > a {
-  color: white;
-}
