@@ -3,10 +3,15 @@
 <app-paging *ngIf="pageResult" (pageChanged)="onPageChange($event)" [pagesCount]="maxResultPages">
     <h3>Total results: {{valueConverter.convertToSI(pageResult.totalCount, 0)}}</h3>
     <div class="results-list">
-        <a [routerLink]="'/result/'+ result.id" class="button result-item"
+        <a [routerLink]="'/result/'+ result.id" class="result-item"
            *ngFor="let result of pageResult.list">
-            <span>{{result.timeStamp.toDateString()}} {{result.timeStamp.toLocaleTimeString()}}</span>
-            <h3 class="mb-1">{{result.cpuBrand}}</h3>
+            <div>{{result.timeStamp.toDateString()}} {{result.timeStamp.toLocaleTimeString()}}</div>
+            <h3 class="result-detail">
+                {{result.cpuBrand}}
+            </h3>
+            <h3 class="result-detail">
+                {{result.name}}
+            </h3>
         </a>
     </div>
 </app-paging>

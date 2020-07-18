@@ -7,6 +7,6 @@
 
 .page-items-container {
   display: grid;
-  /*grid-template-columns: repeat(auto-fit, minmax(1rem, min-content));*/
+  place-content: center;
   grid-template-columns: repeat(auto-fit, minmax(1rem, min-content));
 }
