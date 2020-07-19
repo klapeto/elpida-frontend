@@ -1,18 +1,17 @@
-<div class="table-responsive tableReducedHeight">
-  <table class="table table-sm table-striped">
+<table>
     <thead>
     <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Input Size</th>
-      <th scope="col">Result</th>
+        <th scope="col">Name</th>
+        <th scope="col">Input Size</th>
+        <th scope="col">Result</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let result of benchmarkResult.taskResults">
-      <th scope="row">{{result.name}}</th>
-      <td>{{valueConverter.convertToSI(result.inputSize)}}</td>
-      <td>{{calculateActualResultValue(result)}}</td>
+        <th scope="row">{{result.name}}</th>
+        <td>{{valueConverter.convertToSI(result.inputSize)}}</td>
+        <td>{{calculateActualResultValue(result)}}</td>
     </tr>
     </tbody>
-  </table>
-</div>
+</table>
+

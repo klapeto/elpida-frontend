@@ -1,31 +1,32 @@
-<div *ngIf="!result">
-    <h2>Loading Result...</h2>
-</div>
+<h2 *ngIf="!result">Loading Result...</h2>
 
 <div class="row" *ngIf="result">
-    <div class="col-sm">
-        <app-group-box [title]="'Info'">
-            <div class="row">
-                <div class="col"><strong>Name:</strong></div>
-                <div class="col">{{result.result.name}}</div>
-            </div>
-            <div class="row">
-                <div class="col"><strong>Date:</strong></div>
-                <div class="col">{{result.timeStamp.toDateString()}} {{result.timeStamp.toLocaleTimeString()}}</div>
-            </div>
-            <app-elpida [value]="result.elpida"></app-elpida>
-        </app-group-box>
-    </div>
-    <div class="col-sm">
-        <app-group-box [title]="'Results'">
-            <app-benchmark-result [benchmarkResult]="result.result"></app-benchmark-result>
-        </app-group-box>
-    </div>
+
+    <app-group-box [title]="'Info'">
+        <div class="details-grid">
+
+            <strong>Name:</strong>
+            <div>{{result.result.name}}</div>
+
+            <strong>Date:</strong>
+            <div>{{result.timeStamp.toDateString()}} {{result.timeStamp.toLocaleTimeString()}}</div>
+
+            <strong>Elpida Version:</strong>
+            <div>{{result.elpida.version.major}}.{{result.elpida.version.minor}}.{{result.elpida.version.revision}}
+                    _{{result.elpida.version.build}}</div>
+
+            <strong>Compiler:</strong>
+            <div>{{result.elpida.compiler.name}} {{result.elpida.compiler.version}}</div>
+
+        </div>
+    </app-group-box>
+
+    <app-group-box [title]="'Results'">
+        <app-benchmark-result [benchmarkResult]="result.result"></app-benchmark-result>
+    </app-group-box>
 </div>
-<div class="row" *ngIf="result">
-    <div class="col-sm">
-        <app-group-box [title]="'System'">
-            <app-system [system]="result.system" [affinity]="result.affinity"></app-system>
-        </app-group-box>
-    </div>
-</div>
+
+<app-group-box [title]="'System'" *ngIf="result">
+    <app-system [system]="result.system" [affinity]="result.affinity"></app-system>
+</app-group-box>
+

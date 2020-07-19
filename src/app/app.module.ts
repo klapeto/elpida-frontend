@@ -9,7 +9,6 @@ import {NavMenuComponent} from './nav-menu/nav-menu.component';
 import {HomeComponent} from './home/home.component';
 import {DownloadComponent} from './download/download.component';
 import {ResultComponent} from './result/result.component';
-import {ElpidaComponent} from './result/elpida/elpida.component';
 import {SystemComponent} from './result/system/system.component';
 import {BenchmarkResultComponent} from './result/benchmark-result/benchmark-result.component';
 import {GroupBoxComponent} from './group-box/group-box.component';
@@ -31,7 +30,6 @@ import {ResultsService} from '../services/results.service';
     HomeComponent,
     DownloadComponent,
     ResultComponent,
-    ElpidaComponent,
     SystemComponent,
     BenchmarkResultComponent,
     GroupBoxComponent,
