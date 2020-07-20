@@ -5,6 +5,15 @@
   border-radius: 0.5em;
 }
 
+.node-info {
+  display: flex;
+}
+
+.node-children{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr))
+}
+
 .machineNode {
   background-color: #b1b1b1;
 }

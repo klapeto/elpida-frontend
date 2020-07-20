@@ -93,3 +93,10 @@ code {
 strong {
   font-weight: bold;
 }
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 0.25rem;
+}
+
