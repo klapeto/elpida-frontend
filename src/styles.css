@@ -7,7 +7,7 @@ body {
   background-position: right;
   background-size: contain;
   background-attachment: fixed;
-  background-image: url("./assets/Elpida.svg");
+  background-image: url("./assets/Elpida-o.svg");
   min-height: 100vh;
   display: grid;
   grid-template-columns: auto;
