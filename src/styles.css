@@ -34,12 +34,31 @@ app-root {
   -moz-box-shadow: 0 0 29px 32px rgba(229,232,253,0.85);
   box-shadow: 0 0 29px 32px rgba(229,232,253,0.85);
   border-radius: 0.5rem;
-  width: 60%;
+
+  width: 100%;
 }
 
-@media (max-width: 800px){
+@media (min-width: 768px) {
   .contentContainer {
-    width: 95%;
+    max-width: 95%;
+  }
+}
+
+@media (min-width: 992px) {
+  .contentContainer {
+    max-width: 90%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .contentContainer {
+    max-width: 65%;
+  }
+}
+
+@media (min-width: 1600px) {
+  .contentContainer {
+    max-width: 50%;
   }
 }
 
