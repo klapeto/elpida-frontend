@@ -1,18 +1,21 @@
 <header>
-    <nav class="navbar">
-        <a class="nav-logo" [routerLink]="['/']">
-            <img src="./assets/ElpidaLogo_Blue.svg" alt="Elpida Logo" loading="lazy">
-        </a>
-        <div class="nav-item-container">
-            <a class="button" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/']">
-                Home
+    <nav class="navbar container">
+        <div class="nav-container container-sized">
+            <a class="nav-logo" [routerLink]="['/']">
+                <img src="./assets/ElpidaLogo_Blue.svg" alt="Elpida Logo" loading="lazy">
             </a>
-            <a class="button" [routerLinkActive]="['active']" [routerLink]="['/download']">
-                Download
-            </a>
-            <a class="button" [routerLinkActive]="['active']" [routerLink]="['/latest-results']">
-                Latest Results
-            </a>
+            <div class="nav-item-container">
+                <a class="button" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
+                   [routerLink]="['/']">
+                    Home
+                </a>
+                <a class="button" [routerLinkActive]="['active']" [routerLink]="['/download']">
+                    Download
+                </a>
+                <a class="button" [routerLinkActive]="['active']" [routerLink]="['/latest-results']">
+                    Latest Results
+                </a>
+            </div>
         </div>
     </nav>
 </header>

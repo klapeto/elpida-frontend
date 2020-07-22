@@ -1,13 +1,18 @@
 .navbar {
   background-color: #c7cdf9;
   display: flex;
+  flex-flow: row wrap;
   padding: 1rem;
   position: relative;
 }
 
 .nav-logo {
-  display: grid;
+  display: flex;
   place-items: center;
+}
+
+.nav-container {
+  display: flex;
 }
 
 .nav-item-container {

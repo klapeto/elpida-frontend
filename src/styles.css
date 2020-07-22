@@ -27,6 +27,10 @@ app-root {
   justify-content: center;
 }
 
+.container-sized {
+  width: 100%;
+}
+
 .contentContainer {
   padding: 1rem;
   background-color: rgba(229,232,253,0.85);
@@ -34,30 +38,28 @@ app-root {
   -moz-box-shadow: 0 0 29px 32px rgba(229,232,253,0.85);
   box-shadow: 0 0 29px 32px rgba(229,232,253,0.85);
   border-radius: 0.5rem;
-
-  width: 100%;
 }
 
 @media (min-width: 768px) {
-  .contentContainer {
+  .container-sized {
     max-width: 95%;
   }
 }
 
 @media (min-width: 992px) {
-  .contentContainer {
+  .container-sized {
     max-width: 90%;
   }
 }
 
 @media (min-width: 1200px) {
-  .contentContainer {
+  .container-sized {
     max-width: 65%;
   }
 }
 
 @media (min-width: 1600px) {
-  .contentContainer {
+  .container-sized {
     max-width: 50%;
   }
 }
