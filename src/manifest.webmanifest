@@ -1,0 +1,17 @@
+{
+  "name": "Elpida.FrontEnd",
+  "short_name": "Elpida.FrontEnd",
+  "theme_color": "#E5E8FD",
+  "background_color": "#E5E8FD",
+  "display": "standalone",
+  "scope": "./",
+  "start_url": "./",
+  "icons": [
+    {
+      "src": "assets/Elpida-icon-transp-o.svg",
+      "sizes": "72x72",
+      "type": "image/svg",
+      "purpose": "maskable any"
+    }
+  ]
+}
