@@ -1,65 +1,66 @@
 .cpuNode {
-  background-color: #81d6d0;
-  padding: 0.2em;
-  margin: 0.05em;
-  border-radius: 0.5em;
+    background-color: #81d6d0;
+    padding: 0.25rem;
+    margin: 0.1rem;
+    border-radius: 0.5rem;
+    font-size: small;
 }
 
 .node-info {
-  display: flex;
+    display: flex;
 }
 
-.node-children{
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr))
+.node-child {
+    display: inline-flex;
+    flex-flow: column wrap;
 }
 
 .machineNode {
-  background-color: #b1b1b1;
+    background-color: #b1b1b1;
 }
 
 .packageNode {
-  background-color: #99da9f;
+    background-color: #99da9f;
 }
 
 .groupNode {
-  background-color: #db8ced;
+    background-color: #db8ced;
 }
 
 .numanodeNode {
-  background-color: #acb4ec;
+    background-color: #acb4ec;
 }
 
 .l1dcacheNode {
-  background-color: #fa9e9e;
+    background-color: #fa9e9e;
 }
 
 .l1icacheNode {
-  background-color: #f5bfbf;
+    background-color: #f5bfbf;
 }
 
 .l2dcacheNode {
-  background-color: #e48b8b;
+    background-color: #e48b8b;
 }
 
 .l2icacheNode {
-  background-color: #e6abab;
+    background-color: #e6abab;
 }
 
 
 .l3dcacheNode {
-  background-color: #c67171;
+    background-color: #c67171;
 }
 
 .l3icacheNode {
-  background-color: #c68989;
+    background-color: #c68989;
 }
 
 .coreNode {
-  background-color: #9297e3;
+    background-color: #9297e3;
 }
 
 .executionunitNode {
-  background-color: #c8caea;
+    background-color: #c8caea;
 }
 

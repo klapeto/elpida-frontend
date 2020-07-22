@@ -2,14 +2,15 @@
     <div class="node-info">
         <strong>{{node.name}}</strong>
         <div *ngIf="node.osIndex !== null">: {{node.osIndex}} </div>
-        <div *ngIf="node.value !== null">: {{valueConverter.convertToSI(node.value)}}B </div>
+        <div *ngIf="node.value !== null">: {{valueConverter.convertToSI(node.value)}}B</div>
         <div *ngIf="isUsed()" class="badge badge-success">&#10004;</div>
     </div>
-<!--    <div *ngIf="node.memoryChildren" class="row">-->
-<!--        <app-cpu-node *ngFor="let child of node.memoryChildren" [node]="child"-->
-<!--                      [affinity]="affinity"></app-cpu-node>-->
-<!--    </div>-->
+    <div *ngIf="node.memoryChildren">
+        <app-cpu-node *ngFor="let child of node.memoryChildren" [node]="child"
+                      [affinity]="affinity" class="node-child"></app-cpu-node>
+    </div>
     <div *ngIf="node.children">
-      <app-cpu-node *ngFor="let child of node.children" [node]="child" [affinity]="affinity"></app-cpu-node>
+        <app-cpu-node *ngFor="let child of node.children" [node]="child" [affinity]="affinity"
+                      class="node-child"></app-cpu-node>
     </div>
 </div>
