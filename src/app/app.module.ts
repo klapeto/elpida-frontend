@@ -9,7 +9,6 @@ import {NavMenuComponent} from './nav-menu/nav-menu.component';
 import {HomeComponent} from './home/home.component';
 import {DownloadComponent} from './download/download.component';
 import {ResultComponent} from './result/result.component';
-import {ElpidaComponent} from './result/elpida/elpida.component';
 import {SystemComponent} from './result/system/system.component';
 import {BenchmarkResultComponent} from './result/benchmark-result/benchmark-result.component';
 import {GroupBoxComponent} from './group-box/group-box.component';
@@ -23,6 +22,8 @@ import {LatestResultsComponent} from './latest-results/latest-results.component'
 import {PagingComponent} from './paging/paging.component';
 import {OsComponent} from './result/system/os/os.component';
 import {ResultsService} from '../services/results.service';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,6 @@ import {ResultsService} from '../services/results.service';
     HomeComponent,
     DownloadComponent,
     ResultComponent,
-    ElpidaComponent,
     SystemComponent,
     BenchmarkResultComponent,
     GroupBoxComponent,
@@ -53,7 +53,8 @@ import {ResultsService} from '../services/results.service';
       {path: 'download', component: DownloadComponent},
       {path: 'latest-results', component: LatestResultsComponent},
       {path: 'result/:id', component: ResultComponent},
-    ], {useHash: true})
+    ], {useHash: true}),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [ValueConverter, ResultsService],
   bootstrap: [AppComponent]

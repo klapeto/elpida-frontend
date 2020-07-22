@@ -12,9 +12,4 @@ export class CpuComponent {
   @Input() cpu: Cpu;
 
   constructor(public valueConverter: ValueConverter) { }
-
-  public getRowClass(): string {
-    const childrenCountRoot = Math.ceil(Math.sqrt(this.cpu.caches.length));
-    return 'row-cols-' + childrenCountRoot;
-  }
 }

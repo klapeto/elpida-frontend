@@ -15,11 +15,6 @@ export class CpuNodeComponent {
   constructor(public valueConverter: ValueConverter) {
   }
 
-  public getRowClass(): string {
-    const childrenCountRoot = Math.ceil(Math.sqrt(this.node.children.length));
-    return 'row-cols-' + childrenCountRoot;
-  }
-
   public isUsed(): boolean {
     return this.node.nodeType === NodeType.ExecutionUnit && this.affinity.findIndex(a => a === this.node.osIndex) !== -1;
   }

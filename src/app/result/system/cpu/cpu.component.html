@@ -1,59 +1,38 @@
-<div class="row">
-  <div class="col">
-    <div class="row row-cols-2">
-      <div class="col-sm-3"><strong>Vendor:</strong></div>
-      <div class="col">{{cpu.vendor}}</div>
-    </div>
+<div class="details-grid">
 
-    <div class="row row-cols-2">
-      <div class="col-sm-3"><strong>Brand:</strong></div>
-      <div class="col">{{cpu.brand}}</div>
-    </div>
+    <strong>Vendor:</strong>
+    <div>{{cpu.vendor}}</div>
 
-    <div class="row row-cols-2">
-      <div class="col-sm-3"><strong>Family:</strong></div>
-      <div class="col">{{cpu.family}}</div>
-    </div>
+    <strong>Brand:</strong>
+    <div>{{cpu.brand}}</div>
 
-    <div class="row row-cols-2">
-      <div class="col-sm-3"><strong>Model:</strong></div>
-      <div class="col">{{cpu.model}}</div>
-    </div>
+    <strong>Family:</strong>
+    <div>{{cpu.family}}</div>
 
-    <div class="row row-cols-2">
-      <div class="col-sm-3"><strong>Stepping:</strong></div>
-      <div class="col">{{cpu.stepping}}</div>
-    </div>
+    <strong>Model:</strong>
+    <div>{{cpu.model}}</div>
 
-    <div class="row row-cols-2">
-      <div class="col-sm-3"><strong>Frequency:</strong></div>
-      <div class="col">{{valueConverter.convertToSI(cpu.frequency)}}Hz</div>
-    </div>
+    <strong>Stepping:</strong>
+    <div>{{cpu.stepping}}</div>
 
-    <div class="row row-cols-2">
-      <div class="col-sm-3"><strong>SMT:</strong></div>
-      <div class="col">{{cpu.smt}}</div>
-    </div>
+    <strong>Frequency:</strong>
+    <div>{{valueConverter.convertToSI(cpu.frequency)}}Hz</div>
 
-    <div class="row row-cols-2">
-      <div class="col-sm-3"><strong>Features:</strong></div>
-      <div class="col">
+    <strong>SMT:</strong>
+    <div>{{cpu.smt}}</div>
+
+    <strong>Features:</strong>
+    <div>
         <span *ngFor="let feature of cpu.features">
           {{feature}}
         </span>
-      </div>
     </div>
-  </div>
+</div>
 
-  <div class="col-sm">
-    <div class="row no-gutters" [ngClass]="getRowClass()">
-      <div class="col" *ngFor="let cpuCache of cpu.caches">
-        <app-group-box [title]="cpuCache.name">
-          <app-cpu-cache [cache]="cpuCache"></app-cpu-cache>
-        </app-group-box>
-      </div>
-    </div>
-  </div>
+<div class="row">
+    <app-group-box [title]="cpuCache.name" *ngFor="let cpuCache of cpu.caches">
+        <app-cpu-cache [cache]="cpuCache"></app-cpu-cache>
+    </app-group-box>
 </div>
 
 
