@@ -1,6 +1,10 @@
 <h2 *ngIf="!result">Loading Result...</h2>
 
-<div class="row" *ngIf="result">
+<div *ngIf="result">
+
+    <app-group-box [title]="'Results'">
+        <app-benchmark-result [benchmarkResult]="result.result"></app-benchmark-result>
+    </app-group-box>
 
     <app-group-box [title]="'Info'">
         <div class="details-grid">
@@ -21,9 +25,7 @@
         </div>
     </app-group-box>
 
-    <app-group-box [title]="'Results'">
-        <app-benchmark-result [benchmarkResult]="result.result"></app-benchmark-result>
-    </app-group-box>
+
 </div>
 
 <app-group-box [title]="'System'" *ngIf="result">
