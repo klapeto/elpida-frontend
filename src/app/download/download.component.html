@@ -3,15 +3,13 @@
     You can download Elpida application binaries for Windows and Linux:
 </p>
 <div class="button-group">
-    <button type="button" class="button">Windows 10 x86-64</button>
-    <button type="button" class="button">Linux AppImage</button>
-</div>
+    <h3>Windows:</h3>
+    <a class="button" [href]="linksService.windowsLatestBeta">Beta Zip (x86-64)</a>
 
-<hr/>
-<p>
-    You can download Elpida application source:
-</p>
-<div class="button-group">
-    <button type="button" class="button">Latest Source</button>
-    <a href="https://gitlab.com/dev-hood/elpida/elpida">Git Repository</a>
+    <h3>Linux:</h3>
+    <a class="button" [href]="linksService.linuxLatestBeta">Beta AppImage (x86-64)</a>
+
+    <h3>Source code:</h3>
+    <a class="button" [href]="linksService.latestSource">Latest Source</a>
+    <a [href]="linksService.sourceCodeRepo">Git Repository</a>
 </div>
