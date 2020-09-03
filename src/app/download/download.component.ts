@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {LinksService} from '../../services/links.service';
 
 @Component({
   selector: 'app-download',
@@ -6,7 +7,7 @@ import {Component} from '@angular/core';
   styleUrls: ['./download.component.css']
 })
 export class DownloadComponent {
-  constructor() {
+  constructor(private linksService: LinksService) {
 
   }
 }

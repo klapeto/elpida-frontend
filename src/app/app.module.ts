@@ -24,6 +24,7 @@ import {OsComponent} from './result/system/os/os.component';
 import {ResultsService} from '../services/results.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import {LinksService} from '../services/links.service';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,7 @@ import { environment } from '../environments/environment';
     ], {useHash: true}),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [ValueConverter, ResultsService],
+  providers: [ValueConverter, ResultsService, LinksService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
