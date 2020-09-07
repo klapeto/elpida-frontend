@@ -14,7 +14,7 @@ export class ResultsService implements IResultsService {
     constructor(private http: HttpClient) {
     }
 
-    private baseUrl = 'http://localhost:5000/api/v1/result/search';
+    private baseUrl = 'https://api.elpida.dev/api/v1/result/search';
 
     private static getPageRequestParams(obj: any): HttpParams {
         return new HttpParams({
