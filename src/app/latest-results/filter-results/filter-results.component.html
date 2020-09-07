@@ -1,0 +1,6 @@
+<app-group-box [title]="'Filters'">
+    <div class="filter-container">
+        <app-filter-case *ngFor="let filter of filters" [filter]="filter"></app-filter-case>
+        <input type="button" (click)="onSubmit()" value="Submit">
+    </div>
+</app-group-box>

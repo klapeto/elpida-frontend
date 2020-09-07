@@ -25,3 +25,8 @@
     margin-top: 0;
     margin-bottom: 0;
 }
+
+.results-container{
+    display: grid;
+    grid-template-columns: auto 1fr;
+}

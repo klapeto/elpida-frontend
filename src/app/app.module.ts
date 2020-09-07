@@ -22,9 +22,12 @@ import {LatestResultsComponent} from './latest-results/latest-results.component'
 import {PagingComponent} from './paging/paging.component';
 import {OsComponent} from './result/system/os/os.component';
 import {ResultsService} from '../services/results.service';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
+import {ServiceWorkerModule} from '@angular/service-worker';
+import {environment} from '../environments/environment';
 import {LinksService} from '../services/links.service';
+import {FilterResultsComponent} from './latest-results/filter-results/filter-results.component';
+import {FilterCaseComponent} from './latest-results/filter-results/filter-case/filter-case.component';
+import {FiltersService} from '../services/filters.service';
 
 @NgModule({
   declarations: [
@@ -44,6 +47,8 @@ import {LinksService} from '../services/links.service';
     LatestResultsComponent,
     PagingComponent,
     OsComponent,
+    FilterResultsComponent,
+    FilterCaseComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
@@ -55,9 +60,9 @@ import {LinksService} from '../services/links.service';
       {path: 'latest-results', component: LatestResultsComponent},
       {path: 'result/:id', component: ResultComponent},
     ], {useHash: true}),
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
   ],
-  providers: [ValueConverter, ResultsService, LinksService],
+  providers: [ValueConverter, ResultsService, LinksService, FiltersService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

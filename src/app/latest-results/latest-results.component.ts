@@ -4,6 +4,10 @@ import {ResultPreview} from '../../models/result-preview';
 import {ValueConverter} from '../../services/value-converter';
 import {ResultsService} from '../../services/results.service';
 import {PageRequest} from '../../models/page-request';
+import {FiltersService} from '../../services/filters.service';
+import {QueryRequest} from '../../models/query-request';
+import {Filter} from '../../models/filter';
+import {FilterDto} from '../../services/filter-dto';
 
 @Component({
     selector: 'app-latest-results',
@@ -18,16 +22,23 @@ export class LatestResultsComponent {
     private resultsPerPage = 10;
     private curPage = -1;
 
+
     constructor(
         @Inject('BASE_URL') public baseUrl: string,
         public valueConverter: ValueConverter,
-        private resultService: ResultsService
+        private resultService: ResultsService,
+        public filtersService: FiltersService
     ) {
         this.getPageResults(0);
     }
 
+    public onFiltersSubmitted() {
+        this.getPageResults(this.curPage);
+    }
+
+
     private getPageResults(page: number) {
-        this.resultService.getPreviews(new PageRequest(page * this.resultsPerPage, this.resultsPerPage, 0))
+        this.resultService.getPreviews(new QueryRequest(new PageRequest(page * this.resultsPerPage, this.resultsPerPage, 0), null, false, this.filtersService.translateToDtos(this.filtersService.filters)))
             .subscribe(result => {
                 this.curPage = page;
                 result.list.forEach(x => x.timeStamp = new Date(Date.parse(x.timeStamp.toString())));

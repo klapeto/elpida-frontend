@@ -1,0 +1,9 @@
+<label>{{filter.title}}</label>
+<div class="group">
+    <select *ngIf="filter.allowComparison" [(ngModel)]="filter.selected">
+        <option *ngFor="let option of filter.options">
+            {{option}}
+        </option>
+    </select>
+    <input [type]="getInputType()" [(ngModel)]="filter.value"/>
+</div>
