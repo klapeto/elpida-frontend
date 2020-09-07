@@ -13,7 +13,8 @@ export class ResultsService implements IResultsService {
     constructor(private http: HttpClient) {
     }
 
-    private baseUrl = 'https://api.elpida.dev/api/v1/result/search';
+    private baseUrl = 'https://api.elpida.dev/api/v1/result';
+    private baseSearchUrl = 'https://api.elpida.dev/api/v1/result/search';
 
     private static getPageRequestParams(obj: any): HttpParams {
         return new HttpParams({
@@ -22,7 +23,7 @@ export class ResultsService implements IResultsService {
     }
 
     getPreviews(query: QueryRequest): Observable<PagedResult<ResultPreview>> {
-        return this.http.post<PagedResult<ResultPreview>>(this.baseUrl, query);
+        return this.http.post<PagedResult<ResultPreview>>(this.baseSearchUrl, query);
     }
 
     getSingle(id: string): Observable<Result> {
