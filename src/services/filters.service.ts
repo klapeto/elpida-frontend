@@ -14,13 +14,13 @@ export class FiltersService {
     const returnObject = {};
     filters.forEach(x => {
       if (x.selected !== '' && x.value !== undefined) {
-        if (x.type === FilterType.Date)
-        {
+        if (x.type === FilterType.Date) {
           returnObject[x.name] = new FilterDto(new Date(x.value).toISOString(), Filter.uiComparisonToBackendComparison[x.selected]);
+        } else if (x.type === FilterType.Number) {
+          returnObject[x.name] = new FilterDto(Number.parseInt(x.value, 10), Filter.uiComparisonToBackendComparison[x.selected]);
         } else {
           returnObject[x.name] = new FilterDto(x.value, Filter.uiComparisonToBackendComparison[x.selected]);
         }
-
       }
     });
     return returnObject;
@@ -31,6 +31,15 @@ export class FiltersService {
       new Filter('Benchmark Name', 'name', FilterType.String),
       new Filter('From', 'startTime', FilterType.Date, false),
       new Filter('To', 'endTime', FilterType.Date, false),
+      new Filter('CPU Vendor', 'cpuVendor', FilterType.String),
+      new Filter('CPU Brand', 'cpuBrand', FilterType.String),
+      new Filter('CPU Frequency', 'cpuFrequency', FilterType.Number),
+      new Filter('CPU Cores', 'cpuCores', FilterType.Number),
+      new Filter('CPU Logical Cores', 'cpuLogicalCores', FilterType.Number),
+      new Filter('Main Memory Size', 'memorySize', FilterType.Number),
+      new Filter('Os Category', 'osCategory', FilterType.String),
+      new Filter('Os Name', 'osName', FilterType.String),
+      new Filter('Os Version', 'osVersion', FilterType.String),
     ];
   }
 }
