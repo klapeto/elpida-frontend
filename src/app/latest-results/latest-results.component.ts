@@ -30,10 +30,23 @@ export class LatestResultsComponent {
     }
 
     public onFiltersSubmitted() {
+
+        const previousResult = this.pageResult,
+            prevMaxPages = this.maxResultPages,
+            prevCurPage = this.curPage;
+
         this.pageResult = undefined;
         this.maxResultPages = undefined;
         this.curPage = 0;
-        this.getPageResults(this.curPage);
+
+        try {
+            this.getPageResults(this.curPage);
+        } catch (e) {
+            alert(e);
+            this.pageResult = previousResult;
+            this.maxResultPages = prevMaxPages;
+            this.curPage = prevCurPage;
+        }
     }
 
 

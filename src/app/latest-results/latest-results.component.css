@@ -27,6 +27,6 @@
 }
 
 .results-container{
-    display: grid;
-    grid-template-columns: auto 1fr;
+    display: flex;
+    flex-flow: row wrap;
 }

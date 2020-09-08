@@ -13,10 +13,14 @@ export class FiltersService {
   public translateToDtos(filters: Filter[]): object {
     const returnObject = {};
     filters.forEach(x => {
-      if (x.selected !== '' && x.value !== undefined) {
+      if (x.selected !== '' && x.value !== undefined && x.value !== '' && x.value !== null) {
         if (x.type === FilterType.Date) {
           returnObject[x.name] = new FilterDto(new Date(x.value).toISOString(), Filter.uiComparisonToBackendComparison[x.selected]);
         } else if (x.type === FilterType.Number) {
+          const val = Number.parseInt(x.value, 10);
+          if (isNaN(val)) {
+            throw new Error(x.value + ' was not a valid number');
+          }
           returnObject[x.name] = new FilterDto(Number.parseInt(x.value, 10), Filter.uiComparisonToBackendComparison[x.selected]);
         } else {
           returnObject[x.name] = new FilterDto(x.value, Filter.uiComparisonToBackendComparison[x.selected]);

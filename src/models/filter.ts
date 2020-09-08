@@ -9,7 +9,7 @@ export class Filter {
         'Equals': 'eq',
         '>': 'g',
         '>=': 'ge',
-        '=': 'e',
+        '=': 'eq',
         '<=': 'le',
         '<': 'l'
     };
