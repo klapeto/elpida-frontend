@@ -13,10 +13,12 @@ body {
   grid-template-columns: auto;
   grid-auto-rows: auto 1fr;
   margin: 0;
+  overflow: hidden;
 }
 
 app-root {
-  min-height: 100vh;
+  overflow: auto;
+  max-height: 100vh;
   background: rgba(229,232,253,0.75);
 }
 
