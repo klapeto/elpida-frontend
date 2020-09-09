@@ -1,0 +1,11 @@
+<div class="group">
+    <strong>{{filter.title}}:</strong>
+    <div>
+        <select *ngIf="filter.allowComparison" [(ngModel)]="filter.selected">
+            <option *ngFor="let option of filter.options">
+                {{option}}
+            </option>
+        </select>
+        <input class="inputBox" c [type]="getInputType()" [(ngModel)]="filter.value"/>
+    </div>
+</div>

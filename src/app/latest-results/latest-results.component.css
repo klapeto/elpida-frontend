@@ -25,3 +25,12 @@
     margin-top: 0;
     margin-bottom: 0;
 }
+
+.results-container {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.results-panel {
+    flex-grow: 2;
+}

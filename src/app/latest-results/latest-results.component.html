@@ -1,18 +1,25 @@
-<p *ngIf="!pageResult"><em>Loading...</em></p>
+<div class=results-container>
+    <app-filter-results [filters]="filtersService.filters" (submitted)="onFiltersSubmitted()"></app-filter-results>
+    <div class="results-panel" [title]="'Results'">
 
-<app-paging *ngIf="pageResult" (pageChanged)="onPageChange($event)" [pagesCount]="maxResultPages">
-    <h3>Total results: {{valueConverter.convertToSI(pageResult.totalCount, 0)}}</h3>
-    <div class="results-list">
-        <a [routerLink]="'/result/'+ result.id" class="result-item"
-           *ngFor="let result of pageResult.list">
-            <div>{{result.timeStamp.toDateString()}} {{result.timeStamp.toLocaleTimeString()}}</div>
-            <h3 class="result-detail">
-                {{result.cpuBrand}}
-            </h3>
-            <h3 class="result-detail">
-                {{result.name}}
-            </h3>
-        </a>
+        <p *ngIf="!pageResult"><em>Loading...</em></p>
+
+        <app-paging *ngIf="pageResult" (pageChanged)="onPageChange($event)" [pagesCount]="maxResultPages">
+            <h3>Total results: {{valueConverter.convertToSI(pageResult.totalCount, 0)}}</h3>
+            <div class="results-list">
+                <a [routerLink]="'/result/'+ result.id" class="result-item"
+                   *ngFor="let result of pageResult.list">
+                    <div>{{result.timeStamp.toDateString()}} {{result.timeStamp.toLocaleTimeString()}}</div>
+                    <h3 class="result-detail">
+                        {{result.cpuBrand}}
+                    </h3>
+                    <h3 class="result-detail">
+                        {{result.name}}
+                    </h3>
+                </a>
+            </div>
+        </app-paging>
     </div>
-</app-paging>
+</div>
+
 
