@@ -26,7 +26,11 @@
     margin-bottom: 0;
 }
 
-.results-container{
+.results-container {
     display: flex;
     flex-flow: row wrap;
+}
+
+.results-panel {
+    flex-grow: 2;
 }

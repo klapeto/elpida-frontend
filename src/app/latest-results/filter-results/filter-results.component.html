@@ -1,10 +1,10 @@
-<app-group-box [title]="'Filters'">
-    <div class="filter-container">
-        <div *ngFor="let filter of filters" >
-            <app-filter-case [filter]="filter"></app-filter-case>
-            <hr/>
-        </div>
-
-        <input type="button" (click)="onSubmit()" value="Submit">
+<h2>Filters</h2>
+<div class="filter-container">
+    <div *ngFor="let filter of filters">
+        <app-filter-case [filter]="filter"></app-filter-case>
+        <hr/>
     </div>
-</app-group-box>
+
+    <div (click)="onSubmit()" class="button non-a-button">Submit</div>
+</div>
+

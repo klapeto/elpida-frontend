@@ -1,10 +1,10 @@
-.filter-container{
+.filter-container {
     display: flex;
     flex-direction: column;
     padding: 1rem;
 }
 
-.filter-group{
+.filter-group {
     display: flex;
     flex-direction: row;
 }
