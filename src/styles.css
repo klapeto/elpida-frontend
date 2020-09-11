@@ -87,7 +87,7 @@ code {
     justify-content: center;
     color: #454545;
     text-decoration: none;
-
+    transition: background 0.2s ease;
 }
 
 .button:hover {
@@ -107,6 +107,9 @@ code {
 .non-a-button {
     user-select: none;
     cursor: pointer;
+}
+
+.button-default-size {
     padding: 1rem;
     min-width: auto;
 }
@@ -126,3 +129,6 @@ strong {
     padding: 0.25rem;
 }
 
+hr {
+    border: 0.05rem rgb(171, 173, 228) solid;
+}
