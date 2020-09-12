@@ -20,15 +20,12 @@ export class LatestResultsComponent {
     private resultsPerPage = 10;
     private curPage = 0;
 
-    public query: Query;
-
     constructor(
         @Inject('BASE_URL') public baseUrl: string,
         public valueConverter: ValueConverter,
         private resultService: ResultsService,
         public filtersService: FiltersService
     ) {
-        this.query = new Query(filtersService.filters, filtersService.defaultOrderByFilter, true);
         this.reloadPageSafe();
     }
 
@@ -36,7 +33,7 @@ export class LatestResultsComponent {
         this.reloadPageSafe();
     }
 
-    private reloadPageSafe() {
+    private reloadPageSafe(): void {
         const previousResult = this.pageResult,
             prevMaxPages = this.maxResultPages,
             prevCurPage = this.curPage;
@@ -53,8 +50,8 @@ export class LatestResultsComponent {
         }
     }
 
-    private getPageResults(page: number) {
-        this.resultService.getPreviews(new PageRequest(page * this.resultsPerPage, this.resultsPerPage, 0), this.query)
+    private getPageResults(page: number): void {
+        this.resultService.getPreviews(new PageRequest(page * this.resultsPerPage, this.resultsPerPage, 0), this.filtersService.query)
             .subscribe(result => {
                 this.curPage = page;
                 result.list.forEach(x => x.timeStamp = new Date(Date.parse(x.timeStamp.toString())));
@@ -66,7 +63,7 @@ export class LatestResultsComponent {
             }, error => console.error(error));
     }
 
-    public onPageChange(page: number) {
+    public onPageChange(page: number): void {
         if (this.curPage !== page) {    // avoid multiple API Calls from initialisation
             this.getPageResults(page);
         }

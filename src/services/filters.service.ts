@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Filter} from '../models/filter';
 import {FilterType} from '../models/filter-type.enum';
 import {FilterDto} from './filter-dto';
+import {Query} from '../models/query';
 
 @Injectable({
     providedIn: 'root'
@@ -13,6 +14,8 @@ export class FiltersService {
     public orderByFilters: Filter[];
 
     public defaultOrderByFilter: Filter;
+
+    public query: Query;
 
     public translateToDtos(filters: Filter[]): object {
         const returnObject = {};
@@ -55,5 +58,7 @@ export class FiltersService {
         );
         this.defaultOrderByFilter = new Filter('Timestamp', 'timestamp', FilterType.Date, false);
         this.orderByFilters.push(this.defaultOrderByFilter);
+
+        this.query = new Query(this.filters, this.defaultOrderByFilter, true);
     }
 }

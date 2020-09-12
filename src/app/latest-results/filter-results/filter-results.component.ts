@@ -18,17 +18,16 @@ export class FilterResultsComponent implements AfterViewInit {
     constructor() {
     }
 
-    public onSubmit() {
+    public onSubmit(): void {
         this.submitted.emit();
     }
 
-    onOrderByChanged(event: Event): void {
+    public onOrderByChanged(event: Event): void {
         const value = (event.target as HTMLSelectElement).value;
         this.query.orderBy = this.orderByFilters.find(x => x.title === value);
     }
 
-
-    ngAfterViewInit(): void {
+    public ngAfterViewInit(): void {
         this.orderBySelect.nativeElement.value = this.query.orderBy.title;
     }
 
