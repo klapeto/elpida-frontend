@@ -1,15 +1,16 @@
 import {Component, Input} from '@angular/core';
-import {Memory} from '../../../../models/memory';
+import {Memory} from '../../../../models/result/memory';
 import {ValueConverter} from '../../../../services/value-converter';
 
 @Component({
-  selector: 'app-memory',
-  templateUrl: './memory.component.html',
-  styleUrls: ['./memory.component.css']
+    selector: 'app-memory',
+    templateUrl: './memory.component.html',
+    styleUrls: ['./memory.component.css']
 })
 export class MemoryComponent {
 
-  @Input() public memory: Memory;
+    @Input() public readonly memory: Memory;
 
-  constructor(public valueConverter: ValueConverter) { }
+    constructor(public readonly valueConverter: ValueConverter) {
+    }
 }

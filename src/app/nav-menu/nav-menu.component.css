@@ -1,23 +1,23 @@
 .navbar {
-  background-color: #c7cdf9;
-  display: flex;
-  flex-flow: row wrap;
-  padding: 1rem;
-  position: relative;
+    background-color: #c7cdf9;
+    display: flex;
+    flex-flow: row wrap;
+    padding: 1rem;
+    position: relative;
 }
 
 .nav-logo {
-  display: flex;
-  place-items: center;
+    display: flex;
+    place-items: center;
 }
 
 .nav-container {
-  display: flex;
+    display: flex;
 }
 
 .nav-item-container {
-  flex-grow: 1;
-  justify-content: end;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, max-content));
+    flex-grow: 1;
+    justify-content: end;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, max-content));
 }

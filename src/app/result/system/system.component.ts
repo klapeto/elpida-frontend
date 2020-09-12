@@ -1,13 +1,13 @@
 import {Component, Input} from '@angular/core';
-import {System} from '../../../models/system';
+import {System} from '../../../models/result/system';
 
 @Component({
-  selector: 'app-system',
-  templateUrl: './system.component.html',
-  styleUrls: ['./system.component.css']
+    selector: 'app-system',
+    templateUrl: './system.component.html',
+    styleUrls: ['./system.component.css']
 })
 export class SystemComponent {
 
-  @Input() public system: System;
-  @Input() public affinity: number[];
+    @Input() public readonly system: System;
+    @Input() public readonly affinity: number[];
 }

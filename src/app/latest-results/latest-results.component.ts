@@ -5,7 +5,6 @@ import {ValueConverter} from '../../services/value-converter';
 import {ResultsService} from '../../services/results.service';
 import {PageRequest} from '../../models/page-request';
 import {FiltersService} from '../../services/filters.service';
-import {QueryRequest} from '../../models/query-request';
 
 @Component({
     selector: 'app-latest-results',
@@ -18,27 +17,28 @@ export class LatestResultsComponent {
     public pageResult: PagedResult<ResultPreview>;
     public maxResultPages: number;
     private resultsPerPage = 10;
-    private curPage = -1;
+    private curPage = 0;
 
     constructor(
-        @Inject('BASE_URL') public baseUrl: string,
-        public valueConverter: ValueConverter,
-        private resultService: ResultsService,
-        public filtersService: FiltersService
+        @Inject('BASE_URL') public readonly baseUrl: string,
+        public readonly valueConverter: ValueConverter,
+        private readonly resultService: ResultsService,
+        public readonly filtersService: FiltersService
     ) {
-        this.getPageResults(0);
+        this.reloadPageSafe();
     }
 
-    public onFiltersSubmitted() {
+    public onFiltersSubmitted(): void {
+        this.reloadPageSafe();
+    }
 
+    private reloadPageSafe(): void {
         const previousResult = this.pageResult,
             prevMaxPages = this.maxResultPages,
             prevCurPage = this.curPage;
-
         this.pageResult = undefined;
         this.maxResultPages = undefined;
         this.curPage = 0;
-
         try {
             this.getPageResults(this.curPage);
         } catch (e) {
@@ -49,12 +49,8 @@ export class LatestResultsComponent {
         }
     }
 
-
-    private getPageResults(page: number) {
-        this.resultService.getPreviews(new QueryRequest(new PageRequest(page * this.resultsPerPage, this.resultsPerPage, 0),
-            null,
-            false,
-            this.filtersService.translateToDtos(this.filtersService.filters)))
+    private getPageResults(page: number): void {
+        this.resultService.getPreviews(new PageRequest(page * this.resultsPerPage, this.resultsPerPage, 0), this.filtersService.query)
             .subscribe(result => {
                 this.curPage = page;
                 result.list.forEach(x => x.timeStamp = new Date(Date.parse(x.timeStamp.toString())));
@@ -66,8 +62,8 @@ export class LatestResultsComponent {
             }, error => console.error(error));
     }
 
-    public onPageChange(page: number) {
-        if (this.curPage !== page) {    // avoid multiple API Calls from initialiasion
+    public onPageChange(page: number): void {
+        if (this.curPage !== page) {    // avoid multiple API Calls from initialisation
             this.getPageResults(page);
         }
     }

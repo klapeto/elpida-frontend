@@ -1,4 +1,4 @@
 export class FilterDto {
-    constructor(public value: any, public comp: string) {
+    constructor(public readonly value: any, public readonly comp: string) {
     }
 }

@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Topology} from '../../../../models/topology/topology';
+import {Topology} from '../../../../models/result/topology/topology';
 
 @Component({
   selector: 'app-topology',

@@ -1,10 +1,10 @@
 import {PageRequest} from './page-request';
 
 export class PagedResult<T> {
-  constructor(
-    public count: number,
-    public list: T[],
-    public totalCount: number,
-    public nextPage: PageRequest) {
-  }
+    constructor(
+        public readonly count: number,
+        public readonly list: T[],
+        public readonly totalCount: number,
+        public readonly nextPage: PageRequest) {
+    }
 }
