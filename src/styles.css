@@ -132,3 +132,11 @@ strong {
 hr {
     border: 0.05rem rgb(171, 173, 228) solid;
 }
+
+.filter-group-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}

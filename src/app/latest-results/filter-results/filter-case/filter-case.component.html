@@ -1,4 +1,4 @@
-<div class="group">
+<div class="filter-group-row">
     <strong>{{filter.title}}:</strong>
     <div>
         <select *ngIf="filter.allowComparison" [(ngModel)]="filter.selected">
@@ -6,6 +6,6 @@
                 {{option}}
             </option>
         </select>
-        <input class="inputBox" c [type]="getInputType()" [(ngModel)]="filter.value"/>
+        <input class="inputBox" [type]="getInputType()" [(ngModel)]="filter.value"/>
     </div>
 </div>

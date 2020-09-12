@@ -5,7 +5,7 @@ import {ValueConverter} from '../../services/value-converter';
 import {ResultsService} from '../../services/results.service';
 import {PageRequest} from '../../models/page-request';
 import {FiltersService} from '../../services/filters.service';
-import {QueryRequest} from '../../models/query-request';
+import {Query} from '../../models/query';
 
 @Component({
     selector: 'app-latest-results',
@@ -20,12 +20,15 @@ export class LatestResultsComponent {
     private resultsPerPage = 10;
     private curPage = -1;
 
+    public query: Query;
+
     constructor(
         @Inject('BASE_URL') public baseUrl: string,
         public valueConverter: ValueConverter,
         private resultService: ResultsService,
         public filtersService: FiltersService
     ) {
+        this.query = new Query(filtersService.filters, filtersService.defaultOrderByFilter, true);
         this.getPageResults(0);
     }
 
@@ -49,12 +52,8 @@ export class LatestResultsComponent {
         }
     }
 
-
     private getPageResults(page: number) {
-        this.resultService.getPreviews(new QueryRequest(new PageRequest(page * this.resultsPerPage, this.resultsPerPage, 0),
-            null,
-            false,
-            this.filtersService.translateToDtos(this.filtersService.filters)))
+        this.resultService.getPreviews(new PageRequest(page * this.resultsPerPage, this.resultsPerPage, 0), this.query)
             .subscribe(result => {
                 this.curPage = page;
                 result.list.forEach(x => x.timeStamp = new Date(Date.parse(x.timeStamp.toString())));
@@ -67,7 +66,7 @@ export class LatestResultsComponent {
     }
 
     public onPageChange(page: number) {
-        if (this.curPage !== page) {    // avoid multiple API Calls from initialiasion
+        if (this.curPage !== page) {    // avoid multiple API Calls from initialisation
             this.getPageResults(page);
         }
     }

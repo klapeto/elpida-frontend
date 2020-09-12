@@ -1,5 +1,5 @@
 <div class=results-container>
-    <app-filter-results [filters]="filtersService.filters" (submitted)="onFiltersSubmitted()"></app-filter-results>
+    <app-filter-results [query]="query" [orderByFilters]="filtersService.orderByFilters" (submitted)="onFiltersSubmitted()"></app-filter-results>
     <div class="results-panel" [title]="'Results'">
 
         <p *ngIf="!pageResult"><em>Loading...</em></p>

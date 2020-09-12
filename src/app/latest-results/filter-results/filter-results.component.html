@@ -1,7 +1,25 @@
 <h2>Filters</h2>
 <div class="filter-container">
-    <div *ngFor="let filter of filters">
+    <div *ngFor="let filter of query.filters">
         <app-filter-case [filter]="filter"></app-filter-case>
+        <hr/>
+    </div>
+
+    <div>
+        <div class="filter-group-row">
+            <label for="orderBy-select"><strong>Order by:</strong></label>
+            <select #orderBy id="orderBy-select" (change)="onOrderByChanged($event)">
+                <option *ngFor="let option of orderByFilters">
+                    {{option.title}}
+                </option>
+            </select>
+        </div>
+        <hr/>
+    </div>
+
+    <div>
+        <input type="checkbox" id="descending-chk" name="descending" value="Descending" [(ngModel)]="query.descending">
+        <label for="descending-chk"><strong>Descending</strong></label>
         <hr/>
     </div>
 

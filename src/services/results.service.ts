@@ -3,31 +3,33 @@ import {IResultsService} from './iresults-service';
 import {PagedResult} from '../models/paged-result';
 import {ResultPreview} from '../models/result-preview';
 import {Result} from '../models/result';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {QueryRequest} from '../models/query-request';
+import {PageRequest} from '../models/page-request';
+import {Query} from '../models/query';
+import {FiltersService} from './filters.service';
 
 @Injectable()
 export class ResultsService implements IResultsService {
 
-    constructor(private http: HttpClient) {
-    }
-
     private baseUrl = 'https://api.elpida.dev/api/v1/result';
     private baseSearchUrl = 'https://api.elpida.dev/api/v1/result/search';
 
-    private static getPageRequestParams(obj: any): HttpParams {
-        return new HttpParams({
-            fromObject: obj
-        });
+    // private baseUrl = 'http://localhost:5000/api/v1/result';
+    // private baseSearchUrl = 'http://localhost:5000/api/v1/result/search';
+
+    constructor(private http: HttpClient,
+                private filtersService: FiltersService) {
+
     }
 
-    getPreviews(query: QueryRequest): Observable<PagedResult<ResultPreview>> {
-        return this.http.post<PagedResult<ResultPreview>>(this.baseSearchUrl, query);
+    getPreviews(page: PageRequest, query: Query): Observable<PagedResult<ResultPreview>> {
+        return this.http.post<PagedResult<ResultPreview>>(this.baseSearchUrl,
+            new QueryRequest(page, query.orderBy.name, query.descending, this.filtersService.translateToDtos(query.filters)));
     }
 
     getSingle(id: string): Observable<Result> {
-        console.log(id);
         return this.http.get<Result>(this.baseUrl + '/' + id);
     }
 }
