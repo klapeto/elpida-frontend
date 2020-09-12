@@ -18,7 +18,7 @@ export class LatestResultsComponent {
     public pageResult: PagedResult<ResultPreview>;
     public maxResultPages: number;
     private resultsPerPage = 10;
-    private curPage = -1;
+    private curPage = 0;
 
     public query: Query;
 
@@ -29,19 +29,20 @@ export class LatestResultsComponent {
         public filtersService: FiltersService
     ) {
         this.query = new Query(filtersService.filters, filtersService.defaultOrderByFilter, true);
-        this.getPageResults(0);
+        this.reloadPageSafe();
     }
 
-    public onFiltersSubmitted() {
+    public onFiltersSubmitted(): void {
+        this.reloadPageSafe();
+    }
 
+    private reloadPageSafe() {
         const previousResult = this.pageResult,
             prevMaxPages = this.maxResultPages,
             prevCurPage = this.curPage;
-
         this.pageResult = undefined;
         this.maxResultPages = undefined;
         this.curPage = 0;
-
         try {
             this.getPageResults(this.curPage);
         } catch (e) {
