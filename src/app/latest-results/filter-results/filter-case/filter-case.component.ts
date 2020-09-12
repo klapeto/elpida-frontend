@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {Filter} from '../../../../models/filter';
 import {FilterType} from '../../../../models/filter-type.enum';
 
@@ -7,9 +7,9 @@ import {FilterType} from '../../../../models/filter-type.enum';
     templateUrl: './filter-case.component.html',
     styleUrls: ['./filter-case.component.css']
 })
-export class FilterCaseComponent implements OnInit {
+export class FilterCaseComponent {
 
-    @Input() public filter: Filter;
+    @Input() public readonly filter: Filter;
 
     constructor() {
     }
@@ -24,8 +24,4 @@ export class FilterCaseComponent implements OnInit {
                 return 'date';
         }
     }
-
-    ngOnInit() {
-    }
-
 }

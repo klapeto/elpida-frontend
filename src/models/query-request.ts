@@ -1,6 +1,9 @@
 import {PageRequest} from './page-request';
 
 export class QueryRequest {
-    constructor(public pageRequest: PageRequest, public orderBy?: string, public descending?: boolean, public filters?: object) {
+    constructor(public readonly pageRequest: PageRequest,
+                public readonly orderBy?: string,
+                public readonly descending?: boolean,
+                public readonly filters?: object) {
     }
 }

@@ -30,40 +30,40 @@ import {FilterCaseComponent} from './latest-results/filter-results/filter-case/f
 import {FiltersService} from '../services/filters.service';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavMenuComponent,
-    HomeComponent,
-    DownloadComponent,
-    ResultComponent,
-    SystemComponent,
-    BenchmarkResultComponent,
-    GroupBoxComponent,
-    CpuComponent,
-    TopologyComponent,
-    MemoryComponent,
-    CpuCacheComponent,
-    CpuNodeComponent,
-    LatestResultsComponent,
-    PagingComponent,
-    OsComponent,
-    FilterResultsComponent,
-    FilterCaseComponent
-  ],
-  imports: [
-    BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
-    HttpClientModule,
-    FormsModule,
-    RouterModule.forRoot([
-      {path: '', component: HomeComponent, pathMatch: 'full'},
-      {path: 'download', component: DownloadComponent},
-      {path: 'latest-results', component: LatestResultsComponent},
-      {path: 'result/:id', component: ResultComponent},
-    ], {useHash: true}),
-    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
-  ],
-  providers: [ValueConverter, ResultsService, LinksService, FiltersService],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        NavMenuComponent,
+        HomeComponent,
+        DownloadComponent,
+        ResultComponent,
+        SystemComponent,
+        BenchmarkResultComponent,
+        GroupBoxComponent,
+        CpuComponent,
+        TopologyComponent,
+        MemoryComponent,
+        CpuCacheComponent,
+        CpuNodeComponent,
+        LatestResultsComponent,
+        PagingComponent,
+        OsComponent,
+        FilterResultsComponent,
+        FilterCaseComponent
+    ],
+    imports: [
+        BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
+        HttpClientModule,
+        FormsModule,
+        RouterModule.forRoot([
+            {path: '', component: HomeComponent, pathMatch: 'full'},
+            {path: 'download', component: DownloadComponent},
+            {path: 'latest-results', component: LatestResultsComponent},
+            {path: 'result/:id', component: ResultComponent},
+        ], {useHash: true}),
+        ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
+    ],
+    providers: [ValueConverter, ResultsService, LinksService, FiltersService],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 }

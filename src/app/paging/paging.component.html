@@ -1,7 +1,8 @@
 <ng-content></ng-content>
 
 <div class="page-items-container">
-    <div class="non-a-button button-default-size button" (click)="getPreviousPage()" [ngClass]="{'disabled': currentPage <=0 }"
+    <div class="non-a-button button-default-size button" (click)="getPreviousPage()"
+         [ngClass]="{'disabled': currentPage <=0 }"
          aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
     </div>
@@ -9,7 +10,8 @@
          [ngClass]="{'active': page == currentPage}">
         <span class="page-link">{{page + 1}}</span>
     </div>
-    <div class="non-a-button button-default-size button" (click)="getNextPage()" [ngClass]="{'disabled': currentPage + 1 >= pagesCount }"
+    <div class="non-a-button button-default-size button" (click)="getNextPage()"
+         [ngClass]="{'disabled': currentPage + 1 >= pagesCount }"
          aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
     </div>

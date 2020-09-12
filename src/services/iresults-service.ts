@@ -1,4 +1,4 @@
-import {Result} from '../models/result';
+import {Result} from '../models/result/result';
 import {PagedResult} from '../models/paged-result';
 import {ResultPreview} from '../models/result-preview';
 import {Observable} from 'rxjs';

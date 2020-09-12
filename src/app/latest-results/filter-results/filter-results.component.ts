@@ -9,11 +9,11 @@ import {Filter} from '../../../models/filter';
 })
 export class FilterResultsComponent implements AfterViewInit {
 
-    @Input() query: Query;
-    @Input() orderByFilters: Filter[];
-    @Output() submitted = new EventEmitter();
+    @Input() public readonly query: Query;
+    @Input() public readonly orderByFilters: Filter[];
+    @Output() public readonly submitted = new EventEmitter();
 
-    @ViewChild('orderBy', {read: null, static: false}) orderBySelect: ElementRef;
+    @ViewChild('orderBy', {read: null, static: false}) private readonly orderBySelect: ElementRef;
 
     constructor() {
     }

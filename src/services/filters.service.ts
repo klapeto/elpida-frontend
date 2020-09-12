@@ -9,20 +9,23 @@ import {Query} from '../models/query';
 })
 export class FiltersService {
 
-    public filters: Filter[];
+    public readonly filters: Filter[];
 
-    public orderByFilters: Filter[];
+    public readonly orderByFilters: Filter[];
 
-    public defaultOrderByFilter: Filter;
+    public readonly defaultOrderByFilter: Filter;
 
-    public query: Query;
+    public readonly query: Query;
 
     public translateToDtos(filters: Filter[]): object {
         const returnObject = {};
         filters.forEach(x => {
             if (x.selected !== '' && x.value !== undefined && x.value !== '' && x.value !== null) {
                 if (x.type === FilterType.Date) {
-                    returnObject[x.name] = new FilterDto(new Date(x.value).toISOString(), Filter.uiComparisonToBackendComparison[x.selected]);
+                    returnObject[x.name] = new FilterDto(
+                        new Date(x.value).toISOString(),
+                        Filter.uiComparisonToBackendComparison[x.selected]
+                    );
                 } else if (x.type === FilterType.Number) {
                     const val = Number.parseInt(x.value, 10);
                     if (isNaN(val)) {

@@ -1,10 +1,10 @@
 import {FilterType} from './filter-type.enum';
 
 export class Filter {
-    public static stringOptions: string[] = ['Contains', 'Equals'];
-    public static numberOptions: string[] = ['>', '>=', '=', '<=', '<'];
+    public static readonly stringOptions: string[] = ['Contains', 'Equals'];
+    public static readonly numberOptions: string[] = ['>', '>=', '=', '<=', '<'];
 
-    public static uiComparisonToBackendComparison: object = {
+    public static readonly uiComparisonToBackendComparison: object = {
         'Contains': 'c',
         'Equals': 'eq',
         '>': 'g',
@@ -16,9 +16,13 @@ export class Filter {
 
     public selected: string;
 
-    public options: string[];
+    public readonly options: string[];
 
-    constructor(public title: string, public name: string, public type: FilterType, public allowComparison: boolean = true, public value?: any) {
+    constructor(public readonly title: string,
+                public readonly name: string,
+                public readonly type: FilterType,
+                public readonly allowComparison: boolean = true,
+                public value?: any) {
         if (type === FilterType.String) {
             this.options = Filter.stringOptions;
         } else {

@@ -5,7 +5,6 @@ import {ValueConverter} from '../../services/value-converter';
 import {ResultsService} from '../../services/results.service';
 import {PageRequest} from '../../models/page-request';
 import {FiltersService} from '../../services/filters.service';
-import {Query} from '../../models/query';
 
 @Component({
     selector: 'app-latest-results',
@@ -21,10 +20,10 @@ export class LatestResultsComponent {
     private curPage = 0;
 
     constructor(
-        @Inject('BASE_URL') public baseUrl: string,
-        public valueConverter: ValueConverter,
-        private resultService: ResultsService,
-        public filtersService: FiltersService
+        @Inject('BASE_URL') public readonly baseUrl: string,
+        public readonly valueConverter: ValueConverter,
+        private readonly resultService: ResultsService,
+        public readonly filtersService: FiltersService
     ) {
         this.reloadPageSafe();
     }
