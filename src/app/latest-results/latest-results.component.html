@@ -3,7 +3,12 @@
                         (submitted)="onFiltersSubmitted()"></app-filter-results>
     <div class="results-panel" [title]="'Results'">
 
-        <p *ngIf="!pageResult"><em>Loading...</em></p>
+        <div *ngIf="!pageResult" class="loading-indicator">
+            <div class="spinner">
+
+            </div>
+            <em>Loading...</em>
+        </div>
 
         <app-paging *ngIf="pageResult" (pageChanged)="onPageChange($event)" [pagesCount]="maxResultPages">
             <h3>Total results: {{valueConverter.convertToSI(pageResult.totalCount, 0)}}</h3>
