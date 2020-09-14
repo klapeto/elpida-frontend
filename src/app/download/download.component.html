@@ -3,24 +3,11 @@
     You can download Elpida application binaries for Windows and Linux:
 </p>
 <div class="downloads-group">
-    <app-group-box [title]="'Windows'">
-        <div class="group-content">
-            <a class="button" [href]="linksService.windowsLatestBeta">Beta Zip (x86-64)</a>
-            <a [href]="linksService.windowsLatestBetaChecksum">Sha256sum</a>
-        </div>
-    </app-group-box>
 
-    <app-group-box [title]="'Linux'">
+    <app-group-box *ngFor="let download of linksService.downloadLinks" [title]="download.name">
         <div class="group-content">
-            <a class="button" [href]="linksService.linuxLatestBeta">Beta AppImage (x86-64)</a>
-            <a [href]="linksService.linuxLatestBetaChecksum">sha256sum</a>
-        </div>
-    </app-group-box>
-
-    <app-group-box [title]="'Source code'">
-        <div class="group-content">
-            <a class="button" [href]="linksService.latestSource">Latest Source</a>
-            <a [href]="linksService.sourceCodeRepo">Git Repository</a>
+            <a *ngFor="let mainLink of download.mainLinks" class="button" [href]="mainLink.url">{{mainLink.name}}</a>
+            <a *ngFor="let secLink of download.secondaryLinks" [href]="secLink.url">{{secLink.name}}</a>
         </div>
     </app-group-box>
 </div>
