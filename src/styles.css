@@ -140,3 +140,13 @@ hr {
     justify-content: space-between;
     align-items: center;
 }
+
+code {
+    display: inline-block;
+    font-family: monospace;
+    white-space: normal;
+    word-wrap: normal;
+    background-color: #edf4f9;
+    padding: 1rem;
+    border-radius: 0.4rem;
+}
