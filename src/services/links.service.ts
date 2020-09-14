@@ -7,11 +7,11 @@ import {Link} from '../models/link';
 })
 export class LinksService {
 
-    public readonly downloadLinks = [
+    public readonly binariesLinks = [
         new DownloadInstance('Windows',
             [
                 new Link(
-                    'Beta Zip (x86-64)',
+                    'Beta x86-64 (.zip)',
                     'https://gitlab.com/dev-hood/elpida/elpida/-/jobs/artifacts/develop/raw/Elpida-latest-x86_64.zip?job=build:windows'
                 )
             ],
@@ -25,7 +25,7 @@ export class LinksService {
         new DownloadInstance('Linux',
             [
                 new Link(
-                    'Beta AppImage (x86-64)',
+                    'Beta x86-64 (.AppImage)',
                     'https://gitlab.com/dev-hood/elpida/elpida/-/jobs/artifacts/develop/raw/Elpida-latest-x86_64.AppImage?job=build:linux'
                 )
             ],
@@ -35,22 +35,53 @@ export class LinksService {
                     'https://gitlab.com/dev-hood/elpida/elpida/-/jobs/artifacts/develop/raw/SHA256SUMS?job=build:linux'
                 )
             ]
-        ),
-        new DownloadInstance('Source code',
+        )
+    ];
+
+    public readonly sourcesLinks = [
+        new DownloadInstance('Elpida source code',
             [
                 new Link(
-                    'Beta Source code',
+                    'Beta source code (.tar.gz)',
                     'https://gitlab.com/dev-hood/elpida/elpida/-/archive/develop/elpida-develop.tar.gz'
                 )
             ],
             [
                 new Link(
-                    'Git Repository',
+                    'Git repository',
                     'https://gitlab.com/dev-hood/elpida/elpida'
                 )
             ]
         ),
-    ];
+        new DownloadInstance('Website Source code',
+            [
+                new Link(
+                    'Beta source code (.tar.gz)',
+                    'https://gitlab.com/dev-hood/elpida/frontend/-/archive/develop/frontend-develop.tar.gz'
+                )
+            ],
+            [
+                new Link(
+                    'Git repository',
+                    'https://gitlab.com/dev-hood/elpida/frontend'
+                )
+            ]
+        ),
+        new DownloadInstance('HTTP Rest Api source code',
+            [
+                new Link(
+                    'Beta source code (.tar.gz)',
+                    'https://gitlab.com/dev-hood/elpida/backend/-/archive/develop/backend-develop.tar.gz'
+                )
+            ],
+            [
+                new Link(
+                    'Git repository',
+                    'https://gitlab.com/dev-hood/elpida/backend'
+                )
+            ]
+        ),];
+
     constructor() {
 
     }

@@ -4,7 +4,19 @@
 </p>
 <div class="downloads-group">
 
-    <app-group-box *ngFor="let download of linksService.downloadLinks" [title]="download.name">
+    <app-group-box *ngFor="let download of linksService.binariesLinks" [title]="download.name">
+        <div class="group-content">
+            <a *ngFor="let mainLink of download.mainLinks" class="button" [href]="mainLink.url">{{mainLink.name}}</a>
+            <a *ngFor="let secLink of download.secondaryLinks" [href]="secLink.url">{{secLink.name}}</a>
+        </div>
+    </app-group-box>
+</div>
+<p>
+    Or you can download the sources:
+</p>
+<div class="downloads-group">
+
+    <app-group-box *ngFor="let download of linksService.sourcesLinks" [title]="download.name">
         <div class="group-content">
             <a *ngFor="let mainLink of download.mainLinks" class="button" [href]="mainLink.url">{{mainLink.name}}</a>
             <a *ngFor="let secLink of download.secondaryLinks" [href]="secLink.url">{{secLink.name}}</a>
