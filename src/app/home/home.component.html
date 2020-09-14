@@ -8,28 +8,28 @@
     capabilities. </p>
 <p>Elpida has the following features:</p>
 <ul>
-    <li><strong style="font-weight: bold">Variety of pre-defined benchmarks.</strong> The Stand alone application comes
+    <li><strong>Variety of pre-defined benchmarks.</strong> The Stand alone application comes
         with predefined
         benchmarks for testing hardware, ranging from Memory bandwidth/Latency to PNG encoding and Storage Bandwithdth
         benchmarks.
     </li>
-    <li><strong style="font-weight: bold">Easy benchmark creation.</strong> You only create specifications and
+    <li><strong>Easy benchmark creation.</strong> You only create specifications and
         implementations of the tasks of your benchmark.
         More technical details are handled by default by the framework.
     </li>
-    <li><strong style="font-weight: bold">Automatic chunk based Multithreading.</strong> You create a task for a single
+    <li><strong>Automatic chunk based Multithreading.</strong> You create a task for a single
         thread execution. Then if your task can
         be broken into multiple threads to take a chunk of the input, you only have to set up a flag on your task. The
         rest will be handled by the framework. You only need to create your task as it would be executed as a single
         thread.
     </li>
-    <li><strong style="font-weight: bold">Automatic NUMA-Awareness for tasks.</strong> You don't have to be aware of
+    <li><strong>NUMA-Awareness for tasks.</strong> You don't have to be aware of
         NUMA when creating your tasks. CPU/Memory pinning
         happens automatically before each task execution. So your task will always have local memory (if possible) and
         will
         be pinned to the nearest CPU to that memory region.
     </li>
-    <li><strong style="font-weight: bold">Plugin based benchmark loading.</strong> Benchmarks are defined in plugins
+    <li><strong>Plugin based benchmark loading.</strong> Benchmarks are defined in plugins
         that are dynamically loaded during
         execution. This means you can add more plugins on the load folder and the application will detect them as new.
         This way the community
@@ -57,3 +57,14 @@
 </ul>
 <h2><strong>Note: This public beta is under heavy development. Expect breaking changes, downtimes, bugs etc.</strong>
 </h2>
+<section title="Elpida screenshots" class="screenshot-container">
+    <img src="./assets/elpida-qt-scrn-01.png" class="screenshot" loading="lazy"
+         alt="Elpida native application Screenshot">
+    <img src="./assets/elpida-qt-scrn-03.png" class="screenshot" loading="lazy"
+         alt="Elpida native application Screenshot">
+    <img src="./assets/elpida-qt-scrn-02.png" class="screenshot" loading="lazy"
+         alt="Elpida native application Screenshot">
+</section>
+
+
+
