@@ -53,7 +53,7 @@ export class LinksService {
                 )
             ]
         ),
-        new DownloadInstance('Website Source code',
+        new DownloadInstance('Website source code',
             [
                 new Link(
                     'Beta source code (.tar.gz)',
