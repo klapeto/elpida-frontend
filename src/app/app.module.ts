@@ -62,7 +62,7 @@ import {AboutComponent} from './about/about.component';
             {path: 'latest-results', component: LatestResultsComponent},
             {path: 'result/:id', component: ResultComponent},
             {path: 'about', component: AboutComponent},
-        ], {  useHash: false, anchorScrolling: 'enabled'}),
+        ], { useHash: true }),
         ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
     ],
     providers: [ValueConverter, ResultsService, LinksService, FiltersService],
