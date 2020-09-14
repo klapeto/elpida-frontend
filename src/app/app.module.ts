@@ -28,6 +28,7 @@ import {LinksService} from '../services/links.service';
 import {FilterResultsComponent} from './latest-results/filter-results/filter-results.component';
 import {FilterCaseComponent} from './latest-results/filter-results/filter-case/filter-case.component';
 import {FiltersService} from '../services/filters.service';
+import {AboutComponent} from './about/about.component';
 
 @NgModule({
     declarations: [
@@ -48,7 +49,8 @@ import {FiltersService} from '../services/filters.service';
         PagingComponent,
         OsComponent,
         FilterResultsComponent,
-        FilterCaseComponent
+        FilterCaseComponent,
+        AboutComponent
     ],
     imports: [
         BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
@@ -59,7 +61,8 @@ import {FiltersService} from '../services/filters.service';
             {path: 'download', component: DownloadComponent},
             {path: 'latest-results', component: LatestResultsComponent},
             {path: 'result/:id', component: ResultComponent},
-        ], {useHash: true}),
+            {path: 'about', component: AboutComponent},
+        ], {  useHash: false, anchorScrolling: 'enabled'}),
         ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
     ],
     providers: [ValueConverter, ResultsService, LinksService, FiltersService],
