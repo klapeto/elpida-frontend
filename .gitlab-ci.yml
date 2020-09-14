@@ -22,17 +22,12 @@ build:
   docker build --pull -t "$CI_REGISTRY_IMAGE:$CONTAINER_TAG" .
   docker push "$CI_REGISTRY_IMAGE:$CONTAINER_TAG"
 
-docker-build-base:
+.docker-build-base:
   image: docker:latest
   stage: deploy
   services:
     - docker:dind
-  before_script:
-    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
-  script:
-    - docker build --pull -t "$CI_REGISTRY_IMAGE:$CONTAINER_TAG" .
-    - docker push "$CI_REGISTRY_IMAGE:$CONTAINER_TAG"
-  when: manual
+  script: []
 
 docker-build-develop:
   variables:
