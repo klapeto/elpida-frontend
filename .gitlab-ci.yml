@@ -1,27 +1,84 @@
-docker-build-master:
-  # Official docker image.
-  image: docker:latest
+stages:
+  - build
+  - test
+  - deploy
+
+build:
+  image: node:12.18.1-alpine3.9
   stage: build
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - .npm/
+  before_script:
+    - npm ci --cache .npm --prefer-offline
+  script:
+    - npm run buildProd
+
+.docker-before-template: &docker-before |
+  docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+
+.docker-after-template: &docker-after |
+  docker build --pull -t "$CI_REGISTRY_IMAGE:$CONTAINER_TAG" .
+  docker push "$CI_REGISTRY_IMAGE:$CONTAINER_TAG"
+
+docker-build-base:
+  image: docker:latest
+  stage: deploy
   services:
     - docker:dind
   before_script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
-    - docker build --pull -t "$CI_REGISTRY_IMAGE" .
-    - docker push "$CI_REGISTRY_IMAGE"
+    - docker build --pull -t "$CI_REGISTRY_IMAGE:$CONTAINER_TAG" .
+    - docker push "$CI_REGISTRY_IMAGE:$CONTAINER_TAG"
+
+docker-build-develop:
+  variables:
+    CONTAINER_TAG: beta
+  extends: docker-build-base
+  before_script:
+    - *docker-before
+  script:
+    - *docker-after
+  only:
+    - develop
+
+docker-build-master:
+  variables:
+    CONTAINER_TAG: stable
+  extends: docker-build-base
+  before_script:
+    - *docker-before
+  script:
+    - *docker-after
   only:
     - master
 
-docker-build-develop:
-  # Official docker image.
-  image: docker:latest
-  stage: build
-  services:
-    - docker:dind
-  before_script:
-    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
-  script:
-    - docker build --pull -t "$CI_REGISTRY_IMAGE" .
-    - docker push "$CI_REGISTRY_IMAGE"
-  only:
-    - develop
+#docker-build-master:
+#  # Official docker image.
+#  image: docker:latest
+#  stage: deploy
+#  services:
+#    - docker:dind
+#  before_script:
+#    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+#  script:
+#    - docker build --pull -t "$CI_REGISTRY_IMAGE" .
+#    - docker push "$CI_REGISTRY_IMAGE"
+#  only:
+#    - master
+#
+#docker-build-develop:
+#  # Official docker image.
+#  image: docker:latest
+#  stage: deploy
+#  services:
+#    - docker:dind
+#  before_script:
+#    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+#  script:
+#    - docker build --pull -t "$CI_REGISTRY_IMAGE" .
+#    - docker push "$CI_REGISTRY_IMAGE"
+#  only:
+#    - develop
