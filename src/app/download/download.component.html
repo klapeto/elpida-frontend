@@ -1,15 +1,94 @@
-<h2>Dowload Elpida</h2>
+<h1>Dowload Elpida</h1>
 <p>
     You can download Elpida application binaries for Windows and Linux:
 </p>
-<div class="button-group">
-    <h3>Windows:</h3>
-    <a class="button" [href]="linksService.windowsLatestBeta">Beta Zip (x86-64)</a>
+<div class="downloads-group">
 
-    <h3>Linux:</h3>
-    <a class="button" [href]="linksService.linuxLatestBeta">Beta AppImage (x86-64)</a>
-
-    <h3>Source code:</h3>
-    <a class="button" [href]="linksService.latestSource">Latest Source</a>
-    <a [href]="linksService.sourceCodeRepo">Git Repository</a>
+    <app-group-box *ngFor="let download of linksService.binariesLinks" [title]="download.name">
+        <div class="group-content">
+            <a *ngFor="let mainLink of download.mainLinks" class="button" [href]="mainLink.url">{{mainLink.name}}</a>
+            <a *ngFor="let secLink of download.secondaryLinks" [href]="secLink.url">{{secLink.name}}</a>
+        </div>
+    </app-group-box>
 </div>
+<p>
+    Or you can download the sources:
+</p>
+<div class="downloads-group">
+
+    <app-group-box *ngFor="let download of linksService.sourcesLinks" [title]="download.name">
+        <div class="group-content">
+            <a *ngFor="let mainLink of download.mainLinks" class="button" [href]="mainLink.url">{{mainLink.name}}</a>
+            <a *ngFor="let secLink of download.secondaryLinks" [href]="secLink.url">{{secLink.name}}</a>
+        </div>
+    </app-group-box>
+</div>
+<hr/>
+<h1>
+    How to check the files for integrity
+</h1>
+<p>
+    It is advised to check the downloaded files for integrity. For this we provide checksums for each binary file.
+</p>
+<h2>
+    For Linux:
+</h2>
+<p>
+    Download the app image and SHA256SUMS(via the link bellow each download button) and place them on the same
+    directory.
+    Open a terminal and navigate
+    on that directory. The enter the following command:
+</p>
+<code>
+    sha256sum -c SHA256SUMS
+</code>
+<p>
+    It should output:
+</p>
+<code>
+    ./Elpida-latest-x86_64.AppImage: OK
+</code>
+<p>
+    If it outputs something like this:
+</p>
+<code>
+    ./Elpida-latest-x86_64.AppImage: FAIL <br/>
+    sha256sum: WARNING: 1 computed checksum did NOT match
+</code>
+<p>
+    Then the file is corrupted. You should download again the main file and try again. If it fails all the time and
+    there is not a
+    problem
+    with your setup (eg. Network connection, bad storage etc). Please report it to us by opening a ticket at the
+    <a href="https://gitlab.com/dev-hood/elpida/elpida">repository</a>
+</p>
+<h2>
+    For Windows:
+</h2>
+<p>
+    Download the app image and SHA256SUMS(via the link bellow each download button) and place them on the same
+    directory.
+    Open a PowerShell and navigate
+    on that directory. The enter the following command:
+</p>
+<code>
+    certUtil -hashfile .\Elpida-latest-x86_64.zip SHA256
+</code>
+<p>
+    It should output something like this:
+</p>
+<code>
+    SHA256 hash of .\Elpida-latest-x86_64.zip:<br/>
+    'large random string'
+</code>
+<p>
+    Now you should compare the 'large random string' with the corresponding 'large random string' inside the SHA256SUMS
+    file.
+    Unfortunately there is no easy/straightforward way to do this on windows. You either copy both strings on a text
+    editor
+    and check if they are the same or use a 3rd party tool.
+    If the strings do not match, the the main file is corrupted. You should download again the main file and try again.
+    If the check fails all the time and there is not a problem
+    with your setup (eg. Network connection, bad storage etc). Please report it to us by opening a ticket at the
+    <a href="https://gitlab.com/dev-hood/elpida/elpida">repository</a>
+</p>
