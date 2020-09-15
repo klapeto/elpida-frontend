@@ -28,7 +28,7 @@ export class FiltersService {
                     );
                 } else if (x.type === FilterType.Number) {
                     const val = Number.parseInt(x.value, 10);
-                    if (isNaN(val)) {
+                    if (isNaN(val) || val < 0) {
                         throw new Error(x.value + ' was not a valid number');
                     }
                     returnObject[x.name] = new FilterDto(Number.parseInt(x.value, 10), Filter.uiComparisonToBackendComparison[x.selected]);

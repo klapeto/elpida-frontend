@@ -22,6 +22,12 @@ export class FilterResultsComponent implements AfterViewInit {
         this.submitted.emit();
     }
 
+    public onReset(): void {
+        this.query.filters.forEach(f => {
+            f.value = undefined;
+        });
+    }
+    
     public onOrderByChanged(event: Event): void {
         const value = (event.target as HTMLSelectElement).value;
         this.query.orderBy = this.orderByFilters.find(x => x.title === value);
