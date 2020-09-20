@@ -76,6 +76,10 @@ export class ValueConverter {
         return (value / denominators[i]).toFixed(decimals) + prefixes[i];
     }
 
+    public static convertToSI(value: number, decimals: number = 2): string {
+        return ValueConverter.getValueScaleStringImpl(value, ValueConverter.ScaleValuesSI, ValueConverter.PrefixesSI, decimals);
+    }
+
     public convertToSI(value: number, decimals: number = 2): string {
         return ValueConverter.getValueScaleStringImpl(value, ValueConverter.ScaleValuesSI, ValueConverter.PrefixesSI, decimals);
     }

@@ -1,3 +1,7 @@
+.results-container {
+    height: 25rem;
+}
+
 .results-table {
     max-height: 10rem;
     overflow-y: scroll;

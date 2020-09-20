@@ -13,7 +13,7 @@ export class FilterResultsComponent implements AfterViewInit {
     @Input() public readonly orderByFilters: Filter[];
     @Output() public readonly submitted = new EventEmitter();
 
-    @ViewChild('orderBy', {read: null, static: false}) private readonly orderBySelect: ElementRef;
+    @ViewChild('orderBy', { read: null }) private readonly orderBySelect: ElementRef;
 
     constructor() {
     }
