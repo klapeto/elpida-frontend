@@ -1,4 +1,33 @@
-<div class="results-table">
+<div *ngIf="useLineChart; else elseBlock" class="results-container">
+    <ngx-charts-line-chart
+            [view]="view"
+            [legend]="true"
+            [showXAxisLabel]="true"
+            [showYAxisLabel]="true"
+            [xAxis]="true"
+            [yAxis]="true"
+            [xAxisLabel]="xAxisLabel"
+            [yAxisLabel]="yAxisLabel"
+            [yAxisTickFormatting]="formatNumberSI"
+            [results]="data"
+    >
+        <ng-template #seriesTooltipTemplate let-model="model">
+            <div class="area-tooltip-container">
+                <div *ngFor="let tooltipItem of model" class="tooltip-item">
+                    <span class="tooltip-item-color" [style.background-color]="tooltipItem.color"></span>
+                    {{ this.formatNumberSI(tooltipItem.value) }}
+                </div>
+            </div>
+        </ng-template>
+
+        <ng-template #tooltipTemplate let-model="model">
+            <div class="area-tooltip-container">
+                {{ this.formatNumberSI(model.value) }}
+            </div>
+        </ng-template>
+    </ngx-charts-line-chart>
+</div>
+<ng-template #elseBlock class="results-table">
     <table>
         <thead>
         <tr>
@@ -9,10 +38,11 @@
         </thead>
         <tbody>
         <tr *ngFor="let result of benchmarkResult.taskResults">
-            <td scope="row">{{result.name}}</td>
+            <td>{{result.name}}</td>
             <td>{{valueConverter.convertToSI(result.inputSize)}}</td>
             <td>{{calculateActualResultValue(result)}}</td>
         </tr>
         </tbody>
     </table>
-</div>
+</ng-template>
+

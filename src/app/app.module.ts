@@ -29,6 +29,8 @@ import {FilterResultsComponent} from './latest-results/filter-results/filter-res
 import {FilterCaseComponent} from './latest-results/filter-results/filter-case/filter-case.component';
 import {FiltersService} from '../services/filters.service';
 import {AboutComponent} from './about/about.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NgxChartsModule} from '@swimlane/ngx-charts';
 
 @NgModule({
     declarations: [
@@ -56,6 +58,8 @@ import {AboutComponent} from './about/about.component';
         BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
         HttpClientModule,
         FormsModule,
+        NgxChartsModule,
+        BrowserAnimationsModule,
         RouterModule.forRoot([
             {path: '', component: HomeComponent, pathMatch: 'full'},
             {path: 'download', component: DownloadComponent},
