@@ -17,6 +17,8 @@ body {
 }
 
 app-root {
+    max-height: 100vh;
+    overflow: auto;
     background: rgba(229, 232, 253, 0.75);
 }
 
@@ -28,8 +30,7 @@ app-root {
 }
 
 .main-container {
-    max-height: 100vh;
-    overflow: auto;
+
 }
 
 .container-sized {
