@@ -23,11 +23,12 @@ export class Filter {
                 public readonly type: FilterType,
                 public readonly allowComparison: boolean = true,
                 public value?: any) {
-        if (type === FilterType.String) {
-            this.options = Filter.stringOptions;
-        } else {
+        if (type !== FilterType.String) {
             this.options = Filter.numberOptions;
+            this.selected = this.options[0];
+        } else {
+            this.allowComparison = false;
         }
-        this.selected = this.options[0];
+
     }
 }

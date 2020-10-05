@@ -3,11 +3,7 @@
                         (submitted)="onFiltersSubmitted()"></app-filter-results>
 
     <div class="results-panel" [title]="'Results'">
-        <label>
-            Search:
-            <input type="search" (keyup)="onSearch($event)" [(ngModel)]="searchString">
-        </label>
-
+        <input type="search" (keyup)="onSearch($event)" [(ngModel)]="searchString" placeholder="Search benchmark" style="width: 100%;">
         <div *ngIf="!pageResult" class="loading-indicator">
             <div class="spinner">
 
