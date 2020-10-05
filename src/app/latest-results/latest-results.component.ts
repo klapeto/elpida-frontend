@@ -19,6 +19,8 @@ export class LatestResultsComponent {
     private resultsPerPage = 10;
     private curPage = 0;
 
+    public searchString: string;
+
     constructor(
         @Inject('BASE_URL') public readonly baseUrl: string,
         public readonly valueConverter: ValueConverter,
@@ -60,6 +62,14 @@ export class LatestResultsComponent {
 
                 this.pageResult = result;
             }, error => console.error(error));
+    }
+
+    public onSearch(ev: KeyboardEvent): void {
+        if (ev.key === 'Enter') {
+            //console.log(this.searchString);
+            this.filtersService.searchFilter.value = this.searchString;
+            this.reloadPageSafe();
+        }
     }
 
     public onPageChange(page: number): void {

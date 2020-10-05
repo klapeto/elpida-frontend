@@ -13,7 +13,7 @@ export class FilterResultsComponent implements AfterViewInit {
     @Input() public readonly orderByFilters: Filter[];
     @Output() public readonly submitted = new EventEmitter();
 
-    @ViewChild('orderBy', { read: null }) private readonly orderBySelect: ElementRef;
+    @ViewChild('orderBy', {read: null}) private readonly orderBySelect: ElementRef;
 
     constructor() {
     }
@@ -27,7 +27,7 @@ export class FilterResultsComponent implements AfterViewInit {
             f.value = undefined;
         });
     }
-    
+
     public onOrderByChanged(event: Event): void {
         const value = (event.target as HTMLSelectElement).value;
         this.query.orderBy = this.orderByFilters.find(x => x.title === value);

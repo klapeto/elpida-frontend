@@ -11,6 +11,8 @@ export class FiltersService {
 
     public readonly filters: Filter[];
 
+    public readonly searchFilter: Filter;
+
     public readonly orderByFilters: Filter[];
 
     public readonly defaultOrderByFilter: Filter;
@@ -54,7 +56,8 @@ export class FiltersService {
             new Filter('Os Version', 'osVersion', FilterType.String),
         ];
 
-        this.filters = this.orderByFilters.slice();
+        this.searchFilter = this.orderByFilters[0];
+        this.filters = this.orderByFilters.slice(1);
         this.filters.push(
             new Filter('From', 'startTime', FilterType.Date, false),
             new Filter('To', 'endTime', FilterType.Date, false)
@@ -62,6 +65,8 @@ export class FiltersService {
         this.defaultOrderByFilter = new Filter('Timestamp', 'timestamp', FilterType.Date, false);
         this.orderByFilters.push(this.defaultOrderByFilter);
 
-        this.query = new Query(this.filters, this.defaultOrderByFilter, true);
+        const allfilters = this.filters.slice();
+        allfilters.push(this.searchFilter);
+        this.query = new Query(allfilters, this.defaultOrderByFilter, true);
     }
 }
