@@ -1,34 +1,13 @@
 import {FilterType} from './filter-type.enum';
+import {FilterFactory} from './filter-factory';
 
 export class Filter {
-    public static readonly stringOptions: string[] = ['Contains', 'Equals'];
-    public static readonly numberOptions: string[] = ['>', '>=', '=', '<=', '<'];
-
-    public static readonly uiComparisonToBackendComparison: object = {
-        'Contains': 'c',
-        'Equals': 'eq',
-        '>': 'g',
-        '>=': 'ge',
-        '=': 'eq',
-        '<=': 'le',
-        '<': 'l'
-    };
-
     public selected: string;
 
-    public readonly options: string[];
-
-    constructor(public readonly title: string,
-                public readonly name: string,
-                public readonly type: FilterType,
-                public readonly allowComparison: boolean = true,
+    constructor(public readonly factory: FilterFactory,
                 public value?: any) {
-        if (type !== FilterType.String) {
-            this.options = Filter.numberOptions;
-            this.selected = this.options[0];
-        } else {
-            this.allowComparison = false;
+        if (factory.type !== FilterType.String) {
+            this.selected = FilterFactory.numberOptions[0];
         }
-
     }
 }

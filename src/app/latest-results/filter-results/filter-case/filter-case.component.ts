@@ -15,7 +15,7 @@ export class FilterCaseComponent {
     }
 
     public getInputType(): string {
-        switch (this.filter.type) {
+        switch (this.filter.factory.type) {
             case FilterType.String:
                 return 'Text';
             case FilterType.Number:

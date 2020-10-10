@@ -31,6 +31,8 @@ import {FiltersService} from '../services/filters.service';
 import {AboutComponent} from './about/about.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
+import {SimpleFiltersComponent} from './latest-results/filter-results/simple-filters/simple-filters.component';
+import {CustomFiltersComponent} from './latest-results/filter-results/custom-filters/custom-filters.component';
 
 @NgModule({
     declarations: [
@@ -52,7 +54,9 @@ import {NgxChartsModule} from '@swimlane/ngx-charts';
         OsComponent,
         FilterResultsComponent,
         FilterCaseComponent,
-        AboutComponent
+        AboutComponent,
+        SimpleFiltersComponent,
+        CustomFiltersComponent
     ],
     imports: [
         BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),

@@ -1,8 +1,8 @@
 <div class="filter-group-row">
-    <strong>{{filter.title}}:</strong>
+    <strong>{{filter.factory.title}}:</strong>
     <div>
-        <select *ngIf="filter.allowComparison" [(ngModel)]="filter.selected">
-            <option *ngFor="let option of filter.options">
+        <select *ngIf="filter.factory.allowComparison" [(ngModel)]="filter.selected">
+            <option *ngFor="let option of filter.factory.options">
                 {{option}}
             </option>
         </select>
