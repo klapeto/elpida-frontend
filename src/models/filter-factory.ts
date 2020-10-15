@@ -3,20 +3,6 @@ import {Filter} from './filter';
 
 export class FilterFactory {
 
-    public static readonly stringOptions: string[] = ['Contains', 'Equals'];
-    public static readonly numberOptions: string[] = ['>', '>=', '=', '<=', '<'];
-
-    public static readonly uiComparisonToBackendComparison: object = {
-        'Contains': 'c',
-        'Equals': 'eq',
-        '>': 'g',
-        '>=': 'ge',
-        '=': 'eq',
-        '<=': 'le',
-        '<': 'l'
-    };
-
-
     public readonly options: string[];
 
     constructor(public readonly title: string,
@@ -25,7 +11,7 @@ export class FilterFactory {
                 public readonly allowComparison: boolean = true,
                 private defaultValue?: any) {
         if (type !== FilterType.String) {
-            this.options = FilterFactory.numberOptions;
+            this.options = Filter.numberOptions;
         } else {
             this.allowComparison = false;
         }

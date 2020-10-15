@@ -1,1 +1,44 @@
-<p>simple-filters works!</p>
+<div class="filters-container">
+
+    <app-simple-filter-container *ngFor="let filter of simpleFiltersService.filters" [filter]="filter"></app-simple-filter-container>
+    <div class="button button-default-size non-a-button" (click)="onSubmit()">Search</div>
+<!--    <label>-->
+<!--        CPU Brand:-->
+<!--        <select>-->
+<!--            <option>AMD Ryzen 3</option>-->
+<!--            <option>AMD Ryzen 5</option>-->
+<!--            <option>AMD Ryzen 7</option>-->
+<!--            <option>AMD Ryzen 9</option>-->
+<!--            <option>AMD Ryzen Threadripper</option>-->
+<!--            <option>AMD Epyc</option>-->
+<!--            <option>Intel Celeron</option>-->
+<!--            <option>Intel Pentium</option>-->
+<!--            <option>Intel Core i3</option>-->
+<!--            <option>Intel Core i5</option>-->
+<!--            <option>Intel Core i7</option>-->
+<!--            <option>Intel Core i9</option>-->
+<!--            <option>Intel Xeon</option>-->
+<!--        </select>-->
+<!--    </label>-->
+
+<!--    <label>-->
+<!--        Min CPU Frequency:-->
+<!--        <input type="range" max="512">-->
+<!--        <div>Val</div>-->
+<!--    </label>-->
+
+<!--    <label>-->
+<!--        Min CPU Cores:-->
+<!--        <input type="range" max="512">-->
+<!--        <div>Val</div>-->
+<!--    </label>-->
+
+<!--    <label>-->
+<!--        OS:-->
+<!--        <select>-->
+<!--            <option>Windows</option>-->
+<!--            <option>Linux</option>-->
+<!--        </select>-->
+<!--    </label>-->
+<!--    <div  class="button button-default-size non-a-button">Search</div>-->
+</div>

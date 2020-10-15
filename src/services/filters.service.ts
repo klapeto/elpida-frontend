@@ -24,7 +24,7 @@ export class FiltersService {
                 if (x.factory.type === FilterType.Date) {
                     returnObject[x.factory.name] = new FilterDto(
                         new Date(x.value).toISOString(),
-                        FilterFactory.uiComparisonToBackendComparison[x.selected]
+                        Filter.uiComparisonToBackendComparison[x.selected]
                     );
                 } else if (x.factory.type === FilterType.Number) {
                     const val = Number.parseInt(x.value, 10);
@@ -33,9 +33,9 @@ export class FiltersService {
                     }
                     returnObject[x.factory.name] = new FilterDto(
                         Number.parseInt(x.value, 10),
-                        FilterFactory.uiComparisonToBackendComparison[x.selected]);
+                        Filter.uiComparisonToBackendComparison[x.selected]);
                 } else {
-                    returnObject[x.factory.name] = new FilterDto(x.value, FilterFactory.uiComparisonToBackendComparison[x.selected]);
+                    returnObject[x.factory.name] = new FilterDto(x.value, Filter.uiComparisonToBackendComparison[x.selected]);
                 }
             }
         });
