@@ -1,4 +1,8 @@
 .filter-value {
-    display: inline-block;
-    width: 2.5em;
+    width: 5em;
+}
+
+label {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
 }
