@@ -1,4 +1,7 @@
 <div class="filters-container">
-    <app-simple-filter-container *ngFor="let filter of simpleFiltersService.filters" [filter]="filter"></app-simple-filter-container>
+    <div *ngFor="let filter of simpleFiltersService.filters">
+        <app-simple-filter-container [filter]="filter"></app-simple-filter-container>
+        <hr/>
+    </div>
     <div class="button button-default-size non-a-button" style="place-self: center" (click)="onSubmit()">Search</div>
 </div>

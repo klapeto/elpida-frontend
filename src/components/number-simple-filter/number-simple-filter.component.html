@@ -1,6 +1,6 @@
 <label>
-    {{filter.name}}:
+    <strong>{{filter.name}}:</strong>
     <input type="range" [(ngModel)]="filter.value" [max]="max" [min]="min">
-    <div class="filter-value">{{valueConverter.convertToSI(filter.value, getDecimals())}}{{suffix}}</div>
+    <span class="filter-value">{{valueConverter.convertToSI(filter.value, getDecimals())}}{{suffix}}</span>
 </label>
 
