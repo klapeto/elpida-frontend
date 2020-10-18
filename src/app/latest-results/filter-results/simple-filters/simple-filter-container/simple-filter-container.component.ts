@@ -1,5 +1,5 @@
 import {Component, ComponentFactoryResolver, Input, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
-import {SimpleFilter} from '../../../../../models/simple-filter';
+import {Filter} from '../../../../../models/filter';
 
 @Component({
   selector: 'app-simple-filter-container',
@@ -8,7 +8,7 @@ import {SimpleFilter} from '../../../../../models/simple-filter';
 })
 export class SimpleFilterContainerComponent implements OnInit {
 
-  @Input() filter: SimpleFilter;
+  @Input() filter: Filter;
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver, private viewContainerRef: ViewContainerRef) { }
 

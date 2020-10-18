@@ -1,5 +1,4 @@
 <div *ngFor="let filter of filters">
-    <app-filter-case [filter]="filter"></app-filter-case>
     <hr/>
 </div>
 
@@ -8,7 +7,7 @@
         <label for="orderBy-select"><strong>Order by:</strong></label>
         <select #orderBy id="orderBy-select" (change)="onOrderByChanged($event)">
             <option *ngFor="let option of orderByFilters">
-                {{option.factory.title}}
+                {{option.title}}
             </option>
         </select>
     </div>

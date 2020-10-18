@@ -1,68 +1,122 @@
 import {Injectable} from '@angular/core';
 import {Filter} from '../models/filter';
-import {FilterType} from '../models/filter-type.enum';
-import {FilterDto} from './filter-dto';
-import {FilterFactory} from '../models/filter-factory';
+import {StringFilter} from '../models/filters/string-filter';
+import {NumberComparisons, NumberFilter} from '../models/filters/number-filter';
+import {DateFilter} from '../models/filters/date-filter';
+import {OptionFilter, OptionFilterMap} from '../models/filters/option-filter';
+import {RangeFilter} from '../models/filters/range-filter';
 
 @Injectable({
     providedIn: 'root'
 })
 export class FiltersService {
 
-    public readonly filterFactories: FilterFactory[];
+    private cpuDictionary: OptionFilterMap = {
+        'AMD Ryzen 3': 'AMD Ryzen 3',
+        'AMD Ryzen 5': 'AMD Ryzen 5',
+        'AMD Ryzen 7': 'AMD Ryzen 7',
+        'AMD Ryzen 9': 'AMD Ryzen 9',
+        'AMD Ryzen Threadripper': 'AMD Ryzen Threadripper',
+        'AMD Epyc': 'AMD Epyc',
+        'Intel Celeron': 'Intel(R) Celeron',
+        'Intel Pentium': 'Intel(R) Pentium',
+        'Intel Core i3': 'Intel(R) Core(TM) i3',
+        'Intel Core i5': 'Intel(R) Core(TM) i5',
+        'Intel Core i7': 'Intel(R) Core(TM) i7',
+        'Intel Core i9': 'Intel(R) Core(TM) i9',
+        'Intel Xeon': 'Intel(R) Xeon(TM)'
+    };
 
-    public readonly searchFilterFactory: FilterFactory;
+    private oses = [
+        'Windows',
+        'Linux'
+    ];
 
-    public readonly orderByFilterFactories: FilterFactory[];
-
-    public readonly defaultOrderByFilter: FilterFactory;
-
-    public translateToDtos(filters: Filter[]): object {
-        const returnObject = {};
-        filters.forEach(x => {
-            if (x.selected !== '' && x.value !== undefined && x.value !== '' && x.value !== null) {
-                if (x.factory.type === FilterType.Date) {
-                    returnObject[x.factory.name] = new FilterDto(
-                        new Date(x.value).toISOString(),
-                        Filter.uiComparisonToBackendComparison[x.selected]
-                    );
-                } else if (x.factory.type === FilterType.Number) {
-                    const val = Number.parseInt(x.value, 10);
-                    if (isNaN(val) || val < 0) {
-                        throw new Error(x.value + ' was not a valid number');
-                    }
-                    returnObject[x.factory.name] = new FilterDto(
-                        Number.parseInt(x.value, 10),
-                        Filter.uiComparisonToBackendComparison[x.selected]);
-                } else {
-                    returnObject[x.factory.name] = new FilterDto(x.value, Filter.uiComparisonToBackendComparison[x.selected]);
-                }
-            }
-        });
-        return returnObject;
-    }
-
-    constructor() {
-        this.orderByFilterFactories = [
-            new FilterFactory('Benchmark Name', 'name', FilterType.String),
-            new FilterFactory('CPU Vendor', 'cpuVendor', FilterType.String),
-            new FilterFactory('CPU Brand', 'cpuBrand', FilterType.String),
-            new FilterFactory('CPU Frequency', 'cpuFrequency', FilterType.Number),
-            new FilterFactory('CPU Cores', 'cpuCores', FilterType.Number),
-            new FilterFactory('CPU Logical Cores', 'cpuLogicalCores', FilterType.Number),
-            new FilterFactory('Main Memory Size', 'memorySize', FilterType.Number),
-            new FilterFactory('Os Category', 'osCategory', FilterType.String),
-            new FilterFactory('Os Name', 'osName', FilterType.String),
-            new FilterFactory('Os Version', 'osVersion', FilterType.String),
+    public createSimpleFilters(): Filter[] {
+        return [
+            new OptionFilter('CPU Brand', 'cpuBrand', Object.keys(this.cpuDictionary), this.cpuDictionary),
+            new RangeFilter('Min CPU Frequency',
+                'cpuFrequency', false,
+                NumberComparisons.GreaterEqual,
+                'HZ',
+                500_000_000,
+                10_000_000_000,
+                undefined,
+                3_500_000_000),
+            new RangeFilter('Min CPU Cores',
+                'cpuCores',
+                false,
+                NumberComparisons.GreaterEqual,
+                undefined,
+                1, 128,
+                undefined,
+                4),
+            new OptionFilter('Os', 'osCategory', this.oses),
         ];
-
-        this.searchFilterFactory = this.orderByFilterFactories[0];
-        this.filterFactories = this.orderByFilterFactories.slice(1);
-        this.filterFactories.push(
-            new FilterFactory('From', 'startTime', FilterType.Date, false),
-            new FilterFactory('To', 'endTime', FilterType.Date, false)
-        );
-        this.defaultOrderByFilter = new FilterFactory('Timestamp', 'timestamp', FilterType.Date, false);
-        this.orderByFilterFactories.push(this.defaultOrderByFilter);
     }
+
+    public createAdvancedFilters(): Filter[] {
+        return [
+            new StringFilter('Benchmark Name', 'name', true),
+            new StringFilter('CPU Vendor', 'cpuVendor', true),
+            new StringFilter('CPU Brand', 'cpuBrand', true),
+            new NumberFilter('CPU Frequency', 'cpuFrequency', true),
+            new NumberFilter('CPU Cores', 'cpuCores', true),
+            new NumberFilter('CPU Logical Cores', 'cpuLogicalCores', true),
+            new NumberFilter('Main Memory Size', 'memorySize', true),
+            new NumberFilter('Os Category', 'osCategory', true),
+            new NumberFilter('Os Name', 'osName', true),
+            new NumberFilter('Os Version', 'osVersion', true),
+            new DateFilter('From', 'startTime', false),
+            new DateFilter('To', 'endTime', false)
+        ];
+    }
+
+    public createOrderByFilters(): Filter[] {
+        return [
+            new StringFilter('Benchmark Name', 'name', true),
+            new StringFilter('CPU Vendor', 'cpuVendor', true),
+            new StringFilter('CPU Brand', 'cpuBrand', true),
+            new NumberFilter('CPU Frequency', 'cpuFrequency', true),
+            new NumberFilter('CPU Cores', 'cpuCores', true),
+            new NumberFilter('CPU Logical Cores', 'cpuLogicalCores', true),
+            new NumberFilter('Main Memory Size', 'memorySize', true),
+            new NumberFilter('Os Category', 'osCategory', true),
+            new NumberFilter('Os Name', 'osName', true),
+            new NumberFilter('Os Version', 'osVersion', true),
+            new DateFilter('Timestamp', 'timestamp', false),
+        ];
+    }
+
+    public createSearchFilter(): StringFilter {
+        return new StringFilter('Benchmark Name', 'name', true);
+    }
+
+    public createDefaultOrderByFilter(): Filter {
+        return new DateFilter('Timestamp', 'timestamp', false);
+    }
+
+    // constructor() {
+    //     this.orderByFilterFactories = [
+    //         new FilterFactory('Benchmark Name', 'name', FilterType.String),
+    //         new FilterFactory('CPU Vendor', 'cpuVendor', FilterType.String),
+    //         new FilterFactory('CPU Brand', 'cpuBrand', FilterType.String),
+    //         new FilterFactory('CPU Frequency', 'cpuFrequency', FilterType.Number),
+    //         new FilterFactory('CPU Cores', 'cpuCores', FilterType.Number),
+    //         new FilterFactory('CPU Logical Cores', 'cpuLogicalCores', FilterType.Number),
+    //         new FilterFactory('Main Memory Size', 'memorySize', FilterType.Number),
+    //         new FilterFactory('Os Category', 'osCategory', FilterType.String),
+    //         new FilterFactory('Os Name', 'osName', FilterType.String),
+    //         new FilterFactory('Os Version', 'osVersion', FilterType.String),
+    //     ];
+    //
+    //     this.searchFilterFactory = this.orderByFilterFactories[0];
+    //     this.filterFactories = this.orderByFilterFactories.slice(1);
+    //     this.filterFactories.push(
+    //         new FilterFactory('From', 'startTime', FilterType.Date, false),
+    //         new FilterFactory('To', 'endTime', FilterType.Date, false)
+    //     );
+    //     this.defaultOrderByFilter = new FilterFactory('Timestamp', 'timestamp', FilterType.Date, false);
+    //     this.orderByFilterFactories.push(this.defaultOrderByFilter);
+    // }
 }

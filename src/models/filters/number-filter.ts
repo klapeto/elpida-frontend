@@ -1,0 +1,60 @@
+import {ValueFilter} from '../value-filter';
+import {FilterDto} from '../../services/filter-dto';
+import {ComponentFactoryResolver, ViewContainerRef} from '@angular/core';
+import {NumberFilterComponent} from '../../components/number-filter/number-filter.component';
+
+export enum NumberComparisons {
+    Greater = 'g',
+    GreaterEqual = 'ge',
+    Equal = 'eq',
+    LessEqual = 'le',
+    Less = 'l'
+}
+
+export class NumberFilter extends ValueFilter<number> {
+
+    constructor(title: string,
+                internalName: string,
+                allowComparison: boolean,
+                comparison?: NumberComparisons,
+                public suffix?: string,
+                value?: number) {
+        super(title, internalName, allowComparison, Object.keys(NumberFilter.uiComparisonToBackendComparison), comparison, value);
+    }
+
+    protected static readonly uiComparisonToBackendComparison: object = {
+        '>': NumberComparisons.Greater,
+        '>=': NumberComparisons.GreaterEqual,
+        '=': NumberComparisons.Equal,
+        '<=': NumberComparisons.LessEqual,
+        '<': NumberComparisons.Less
+    };
+
+    protected defaultValue = 0;
+
+    public createDto(): FilterDto {
+        //         const val = Number.parseInt(x.value, 10);
+        //         if (isNaN(val) || val < 0) {
+        //             throw new Error(x.value + ' was not a valid number');
+        //         }
+        //         returnObject[x.factory.name] = new FilterDto(
+        //             Number.parseInt(x.value, 10),
+        //             Filter.uiComparisonToBackendComparison[x.selected]);
+
+        return new FilterDto(
+            this.value,
+            NumberFilter.uiComparisonToBackendComparison[this.comparison]
+            ?? this.comparison
+            ?? NumberComparisons.Equal
+        );
+    }
+
+    public createComponent(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef): any {
+        const component = viewContainerRef.createComponent<NumberFilterComponent>(
+            componentFactoryResolver.resolveComponentFactory<NumberFilterComponent>(NumberFilterComponent)
+        );
+
+        component.instance.filter = this;
+        return component;
+    }
+}

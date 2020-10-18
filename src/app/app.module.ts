@@ -26,16 +26,18 @@ import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
 import {LinksService} from '../services/links.service';
 import {FilterResultsComponent} from './latest-results/filter-results/filter-results.component';
-import {FilterCaseComponent} from './latest-results/filter-results/filter-case/filter-case.component';
 import {FiltersService} from '../services/filters.service';
 import {AboutComponent} from './about/about.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
 import {SimpleFiltersComponent} from './latest-results/filter-results/simple-filters/simple-filters.component';
-import {CustomFiltersComponent} from './latest-results/filter-results/custom-filters/custom-filters.component';
-import {OptionSimpleFilterComponent} from '../components/option-simple-filter/option-simple-filter.component';
-import {NumberSimpleFilterComponent} from '../components/number-simple-filter/number-simple-filter.component';
+import {AdvancedFiltersComponent} from './latest-results/filter-results/advanced-filters/advanced-filters.component';
+import {OptionFilterComponent} from '../components/option-filter/option-filter.component';
+import {RangeFilterComponent} from '../components/range-filter/range-filter.component';
 import { SimpleFilterContainerComponent } from './latest-results/filter-results/simple-filters/simple-filter-container/simple-filter-container.component';
+import {NumberFilterComponent} from '../components/number-filter/number-filter.component';
+import {StringFilterComponent} from '../components/string-filter/string-filter.component';
+import {DateFilterComponent} from '../components/date-filter/date-filter.component';
 
 @NgModule({
     declarations: [
@@ -56,12 +58,14 @@ import { SimpleFilterContainerComponent } from './latest-results/filter-results/
         PagingComponent,
         OsComponent,
         FilterResultsComponent,
-        FilterCaseComponent,
         AboutComponent,
         SimpleFiltersComponent,
-        CustomFiltersComponent,
-        OptionSimpleFilterComponent,
-        NumberSimpleFilterComponent,
+        AdvancedFiltersComponent,
+        OptionFilterComponent,
+        NumberFilterComponent,
+        StringFilterComponent,
+        DateFilterComponent,
+        RangeFilterComponent,
         SimpleFilterContainerComponent
     ],
     imports: [

@@ -1,26 +1,17 @@
-import {FilterType} from './filter-type.enum';
-import {FilterFactory} from './filter-factory';
+import {FilterDto} from '../services/filter-dto';
+import {ComponentFactoryResolver, ViewContainerRef} from '@angular/core';
 
-export class Filter {
-    public static readonly stringOptions: string[] = ['Contains', 'Equals'];
-    public static readonly numberOptions: string[] = ['>', '>=', '=', '<=', '<'];
+export abstract class Filter {
 
-    public static readonly uiComparisonToBackendComparison: object = {
-        'Contains': 'c',
-        'Equals': 'eq',
-        '>': 'g',
-        '>=': 'ge',
-        '=': 'eq',
-        '<=': 'le',
-        '<': 'l'
-    };
-
-    public selected: string;
-
-    constructor(public readonly factory: FilterFactory,
-                public value?: any) {
-        if (factory.type !== FilterType.String) {
-            this.selected = Filter.numberOptions[0];
-        }
+    protected constructor(public readonly title: string,
+                          public readonly internalName: string) {
     }
+
+    public abstract reset(): void;
+
+    public abstract isSet(): boolean;
+
+    public abstract createComponent(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef): any;
+
+    public abstract createDto(): FilterDto;
 }

@@ -1,6 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {SimpleFiltersService} from '../../../../services/simple-filters.service';
 import {Query} from '../../../../models/query';
+import {Filter} from '../../../../models/filter';
+import {FiltersService} from '../../../../services/filters.service';
 
 @Component({
   selector: 'app-simple-filters',
@@ -9,14 +10,18 @@ import {Query} from '../../../../models/query';
 })
 export class SimpleFiltersComponent implements OnInit {
 
+  public filters: Filter[];
+
   @Output() public readonly submitted = new EventEmitter<Query>();
 
-  constructor(public simpleFiltersService: SimpleFiltersService) {
-
+  constructor(public filtersService: FiltersService) {
+    this.filters = filtersService.createSimpleFilters();
   }
 
   public onSubmit() {
-    console.log(this.simpleFiltersService.filters[1].value);
+    this.submitted.emit(new Query(this.filters, this.filtersService.createDefaultOrderByFilter(), true));
+    // console.log('hdhd');
+    // console.log(this.filters[1].createDto());
   }
 
   ngOnInit(): void {

@@ -6,7 +6,6 @@ import {ResultsService} from '../../services/results.service';
 import {PageRequest} from '../../models/page-request';
 import {FiltersService} from '../../services/filters.service';
 import {Query} from '../../models/query';
-import {Filter} from '../../models/filter';
 
 @Component({
     selector: 'app-latest-results',
@@ -31,7 +30,7 @@ export class LatestResultsComponent {
         private readonly resultService: ResultsService,
         public readonly filtersService: FiltersService
     ) {
-        this.currentQuery = new Query([], filtersService.defaultOrderByFilter.create(undefined), true);
+        this.currentQuery = new Query([], filtersService.createDefaultOrderByFilter(), true);
         this.reloadPageSafe();
     }
 
@@ -73,7 +72,13 @@ export class LatestResultsComponent {
 
     public onSearch(ev: KeyboardEvent): void {
         if (ev.key === 'Enter') {
-            this.currentQuery = new Query([ this.filtersService.searchFilterFactory.create(this.searchString)], this.currentQuery.orderBy, this.currentQuery.descending);
+            const filter = this.filtersService.createSearchFilter();
+            filter.value = this.searchString;
+            this.currentQuery = new Query(
+                [filter],
+                this.currentQuery.orderBy,
+                this.currentQuery.descending
+            );
             this.reloadPageSafe();
         }
     }
