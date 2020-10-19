@@ -2,6 +2,7 @@ import {ValueFilter} from '../value-filter';
 import {FilterDto} from '../../services/filter-dto';
 import {ComponentFactoryResolver, ViewContainerRef} from '@angular/core';
 import {NumberFilterComponent} from '../../components/number-filter/number-filter.component';
+import {Utilities} from '../../services/utilities';
 
 export enum NumberComparisons {
     Greater = 'g',
@@ -13,13 +14,13 @@ export enum NumberComparisons {
 
 export class NumberFilter extends ValueFilter<number> {
 
-    constructor(title: string,
-                internalName: string,
-                allowComparison: boolean,
-                comparison?: NumberComparisons,
-                public suffix?: string,
-                value?: number) {
-        super(title, internalName, allowComparison, Object.keys(NumberFilter.uiComparisonToBackendComparison), comparison, value);
+    public constructor(title: string,
+                       internalName: string,
+                       allowComparison: boolean,
+                       comparison: NumberComparisons = NumberComparisons.Equal,
+                       public suffix?: string,
+                       value?: number) {
+        super(title, internalName, allowComparison, Object.keys(NumberFilter.uiComparisonToBackendComparison), NumberFilter.backendToUiComparison[comparison], value);
     }
 
     protected static readonly uiComparisonToBackendComparison: object = {
@@ -29,6 +30,8 @@ export class NumberFilter extends ValueFilter<number> {
         '<=': NumberComparisons.LessEqual,
         '<': NumberComparisons.Less
     };
+
+    protected static readonly backendToUiComparison = Utilities.reverseMap(NumberFilter.uiComparisonToBackendComparison);
 
     protected defaultValue = 0;
 

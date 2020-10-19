@@ -7,7 +7,7 @@ export class RangeFilter extends NumberFilter {
     constructor(title: string,
                 internalName: string,
                 allowComparison: boolean,
-                comparison?: NumberComparisons,
+                comparison: NumberComparisons = NumberComparisons.Equal,
                 suffix?: string,
                 public min?: number,
                 public max?: number,

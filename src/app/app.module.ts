@@ -34,7 +34,7 @@ import {SimpleFiltersComponent} from './latest-results/filter-results/simple-fil
 import {AdvancedFiltersComponent} from './latest-results/filter-results/advanced-filters/advanced-filters.component';
 import {OptionFilterComponent} from '../components/option-filter/option-filter.component';
 import {RangeFilterComponent} from '../components/range-filter/range-filter.component';
-import { SimpleFilterContainerComponent } from './latest-results/filter-results/simple-filters/simple-filter-container/simple-filter-container.component';
+import { FilterContainerComponent } from './latest-results/filter-results/filter-container/filter-container.component';
 import {NumberFilterComponent} from '../components/number-filter/number-filter.component';
 import {StringFilterComponent} from '../components/string-filter/string-filter.component';
 import {DateFilterComponent} from '../components/date-filter/date-filter.component';
@@ -66,7 +66,7 @@ import {DateFilterComponent} from '../components/date-filter/date-filter.compone
         StringFilterComponent,
         DateFilterComponent,
         RangeFilterComponent,
-        SimpleFilterContainerComponent
+        FilterContainerComponent
     ],
     imports: [
         BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),

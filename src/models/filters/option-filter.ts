@@ -10,7 +10,7 @@ export interface OptionFilterMap {
 
 export class OptionFilter extends StringFilter {
 
-    constructor(title: string,
+    public constructor(title: string,
                 internalName: string,
                 public options: string[],
                 private optionsMap?: OptionFilterMap,

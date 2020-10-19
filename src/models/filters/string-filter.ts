@@ -2,6 +2,7 @@ import {FilterDto} from '../../services/filter-dto';
 import {ValueFilter} from '../value-filter';
 import {ComponentFactoryResolver, ViewContainerRef} from '@angular/core';
 import {StringFilterComponent} from '../../components/string-filter/string-filter.component';
+import {Utilities} from '../../services/utilities';
 
 export enum StringComparisons {
     Contains = 'c',
@@ -13,15 +14,17 @@ export class StringFilter extends ValueFilter<string> {
     constructor(title: string,
                 internalName: string,
                 allowComparison: boolean,
-                comparison?: StringComparisons,
+                comparison: StringComparisons = StringComparisons.Contains,
                 value?: string) {
-        super(title, internalName, allowComparison, Object.keys(StringFilter.uiComparisonToBackendComparison), comparison, value);
+        super(title, internalName, allowComparison, Object.keys(StringFilter.uiComparisonToBackendComparison), StringFilter.backendToUiComparison[comparison], value);
     }
 
     protected static readonly uiComparisonToBackendComparison: object = {
         'Contains': StringComparisons.Contains,
         'Equals': StringComparisons.Equal,
     };
+
+    protected static readonly backendToUiComparison = Utilities.reverseMap(StringFilter.uiComparisonToBackendComparison);
 
     protected defaultValue = '';
 

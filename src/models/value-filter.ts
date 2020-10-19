@@ -17,10 +17,6 @@ export abstract class ValueFilter<T> extends Filter {
         return this.comparison !== '' && this.value !== undefined && this.value !== this.defaultValue && this.value !== null;
     }
 
-    private foo(c: new () => T): T{
-        return new c();
-    }
-
     public reset(): void {
         this.value = undefined;
         this.comparison = '';

@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Filter} from '../models/filter';
 import {StringFilter} from '../models/filters/string-filter';
 import {NumberComparisons, NumberFilter} from '../models/filters/number-filter';
-import {DateFilter} from '../models/filters/date-filter';
+import {DateComparisons, DateFilter} from '../models/filters/date-filter';
 import {OptionFilter, OptionFilterMap} from '../models/filters/option-filter';
 import {RangeFilter} from '../models/filters/range-filter';
 
@@ -64,11 +64,11 @@ export class FiltersService {
             new NumberFilter('CPU Cores', 'cpuCores', true),
             new NumberFilter('CPU Logical Cores', 'cpuLogicalCores', true),
             new NumberFilter('Main Memory Size', 'memorySize', true),
-            new NumberFilter('Os Category', 'osCategory', true),
-            new NumberFilter('Os Name', 'osName', true),
-            new NumberFilter('Os Version', 'osVersion', true),
-            new DateFilter('From', 'startTime', false),
-            new DateFilter('To', 'endTime', false)
+            new StringFilter('Os Category', 'osCategory', true),
+            new StringFilter('Os Name', 'osName', true),
+            new StringFilter('Os Version', 'osVersion', true),
+            new DateFilter('From', 'startTime', false, DateComparisons.GreaterEqual),
+            new DateFilter('To', 'endTime', false, DateComparisons.LessEqual)
         ];
     }
 

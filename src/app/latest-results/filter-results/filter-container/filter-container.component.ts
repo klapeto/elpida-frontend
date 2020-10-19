@@ -1,12 +1,12 @@
 import {Component, ComponentFactoryResolver, Input, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
-import {Filter} from '../../../../../models/filter';
+import {Filter} from '../../../../models/filter';
 
 @Component({
-  selector: 'app-simple-filter-container',
-  templateUrl: './simple-filter-container.component.html',
-  styleUrls: ['./simple-filter-container.component.css']
+  selector: 'app-filter-container',
+  templateUrl: './filter-container.component.html',
+  styleUrls: ['./filter-container.component.css']
 })
-export class SimpleFilterContainerComponent implements OnInit {
+export class FilterContainerComponent implements OnInit {
 
   @Input() filter: Filter;
 
