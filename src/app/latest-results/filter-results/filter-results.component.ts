@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Query} from '../../../models/query';
 import {Filter} from '../../../models/filter';
 
@@ -7,34 +7,16 @@ import {Filter} from '../../../models/filter';
     templateUrl: './filter-results.component.html',
     styleUrls: ['./filter-results.component.css']
 })
-export class FilterResultsComponent implements AfterViewInit {
+export class FilterResultsComponent {
 
     @Input() public readonly query: Query;
     @Input() public readonly orderByFilters: Filter[];
-    @Output() public readonly submitted = new EventEmitter();
 
-    @ViewChild('orderBy', { read: null }) private readonly orderBySelect: ElementRef;
+    @Output() public readonly submitted = new EventEmitter<Query>();
 
-    constructor() {
+    public advanced: boolean;
+
+    public onSubmit(query: Query): void {
+        this.submitted.emit(query);
     }
-
-    public onSubmit(): void {
-        this.submitted.emit();
-    }
-
-    public onReset(): void {
-        this.query.filters.forEach(f => {
-            f.value = undefined;
-        });
-    }
-    
-    public onOrderByChanged(event: Event): void {
-        const value = (event.target as HTMLSelectElement).value;
-        this.query.orderBy = this.orderByFilters.find(x => x.title === value);
-    }
-
-    public ngAfterViewInit(): void {
-        this.orderBySelect.nativeElement.value = this.query.orderBy.title;
-    }
-
 }
