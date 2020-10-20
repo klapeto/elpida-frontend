@@ -42,7 +42,7 @@ export class FiltersService {
                 500_000_000,
                 10_000_000_000,
                 undefined,
-                3_500_000_000),
+                2_500_000_000),
             new RangeFilter('Min CPU Cores',
                 'cpuCores',
                 false,
