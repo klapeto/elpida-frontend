@@ -26,7 +26,7 @@ export class ResultsService implements IResultsService {
 
     public getPreviews(page: PageRequest, query: Query): Observable<PagedResult<ResultPreview>> {
         return this.http.post<PagedResult<ResultPreview>>(this.baseSearchUrl,
-            new QueryRequest(page, query.orderBy.name, query.descending, this.filtersService.translateToDtos(query.filters)));
+            new QueryRequest(page, query.orderBy.internalName, query.descending, query.filters));
     }
 
     public getSingle(id: string): Observable<Result> {

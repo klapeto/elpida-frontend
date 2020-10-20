@@ -1,8 +1,8 @@
 <div class=results-container>
-    <app-filter-results [query]="filtersService.query" [orderByFilters]="filtersService.orderByFilters"
-                        (submitted)="onFiltersSubmitted()"></app-filter-results>
-    <div class="results-panel" [title]="'Results'">
+    <app-filter-results (submitted)="onFiltersSubmitted($event)"></app-filter-results>
 
+    <div class="results-panel" [title]="'Results'">
+        <input type="search" (keyup)="onSearch($event)" [(ngModel)]="searchString" placeholder="Search benchmark name (Press 'enter' to search)" style="width: 100%;">
         <div *ngIf="!pageResult" class="loading-indicator">
             <div class="spinner">
 
