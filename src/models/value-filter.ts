@@ -2,6 +2,8 @@ import {Filter} from './filter';
 
 export abstract class ValueFilter<T> extends Filter {
 
+    private defaultComparison: string;
+
     protected constructor(title: string,
                           internalName: string,
                           public allowComparison: boolean,
@@ -9,6 +11,7 @@ export abstract class ValueFilter<T> extends Filter {
                           public comparison?: string,
                           public value?: T) {
         super(title, internalName);
+        this.defaultComparison = comparison;
     }
 
     protected abstract defaultValue: T;
@@ -19,6 +22,6 @@ export abstract class ValueFilter<T> extends Filter {
 
     public reset(): void {
         this.value = undefined;
-        this.comparison = '';
+        this.comparison = this.defaultComparison;
     }
 }

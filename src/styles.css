@@ -145,6 +145,10 @@ hr {
     align-items: center;
 }
 
+.filter-group-label {
+    flex-grow: 1;
+}
+
 code {
     display: inline-block;
     font-family: monospace;
