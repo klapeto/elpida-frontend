@@ -95,28 +95,4 @@ export class FiltersService {
     public createDefaultOrderByFilter(): Filter {
         return new DateFilter('Timestamp', 'timestamp', false);
     }
-
-    // constructor() {
-    //     this.orderByFilterFactories = [
-    //         new FilterFactory('Benchmark Name', 'name', FilterType.String),
-    //         new FilterFactory('CPU Vendor', 'cpuVendor', FilterType.String),
-    //         new FilterFactory('CPU Brand', 'cpuBrand', FilterType.String),
-    //         new FilterFactory('CPU Frequency', 'cpuFrequency', FilterType.Number),
-    //         new FilterFactory('CPU Cores', 'cpuCores', FilterType.Number),
-    //         new FilterFactory('CPU Logical Cores', 'cpuLogicalCores', FilterType.Number),
-    //         new FilterFactory('Main Memory Size', 'memorySize', FilterType.Number),
-    //         new FilterFactory('Os Category', 'osCategory', FilterType.String),
-    //         new FilterFactory('Os Name', 'osName', FilterType.String),
-    //         new FilterFactory('Os Version', 'osVersion', FilterType.String),
-    //     ];
-    //
-    //     this.searchFilterFactory = this.orderByFilterFactories[0];
-    //     this.filterFactories = this.orderByFilterFactories.slice(1);
-    //     this.filterFactories.push(
-    //         new FilterFactory('From', 'startTime', FilterType.Date, false),
-    //         new FilterFactory('To', 'endTime', FilterType.Date, false)
-    //     );
-    //     this.defaultOrderByFilter = new FilterFactory('Timestamp', 'timestamp', FilterType.Date, false);
-    //     this.orderByFilterFactories.push(this.defaultOrderByFilter);
-    // }
 }

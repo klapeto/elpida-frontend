@@ -1,5 +1,4 @@
 import {Component, Input} from '@angular/core';
-import {OptionFilter} from '../../models/filters/option-filter';
 import {ValueFilter} from '../../models/value-filter';
 
 @Component({
@@ -14,5 +13,4 @@ export class OptionFilterComponent {
 
   constructor() {
   }
-
 }

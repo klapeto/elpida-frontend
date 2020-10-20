@@ -1,4 +1,4 @@
-import {Component, ComponentFactoryResolver, Input, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
+import {Component, ComponentFactoryResolver, Input, OnInit, ViewContainerRef} from '@angular/core';
 import {Filter} from '../../../../models/filter';
 
 @Component({
@@ -10,7 +10,8 @@ export class FilterContainerComponent implements OnInit {
 
   @Input() filter: Filter;
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver, private viewContainerRef: ViewContainerRef) { }
+  constructor(private componentFactoryResolver: ComponentFactoryResolver, private viewContainerRef: ViewContainerRef) {
+  }
 
   ngOnInit(): void {
     this.filter.createComponent(this.componentFactoryResolver, this.viewContainerRef);

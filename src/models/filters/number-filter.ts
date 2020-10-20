@@ -20,7 +20,12 @@ export class NumberFilter extends ValueFilter<number> {
                        comparison: NumberComparisons = NumberComparisons.Equal,
                        public suffix?: string,
                        value?: number) {
-        super(title, internalName, allowComparison, Object.keys(NumberFilter.uiComparisonToBackendComparison), NumberFilter.backendToUiComparison[comparison], value);
+        super(title,
+            internalName,
+            allowComparison,
+            Object.keys(NumberFilter.uiComparisonToBackendComparison),
+            NumberFilter.backendToUiComparison[comparison],
+            value);
     }
 
     protected static readonly uiComparisonToBackendComparison: object = {
@@ -36,14 +41,7 @@ export class NumberFilter extends ValueFilter<number> {
     protected defaultValue = 0;
 
     public createDto(): FilterDto {
-        //         const val = Number.parseInt(x.value, 10);
-        //         if (isNaN(val) || val < 0) {
-        //             throw new Error(x.value + ' was not a valid number');
-        //         }
-        //         returnObject[x.factory.name] = new FilterDto(
-        //             Number.parseInt(x.value, 10),
-        //             Filter.uiComparisonToBackendComparison[x.selected]);
-
+        // TODO: Checks?
         return new FilterDto(
             this.value,
             NumberFilter.uiComparisonToBackendComparison[this.comparison]

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {Query} from '../../../../models/query';
 import {Filter} from '../../../../models/filter';
 import {FiltersService} from '../../../../services/filters.service';
@@ -8,7 +8,7 @@ import {FiltersService} from '../../../../services/filters.service';
   templateUrl: './simple-filters.component.html',
   styleUrls: ['./simple-filters.component.css']
 })
-export class SimpleFiltersComponent implements OnInit {
+export class SimpleFiltersComponent {
 
   public filters: Filter[];
 
@@ -20,11 +20,6 @@ export class SimpleFiltersComponent implements OnInit {
 
   public onSubmit() {
     this.submitted.emit(new Query(this.filters, this.filtersService.createDefaultOrderByFilter(), true));
-    // console.log('hdhd');
-    // console.log(this.filters[1].createDto());
-  }
-
-  ngOnInit(): void {
   }
 
 }

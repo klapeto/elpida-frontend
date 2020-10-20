@@ -36,7 +36,6 @@ export class LatestResultsComponent {
 
     public onFiltersSubmitted(query: Query): void {
         this.currentQuery = query;
-        console.log(query);
         this.reloadPageSafe();
     }
 

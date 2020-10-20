@@ -16,7 +16,13 @@ export class StringFilter extends ValueFilter<string> {
                 allowComparison: boolean,
                 comparison: StringComparisons = StringComparisons.Contains,
                 value?: string) {
-        super(title, internalName, allowComparison, Object.keys(StringFilter.uiComparisonToBackendComparison), StringFilter.backendToUiComparison[comparison], value);
+        super(title,
+            internalName,
+            allowComparison,
+            Object.keys(StringFilter.uiComparisonToBackendComparison),
+            StringFilter.backendToUiComparison[comparison],
+            value
+        );
     }
 
     protected static readonly uiComparisonToBackendComparison: object = {

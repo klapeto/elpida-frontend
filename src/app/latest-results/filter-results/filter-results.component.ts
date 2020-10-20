@@ -14,7 +14,7 @@ export class FilterResultsComponent {
 
     @Output() public readonly submitted = new EventEmitter<Query>();
 
-    advanced: boolean;
+    public advanced: boolean;
 
     public onSubmit(query: Query): void {
         this.submitted.emit(query);

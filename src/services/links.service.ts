@@ -80,7 +80,7 @@ export class LinksService {
                     'https://gitlab.com/dev-hood/elpida/backend'
                 )
             ]
-        ),];
+        )];
 
     constructor() {
 

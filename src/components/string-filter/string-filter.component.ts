@@ -1,5 +1,4 @@
 import {Component, Input} from '@angular/core';
-import {StringFilter} from '../../models/filters/string-filter';
 import {ValueFilter} from '../../models/value-filter';
 
 @Component({
