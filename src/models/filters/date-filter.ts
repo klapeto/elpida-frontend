@@ -45,6 +45,7 @@ export class DateFilter extends ValueFilter<Date> {
 
     public createDto(): FilterDto {
         return new FilterDto(
+            this.internalName,
             (this.value as Date) === undefined ?
                 this.value.toISOString() :
                 new Date(this.value).toISOString(),
