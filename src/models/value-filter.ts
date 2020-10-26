@@ -2,7 +2,7 @@ import {Filter} from './filter';
 
 export abstract class ValueFilter<T> extends Filter {
 
-    private defaultComparison: string;
+    private readonly defaultComparison: string;
 
     protected constructor(title: string,
                           internalName: string,

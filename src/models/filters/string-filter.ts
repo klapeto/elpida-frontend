@@ -36,6 +36,7 @@ export class StringFilter extends ValueFilter<string> {
 
     public createDto(): FilterDto {
         return new FilterDto(
+            this.internalName,
             this.value,
             StringFilter.uiComparisonToBackendComparison[this.comparison]
             ?? this.comparison
