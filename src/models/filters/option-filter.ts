@@ -11,16 +11,18 @@ export interface OptionFilterMap {
 export class OptionFilter extends StringFilter {
 
     public constructor(title: string,
-                internalName: string,
-                public options: string[],
-                private optionsMap?: OptionFilterMap,
-                value?: string) {
+                       internalName: string,
+                       public options: string[],
+                       private optionsMap?: OptionFilterMap,
+                       value?: string) {
         super(title, internalName, false, StringComparisons.Contains, value);
     }
 
     public createDto(): FilterDto {
-        return new FilterDto(this.optionsMap !== undefined ?
-            this.optionsMap[this.value] ?? this.value : this.value, StringComparisons.Contains);
+        return new FilterDto(this.internalName,
+            this.optionsMap !== undefined ?
+                this.optionsMap[this.value] ?? this.value
+                : this.value, StringComparisons.Contains);
     }
 
     public createComponent(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef): any {

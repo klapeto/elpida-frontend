@@ -43,6 +43,7 @@ export class NumberFilter extends ValueFilter<number> {
     public createDto(): FilterDto {
         // TODO: Checks?
         return new FilterDto(
+            this.internalName,
             this.value,
             NumberFilter.uiComparisonToBackendComparison[this.comparison]
             ?? this.comparison

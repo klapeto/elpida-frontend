@@ -1,9 +1,10 @@
 import {PageRequest} from './page-request';
 import {Filter} from './filter';
+import {FilterDto} from '../services/filter-dto';
 
 export class QueryRequest {
 
-    public filters: object;
+    public filters: FilterDto[];
 
     constructor(public readonly pageRequest: PageRequest,
                 public readonly orderBy?: string,
@@ -11,10 +12,10 @@ export class QueryRequest {
                 filters?: Filter[]) {
 
         if (filters !== undefined) {
-            this.filters = {};
+            this.filters = [];
             filters.forEach(f => {
                 if (f.isSet()) {
-                    this.filters[f.internalName] = f.createDto();
+                    this.filters.push(f.createDto());
                 }
             });
         }
