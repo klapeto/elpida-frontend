@@ -13,4 +13,13 @@ export class CpuComponent {
 
     constructor(public readonly valueConverter: ValueConverter) {
     }
+
+    public getInfoPairs(): { name: string, value: string }[] {
+        const returnValue = [];
+        Object.keys(this.cpu.additionalInfo).forEach(key => {
+           returnValue.push({name: key, value: this.cpu.additionalInfo[key]});
+        });
+
+        return returnValue;
+    }
 }

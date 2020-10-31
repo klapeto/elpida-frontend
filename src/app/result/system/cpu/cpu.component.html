@@ -6,20 +6,19 @@
     <strong>Brand:</strong>
     <div>{{cpu.brand}}</div>
 
-    <strong>Family:</strong>
-    <div>{{cpu.family}}</div>
-
-    <strong>Model:</strong>
-    <div>{{cpu.model}}</div>
-
-    <strong>Stepping:</strong>
-    <div>{{cpu.stepping}}</div>
-
     <strong>Frequency:</strong>
     <div>{{valueConverter.convertToSI(cpu.frequency)}}Hz</div>
 
     <strong>SMT:</strong>
     <div>{{cpu.smt}}</div>
+
+    <strong>Additional Info:</strong>
+    <div>
+        <div *ngFor="let pair of getInfoPairs()" class="additional-info-record">
+            <strong>{{pair.name}}:</strong>
+            <div class="additional-info-record-value">{{pair.value}}</div>
+        </div>
+    </div>
 
     <strong>Features:</strong>
     <div>

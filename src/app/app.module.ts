@@ -11,7 +11,7 @@ import {DownloadComponent} from './download/download.component';
 import {ResultComponent} from './result/result.component';
 import {SystemComponent} from './result/system/system.component';
 import {BenchmarkResultComponent} from './result/benchmark-result/benchmark-result.component';
-import {GroupBoxComponent} from './group-box/group-box.component';
+import {GroupBoxComponent} from '../components/group-box/group-box.component';
 import {CpuComponent} from './result/system/cpu/cpu.component';
 import {TopologyComponent} from './result/system/topology/topology.component';
 import {MemoryComponent} from './result/system/memory/memory.component';
@@ -19,7 +19,7 @@ import {CpuCacheComponent} from './result/system/cpu/cpu-cache/cpu-cache.compone
 import {CpuNodeComponent} from './result/system/topology/cpu-node/cpu-node.component';
 import {ValueConverter} from '../services/value-converter';
 import {LatestResultsComponent} from './latest-results/latest-results.component';
-import {PagingComponent} from './paging/paging.component';
+import {PagingComponent} from '../components/paging/paging.component';
 import {OsComponent} from './result/system/os/os.component';
 import {ResultsService} from '../services/results.service';
 import {ServiceWorkerModule} from '@angular/service-worker';
