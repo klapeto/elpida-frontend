@@ -1,0 +1,9 @@
+.additional-info-record {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+}
+
+.additional-info-record-value {
+    margin-left: 0.5em;
+}
