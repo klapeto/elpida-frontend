@@ -12,13 +12,13 @@ export class LinksService {
             [
                 new Link(
                     'Beta x86-64 (.zip)',
-                    'https://gitlab.com/dev-hood/elpida/elpida/-/jobs/artifacts/develop/raw/Elpida-latest-x86_64.zip?job=build:windows'
+                    'https://gitlab.com/dev-hood/elpida/elpida/-/jobs/artifacts/develop/raw/Elpida-latest-beta-x86_64.zip?job=deploy:beta:windows'
                 )
             ],
             [
                 new Link(
                     'sha256sum',
-                    'https://gitlab.com/dev-hood/elpida/elpida/-/jobs/artifacts/develop/raw/SHA256SUMS?job=build:windows'
+                    'https://gitlab.com/dev-hood/elpida/elpida/-/jobs/artifacts/develop/raw/Elpida-latest-beta-x86_64.zip.SHA256SUMS?job=deploy:beta:windows'
                 )
             ]
         ),
@@ -26,13 +26,13 @@ export class LinksService {
             [
                 new Link(
                     'Beta x86-64 (.AppImage)',
-                    'https://gitlab.com/dev-hood/elpida/elpida/-/jobs/artifacts/develop/raw/Elpida-latest-x86_64.AppImage?job=build:linux'
+                    'https://gitlab.com/dev-hood/elpida/elpida/-/jobs/artifacts/develop/raw/Elpida-latest-beta-x86_64.AppImage?job=deploy:beta:linux'
                 )
             ],
             [
                 new Link(
                     'sha256sum',
-                    'https://gitlab.com/dev-hood/elpida/elpida/-/jobs/artifacts/develop/raw/SHA256SUMS?job=build:linux'
+                    'https://gitlab.com/dev-hood/elpida/elpida/-/jobs/artifacts/develop/raw/Elpida-latest-beta-x86_64.AppImage.SHA256SUMS?job=deploy:beta:linux'
                 )
             ]
         )
