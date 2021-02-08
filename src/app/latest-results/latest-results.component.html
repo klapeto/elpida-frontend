@@ -1,8 +1,9 @@
 <div class=results-container>
+    <input type="search" (keyup)="onSearch($event)" [(ngModel)]="searchString" placeholder="Search benchmark name (Press 'enter' to search)" style="width: 100%;">
     <app-filter-results (submitted)="onFiltersSubmitted($event)"></app-filter-results>
 
     <div class="results-panel" [title]="'Results'">
-        <input type="search" (keyup)="onSearch($event)" [(ngModel)]="searchString" placeholder="Search benchmark name (Press 'enter' to search)" style="width: 100%;">
+
         <div *ngIf="!pageResult" class="loading-indicator">
             <div class="spinner">
 
