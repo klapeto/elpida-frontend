@@ -12,13 +12,13 @@ export class LinksService {
             [
                 new Link(
                     'Beta x86-64 (.zip)',
-                    'https://gitlab.com/dev-hood/elpida/elpida/-/jobs/artifacts/develop/raw/Elpida-latest-beta-x86_64.zip?job=deploy:beta:windows'
+                    'https://gitlab.com/dev-hood/elpida/elpida/-/jobs/artifacts/master/raw/Elpida-latest-x86_64.zip?job=deploy:windows'
                 )
             ],
             [
                 new Link(
                     'sha256sum',
-                    'https://gitlab.com/dev-hood/elpida/elpida/-/jobs/artifacts/develop/raw/Elpida-latest-beta-x86_64.zip.SHA256SUMS?job=deploy:beta:windows'
+                    'https://gitlab.com/dev-hood/elpida/elpida/-/jobs/artifacts/master/raw/Elpida-latest-x86_64.zip.SHA256SUMS?job=deploy:windows'
                 )
             ]
         ),
@@ -26,13 +26,13 @@ export class LinksService {
             [
                 new Link(
                     'Beta x86-64 (.AppImage)',
-                    'https://gitlab.com/dev-hood/elpida/elpida/-/jobs/artifacts/develop/raw/Elpida-latest-beta-x86_64.AppImage?job=deploy:beta:linux'
+                    'https://gitlab.com/dev-hood/elpida/elpida/-/jobs/artifacts/master/raw/Elpida-latest-x86_64.AppImage?job=deploy:linux'
                 )
             ],
             [
                 new Link(
                     'sha256sum',
-                    'https://gitlab.com/dev-hood/elpida/elpida/-/jobs/artifacts/develop/raw/Elpida-latest-beta-x86_64.AppImage.SHA256SUMS?job=deploy:beta:linux'
+                    'https://gitlab.com/dev-hood/elpida/elpida/-/jobs/artifacts/master/raw/Elpida-latest-x86_64.AppImage.SHA256SUMS?job=deploy:linux'
                 )
             ]
         )
@@ -43,7 +43,7 @@ export class LinksService {
             [
                 new Link(
                     'Beta source code (.tar.gz)',
-                    'https://gitlab.com/dev-hood/elpida/elpida/-/archive/develop/elpida-develop.tar.gz'
+                    'https://gitlab.com/dev-hood/elpida/elpida/-/archive/master/elpida-master.tar.gz'
                 )
             ],
             [
@@ -57,7 +57,7 @@ export class LinksService {
             [
                 new Link(
                     'Beta source code (.tar.gz)',
-                    'https://gitlab.com/dev-hood/elpida/frontend/-/archive/develop/frontend-develop.tar.gz'
+                    'https://gitlab.com/dev-hood/elpida/frontend/-/archive/master/frontend-master.tar.gz'
                 )
             ],
             [
@@ -71,7 +71,7 @@ export class LinksService {
             [
                 new Link(
                     'Beta source code (.tar.gz)',
-                    'https://gitlab.com/dev-hood/elpida/backend/-/archive/develop/backend-develop.tar.gz'
+                    'https://gitlab.com/dev-hood/elpida/backend/-/archive/master/backend-master.tar.gz'
                 )
             ],
             [

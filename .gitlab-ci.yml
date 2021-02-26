@@ -29,20 +29,9 @@ build:
     - docker:dind
   script: []
 
-docker-build-develop:
-  variables:
-    CONTAINER_TAG: beta
-  extends: .docker-build-base
-  before_script:
-    - *docker-before
-  script:
-    - *docker-after
-  only:
-    - develop
-
 docker-build-master:
   variables:
-    CONTAINER_TAG: stable
+    CONTAINER_TAG: latest
   extends: .docker-build-base
   before_script:
     - *docker-before
