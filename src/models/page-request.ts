@@ -1,8 +1,8 @@
 export class PageRequest {
-  constructor(
-    public next: number,
-    public count: number,
-    public totalCount: number
-  ) {
-  }
+    constructor(
+        public readonly next: number,
+        public readonly count: number,
+        public readonly totalCount: number
+    ) {
+    }
 }

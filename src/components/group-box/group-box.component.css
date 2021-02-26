@@ -1,0 +1,19 @@
+.groupBox {
+    background-color: rgb(203, 199, 247);
+    border-radius: 0.3rem;
+    /*box-shadow: 0 0 2rem 0 rgba(203, 199, 247, 1);*/
+    margin: 0.2em;
+    border: 0.05rem rgb(203, 199, 247) solid;
+    box-shadow: 0 0.2rem 0.4rem 0 rgba(0, 0, 0, 0.14);
+}
+
+.groupBoxHeader {
+    text-align: center;
+}
+
+.groupBoxContent {
+    border-bottom-left-radius: 0.3rem;
+    border-bottom-right-radius: 0.3rem;
+    /*background-color: rgb(227, 229, 248);*/
+    background-color: #edf4f9;
+}

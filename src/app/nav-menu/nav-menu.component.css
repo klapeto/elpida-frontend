@@ -1,41 +1,27 @@
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
-  font-weight: bold;
-  font-size: 1.8em;
-}
-
 .navbar {
-  background-color: #c7cdf9;
+    background-color: #c7cdf9;
+    display: flex;
+    flex-flow: row wrap;
+    padding: 1em;
+    position: relative;
 }
 
-.nav-item {
-  background-color: rgb(203, 199, 247);
-  border: 1px solid rgb(158, 159, 238);
-  min-width: 8em;
-  text-align: center;
+.nav-logo {
+    display: flex;
+    place-items: center;
 }
 
-.nav-item:hover {
-  background-color: rgb(221, 219, 243);
+.logo-img {
+    height: 3.5em;
 }
 
-html {
-  font-size: 14px;
+.nav-container {
+    display: flex;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-}
-
-.nav-item.link-active > a {
-  background-color: rgb(137, 142, 226);
-  color: white;
+.nav-item-container {
+    flex-grow: 1;
+    justify-content: end;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(9em, max-content));
 }

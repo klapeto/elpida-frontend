@@ -1,22 +1,16 @@
 <div class="cpuNode" [ngClass]="getBaseClass()">
-  <div class="row">
-    <div class="col">
-      <strong>{{node.name}}</strong>
-      <span *ngIf="node.osIndex !== null">: {{node.osIndex}} </span>
-      <span *ngIf="node.value !== null">: {{valueConverter.convertToSI(node.value)}}B </span>
-      <span *ngIf="isUsed()" class="badge badge-success">&#10004;</span>
+    <div class="node-info">
+        <strong>{{node.name}}</strong>
+        <div *ngIf="node.osIndex !== null">: {{node.osIndex}} </div>
+        <div *ngIf="node.value !== null">: {{valueConverter.convertToSI(node.value)}}B</div>
+        <div *ngIf="isUsed()" class="node-badge node-used">&#10004;</div>
     </div>
-  </div>
-  <div *ngIf="node.memoryChildren">
-      <div class="row no-gutters" *ngFor="let child of node.memoryChildren">
-        <div class="col-md">
-          <app-cpu-node [node]="child" [affinity]="affinity"></app-cpu-node>
-        </div>
-      </div>
-  </div>
-  <div  *ngIf="node.children" class="row no-gutters" [ngClass]="getRowClass()">
-    <div class="col" *ngFor="let child of node.children">
-      <app-cpu-node [node]="child" [affinity]="affinity"></app-cpu-node>
+    <div *ngIf="node.memoryChildren" class="node-children">
+        <app-cpu-node *ngFor="let child of node.memoryChildren" [node]="child"
+                      [affinity]="affinity" class="node-child"></app-cpu-node>
     </div>
-  </div>
+    <div *ngIf="node.children" class="node-children">
+        <app-cpu-node *ngFor="let child of node.children" [node]="child" [affinity]="affinity"
+                      class="node-child"></app-cpu-node>
+    </div>
 </div>

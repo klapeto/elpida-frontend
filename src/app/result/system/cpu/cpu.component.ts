@@ -1,20 +1,25 @@
 import {Component, Input} from '@angular/core';
-import {Cpu} from '../../../../models/cpu';
+import {Cpu} from '../../../../models/result/cpu';
 import {ValueConverter} from '../../../../services/value-converter';
 
 @Component({
-  selector: 'app-cpu',
-  templateUrl: './cpu.component.html',
-  styleUrls: ['./cpu.component.css']
+    selector: 'app-cpu',
+    templateUrl: './cpu.component.html',
+    styleUrls: ['./cpu.component.css']
 })
 export class CpuComponent {
 
-  @Input() cpu: Cpu;
+    @Input() public readonly cpu: Cpu;
 
-  constructor(public valueConverter: ValueConverter) { }
+    constructor(public readonly valueConverter: ValueConverter) {
+    }
 
-  public getRowClass(): string {
-    const childrenCountRoot = Math.ceil(Math.sqrt(this.cpu.caches.length));
-    return 'row-cols-' + childrenCountRoot;
-  }
+    public getInfoPairs(): { name: string, value: string }[] {
+        const returnValue = [];
+        Object.keys(this.cpu.additionalInfo).forEach(key => {
+           returnValue.push({name: key, value: this.cpu.additionalInfo[key]});
+        });
+
+        return returnValue;
+    }
 }
