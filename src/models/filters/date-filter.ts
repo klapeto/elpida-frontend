@@ -32,7 +32,7 @@ export class DateFilter extends ValueFilter<Date> {
 
     protected static readonly backendToUiComparison = Utilities.reverseMap(DateFilter.uiComparisonToBackendComparison);
 
-    protected defaultValue: Date = new Date();
+    protected defaultValue: Date = <Date><unknown>'';
 
     public createComponent(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef): any {
         const component = viewContainerRef.createComponent<DateFilterComponent>(

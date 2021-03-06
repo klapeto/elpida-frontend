@@ -2,6 +2,8 @@ import {Component, ElementRef, Input, OnInit} from '@angular/core';
 import {BenchmarkResult} from '../../../models/result/benchmark-result';
 import {ValueConverter} from '../../../services/value-converter';
 import {ResultType, TaskResult} from '../../../models/result/task-result';
+import {ModalService} from '../../../services/modal.service';
+import {ResultDetailsComponent} from '../result-details/result-details.component';
 
 @Component({
     selector: 'app-benchmark-result',
@@ -22,7 +24,9 @@ export class BenchmarkResultComponent implements OnInit {
 
     @Input() public readonly benchmarkResult: BenchmarkResult;
 
-    constructor(public valueConverter: ValueConverter, public el: ElementRef) {
+    constructor(public valueConverter: ValueConverter,
+                public el: ElementRef,
+                private modalService: ModalService) {
 
     }
 
@@ -47,6 +51,10 @@ export class BenchmarkResultComponent implements OnInit {
                 }
             ];
         }
+    }
+
+    public onRecordClick(result: TaskResult): void {
+        this.modalService.show<ResultDetailsComponent>('Result statistics', ResultDetailsComponent, component => component.taskResult = result);
     }
 
     public formatNumberSI(arg: number): string {

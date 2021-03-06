@@ -38,6 +38,9 @@ import { FilterContainerComponent } from './latest-results/filter-results/filter
 import {NumberFilterComponent} from '../components/number-filter/number-filter.component';
 import {StringFilterComponent} from '../components/string-filter/string-filter.component';
 import {DateFilterComponent} from '../components/date-filter/date-filter.component';
+import {ModalComponent} from '../components/modal/modal.component';
+import {ChildContainerDirective} from '../directives/child-container.directive';
+import { ResultDetailsComponent } from './result/result-details/result-details.component';
 
 @NgModule({
     declarations: [
@@ -66,7 +69,10 @@ import {DateFilterComponent} from '../components/date-filter/date-filter.compone
         StringFilterComponent,
         DateFilterComponent,
         RangeFilterComponent,
-        FilterContainerComponent
+        FilterContainerComponent,
+        ModalComponent,
+        ChildContainerDirective,
+        ResultDetailsComponent,
     ],
     imports: [
         BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),

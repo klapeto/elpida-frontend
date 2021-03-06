@@ -10,6 +10,7 @@
 th {
     text-align: left;
     border-bottom: 0.15rem #9297e3 solid;
+    background-color: rgba(146, 151, 227, 0.20);
 }
 
 td {
@@ -22,6 +23,10 @@ table {
     width: 100%;
 }
 
-table tbody tr:nth-of-type(odd) {
-    background-color: rgba(146, 151, 227, 0.20);
+.result-record {
+    cursor: pointer;
+}
+
+.result-record:hover {
+    background-color: rgb(221, 219, 243);
 }

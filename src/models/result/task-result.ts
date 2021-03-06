@@ -1,3 +1,6 @@
+import {TaskStatistics} from './task-statistics';
+import {TaskOutlier} from './task-outlier';
+
 export enum ResultType {
     Throughput,
     Raw
@@ -11,7 +14,9 @@ export class TaskResult {
         public readonly time: number,
         public readonly type: ResultType,
         public readonly suffix: string,
-        public readonly inputSize: number
+        public readonly inputSize: number,
+        public readonly statistics: TaskStatistics,
+        public readonly outliers: TaskOutlier[]
     ) {
     }
 }

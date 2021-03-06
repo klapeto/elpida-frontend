@@ -1,0 +1,41 @@
+.modal-bg {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-header {
+
+}
+
+.modal-close {
+    float: right;
+    font-size: 2rem;
+    font-weight: bold;
+    min-width: 2rem;
+    max-height: 2rem;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-container {
+    background-color: #c7cdf9;
+    margin: 15% auto;
+    padding: 1rem;
+    width: 80%;
+    border-radius: 0.3rem;
+}
+
+.modal-content {
+    background-color: rgb(229, 232, 253);
+}
+
