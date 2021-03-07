@@ -1,1 +1,70 @@
-<p>{{taskResult.name}}</p>
+<div class="details-container">
+    <app-group-box [title]="'General'">
+        <div class="details-grid">
+
+            <strong>Name:</strong>
+            <div>{{taskResult.name}}</div>
+
+            <strong>Description:</strong>
+            <div>{{taskResult.description}}</div>
+
+            <strong>Input size:</strong>
+            <div>{{this.formatNumberSI(taskResult.inputSize)}}</div>
+
+            <strong>Final benchmark value:</strong>
+            <div>{{this.formatNumberSI(taskResult.value)}}{{taskResult.suffix}}</div>
+
+            <strong>Final benchmark time:</strong>
+            <div>{{this.formatNumberSI(taskResult.time)}}s</div>
+
+        </div>
+    </app-group-box>
+
+    <app-group-box [title]="'Task statistics'">
+        <div class="details-grid">
+
+            <strong>Sample size:</strong>
+            <div>{{this.formatNumberSI(taskResult.statistics.sampleSize)}}</div>
+
+            <strong>Max:</strong>
+            <div>{{this.formatNumberSI(taskResult.statistics.max)}}</div>
+
+            <strong>Min:</strong>
+            <div>{{this.formatNumberSI(taskResult.statistics.min)}}</div>
+
+            <strong>Mean:</strong>
+            <div>{{this.formatNumberSI(taskResult.statistics.mean)}}</div>
+
+            <strong>Standard deviation:</strong>
+            <div>{{this.formatNumberSI(taskResult.statistics.sd)}}</div>
+
+            <strong>Margin of error:</strong>
+            <div>{{this.formatNumberSI(taskResult.statistics.marginOfError)}}</div>
+
+            <strong>Tau:</strong>
+            <div>{{this.formatNumberSI(taskResult.statistics.tau)}}</div>
+
+        </div>
+    </app-group-box>
+
+    <app-group-box [title]="'Task outliers'">
+        <div class="outliers-table">
+            <table>
+                <thead>
+                <tr>
+                    <th scope="col">Time</th>
+                    <th scope="col">value</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr *ngFor="let outlier of taskResult.outliers">
+                    <td>{{this.formatNumberSI(outlier.time)}}s</td>
+                    <td>{{this.formatNumberSI(outlier.value)}}{{taskResult.suffix}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </app-group-box>
+</div>
+

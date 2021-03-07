@@ -10,12 +10,15 @@
 }
 
 .modal-header {
-
+    text-align: center;
+    background-color: #c7cdf9;
+    padding: 0.3rem;
+    border-radius: 0.3rem 0.3rem 0 0;
 }
 
 .modal-close {
     float: right;
-    font-size: 2rem;
+    font-size: 1rem;
     font-weight: bold;
     min-width: 2rem;
     max-height: 2rem;
@@ -28,14 +31,9 @@
 }
 
 .modal-container {
-    background-color: #c7cdf9;
+    background-color: rgb(229, 232, 253);;
     margin: 15% auto;
-    padding: 1rem;
-    width: 80%;
+    width: 60%;
     border-radius: 0.3rem;
-}
-
-.modal-content {
-    background-color: rgb(229, 232, 253);
 }
 

@@ -7,22 +7,6 @@
     overflow-y: scroll;
 }
 
-th {
-    text-align: left;
-    border-bottom: 0.15rem #9297e3 solid;
-    background-color: rgba(146, 151, 227, 0.20);
-}
-
-td {
-    border-bottom: 0.05rem #9297e3 solid;
-    padding: 0.25rem;
-}
-
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
-
 .result-record {
     cursor: pointer;
 }

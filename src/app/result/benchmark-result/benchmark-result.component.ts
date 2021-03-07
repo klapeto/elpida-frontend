@@ -54,7 +54,7 @@ export class BenchmarkResultComponent implements OnInit {
     }
 
     public onRecordClick(result: TaskResult): void {
-        this.modalService.show<ResultDetailsComponent>('Result statistics', ResultDetailsComponent, component => component.taskResult = result);
+        this.modalService.show<ResultDetailsComponent>('Result details', ResultDetailsComponent, component => component.taskResult = result);
     }
 
     public formatNumberSI(arg: number): string {
