@@ -12,7 +12,7 @@
             <div>{{this.formatNumberSI(taskResult.inputSize)}}</div>
 
             <strong>Final benchmark value:</strong>
-            <div>{{this.formatNumberSI(taskResult.value)}}{{taskResult.suffix}}</div>
+            <div>{{this.formatNumberSI(taskResult.value)}}{{taskResult.result.unit}}</div>
 
             <strong>Final benchmark time:</strong>
             <div>{{this.formatNumberSI(taskResult.time)}}s</div>
@@ -44,26 +44,6 @@
             <strong>Tau:</strong>
             <div>{{this.formatNumberSI(taskResult.statistics.tau)}}</div>
 
-        </div>
-    </app-group-box>
-
-    <app-group-box [title]="'Task outliers'">
-        <div class="outliers-table">
-            <table>
-                <thead>
-                <tr>
-                    <th scope="col">Time</th>
-                    <th scope="col">value</th>
-                </tr>
-                </thead>
-                <tbody>
-
-                <tr *ngFor="let outlier of taskResult.outliers">
-                    <td>{{this.formatNumberSI(outlier.time)}}s</td>
-                    <td>{{this.formatNumberSI(outlier.value)}}{{taskResult.suffix}}</td>
-                </tr>
-                </tbody>
-            </table>
         </div>
     </app-group-box>
 </div>
