@@ -3,11 +3,11 @@ import {Query} from '../../../models/query';
 import {Filter} from '../../../models/filter';
 
 @Component({
-    selector: 'app-filter-results',
-    templateUrl: './filter-results.component.html',
-    styleUrls: ['./filter-results.component.css']
+    selector: 'app-collection-filters',
+    templateUrl: './collection-filters.component.html',
+    styleUrls: ['./collection-filters.component.css']
 })
-export class FilterResultsComponent {
+export class CollectionFiltersComponent {
 
     @Input() public readonly query: Query;
     @Input() public readonly orderByFilters: Filter[];

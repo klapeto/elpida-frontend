@@ -1,7 +1,7 @@
 import {FilterDto} from '../../services/filter-dto';
 import {ValueFilter} from '../value-filter';
 import {ComponentFactoryResolver, ViewContainerRef} from '@angular/core';
-import {StringFilterComponent} from '../../components/string-filter/string-filter.component';
+import {StringFilterComponent} from '../../components/collection/filters/string-filter/string-filter.component';
 import {Utilities} from '../../services/utilities';
 
 export enum StringComparisons {

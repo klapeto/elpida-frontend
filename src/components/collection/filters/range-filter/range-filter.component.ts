@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
-import {ValueConverter} from '../../services/value-converter';
-import {ValueFilter} from '../../models/value-filter';
+import {ValueConverter} from '../../../../services/value-converter';
+import {ValueFilter} from '../../../../models/value-filter';
 
 @Component({
     selector: 'app-number-simple-filter',

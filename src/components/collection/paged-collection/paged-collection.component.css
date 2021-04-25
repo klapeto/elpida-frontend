@@ -1,0 +1,14 @@
+.collection {
+    display: flex;
+    flex-direction: column;
+}
+
+.collection-panel {
+    flex-grow: 2;
+}
+
+.loading-indicator {
+    position: relative;
+    left: 50%;
+    top: 50%;
+}

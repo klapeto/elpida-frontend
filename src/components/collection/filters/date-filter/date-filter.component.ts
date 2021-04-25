@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {ValueFilter} from '../../models/value-filter';
+import {ValueFilter} from '../../../../models/value-filter';
 
 @Component({
     selector: 'app-date-filter',

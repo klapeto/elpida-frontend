@@ -1,0 +1,31 @@
+<input *ngIf="searchBox"
+       type="search"
+       (keyup)="onSearch($event)"
+       [(ngModel)]="searchString"
+       placeholder="Search (Press 'enter' to search)"
+       style="width: 100%;">
+
+<app-collection-filters *ngIf="filters"
+                        (submitted)="onFiltersSubmitted($event)"></app-collection-filters>
+
+
+<div class="collection-panel" [title]="name">
+
+    <div *ngIf="!pagedResult" class="loading-indicator">
+        <div class="spinner">
+
+        </div>
+        <em>Loading...</em>
+    </div>
+
+    <h3 *ngIf="pagedResult">Total results: {{valueConverter.convertToSI(pagedResult.totalCount, 0)}}</h3>
+    <div>
+        <div #itemContainer>
+        </div>
+    </div>
+    <app-paging
+            *ngIf="pagedResult"
+            (pageChanged)="onPageChange($event)"
+            [pagesCount]="maxResultPages">
+    </app-paging>
+</div>

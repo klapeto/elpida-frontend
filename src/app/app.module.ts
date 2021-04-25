@@ -19,28 +19,32 @@ import {CpuCacheComponent} from './result/system/cpu/cpu-cache/cpu-cache.compone
 import {CpuNodeComponent} from './result/system/topology/cpu-node/cpu-node.component';
 import {ValueConverter} from '../services/value-converter';
 import {LatestResultsComponent} from './latest-results/latest-results.component';
-import {PagingComponent} from '../components/paging/paging.component';
+import {PagingComponent} from '../components/collection/paging/paging.component';
 import {OsComponent} from './result/system/os/os.component';
 import {ResultsService} from '../services/results.service';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
 import {LinksService} from '../services/links.service';
-import {FilterResultsComponent} from './latest-results/filter-results/filter-results.component';
-import {FiltersService} from '../services/filters.service';
+import {CollectionFiltersComponent} from '../components/collection/collection-filters/collection-filters.component';
 import {AboutComponent} from './about/about.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
-import {SimpleFiltersComponent} from './latest-results/filter-results/simple-filters/simple-filters.component';
-import {AdvancedFiltersComponent} from './latest-results/filter-results/advanced-filters/advanced-filters.component';
-import {OptionFilterComponent} from '../components/option-filter/option-filter.component';
-import {RangeFilterComponent} from '../components/range-filter/range-filter.component';
-import { FilterContainerComponent } from './latest-results/filter-results/filter-container/filter-container.component';
-import {NumberFilterComponent} from '../components/number-filter/number-filter.component';
-import {StringFilterComponent} from '../components/string-filter/string-filter.component';
-import {DateFilterComponent} from '../components/date-filter/date-filter.component';
+import {SimpleFiltersComponent} from '../components/collection/collection-filters/simple-filters/simple-filters.component';
+import {AdvancedFiltersComponent} from '../components/collection/collection-filters/advanced-filters/advanced-filters.component';
+import {OptionFilterComponent} from '../components/collection/filters/option-filter/option-filter.component';
+import {RangeFilterComponent} from '../components/collection/filters/range-filter/range-filter.component';
+import { FilterContainerComponent } from '../components/collection/collection-filters/filter-container/filter-container.component';
+import {NumberFilterComponent} from '../components/collection/filters/number-filter/number-filter.component';
+import {StringFilterComponent} from '../components/collection/filters/string-filter/string-filter.component';
+import {DateFilterComponent} from '../components/collection/filters/date-filter/date-filter.component';
 import {ModalComponent} from '../components/modal/modal.component';
 import {ChildContainerDirective} from '../directives/child-container.directive';
 import { ResultDetailsComponent } from './result/result-details/result-details.component';
+import {StatisticsComponent} from './statistics/statistics.component';
+import {PagedCollectionComponent} from '../components/collection/paged-collection/paged-collection.component';
+import {CpuService} from '../services/cpu.service';
+import {CollectionItemComponent} from '../components/collection/paged-collection/collection-item/collection-item.component';
+import {ResultItemComponent} from '../components/collection/items/result-item/result-item.component';
 
 @NgModule({
     declarations: [
@@ -60,7 +64,7 @@ import { ResultDetailsComponent } from './result/result-details/result-details.c
         LatestResultsComponent,
         PagingComponent,
         OsComponent,
-        FilterResultsComponent,
+        CollectionFiltersComponent,
         AboutComponent,
         SimpleFiltersComponent,
         AdvancedFiltersComponent,
@@ -73,6 +77,10 @@ import { ResultDetailsComponent } from './result/result-details/result-details.c
         ModalComponent,
         ChildContainerDirective,
         ResultDetailsComponent,
+        StatisticsComponent,
+        PagedCollectionComponent,
+        CollectionItemComponent,
+        ResultItemComponent
     ],
     imports: [
         BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
@@ -84,12 +92,13 @@ import { ResultDetailsComponent } from './result/result-details/result-details.c
             {path: '', component: HomeComponent, pathMatch: 'full'},
             {path: 'download', component: DownloadComponent},
             {path: 'latest-results', component: LatestResultsComponent},
+            {path: 'statistics', component: StatisticsComponent},
             {path: 'result/:id', component: ResultComponent},
             {path: 'about', component: AboutComponent},
         ], { useHash: true }),
         ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
     ],
-    providers: [ValueConverter, ResultsService, LinksService, FiltersService],
+    providers: [ValueConverter, ResultsService, LinksService, CpuService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

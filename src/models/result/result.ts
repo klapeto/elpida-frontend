@@ -3,6 +3,7 @@ import {System} from './system';
 import {BenchmarkResult} from './benchmark-result';
 
 export class Result {
+
     constructor(
         public readonly id: string,
         public timeStamp: Date,

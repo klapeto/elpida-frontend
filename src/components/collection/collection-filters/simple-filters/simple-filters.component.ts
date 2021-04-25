@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {Query} from '../../../../models/query';
 import {Filter} from '../../../../models/filter';
-import {FiltersService} from '../../../../services/filters.service';
+import {ResultsService} from '../../../../services/results.service';
 
 @Component({
   selector: 'app-simple-filters',
@@ -14,12 +14,12 @@ export class SimpleFiltersComponent {
 
   @Output() public readonly submitted = new EventEmitter<Query>();
 
-  constructor(public filtersService: FiltersService) {
-    this.filters = filtersService.createSimpleFilters();
+  constructor(public resultsService: ResultsService) {
+    this.filters = resultsService.createSimpleFilters();
   }
 
   public onSubmit() {
-    this.submitted.emit(new Query(this.filters, this.filtersService.createDefaultOrderByFilter(), true));
+    this.submitted.emit(new Query(this.filters, this.resultsService.createDefaultOrderByFilter(), true));
   }
 
 }

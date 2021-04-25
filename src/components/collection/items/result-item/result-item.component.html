@@ -1,0 +1,9 @@
+<a [routerLink]="'/result/'+ item.id" class="collection-item">
+    <div>{{getTimestamp(item.timeStamp).toDateString()}} {{getTimestamp(item.timeStamp).toLocaleTimeString()}}</div>
+    <h3 class="collection-item-detail">
+        {{item.cpuBrand}}
+    </h3>
+    <h3 class="collection-item-detail">
+        {{item.name}}
+    </h3>
+</a>

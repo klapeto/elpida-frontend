@@ -1,10 +1,10 @@
 import {AfterViewInit, Component, ElementRef, EventEmitter, Output, ViewChild} from '@angular/core';
 import {Query} from '../../../../models/query';
 import {Filter} from '../../../../models/filter';
-import {FiltersService} from '../../../../services/filters.service';
+import {ResultsService} from '../../../../services/results.service';
 
 @Component({
-    selector: 'app-custom-filters',
+    selector: 'app-advanced-filters',
     templateUrl: './advanced-filters.component.html',
     styleUrls: ['./advanced-filters.component.css']
 })
@@ -22,10 +22,10 @@ export class AdvancedFiltersComponent implements AfterViewInit {
 
     public descending = true;
 
-    constructor(private filterService: FiltersService) {
-        this.filters = filterService.createAdvancedFilters();
-        this.orderByFilters = filterService.createOrderByFilters();
-        this.orderBy = filterService.createDefaultOrderByFilter();
+    constructor(private resultsService: ResultsService) {
+        this.filters = resultsService.createAdvancedFilters();
+        this.orderByFilters = resultsService.createOrderByFilters();
+        this.orderBy = resultsService.createDefaultOrderByFilter();
     }
 
     public onSubmit(): void {

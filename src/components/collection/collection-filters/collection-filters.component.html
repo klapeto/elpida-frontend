@@ -6,6 +6,6 @@
         <div class="button non-a-button button-default-size" (click)="advanced = true" [ngClass]="{'active': advanced}">Advanced Filters</div>
     </div>
 
-    <app-custom-filters *ngIf="advanced; else elseBlock" (submitted)="onSubmit($event)"></app-custom-filters>
+    <app-advanced-filters *ngIf="advanced; else elseBlock" (submitted)="onSubmit($event)"></app-advanced-filters>
     <ng-template #elseBlock><app-simple-filters (submitted)="onSubmit($event)"></app-simple-filters></ng-template>
 </div>

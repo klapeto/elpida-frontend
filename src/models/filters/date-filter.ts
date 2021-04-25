@@ -1,7 +1,7 @@
 import {ValueFilter} from '../value-filter';
 import {FilterDto} from '../../services/filter-dto';
 import {ComponentFactoryResolver, ViewContainerRef} from '@angular/core';
-import {DateFilterComponent} from '../../components/date-filter/date-filter.component';
+import {DateFilterComponent} from '../../components/collection/filters/date-filter/date-filter.component';
 import {Utilities} from '../../services/utilities';
 
 export enum DateComparisons {
