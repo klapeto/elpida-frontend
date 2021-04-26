@@ -1,6 +1,5 @@
-import {AfterViewInit, Component, ComponentFactoryResolver, Input, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
+import {AfterViewInit, Component, ComponentFactoryResolver, Input, ViewChild, ViewContainerRef} from '@angular/core';
 import {PagedResult} from '../../../models/paged-result';
-import {ICollectionService} from '../../../services/interfaces/icollection-service';
 import {Query} from '../../../models/query';
 import {PageRequest} from '../../../models/page-request';
 import {ValueConverter} from '../../../services/value-converter';
@@ -23,8 +22,8 @@ export class PagedCollectionComponent implements AfterViewInit {
     private currentQuery: Query;
 
     @Input() service: CollectionService<any, any>;
-    @Input() searchBox: boolean;
-    @Input() filters: boolean;
+    @Input() showSearchBox: boolean;
+    @Input() showFilters: boolean;
     @Input() name: string;
 
     @ViewChild('itemContainer', {read: ViewContainerRef}) itemContainer: ViewContainerRef;
@@ -36,6 +35,10 @@ export class PagedCollectionComponent implements AfterViewInit {
     ngAfterViewInit(): void {
         this.currentQuery = new Query([], this.service.createDefaultOrderByFilter(), true);
         this.reloadPageSafe();
+    }
+
+    public onFiltersButtonClick() {
+        this.showFilters = !this.showFilters;
     }
 
     public onFiltersSubmitted(query: Query): void {
@@ -98,5 +101,7 @@ export class PagedCollectionComponent implements AfterViewInit {
         if (this.curPage !== page) {    // avoid multiple API Calls from initialisation
             this.getPageResults(page);
         }
+
+        this.itemContainer.element.nativeElement.scrollIntoView({behavior: 'smooth', block: 'end', inline: 'nearest'});
     }
 }

@@ -1,15 +1,17 @@
-import {AfterViewInit, Component, ElementRef, EventEmitter, Output, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {Query} from '../../../../models/query';
 import {Filter} from '../../../../models/filter';
 import {ResultsService} from '../../../../services/results.service';
+import {CollectionService} from '../../../../services/collection-service';
 
 @Component({
     selector: 'app-advanced-filters',
     templateUrl: './advanced-filters.component.html',
     styleUrls: ['./advanced-filters.component.css']
 })
-export class AdvancedFiltersComponent implements AfterViewInit {
+export class AdvancedFiltersComponent implements AfterViewInit, OnInit {
 
+    @Input() service: CollectionService<any, any>;
     @Output() public readonly submitted = new EventEmitter<Query>();
 
     @ViewChild('orderBy', {read: null}) private readonly orderBySelect: ElementRef;
@@ -22,10 +24,13 @@ export class AdvancedFiltersComponent implements AfterViewInit {
 
     public descending = true;
 
-    constructor(private resultsService: ResultsService) {
-        this.filters = resultsService.createAdvancedFilters();
-        this.orderByFilters = resultsService.createOrderByFilters();
-        this.orderBy = resultsService.createDefaultOrderByFilter();
+    constructor() {
+    }
+
+    ngOnInit(): void {
+        this.filters = this.service.createAdvancedFilters();
+        this.orderByFilters = this.service.createOrderByFilters();
+        this.orderBy = this.service.createDefaultOrderByFilter();
     }
 
     public onSubmit(): void {

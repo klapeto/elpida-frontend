@@ -8,6 +8,8 @@ import {OptionFilter, OptionFilterMap} from '../models/filters/option-filter';
 import {RangeFilter} from '../models/filters/range-filter';
 import {NumberComparisons, NumberFilter} from '../models/filters/number-filter';
 import {HttpClient} from '@angular/common/http';
+import {ResultItemComponent} from '../components/collection/items/result-item/result-item.component';
+import {CpuItemComponent} from '../components/collection/items/cpu-item/cpu-item.component';
 
 @Injectable({
     providedIn: 'root'
@@ -81,6 +83,11 @@ export class CpuService extends CollectionService<Cpu, CpuPreview> {
     }
 
     createCollectionItemComponent(item: CpuPreview, componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
-        throw new Error('Method not implemented.');
+        const component = viewContainerRef.createComponent<CpuItemComponent>(
+            componentFactoryResolver.resolveComponentFactory<CpuItemComponent>(CpuItemComponent)
+        );
+
+        component.instance.item = item;
+        return component;
     }
 }

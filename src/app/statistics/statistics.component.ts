@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {PagedResult} from '../../models/paged-result';
-import {ResultPreview} from '../../models/result-preview';
-import {CpuPreview} from '../../models/cpu/cpu-preview';
+import {CpuService} from '../../services/cpu.service';
 
 @Component({
   selector: 'app-statistics',
@@ -10,12 +8,7 @@ import {CpuPreview} from '../../models/cpu/cpu-preview';
 })
 export class StatisticsComponent implements OnInit {
 
-  public pageCpu: PagedResult<CpuPreview>;
-  public maxResultPages: number;
-  private resultsPerPage = 10;
-  private curCpuPage = 0;
-
-  constructor() { }
+  constructor(public cpuService: CpuService) { }
 
   ngOnInit(): void {
   }

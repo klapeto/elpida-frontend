@@ -1,0 +1,19 @@
+<a [routerLink]="'/cpu/' + item.id" class="collection-item cpu-item-container">
+    <img [src]="'./assets/cpus/'+ item.vendor + '.svg'"
+         [alt]="item.vendor"
+         loading="lazy"
+         class="cpu-vendor-img">
+    <div>
+        <h3 class="collection-item-detail">
+            {{item.brand}}
+        </h3>
+        <div>
+            <strong>Task types: </strong>
+            <span>{{item.taskStatisticsCount}}</span>
+        </div>
+        <div>
+            <strong>Topology types: </strong>
+            <span>{{item.topologiesCount}}</span>
+        </div>
+    </div>
+</a>

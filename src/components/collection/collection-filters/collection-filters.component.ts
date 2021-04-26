@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Query} from '../../../models/query';
 import {Filter} from '../../../models/filter';
+import {CollectionService} from '../../../services/collection-service';
 
 @Component({
     selector: 'app-collection-filters',
@@ -9,6 +10,7 @@ import {Filter} from '../../../models/filter';
 })
 export class CollectionFiltersComponent {
 
+    @Input() public readonly service: CollectionService<any, any>;
     @Input() public readonly query: Query;
     @Input() public readonly orderByFilters: Filter[];
 

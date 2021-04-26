@@ -1,25 +1,26 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Query} from '../../../../models/query';
 import {Filter} from '../../../../models/filter';
-import {ResultsService} from '../../../../services/results.service';
+import {CollectionService} from '../../../../services/collection-service';
 
 @Component({
-  selector: 'app-simple-filters',
-  templateUrl: './simple-filters.component.html',
-  styleUrls: ['./simple-filters.component.css']
+    selector: 'app-simple-filters',
+    templateUrl: './simple-filters.component.html',
+    styleUrls: ['./simple-filters.component.css']
 })
-export class SimpleFiltersComponent {
+export class SimpleFiltersComponent implements OnInit {
 
-  public filters: Filter[];
+    public filters: Filter[];
 
-  @Output() public readonly submitted = new EventEmitter<Query>();
+    @Input() service: CollectionService<any, any>;
+    @Output() public readonly submitted = new EventEmitter<Query>();
 
-  constructor(public resultsService: ResultsService) {
-    this.filters = resultsService.createSimpleFilters();
-  }
+    ngOnInit(): void {
+        this.filters = this.service.createSimpleFilters();
+    }
 
-  public onSubmit() {
-    this.submitted.emit(new Query(this.filters, this.resultsService.createDefaultOrderByFilter(), true));
-  }
 
+    public onSubmit() {
+        this.submitted.emit(new Query(this.filters, this.service.createDefaultOrderByFilter(), true));
+    }
 }
