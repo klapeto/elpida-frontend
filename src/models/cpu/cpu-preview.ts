@@ -2,7 +2,7 @@ import {FoundationModel} from '../foundation-model';
 
 export class CpuPreview extends FoundationModel {
     constructor(
-        public id: number,
+        id: number,
         public readonly vendor: string,
         public readonly brand: string,
         public readonly topologiesCount: number,

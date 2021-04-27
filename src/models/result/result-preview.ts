@@ -1,6 +1,8 @@
-export class ResultPreview {
+import {FoundationModel} from '../foundation-model';
+
+export class ResultPreview extends FoundationModel {
     constructor(
-        public readonly id: string,
+        id: number,
         public timeStamp: Date,
         public readonly elpidaVersionMajor: string,
         public readonly elpidaVersionMinor: string,
@@ -8,6 +10,7 @@ export class ResultPreview {
         public readonly elpidaVersionBuild: string,
         public readonly platformName: string,
         public readonly platformVersion: string,
+        public readonly cpuVendor: string,
         public readonly cpuBrand: string,
         public readonly cpuFrequency: number,
         public readonly cpuCores: number,
@@ -15,5 +18,6 @@ export class ResultPreview {
         public readonly memorySize: number,
         public readonly name: string
     ) {
+        super(id);
     }
 }

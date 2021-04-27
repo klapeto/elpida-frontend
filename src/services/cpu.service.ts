@@ -1,6 +1,6 @@
 import {ComponentFactoryResolver, Injectable, ViewContainerRef} from '@angular/core';
 import {CpuPreview} from '../models/cpu/cpu-preview';
-import {Cpu} from '../models/result/cpu';
+import {Cpu} from '../models/cpu/cpu';
 import {CollectionService} from './collection-service';
 import {Filter} from '../models/filter';
 import {StringFilter} from '../models/filters/string-filter';
@@ -8,8 +8,13 @@ import {OptionFilter, OptionFilterMap} from '../models/filters/option-filter';
 import {RangeFilter} from '../models/filters/range-filter';
 import {NumberComparisons, NumberFilter} from '../models/filters/number-filter';
 import {HttpClient} from '@angular/common/http';
-import {ResultItemComponent} from '../components/collection/items/result-item/result-item.component';
 import {CpuItemComponent} from '../components/collection/items/cpu-item/cpu-item.component';
+import {PageRequest} from '../models/page-request';
+import {Query} from '../models/query';
+import {Observable} from 'rxjs';
+import {PagedResult} from '../models/paged-result';
+import {QueryRequest} from '../models/query-request';
+import {TaskStatisticsPreview} from '../models/task-statistics/task-statistics-preview';
 
 @Injectable({
     providedIn: 'root'
@@ -21,6 +26,8 @@ export class CpuService extends CollectionService<Cpu, CpuPreview> {
     }
 
     protected readonly baseRoute: string = 'cpu';
+
+    protected readonly statisticsRoute = 'TaskStatistics/Search';
 
     private cpuDictionary: OptionFilterMap = {
         'AMD Ryzen 3': 'AMD Ryzen 3',
@@ -89,5 +96,10 @@ export class CpuService extends CollectionService<Cpu, CpuPreview> {
 
         component.instance.item = item;
         return component;
+    }
+
+    public getStatisticsPreviews(cpuId: number, page: PageRequest, query: Query): Observable<PagedResult<TaskStatisticsPreview>> {
+        return this.http.post<PagedResult<TaskStatisticsPreview>>(this.getUrl(cpuId.toString() + this.statisticsRoute),
+            new QueryRequest(page, query.orderBy.internalName, query.descending, query.filters));
     }
 }

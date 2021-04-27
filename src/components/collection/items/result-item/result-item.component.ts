@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ResultPreview} from '../../../../models/result-preview';
+import {ResultPreview} from '../../../../models/result/result-preview';
 
 @Component({
   selector: 'app-result-item',

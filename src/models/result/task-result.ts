@@ -1,20 +1,22 @@
-import {TaskStatistics} from './task-statistics';
-import {ResultSpecification} from './result-specification';
-import {DataSpecification} from './data-specification';
+import {TaskRunStatistics} from './task-run-statistics';
+import {ResultSpecification} from '../task/result-specification';
+import {DataSpecification} from '../task/data-specification';
+import {Task} from '../task/task';
 
-export class TaskResult {
+export class TaskResult extends Task {
     constructor(
-        public readonly id: number,
-        public readonly uuid: string,
-        public readonly name: string,
-        public readonly description: string,
-        public readonly result: ResultSpecification,
-        public readonly input: DataSpecification,
-        public readonly output: DataSpecification,
+        id: number,
+        uuid: string,
+        name: string,
+        description: string,
+        result: ResultSpecification,
+        input: DataSpecification,
+        output: DataSpecification,
         public readonly value: number,
         public readonly time: number,
         public readonly inputSize: number,
-        public readonly statistics: TaskStatistics
+        public readonly statistics: TaskRunStatistics
     ) {
+        super(id, uuid, name, description, result, input, output);
     }
 }

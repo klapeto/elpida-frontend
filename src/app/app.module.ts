@@ -46,6 +46,8 @@ import {CpuService} from '../services/cpu.service';
 import {ResultItemComponent} from '../components/collection/items/result-item/result-item.component';
 import {CpuItemComponent} from '../components/collection/items/cpu-item/cpu-item.component';
 import {CpuDetailsComponent} from './cpu-details/cpu-details.component';
+import {TaskStatisticItemComponent} from '../components/collection/items/task-statistic-item/task-statistic-item.component';
+import {TaskStatisticsService} from '../services/task-statistics.service';
 
 @NgModule({
     declarations: [
@@ -82,7 +84,8 @@ import {CpuDetailsComponent} from './cpu-details/cpu-details.component';
         PagedCollectionComponent,
         ResultItemComponent,
         CpuItemComponent,
-        CpuDetailsComponent
+        CpuDetailsComponent,
+        TaskStatisticItemComponent
     ],
     imports: [
         BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
@@ -101,7 +104,7 @@ import {CpuDetailsComponent} from './cpu-details/cpu-details.component';
         ], {useHash: true}),
         ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
     ],
-    providers: [ValueConverter, ResultsService, LinksService, CpuService],
+    providers: [ValueConverter, ResultsService, LinksService, CpuService, TaskStatisticsService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {CpuNode, NodeType} from '../../../../../models/result/topology/cpuNode';
+import {CpuNode, NodeType} from '../../../../../models/topology/cpuNode';
 import {ValueConverter} from '../../../../../services/value-converter';
 
 @Component({

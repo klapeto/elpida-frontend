@@ -1,5 +1,4 @@
-export class TaskStatistics {
-
+export class TaskRunStatistics {
     constructor(
         public readonly sampleSize: number,
         public readonly max: number,

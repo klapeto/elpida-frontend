@@ -1,8 +1,10 @@
 import {CpuCache} from './cpu-cache';
 import {ICpuAdditionalInfo} from './icpu-additional-info';
+import {FoundationModel} from '../foundation-model';
 
-export class Cpu {
+export class Cpu extends FoundationModel {
     constructor(
+        id: number,
         public readonly vendor: string,
         public readonly brand: string,
         public readonly frequency: number,
@@ -11,5 +13,6 @@ export class Cpu {
         public readonly features: string[],
         public readonly additionalInfo: ICpuAdditionalInfo
     ) {
+        super(id);
     }
 }

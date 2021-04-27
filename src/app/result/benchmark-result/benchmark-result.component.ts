@@ -4,7 +4,7 @@ import {ValueConverter} from '../../../services/value-converter';
 import {TaskResult} from '../../../models/result/task-result';
 import {ModalService} from '../../../services/modal.service';
 import {ResultDetailsComponent} from '../result-details/result-details.component';
-import {ResultType} from '../../../models/result/result-specification';
+import {ResultType} from '../../../models/task/result-specification';
 
 @Component({
     selector: 'app-benchmark-result',

@@ -1,7 +1,7 @@
-import {Cpu} from './cpu';
-import {Topology} from './topology/topology';
+import {Cpu} from '../cpu/cpu';
+import {Topology} from '../topology/topology';
 import {Memory} from './memory';
-import {Os} from './os';
+import {Os} from '../os/os';
 import {Timing} from './timing';
 
 export class System {

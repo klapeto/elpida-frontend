@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Cpu} from '../../../../models/result/cpu';
+import {Cpu} from '../../../../models/cpu/cpu';
 import {ValueConverter} from '../../../../services/value-converter';
 
 @Component({

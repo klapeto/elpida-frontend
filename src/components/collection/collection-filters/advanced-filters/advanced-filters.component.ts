@@ -49,7 +49,9 @@ export class AdvancedFiltersComponent implements AfterViewInit, OnInit {
     }
 
     public ngAfterViewInit(): void {
-        this.orderBySelect.nativeElement.value = this.orderBy.title;
+        if (this.orderBy !== undefined) {
+            this.orderBySelect.nativeElement.value = this.orderBy.title;
+        }
     }
 
 }

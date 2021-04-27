@@ -11,23 +11,23 @@ import {ComponentFactoryResolver, ViewContainerRef} from '@angular/core';
 
 export abstract class CollectionService<TModel, TPreview> implements ICollectionService<TModel, TPreview> {
 
-    protected constructor(private readonly http: HttpClient) {
+    protected constructor(protected readonly http: HttpClient) {
 
     }
 
     //private readonly baseUrl: string = 'https://api.elpida.dev/api/v1/';
-    private readonly baseUrl: string = 'http://localhost:5000/api/v1';
-    private readonly searchRoute: string = 'search';
+    protected readonly baseUrl: string = 'http://localhost:5000/api/v1';
+    protected readonly searchRoute: string = 'search';
 
     protected readonly abstract baseRoute: string;
 
-    private getUrl(route: string): string {
+    protected getUrl(route: string): string {
         return this.baseUrl + '/' + this.baseRoute + '/' + route;
     }
 
     public getPreviews(page: PageRequest, query: Query): Observable<PagedResult<TPreview>> {
         return this.http.post<PagedResult<TPreview>>(this.getUrl(this.searchRoute),
-            new QueryRequest(page, query.orderBy.internalName, query.descending, query.filters));
+            new QueryRequest(page, query.orderBy?.internalName, query.descending, query.filters));
     }
 
     public getSingle(id: string): Observable<TModel> {

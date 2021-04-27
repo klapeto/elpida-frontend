@@ -4,6 +4,7 @@ import {Query} from '../../../models/query';
 import {PageRequest} from '../../../models/page-request';
 import {ValueConverter} from '../../../services/value-converter';
 import {CollectionService} from '../../../services/collection-service';
+import {Filter} from '../../../models/filter';
 
 @Component({
     selector: 'app-paged-collection',
@@ -26,6 +27,8 @@ export class PagedCollectionComponent implements AfterViewInit {
     @Input() showFilters: boolean;
     @Input() name: string;
 
+    @Input() lockedFilters: Filter[];
+
     @ViewChild('itemContainer', {read: ViewContainerRef}) itemContainer: ViewContainerRef;
 
     constructor(public valueConverter: ValueConverter, private componentFactoryResolver: ComponentFactoryResolver) {
@@ -34,6 +37,7 @@ export class PagedCollectionComponent implements AfterViewInit {
 
     ngAfterViewInit(): void {
         this.currentQuery = new Query([], this.service.createDefaultOrderByFilter(), true);
+        this.appendLockedFilters();
         this.reloadPageSafe();
     }
 
@@ -41,8 +45,15 @@ export class PagedCollectionComponent implements AfterViewInit {
         this.showFilters = !this.showFilters;
     }
 
+    private appendLockedFilters() {
+        if (this.lockedFilters !== undefined) {
+            this.currentQuery.filters = this.currentQuery.filters.concat(this.lockedFilters);
+        }
+    }
+
     public onFiltersSubmitted(query: Query): void {
-        this.currentQuery = query;
+        Object.assign(this.currentQuery, query);
+        this.appendLockedFilters();
         this.reloadPageSafe();
     }
 
@@ -93,6 +104,7 @@ export class PagedCollectionComponent implements AfterViewInit {
                 this.currentQuery.orderBy,
                 this.currentQuery.descending
             );
+            this.appendLockedFilters();
             this.reloadPageSafe();
         }
     }

@@ -243,3 +243,14 @@ table {
     display: flex;
     flex-flow: row wrap;
 }
+
+.collection-item-img {
+    width: 4em;
+    padding: 1em 1em 1em 0.5em;
+}
+
+.collection-item-container {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}

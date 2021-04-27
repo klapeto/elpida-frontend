@@ -1,8 +1,8 @@
-<a [routerLink]="'/cpu/' + item.id" class="collection-item cpu-item-container">
+<a [routerLink]="'/cpu/' + item.id" class="collection-item collection-item-container">
     <img [src]="'./assets/cpus/'+ item.vendor + '.svg'"
          [alt]="item.vendor"
          loading="lazy"
-         class="cpu-vendor-img">
+         class="collection-item-img">
     <div>
         <h3 class="collection-item-detail">
             {{item.brand}}

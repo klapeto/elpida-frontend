@@ -1,5 +1,5 @@
 import {ComponentFactoryResolver, Injectable, ViewContainerRef, ViewRef} from '@angular/core';
-import {ResultPreview} from '../models/result-preview';
+import {ResultPreview} from '../models/result/result-preview';
 import {Result} from '../models/result/result';
 import {HttpClient} from '@angular/common/http';
 import {CollectionService} from './collection-service';
@@ -9,8 +9,6 @@ import {OptionFilter, OptionFilterMap} from '../models/filters/option-filter';
 import {DateComparisons, DateFilter} from '../models/filters/date-filter';
 import {CpuService} from './cpu.service';
 import {NumberFilter} from '../models/filters/number-filter';
-import {CpuPreview} from '../models/cpu/cpu-preview';
-import {DateFilterComponent} from '../components/collection/filters/date-filter/date-filter.component';
 import {ResultItemComponent} from '../components/collection/items/result-item/result-item.component';
 
 @Injectable({

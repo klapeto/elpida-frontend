@@ -6,4 +6,13 @@
              class="cpu-vendor-img">
         <app-cpu [cpu]="cpu"></app-cpu>
     </app-group-box>
+    <app-group-box [title]="'Tasks Statistics'">
+        <div style="padding: 1rem">
+            <app-paged-collection [service]="taskStatisticsServiceProxy"
+                                  [name]="'Task Statistics'"
+                                  [lockedFilters]="filters">
+
+            </app-paged-collection>
+        </div>
+    </app-group-box>
 </div>

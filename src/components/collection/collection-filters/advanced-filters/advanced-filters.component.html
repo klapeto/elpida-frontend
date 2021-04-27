@@ -3,7 +3,7 @@
     <hr/>
 </div>
 
-<div>
+<div *ngIf="orderBy">
     <div class="filter-group-row">
         <label for="orderBy-select"><strong>Order by:</strong></label>
         <select #orderBy id="orderBy-select" (change)="onOrderByChanged($event)">
@@ -15,7 +15,7 @@
     <hr/>
 </div>
 
-<div>
+<div *ngIf="orderBy">
     <input type="checkbox" id="descending-chk" name="descending" value="Descending" [(ngModel)]="descending">
     <label for="descending-chk"><strong>Descending</strong></label>
     <hr/>
