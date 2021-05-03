@@ -2,12 +2,13 @@ import {Cpu} from '../cpu/cpu';
 import {Topology} from '../topology/topology';
 import {Task} from '../task/task';
 import {FoundationModel} from '../foundation-model';
+import {Benchmark} from '../benchmark/benchmark';
 
-export class TaskStatistics extends FoundationModel {
+export class BenchmarkStatistics extends FoundationModel {
     constructor(
         id: number,
         public readonly cpu: Cpu,
-        public readonly task: Task,
+        public readonly benchmark: Benchmark,
         public readonly topology: Topology,
         public readonly sampleSize: number,
         public readonly max: number,

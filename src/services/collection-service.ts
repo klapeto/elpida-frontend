@@ -36,8 +36,6 @@ export abstract class CollectionService<TModel, TPreview> implements ICollection
 
     abstract createAdvancedFilters(): Filter[];
 
-    abstract createDefaultOrderByFilter(): Filter;
-
     abstract createOrderByFilters(): Filter[];
 
     abstract createSearchFilter(): StringFilter;
@@ -47,4 +45,7 @@ export abstract class CollectionService<TModel, TPreview> implements ICollection
     abstract createCollectionItemComponent(item: TPreview,
                                            componentFactoryResolver: ComponentFactoryResolver,
                                            viewContainerRef: ViewContainerRef): any;
+    public createDefaultQuery(): Query {
+        return new Query([], undefined, false);
+    }
 }

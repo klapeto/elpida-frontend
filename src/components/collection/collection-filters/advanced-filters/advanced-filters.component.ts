@@ -30,7 +30,7 @@ export class AdvancedFiltersComponent implements AfterViewInit, OnInit {
     ngOnInit(): void {
         this.filters = this.service.createAdvancedFilters();
         this.orderByFilters = this.service.createOrderByFilters();
-        this.orderBy = this.service.createDefaultOrderByFilter();
+        this.orderBy = this.service.createDefaultQuery().orderBy;
     }
 
     public onSubmit(): void {

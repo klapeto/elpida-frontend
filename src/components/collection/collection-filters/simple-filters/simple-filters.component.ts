@@ -21,6 +21,6 @@ export class SimpleFiltersComponent implements OnInit {
 
 
     public onSubmit() {
-        this.submitted.emit(new Query(this.filters, this.service.createDefaultOrderByFilter(), true));
+        this.submitted.emit(new Query(this.filters, this.service.createDefaultQuery().orderBy, true));
     }
 }

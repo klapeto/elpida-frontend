@@ -14,7 +14,7 @@ import {Query} from '../models/query';
 import {Observable} from 'rxjs';
 import {PagedResult} from '../models/paged-result';
 import {QueryRequest} from '../models/query-request';
-import {TaskStatisticsPreview} from '../models/task-statistics/task-statistics-preview';
+import {BenchmarkStatisticsPreview} from '../models/benchmark-statistics/benchmark-statistics-preview';
 
 @Injectable({
     providedIn: 'root'
@@ -55,8 +55,8 @@ export class CpuService extends CollectionService<Cpu, CpuPreview> {
         ];
     }
 
-    createDefaultOrderByFilter(): Filter {
-        return new StringFilter('CPU Brand', 'cpuBrand', true);
+    createDefaultQuery(): Query {
+        return new Query([], new StringFilter('CPU Brand', 'cpuBrand', true), false);
     }
 
     createOrderByFilters(): Filter[] {
@@ -98,8 +98,8 @@ export class CpuService extends CollectionService<Cpu, CpuPreview> {
         return component;
     }
 
-    public getStatisticsPreviews(cpuId: number, page: PageRequest, query: Query): Observable<PagedResult<TaskStatisticsPreview>> {
-        return this.http.post<PagedResult<TaskStatisticsPreview>>(this.getUrl(cpuId.toString() + this.statisticsRoute),
+    public getStatisticsPreviews(cpuId: number, page: PageRequest, query: Query): Observable<PagedResult<BenchmarkStatisticsPreview>> {
+        return this.http.post<PagedResult<BenchmarkStatisticsPreview>>(this.getUrl(cpuId.toString() + this.statisticsRoute),
             new QueryRequest(page, query.orderBy.internalName, query.descending, query.filters));
     }
 }

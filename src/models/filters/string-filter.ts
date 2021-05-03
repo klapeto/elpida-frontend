@@ -6,7 +6,9 @@ import {Utilities} from '../../services/utilities';
 
 export enum StringComparisons {
     Contains = 'c',
+    NotContain = 'nc',
     Equal = 'eq',
+    NotEqual = 'neq'
 }
 
 export class StringFilter extends ValueFilter<string> {
@@ -27,7 +29,9 @@ export class StringFilter extends ValueFilter<string> {
 
     protected static readonly uiComparisonToBackendComparison: object = {
         'Contains': StringComparisons.Contains,
+        'Does not contain': StringComparisons.NotContain,
         'Equals': StringComparisons.Equal,
+        'Not equal': StringComparisons.NotEqual
     };
 
     protected static readonly backendToUiComparison = Utilities.reverseMap(StringFilter.uiComparisonToBackendComparison);

@@ -36,7 +36,7 @@ export class PagedCollectionComponent implements AfterViewInit {
     }
 
     ngAfterViewInit(): void {
-        this.currentQuery = new Query([], this.service.createDefaultOrderByFilter(), true);
+        this.currentQuery = this.service.createDefaultQuery();
         this.appendLockedFilters();
         this.reloadPageSafe();
     }

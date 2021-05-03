@@ -46,8 +46,8 @@ import {CpuService} from '../services/cpu.service';
 import {ResultItemComponent} from '../components/collection/items/result-item/result-item.component';
 import {CpuItemComponent} from '../components/collection/items/cpu-item/cpu-item.component';
 import {CpuDetailsComponent} from './cpu-details/cpu-details.component';
-import {TaskStatisticItemComponent} from '../components/collection/items/task-statistic-item/task-statistic-item.component';
-import {TaskStatisticsService} from '../services/task-statistics.service';
+import {BenchmarkStatisticItemComponent} from '../components/collection/items/benchmark-statistic-item/benchmark-statistic-item.component';
+import {BenchmarkStatisticsService} from '../services/benchmark-statistics.service';
 
 @NgModule({
     declarations: [
@@ -85,7 +85,7 @@ import {TaskStatisticsService} from '../services/task-statistics.service';
         ResultItemComponent,
         CpuItemComponent,
         CpuDetailsComponent,
-        TaskStatisticItemComponent
+        BenchmarkStatisticItemComponent
     ],
     imports: [
         BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
@@ -104,7 +104,7 @@ import {TaskStatisticsService} from '../services/task-statistics.service';
         ], {useHash: true}),
         ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
     ],
-    providers: [ValueConverter, ResultsService, LinksService, CpuService, TaskStatisticsService],
+    providers: [ValueConverter, ResultsService, LinksService, CpuService, BenchmarkStatisticsService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

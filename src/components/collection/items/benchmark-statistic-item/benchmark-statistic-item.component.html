@@ -1,11 +1,11 @@
 <div class="collection-item collection-item-container">
-    <img [src]="'./assets/cpus/'+ item.cpuVendor + '.svg'"
-         [alt]="item.cpuVendor"
+    <img [src]="'./assets/benchmarks/'+ item.benchmarkUuid + '.svg'"
+         [alt]="item.benchmarkName"
          loading="lazy"
          class="collection-item-img">
     <div>
         <strong>
-            {{item.taskName}}
+            {{item.benchmarkName}}
         </strong>
         <div>
             {{calculateActualStatisticValue()}}

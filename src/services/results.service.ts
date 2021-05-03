@@ -5,11 +5,12 @@ import {HttpClient} from '@angular/common/http';
 import {CollectionService} from './collection-service';
 import {Filter} from '../models/filter';
 import {StringFilter} from '../models/filters/string-filter';
-import {OptionFilter, OptionFilterMap} from '../models/filters/option-filter';
+import {OptionFilter} from '../models/filters/option-filter';
 import {DateComparisons, DateFilter} from '../models/filters/date-filter';
 import {CpuService} from './cpu.service';
 import {NumberFilter} from '../models/filters/number-filter';
 import {ResultItemComponent} from '../components/collection/items/result-item/result-item.component';
+import {Query} from '../models/query';
 
 @Injectable({
     providedIn: 'root'
@@ -61,8 +62,8 @@ export class ResultsService extends CollectionService<Result, ResultPreview> {
         return new StringFilter('Benchmark Name', 'benchmarkName', true);
     }
 
-    public createDefaultOrderByFilter(): Filter {
-        return new DateFilter('Timestamp', 'timestamp', false);
+   public createDefaultQuery(): Query {
+        return new Query([], new DateFilter('Timestamp', 'timestamp', false), true);
     }
 
     public createCollectionItemComponent(item: ResultPreview, componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
