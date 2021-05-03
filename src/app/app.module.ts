@@ -48,6 +48,8 @@ import {CpuItemComponent} from '../components/collection/items/cpu-item/cpu-item
 import {CpuDetailsComponent} from './cpu-details/cpu-details.component';
 import {BenchmarkStatisticItemComponent} from '../components/collection/items/benchmark-statistic-item/benchmark-statistic-item.component';
 import {BenchmarkStatisticsService} from '../services/benchmark-statistics.service';
+import { StatisticDetailsComponent } from './statistics/statistic-details/statistic-details.component';
+import {LoadingIndicatorComponent} from '../components/loading-indicator/loading-indicator.component';
 
 @NgModule({
     declarations: [
@@ -85,7 +87,9 @@ import {BenchmarkStatisticsService} from '../services/benchmark-statistics.servi
         ResultItemComponent,
         CpuItemComponent,
         CpuDetailsComponent,
-        BenchmarkStatisticItemComponent
+        BenchmarkStatisticItemComponent,
+        StatisticDetailsComponent,
+        LoadingIndicatorComponent
     ],
     imports: [
         BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
@@ -100,6 +104,7 @@ import {BenchmarkStatisticsService} from '../services/benchmark-statistics.servi
             {path: 'statistics', component: StatisticsComponent},
             {path: 'result/:id', component: ResultComponent},
             {path: 'cpu/:id', component: CpuDetailsComponent},
+            {path: 'statistics/:id', component: StatisticDetailsComponent},
             {path: 'about', component: AboutComponent},
         ], {useHash: true}),
         ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})

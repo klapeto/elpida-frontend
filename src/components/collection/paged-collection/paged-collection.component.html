@@ -18,13 +18,8 @@
 </app-collection-filters>
 
 
-<div *ngIf="!pagedResult"
-     class="loading-indicator">
-    <div class="spinner">
-
-    </div>
-    <em>Loading...</em>
-</div>
+<app-loading-indicator *ngIf="!pagedResult">
+</app-loading-indicator>
 
 <h3 *ngIf="pagedResult">Total {{name}}: {{valueConverter.convertToSI(pagedResult.totalCount, 0)}}</h3>
 <div>

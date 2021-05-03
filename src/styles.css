@@ -120,6 +120,7 @@ code {
 .row {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    border-bottom: 0.05rem solid rgb(158, 159, 238);
 }
 
 strong {
@@ -134,6 +135,7 @@ strong {
 
 hr {
     border: 0.05rem rgb(171, 173, 228) solid;
+    width: 100%;
 }
 
 .filter-group-row {
@@ -182,22 +184,6 @@ select {
     border: 0.05em rgb(169, 172, 217)  solid;
     padding: 0.2em;
     background-color: rgb(244, 244, 248);
-}
-
-.spinner {
-    display: inline-block;
-    vertical-align: text-bottom;
-    width: 2rem;
-    height: 2rem;
-    border: 0.25em solid currentColor;
-    border-right-color: transparent;
-    border-radius: 50%;
-    animation: spinner .75s linear infinite;
-}
-@keyframes spinner {
-    to {
-        transform: rotate(360deg);
-    }
 }
 
 th {
@@ -253,4 +239,14 @@ table {
     display: flex;
     flex-flow: row wrap;
     align-items: center;
+}
+
+.cpu-vendor-img {
+    height: 2em;
+    padding: 1em;
+}
+
+.benchmark-img {
+    height: 4em;
+    padding: 1em;
 }

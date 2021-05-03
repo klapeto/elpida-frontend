@@ -8,9 +8,3 @@
     flex-flow: row wrap;
     align-items: center;
 }
-
-.loading-indicator {
-    position: relative;
-    left: 50%;
-    top: 50%;
-}

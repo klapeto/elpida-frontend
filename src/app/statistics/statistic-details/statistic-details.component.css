@@ -1,0 +1,19 @@
+.benchmark-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.benchmark-header-name {
+    font-size: 1.2em;
+}
+
+.benchmark-header-value {
+    background-color: rgb(203, 199, 247);
+    padding: 0.5em;
+    margin: 0.5em;
+}
+
+.statistics-container {
+    padding: 1em;
+}

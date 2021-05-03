@@ -1,4 +1,5 @@
-<div class="collection-item collection-item-container">
+<a class="collection-item collection-item-container"
+   [routerLink]="'/statistics/'+ item.id">
     <img [src]="'./assets/benchmarks/'+ item.benchmarkUuid + '.svg'"
          [alt]="item.benchmarkName"
          loading="lazy"
@@ -11,4 +12,4 @@
             {{calculateActualStatisticValue()}}
         </div>
     </div>
-</div>
+</a>
