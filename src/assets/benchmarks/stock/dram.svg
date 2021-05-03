@@ -7,42 +7,44 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   sodipodi:docname="dram.svg"
-   inkscape:version="1.0 (1.0+r73+1)"
-   id="svg1484"
-   version="1.1"
-   viewBox="0 0 64.000001 64"
+   width="64"
    height="64"
-   width="64">
+   viewBox="0 0 64.000001 64"
+   version="1.1"
+   id="svg1484"
+   inkscape:version="1.0 (1.0+r73+1)"
+   sodipodi:docname="dram.svg">
+  <title
+     id="title840">Elpida</title>
   <defs
      id="defs1478" />
   <sodipodi:namedview
-     showguides="true"
-     inkscape:snap-nodes="true"
-     inkscape:object-paths="true"
-     inkscape:window-maximized="1"
-     inkscape:window-y="0"
-     inkscape:window-x="3840"
-     inkscape:window-height="2045"
-     inkscape:window-width="3840"
-     units="px"
-     fit-margin-bottom="0"
-     fit-margin-right="0"
-     fit-margin-left="0"
-     fit-margin-top="0"
-     showgrid="false"
-     inkscape:document-rotation="0"
-     inkscape:current-layer="layer1"
-     inkscape:document-units="px"
-     inkscape:cy="80.638868"
-     inkscape:cx="-49.805232"
-     inkscape:zoom="5.6568542"
-     inkscape:pageshadow="2"
-     inkscape:pageopacity="0.0"
-     borderopacity="1.0"
-     bordercolor="#666666"
+     id="base"
      pagecolor="#ffffff"
-     id="base" />
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="5.6568542"
+     inkscape:cx="-49.805232"
+     inkscape:cy="80.638868"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     units="px"
+     inkscape:window-width="3840"
+     inkscape:window-height="2045"
+     inkscape:window-x="3840"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:object-paths="true"
+     inkscape:snap-nodes="true"
+     showguides="true" />
   <metadata
      id="metadata1481">
     <rdf:RDF>
@@ -51,7 +53,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title>Elpida</dc:title>
         <dc:creator>
           <cc:Agent>
             <dc:title>Ioannis Panagiotopoulos</dc:title>
@@ -59,6 +61,11 @@
         </dc:creator>
         <cc:license
            rdf:resource="http://creativecommons.org/licenses/by-nc/4.0/" />
+        <dc:rights>
+          <cc:Agent>
+            <dc:title>Ioannis Panagiotopoulos</dc:title>
+          </cc:Agent>
+        </dc:rights>
       </cc:Work>
       <cc:License
          rdf:about="http://creativecommons.org/licenses/by-nc/4.0/">
@@ -78,51 +85,51 @@
     </rdf:RDF>
   </metadata>
   <g
-     transform="translate(10.77773,-210.83315)"
-     id="layer1"
+     inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     inkscape:label="Layer 1">
+     id="layer1"
+     transform="translate(10.77773,-210.83315)">
     <g
        id="g858">
       <path
-         id="path837-35-8"
+         style="fill:none;stroke:#6a7098;stroke-width:4;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          d="M 33.1511,224.85011 H 44.29505"
-         style="fill:none;stroke:#6a7098;stroke-width:4;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+         id="path837-35-8" />
       <path
-         style="fill:none;stroke:#6a7098;stroke-width:4;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path837-3-6-0"
          d="M 33.1511,236.8388 H 44.29505"
-         id="path837-3-6-0" />
+         style="fill:none;stroke:#6a7098;stroke-width:4;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <path
-         style="fill:none;stroke:#6a7098;stroke-width:4;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path837-6-2-4"
          d="M 33.1511,248.82749 H 44.29505"
-         id="path837-6-2-4" />
+         style="fill:none;stroke:#6a7098;stroke-width:4;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <path
-         style="fill:none;stroke:#6a7098;stroke-width:4;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path837-7-91-2"
          d="M 33.1511,260.81617 H 44.29505"
-         id="path837-7-91-2" />
+         style="fill:none;stroke:#6a7098;stroke-width:4;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         id="path837-5-7-9"
+         d="m -1.7204999,224.85011 h 11.14395"
+         style="fill:none;stroke:#6a7098;stroke-width:4;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <path
          style="fill:none;stroke:#6a7098;stroke-width:4;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         d="m -1.7204999,224.85011 h 11.14395"
-         id="path837-5-7-9" />
-      <path
-         id="path837-3-9-0-6"
          d="m -1.7204999,236.8388 h 11.14395"
-         style="fill:none;stroke:#6a7098;stroke-width:4;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+         id="path837-3-9-0-6" />
       <path
-         id="path837-6-4-9-1"
+         style="fill:none;stroke:#6a7098;stroke-width:4;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          d="m -1.7204999,248.82749 h 11.14395"
-         style="fill:none;stroke:#6a7098;stroke-width:4;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+         id="path837-6-4-9-1" />
       <path
-         id="path837-7-9-3-0"
+         style="fill:none;stroke:#6a7098;stroke-width:4;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          d="m -1.7204999,260.81617 h 11.14395"
-         style="fill:none;stroke:#6a7098;stroke-width:4;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+         id="path837-7-9-3-0" />
       <rect
-         y="217.80771"
-         x="6.9220066"
-         height="50.050873"
-         width="28.600498"
+         style="fill:#c7cdf9;fill-opacity:1;stroke:#6a7098;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          id="rect835-6-4"
-         style="fill:#c7cdf9;fill-opacity:1;stroke:#6a7098;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+         width="28.600498"
+         height="50.050873"
+         x="6.9220066"
+         y="217.80771" />
     </g>
   </g>
 </svg>
