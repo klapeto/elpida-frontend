@@ -1,8 +1,8 @@
 import {Cpu} from '../cpu/cpu';
 import {Topology} from '../topology/topology';
-import {Task} from '../task/task';
 import {FoundationModel} from '../foundation-model';
 import {Benchmark} from '../benchmark/benchmark';
+import {FrequencyClass} from './frequency-class';
 
 export class BenchmarkStatistics extends FoundationModel {
     constructor(
@@ -17,6 +17,7 @@ export class BenchmarkStatistics extends FoundationModel {
         public readonly standardDeviation: number,
         public readonly tau: number,
         public readonly marginOfError: number,
+        public readonly classes: FrequencyClass[]
     ) {
         super(id);
     }

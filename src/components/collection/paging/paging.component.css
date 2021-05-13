@@ -2,4 +2,23 @@
     display: grid;
     place-content: center;
     grid-template-columns: repeat(auto-fit, minmax(1rem, min-content));
+    align-items: center;
+}
+
+.jumper-container {
+    display: flex;
+    flex-flow: column;
+    margin-left: 1em;
+}
+
+.jumper-controls-container {
+    display: flex;
+}
+
+.jumper-input {
+    width: 3em;
+}
+
+.jumper-button {
+    min-width: 4em;
 }

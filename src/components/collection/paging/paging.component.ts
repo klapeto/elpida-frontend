@@ -14,6 +14,8 @@ export class PagingComponent implements OnInit {
     public pages: number[];
     public currentPage: number;
 
+    public inputPage: number;
+
     public changePage(page: number): void {
         this.currentPage = page;
 
@@ -54,6 +56,20 @@ export class PagingComponent implements OnInit {
             this.changePage(this.currentPage + 1);
         } else {
             return;
+        }
+    }
+
+    public jumpToPage(): void {
+        if (this.inputPage <= 0) {
+            this.inputPage = undefined;
+            alert('The page number can only be a positive number starting from 1');
+            return;
+        }
+        if (this.inputPage - 1 <= this.pagesCount) {
+            this.changePage(this.inputPage - 1);
+        } else {
+            this.inputPage = undefined;
+            alert('The max page number is ' + this.pagesCount);
         }
     }
 

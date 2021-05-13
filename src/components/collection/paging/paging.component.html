@@ -13,4 +13,18 @@
          aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
     </div>
+
+    <div class="jumper-container">
+        <div>
+            Pages: {{pagesCount}}
+        </div>
+        <div class="jumper-controls-container">
+            <input placeholder="Page" [(ngModel)]="inputPage" class="jumper-input" [ngClass]="{'disabled': pagesCount === 0 }">
+            <div class="non-a-button button jumper-button" (click)="jumpToPage()"
+                 [ngClass]="{'disabled': pagesCount === 0 }"
+                 aria-label="Jump">
+                <span aria-hidden="true">Jump</span>
+            </div>
+        </div>
+    </div>
 </div>

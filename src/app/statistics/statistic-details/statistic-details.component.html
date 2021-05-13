@@ -9,7 +9,7 @@
                 <strong>{{statistics.cpu.brand}}</strong>
             </div>
 
-            <hr/>
+            <hr class="thick-hr"/>
 
             <div class="benchmark-header">
                 <img [src]="'./assets/benchmarks/'+ statistics.benchmark.uuid + '.svg'"
@@ -18,37 +18,92 @@
                      class="benchmark-img">
                 <strong class="benchmark-header-name">{{statistics.benchmark.name}}</strong>
                 <strong class="benchmark-header-value">
-                    &#8773; {{this.valueConverter.getStringValueSI(statistics.mean, statistics.benchmark.scoreSpecification.unit)}}
+                    <span style="margin-right: 0.2em">&#8773;</span>
+                    <span style="margin-right: 0.2em">{{scoreMean}} </span>
+                    <span>{{scoreSuffix}}</span>
                 </strong>
             </div>
 
-            <hr/>
+            <hr class="thick-hr"/>
 
-            <div class="row">
-                <strong>Sample size:</strong>
-                <div>{{this.valueConverter.getStringValueSI(statistics.sampleSize, '', 0)}}</div>
+            <div class="details-container">
+                <caption>Score distribution</caption>
+                <div class="graph-container">
+                    <ngx-charts-line-chart
+                            [curve]="curve"
+                            [autoScale]="true"
+                            [legend]="true"
+                            [showXAxisLabel]="false"
+                            [showYAxisLabel]="true"
+                            [xAxis]="true"
+                            [yAxis]="true"
+                            [xAxisLabel]="'Score bins'"
+                            [yAxisLabel]="'Count'"
+                            [yAxisTickFormatting]="formatNumberSI"
+                            [results]="data"
+                    >
+                        <ng-template #seriesTooltipTemplate let-model="model">
+                            <div class="area-tooltip-container">
+                                <div *ngFor="let tooltipItem of model" class="tooltip-item">
+                                    <span class="tooltip-item-color"
+                                          [style.background-color]="tooltipItem.color"></span>
+                                    {{ this.formatNumberSI(tooltipItem.value) }}
+                                </div>
+                            </div>
+                        </ng-template>
+
+                        <ng-template #tooltipTemplate let-model="model">
+                            <div class="area-tooltip-container">
+                                {{ this.formatNumberSI(model.value) }}
+                            </div>
+                        </ng-template>
+                    </ngx-charts-line-chart>
+                </div>
             </div>
 
-            <div class="row">
-                <strong>Min:</strong>
-                <div>{{this.valueConverter.getStringValueSI(statistics.min, statistics.benchmark.scoreSpecification.unit)}}</div>
+            <hr class="thick-hr"/>
+
+            <div class="details-container">
+                <table>
+                    <caption>Score statistics</caption>
+                    <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Value</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+
+                    <tr>
+                        <td>Sample size</td>
+                        <td>{{this.valueConverter.getStringValueSI(statistics.sampleSize, '', 0)}}</td>
+                    </tr>
+                    <tr>
+                        <td>Min</td>
+                        <td>{{this.valueConverter.getStringValueSI(statistics.min, statistics.benchmark.scoreSpecification.unit)}}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Max</td>
+                        <td>{{this.valueConverter.getStringValueSI(statistics.max, statistics.benchmark.scoreSpecification.unit)}}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Margin of error</td>
+                        <td>{{this.valueConverter.getStringValueSI(statistics.marginOfError, statistics.benchmark.scoreSpecification.unit)}}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Standard deviation</td>
+                        <td>{{this.valueConverter.getStringValueSI(statistics.standardDeviation, statistics.benchmark.scoreSpecification.unit)}}</td>
+                    </tr>
+
+                    </tbody>
+                </table>
             </div>
 
-            <div class="row">
-                <strong>Max:</strong>
-                <div>{{this.valueConverter.getStringValueSI(statistics.max, statistics.benchmark.scoreSpecification.unit)}}</div>
-            </div>
 
-            <div class="row">
-                <strong>Margin of error:</strong>
-                <div>{{this.valueConverter.getStringValueSI(statistics.marginOfError, statistics.benchmark.scoreSpecification.unit)}}</div>
-            </div>
-            <div class="row">
-                <strong>Standard deviation:</strong>
-                <div>{{this.valueConverter.getStringValueSI(statistics.standardDeviation, statistics.benchmark.scoreSpecification.unit)}}</div>
-
-            </div>
         </div>
-
     </app-group-box>
 </div>

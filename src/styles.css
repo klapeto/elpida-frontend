@@ -250,3 +250,12 @@ table {
     height: 4em;
     padding: 1em;
 }
+
+caption {
+    font-weight: 600;
+}
+
+.thick-hr {
+    height: 0.1em;
+    background-color: rgb(171, 173, 228);
+}
