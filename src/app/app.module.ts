@@ -50,6 +50,7 @@ import {BenchmarkStatisticItemComponent} from '../components/collection/items/be
 import {BenchmarkStatisticsService} from '../services/benchmark-statistics.service';
 import { StatisticDetailsComponent } from './statistics/statistic-details/statistic-details.component';
 import {LoadingIndicatorComponent} from '../components/loading-indicator/loading-indicator.component';
+import {DatabaseComponent} from './database/database.component';
 
 @NgModule({
     declarations: [
@@ -89,7 +90,8 @@ import {LoadingIndicatorComponent} from '../components/loading-indicator/loading
         CpuDetailsComponent,
         BenchmarkStatisticItemComponent,
         StatisticDetailsComponent,
-        LoadingIndicatorComponent
+        LoadingIndicatorComponent,
+        DatabaseComponent
     ],
     imports: [
         BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
@@ -104,6 +106,7 @@ import {LoadingIndicatorComponent} from '../components/loading-indicator/loading
             {path: 'statistics', component: StatisticsComponent},
             {path: 'result/:id', component: ResultComponent},
             {path: 'cpu/:id', component: CpuDetailsComponent},
+            {path: 'database', component: DatabaseComponent},
             {path: 'statistics/:id', component: StatisticDetailsComponent},
             {path: 'about', component: AboutComponent},
         ], {useHash: true}),
