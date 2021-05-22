@@ -5,6 +5,8 @@ export class Topology extends FoundationModel {
     constructor(
         id: number,
         public readonly cpuId: number,
+        public readonly cpuBrand: string,
+        public readonly cpuVendor: string,
         public readonly totalLogicalCores: number,
         public readonly totalPhysicalCores: number,
         public readonly totalNumaNodes: number,

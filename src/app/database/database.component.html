@@ -1,7 +1,7 @@
 <h2>Choose what data you want to see</h2>
 <div>
 
-    <a [routerLink]="['/latest-results']" class="collection-item collection-item-container">
+    <a [routerLink]="['/results']" class="collection-item collection-item-container">
         <img [src]="'./assets/categories/results.svg'"
              [alt]="'results'"
              loading="lazy"
@@ -37,7 +37,7 @@
         </div>
     </a>
 
-    <a [routerLink]="['/benchmarks']"  class="collection-item collection-item-container">
+    <a [routerLink]="['/benchmarks']" class="collection-item collection-item-container">
         <img [src]="'./assets/categories/benchmarks.svg'"
              [alt]="'results'"
              loading="lazy"
@@ -49,7 +49,7 @@
         </div>
     </a>
 
-    <a href="./#/database" class="collection-item collection-item-container">
+    <a [routerLink]="['/oses']" class="collection-item collection-item-container">
         <img [src]="'./assets/categories/operating-systems.svg'"
              [alt]="'results'"
              loading="lazy"
@@ -61,7 +61,7 @@
         </div>
     </a>
 
-    <a href="./#/database" class="collection-item collection-item-container">
+    <a [routerLink]="['/elpidas']" class="collection-item collection-item-container">
         <img [src]="'./assets/categories/elpidas.svg'"
              [alt]="'results'"
              loading="lazy"

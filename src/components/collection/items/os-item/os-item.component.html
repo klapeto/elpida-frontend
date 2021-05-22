@@ -1,0 +1,14 @@
+<a [routerLink]="'/os/' + item.id" class="collection-item collection-item-container">
+    <img [src]="'./assets/oses/'+ item.category + '.svg'"
+         [alt]="item.name"
+         loading="lazy"
+         class="collection-item-img">
+    <div>
+        <h3 class="collection-item-detail">
+            {{item.name}}
+        </h3>
+        <strong class="collection-item-detail">
+            {{item.version}}
+        </strong>
+    </div>
+</a>

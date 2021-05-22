@@ -58,6 +58,12 @@ import { TopologyDetailsComponent } from './topology-details/topology-details.co
 import { BenchmarksComponent } from './database/benchmarks/benchmarks.component';
 import {BenchmarkItemComponent} from '../components/collection/items/benchmark-item/benchmark-item.component';
 import { BenchmarkDetailsComponent } from './benchmark-details/benchmark-details.component';
+import { OsesComponent } from './database/oses/oses.component';
+import {OsItemComponent} from '../components/collection/items/os-item/os-item.component';
+import { OsDetailsComponent } from './os-details/os-details.component';
+import { ElpidasComponent } from './database/elpidas/elpidas.component';
+import {ElpidaItemComponent} from '../components/collection/items/elpida-item/elpida-item.component';
+import { ElpidaDetailsComponent } from './elpida-details/elpida-details.component';
 
 @NgModule({
     declarations: [
@@ -105,7 +111,13 @@ import { BenchmarkDetailsComponent } from './benchmark-details/benchmark-details
         TopologyDetailsComponent,
         BenchmarksComponent,
         BenchmarkItemComponent,
-        BenchmarkDetailsComponent
+        BenchmarkDetailsComponent,
+        OsItemComponent,
+        OsesComponent,
+        OsDetailsComponent,
+        ElpidasComponent,
+        ElpidaItemComponent,
+        ElpidaDetailsComponent
     ],
     imports: [
         BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
@@ -116,17 +128,21 @@ import { BenchmarkDetailsComponent } from './benchmark-details/benchmark-details
         RouterModule.forRoot([
             {path: '', component: HomeComponent, pathMatch: 'full'},
             {path: 'download', component: DownloadComponent},
-            {path: 'latest-results', component: LatestResultsComponent},
             {path: 'statistics', component: StatisticsComponent},
             {path: 'statistics/:id', component: StatisticDetailsComponent},
+            {path: 'database', component: DatabaseComponent},
+            {path: 'results', component: LatestResultsComponent},
             {path: 'result/:id', component: ResultComponent},
-            {path: 'cpu/:id', component: CpuDetailsComponent},
             {path: 'cpus', component: CpusComponent},
+            {path: 'cpu/:id', component: CpuDetailsComponent},
             {path: 'topologies', component: TopologiesComponent},
             {path: 'topology/:id', component: TopologyDetailsComponent},
             {path: 'benchmarks', component: BenchmarksComponent},
             {path: 'benchmark/:id', component: BenchmarkDetailsComponent},
-            {path: 'database', component: DatabaseComponent},
+            {path: 'oses', component: OsesComponent},
+            {path: 'os/:id', component: OsDetailsComponent},
+            {path: 'elpidas', component: ElpidasComponent},
+            {path: 'elpida/:id', component: ElpidaDetailsComponent},
             {path: 'about', component: AboutComponent},
         ], {useHash: true}),
         ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
