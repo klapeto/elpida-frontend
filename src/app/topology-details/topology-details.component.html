@@ -1,0 +1,27 @@
+<app-loading-indicator *ngIf="!topology">
+</app-loading-indicator>
+<div *ngIf="topology" class="groups-container">
+    <app-group-box [title]="'Topology counts'">
+        <div class="details-grid">
+
+            <strong>Machines:</strong>
+            <div>x{{topology.totalMachines}}</div>
+
+            <strong>Packages:</strong>
+            <div>x{{topology.totalPackages}}</div>
+
+            <strong>Numa nodes:</strong>
+            <div>x{{topology.totalNumaNodes}}</div>
+
+            <strong>Cpu cores:</strong>
+            <div>x{{topology.totalPhysicalCores}}</div>
+
+            <strong>Cpu logical cores:</strong>
+            <div>x{{topology.totalLogicalCores}}</div>
+        </div>
+    </app-group-box>
+
+    <app-group-box [title]="'Topology map'">
+        <app-topology [topology]="topology"></app-topology>
+    </app-group-box>
+</div>

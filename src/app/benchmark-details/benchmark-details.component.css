@@ -1,0 +1,31 @@
+.data-container {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+}
+
+.tasks-container {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+}
+
+.detail {
+    margin: 1em;
+}
+
+.flow-arrow {
+    justify-self: center;
+}
+
+.task-details {
+    border-right: 0.075rem rgb(171, 173, 228) solid;
+}
+
+.result-container {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-items: center;
+    margin: 0.5em;
+}

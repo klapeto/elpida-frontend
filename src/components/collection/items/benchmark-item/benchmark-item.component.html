@@ -1,0 +1,11 @@
+<a [routerLink]="'/benchmark/' + item.id" class="collection-item collection-item-container">
+    <img [src]="'./assets/benchmarks/'+ item.uuid + '.svg'"
+         [alt]="item.name"
+         loading="lazy"
+         class="collection-item-img">
+    <div>
+        <h3 class="collection-item-detail">
+            {{item.name}}
+        </h3>
+    </div>
+</a>

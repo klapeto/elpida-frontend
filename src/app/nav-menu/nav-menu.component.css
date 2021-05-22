@@ -21,7 +21,7 @@
 
 .nav-item-container {
     flex-grow: 1;
-    justify-content: end;
+    justify-content: flex-end;
     display: flex;
     flex-flow: row wrap;
 }

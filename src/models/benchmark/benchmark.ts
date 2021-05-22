@@ -1,6 +1,7 @@
 import {FoundationModel} from '../foundation-model';
 import {BenchmarkScoreSpecification} from './benchmark-score-specification';
 import {Task} from '../task/task';
+import {BenchmarkTask} from './benchmark-task';
 
 export class Benchmark extends FoundationModel {
     constructor(
@@ -8,7 +9,7 @@ export class Benchmark extends FoundationModel {
         public readonly uuid: string,
         public readonly name: string,
         public readonly scoreSpecification: BenchmarkScoreSpecification,
-        public readonly taskSpecifications: Task[]
+        public readonly tasks: BenchmarkTask[]
     ) {
         super(id);
     }

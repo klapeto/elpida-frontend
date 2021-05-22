@@ -129,7 +129,8 @@ strong {
 
 .details-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: auto 1fr;
+    grid-column-gap: 1em;
     padding: 0.25rem;
 }
 
@@ -163,6 +164,7 @@ hr {
     justify-content: center;
     margin-top: 3rem;
     margin-bottom: 3rem;
+    align-items: center;
 }
 
 code {
@@ -258,4 +260,24 @@ caption {
 .thick-hr {
     height: 0.1em;
     background-color: rgb(171, 173, 228);
+}
+
+.reduced-text {
+    max-width: 20em;
+}
+
+.group-box-large-header {
+    font-size: larger;
+    margin: 0.4em;
+}
+
+.boxed-value {
+    background-color: rgb(203, 199, 247);
+    padding: 0.5em;
+    margin: 0.5em;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
 }

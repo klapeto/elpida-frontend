@@ -1,0 +1,14 @@
+<a [routerLink]="'/topology/' + item.id" class="collection-item collection-item-container">
+    <img [src]="'./assets/cpus/'+ item.cpuVendor + '.svg'"
+         [alt]="item.cpuVendor"
+         loading="lazy"
+         class="collection-item-img">
+    <div>
+        <h3 class="collection-item-detail">
+            {{item.cpuBrand}}
+        </h3>
+        <h3 class="collection-item-detail">
+            {{item.totalMachines}}xM/{{item.totalPackages}}xP/{{item.totalNumaNodes}}xN/{{item.totalPhysicalCores}}xC/{{item.totalLogicalCores}}xT
+        </h3>
+    </div>
+</a>

@@ -13,10 +13,10 @@ import {SystemComponent} from './result/system/system.component';
 import {BenchmarkResultComponent} from './result/benchmark-result/benchmark-result.component';
 import {GroupBoxComponent} from '../components/group-box/group-box.component';
 import {CpuComponent} from './result/system/cpu/cpu.component';
-import {TopologyComponent} from './result/system/topology/topology.component';
+import {TopologyComponent} from '../components/topology/topology.component';
 import {MemoryComponent} from './result/system/memory/memory.component';
 import {CpuCacheComponent} from './result/system/cpu/cpu-cache/cpu-cache.component';
-import {CpuNodeComponent} from './result/system/topology/cpu-node/cpu-node.component';
+import {CpuNodeComponent} from '../components/topology/cpu-node/cpu-node.component';
 import {ValueConverter} from '../services/value-converter';
 import {LatestResultsComponent} from './latest-results/latest-results.component';
 import {PagingComponent} from '../components/collection/paging/paging.component';
@@ -51,6 +51,13 @@ import {BenchmarkStatisticsService} from '../services/benchmark-statistics.servi
 import { StatisticDetailsComponent } from './statistics/statistic-details/statistic-details.component';
 import {LoadingIndicatorComponent} from '../components/loading-indicator/loading-indicator.component';
 import {DatabaseComponent} from './database/database.component';
+import {CpusComponent} from './database/cpus/cpus.component';
+import {TopologyItemComponent} from '../components/collection/items/topology-item/topology-item.component';
+import {TopologiesComponent} from './database/topologies/topologies.component';
+import { TopologyDetailsComponent } from './topology-details/topology-details.component';
+import { BenchmarksComponent } from './database/benchmarks/benchmarks.component';
+import {BenchmarkItemComponent} from '../components/collection/items/benchmark-item/benchmark-item.component';
+import { BenchmarkDetailsComponent } from './benchmark-details/benchmark-details.component';
 
 @NgModule({
     declarations: [
@@ -91,7 +98,14 @@ import {DatabaseComponent} from './database/database.component';
         BenchmarkStatisticItemComponent,
         StatisticDetailsComponent,
         LoadingIndicatorComponent,
-        DatabaseComponent
+        DatabaseComponent,
+        CpusComponent,
+        TopologyItemComponent,
+        TopologiesComponent,
+        TopologyDetailsComponent,
+        BenchmarksComponent,
+        BenchmarkItemComponent,
+        BenchmarkDetailsComponent
     ],
     imports: [
         BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
@@ -104,10 +118,15 @@ import {DatabaseComponent} from './database/database.component';
             {path: 'download', component: DownloadComponent},
             {path: 'latest-results', component: LatestResultsComponent},
             {path: 'statistics', component: StatisticsComponent},
+            {path: 'statistics/:id', component: StatisticDetailsComponent},
             {path: 'result/:id', component: ResultComponent},
             {path: 'cpu/:id', component: CpuDetailsComponent},
+            {path: 'cpus', component: CpusComponent},
+            {path: 'topologies', component: TopologiesComponent},
+            {path: 'topology/:id', component: TopologyDetailsComponent},
+            {path: 'benchmarks', component: BenchmarksComponent},
+            {path: 'benchmark/:id', component: BenchmarkDetailsComponent},
             {path: 'database', component: DatabaseComponent},
-            {path: 'statistics/:id', component: StatisticDetailsComponent},
             {path: 'about', component: AboutComponent},
         ], {useHash: true}),
         ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
