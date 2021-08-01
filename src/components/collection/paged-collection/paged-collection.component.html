@@ -5,7 +5,7 @@
        placeholder="Search (Press 'enter' to search)"
        style="width: 100%;">
 <hr *ngIf="showSearchBox"/>
-<div class="non-a-button button button-default-size"
+<div *ngIf="showFilters" class="non-a-button button button-default-size"
      (click)="onFiltersButtonClick()"
      [ngClass]="{'active': showFilters}">
     Filters

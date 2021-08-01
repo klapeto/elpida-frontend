@@ -9,6 +9,7 @@ import {BenchmarkPreview} from '../../../../models/benchmark/benchmark-preview';
 export class BenchmarkItemComponent implements OnInit {
 
   @Input() item: BenchmarkPreview;
+  @Input() routePrefix = 'benchmark';
 
   constructor() { }
 

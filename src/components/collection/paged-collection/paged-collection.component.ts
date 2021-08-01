@@ -28,6 +28,9 @@ export class PagedCollectionComponent implements AfterViewInit {
     @Input() name: string;
 
     @Input() lockedFilters: Filter[];
+    @Input() lockedOrderBy;
+
+    @Input() customRoutePrefix: string;
 
     @ViewChild('itemContainer', {read: ViewContainerRef}) itemContainer: ViewContainerRef;
 
@@ -38,6 +41,7 @@ export class PagedCollectionComponent implements AfterViewInit {
     ngAfterViewInit(): void {
         this.currentQuery = this.service.createDefaultQuery();
         this.appendLockedFilters();
+        this.replaceOrderByIfNeeded();
         this.reloadPageSafe();
     }
 
@@ -51,9 +55,16 @@ export class PagedCollectionComponent implements AfterViewInit {
         }
     }
 
+    private replaceOrderByIfNeeded() {
+        if (this.lockedOrderBy !== undefined) {
+            this.currentQuery.orderBy = this.lockedOrderBy;
+        }
+    }
+
     public onFiltersSubmitted(query: Query): void {
         Object.assign(this.currentQuery, query);
         this.appendLockedFilters();
+        this.replaceOrderByIfNeeded();
         this.reloadPageSafe();
     }
 
@@ -90,7 +101,7 @@ export class PagedCollectionComponent implements AfterViewInit {
         this.itemContainer.clear();
         if (this.pagedResult !== undefined) {
             this.pagedResult.list.forEach(i => {
-                this.service.createCollectionItemComponent(i, this.componentFactoryResolver, this.itemContainer);
+                this.service.createCollectionItemComponent(i, this.componentFactoryResolver, this.itemContainer, this.customRoutePrefix);
             });
         }
     }
@@ -105,6 +116,7 @@ export class PagedCollectionComponent implements AfterViewInit {
                 this.currentQuery.descending
             );
             this.appendLockedFilters();
+            this.replaceOrderByIfNeeded();
             this.reloadPageSafe();
         }
     }

@@ -3,6 +3,7 @@ export enum NodeType {
     Package,
     NumaNode,
     Group,
+    Die,
     Core,
     L1ICache,
     L1DCache,

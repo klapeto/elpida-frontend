@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {BenchmarkService} from '../../../services/benchmark.service';
 
 @Component({
@@ -7,6 +7,8 @@ import {BenchmarkService} from '../../../services/benchmark.service';
   styleUrls: ['./benchmarks.component.css']
 })
 export class BenchmarksComponent implements OnInit {
+
+  @Input() customRoute: string = 'benchmark';
 
   constructor(public benchmarkService: BenchmarkService) { }
 

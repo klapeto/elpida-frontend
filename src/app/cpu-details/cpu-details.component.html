@@ -2,19 +2,12 @@
 </app-loading-indicator>
 <div *ngIf="cpu">
     <app-group-box [title]="'Information'">
-        <img [src]="'./assets/cpus/'+ cpu.vendor + '.svg'"
-             [alt]="cpu.vendor"
-             loading="lazy"
-             class="cpu-vendor-img">
-        <app-cpu [cpu]="cpu"></app-cpu>
-    </app-group-box>
-    <app-group-box [title]="'Tasks Statistics'">
-        <div style="padding: 1rem">
-            <app-paged-collection [service]="taskStatisticsServiceProxy"
-                                  [name]="'Task Statistics'"
-                                  [lockedFilters]="filters">
-
-            </app-paged-collection>
+        <div class="cpu-details-container">
+            <img [src]="'./assets/cpus/'+ cpu.vendor + '.svg'"
+                 [alt]="cpu.vendor"
+                 loading="lazy"
+                 class="cpu-vendor-img">
+            <app-cpu [cpu]="cpu"></app-cpu>
         </div>
     </app-group-box>
 </div>

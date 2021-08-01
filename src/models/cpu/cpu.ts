@@ -6,7 +6,7 @@ export class Cpu extends FoundationModel {
     constructor(
         id: number,
         public readonly vendor: string,
-        public readonly brand: string,
+        public readonly modelName: string,
         public readonly frequency: number,
         public readonly smt: boolean,
         public readonly caches: CpuCache[],

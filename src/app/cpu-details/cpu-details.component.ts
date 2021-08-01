@@ -9,32 +9,28 @@ import {CpuBenchmarkStatisticsService} from '../../services/cpu-benchmark-statis
 import {HttpClient} from '@angular/common/http';
 
 @Component({
-  selector: 'app-cpu-details',
-  templateUrl: './cpu-details.component.html',
-  styleUrls: ['./cpu-details.component.css']
+    selector: 'app-cpu-details',
+    templateUrl: './cpu-details.component.html',
+    styleUrls: ['./cpu-details.component.css']
 })
 export class CpuDetailsComponent implements OnInit {
 
-  cpu: Cpu;
+    cpu: Cpu;
 
-  filters: Filter[];
+    filters: Filter[];
 
-  taskStatisticsServiceProxy: CpuBenchmarkStatisticsService;
+    constructor(
+        private readonly cpuService: CpuService,
+        private readonly http: HttpClient,
+        private readonly router: Router) {
+        const tokens = this.router.url.split('/');
+        cpuService.getSingle(tokens[tokens.length - 1]).subscribe(r => {
+            this.filters = [new NumberFilter('Cpu Id', 'cpuId', true, NumberComparisons.Equal, '', r.id)];
+            this.cpu = r;
+        }, error => console.error(error));
+    }
 
-  constructor(
-      private readonly cpuService: CpuService,
-      private readonly http: HttpClient,
-      private readonly router: Router) {
-    const tokens = this.router.url.split('/');
-    cpuService.getSingle(tokens[tokens.length - 1]).subscribe(r => {
-
-      this.taskStatisticsServiceProxy = new CpuBenchmarkStatisticsService(http, cpuService);
-      this.filters = [ new NumberFilter('Cpu Id', 'cpuId', true, NumberComparisons.Equal, '', r.id)];
-      this.cpu = r;
-    }, error => console.error(error));
-  }
-
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+    }
 
 }

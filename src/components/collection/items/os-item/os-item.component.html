@@ -1,4 +1,4 @@
-<a [routerLink]="'/os/' + item.id" class="collection-item collection-item-container">
+<a [routerLink]="['/os', item.id]" class="collection-item collection-item-container">
     <img [src]="'./assets/oses/'+ item.category + '.svg'"
          [alt]="item.name"
          loading="lazy"

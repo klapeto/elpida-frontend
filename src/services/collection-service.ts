@@ -44,7 +44,8 @@ export abstract class CollectionService<TModel, TPreview> implements ICollection
 
     abstract createCollectionItemComponent(item: TPreview,
                                            componentFactoryResolver: ComponentFactoryResolver,
-                                           viewContainerRef: ViewContainerRef): any;
+                                           viewContainerRef: ViewContainerRef,
+                                           customRoutePrefix: string): any;
     public createDefaultQuery(): Query {
         return new Query([], undefined, false);
     }

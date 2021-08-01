@@ -1,4 +1,4 @@
-<a [routerLink]="'/benchmark/' + item.id" class="collection-item collection-item-container">
+<a [routerLink]="['/' + routePrefix, item.id]" class="collection-item collection-item-container">
     <img [src]="'./assets/benchmarks/'+ item.uuid + '.svg'"
          [alt]="item.name"
          loading="lazy"

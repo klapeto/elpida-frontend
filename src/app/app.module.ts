@@ -64,6 +64,8 @@ import { OsDetailsComponent } from './os-details/os-details.component';
 import { ElpidasComponent } from './database/elpidas/elpidas.component';
 import {ElpidaItemComponent} from '../components/collection/items/elpida-item/elpida-item.component';
 import { ElpidaDetailsComponent } from './elpida-details/elpida-details.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { TopCpusByBenchmarkComponent } from './statistics/top-cpus-by-benchmark/top-cpus-by-benchmark.component';
 
 @NgModule({
     declarations: [
@@ -117,7 +119,9 @@ import { ElpidaDetailsComponent } from './elpida-details/elpida-details.componen
         OsDetailsComponent,
         ElpidasComponent,
         ElpidaItemComponent,
-        ElpidaDetailsComponent
+        ElpidaDetailsComponent,
+        NotFoundComponent,
+        TopCpusByBenchmarkComponent
     ],
     imports: [
         BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
@@ -143,7 +147,9 @@ import { ElpidaDetailsComponent } from './elpida-details/elpida-details.componen
             {path: 'os/:id', component: OsDetailsComponent},
             {path: 'elpidas', component: ElpidasComponent},
             {path: 'elpida/:id', component: ElpidaDetailsComponent},
+            {path: 'top-cpus-by-benchmark/:id', component: TopCpusByBenchmarkComponent},
             {path: 'about', component: AboutComponent},
+            {path: '**', component: NotFoundComponent}
         ], {useHash: true}),
         ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
     ],

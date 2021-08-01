@@ -1,7 +1,13 @@
 <app-loading-indicator *ngIf="!benchmark">
 </app-loading-indicator>
 <div *ngIf="benchmark" class="groups-container">
-    <h2 class="result-container">{{benchmark.name}} in <div class="boxed-value">{{benchmark.scoreSpecification.unit}}</div></h2>
+
+    <div class="benchmark-logo-container">
+        <img [src]="'./assets/benchmarks/'+ benchmark.uuid + '.svg'"
+             [alt]="benchmark.name"
+             loading="lazy"
+             class="benchmark-logo-img">
+        <h2 class="result-container">{{benchmark.name}} <div class="boxed-value">{{benchmark.scoreSpecification.unit}}</div></h2>
     <hr/>
     <div class="tasks-container">
         <h2>Tasks flow</h2>

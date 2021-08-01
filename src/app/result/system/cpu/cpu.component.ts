@@ -16,9 +16,11 @@ export class CpuComponent {
 
     public getInfoPairs(): { name: string, value: string }[] {
         const returnValue = [];
-        Object.keys(this.cpu.additionalInfo).forEach(key => {
-           returnValue.push({name: key, value: this.cpu.additionalInfo[key]});
-        });
+        if (this.cpu.additionalInfo) {
+            Object.keys(this.cpu.additionalInfo).forEach(key => {
+                returnValue.push({name: key, value: this.cpu.additionalInfo[key]});
+            });
+        }
 
         return returnValue;
     }

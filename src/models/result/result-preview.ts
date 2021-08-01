@@ -16,7 +16,8 @@ export class ResultPreview extends FoundationModel {
         public readonly cpuCores: number,
         public readonly cpuLogicalCores: number,
         public readonly memorySize: number,
-        public readonly name: string
+        public readonly benchmarkUuid: string,
+        public readonly benchmarkName: string
     ) {
         super(id);
     }

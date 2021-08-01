@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {CpuService} from '../../services/cpu.service';
 
 @Component({
   selector: 'app-statistics',
@@ -8,7 +7,7 @@ import {CpuService} from '../../services/cpu.service';
 })
 export class StatisticsComponent implements OnInit {
 
-  constructor(public cpuService: CpuService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }

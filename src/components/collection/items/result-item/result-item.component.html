@@ -1,15 +1,21 @@
-<a [routerLink]="'/result/'+ item.id" class="collection-item collection-item-container">
+<a [routerLink]="['/result/', item.id]" class="collection-item collection-item-container">
     <img [src]="'./assets/cpus/'+ item.cpuVendor + '.svg'"
          [alt]="item.cpuVendor"
          loading="lazy"
          class="collection-item-img">
+
+    <img [src]="'./assets/benchmarks/'+ item.benchmarkUuid + '.svg'"
+         [alt]="item.benchmarkName"
+         loading="lazy"
+         class="collection-item-img">
+
     <div>
         <div>{{getTimestamp(item.timeStamp).toDateString()}} {{getTimestamp(item.timeStamp).toLocaleTimeString()}}</div>
         <h3 class="collection-item-detail">
             {{item.cpuBrand}}
         </h3>
         <h3 class="collection-item-detail">
-            {{item.name}}
+            {{item.benchmarkName}}
         </h3>
     </div>
 </a>

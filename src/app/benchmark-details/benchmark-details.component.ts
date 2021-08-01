@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {Benchmark} from '../../models/benchmark/benchmark';
 import {BenchmarkService} from '../../services/benchmark.service';
 import {ResultSpecification, ResultType} from '../../models/task/result-specification';
@@ -12,20 +12,18 @@ import {ResultSpecification, ResultType} from '../../models/task/result-specific
 })
 export class BenchmarkDetailsComponent implements OnInit {
 
-
     benchmark: Benchmark;
 
     constructor(
         private readonly benchmarkService: BenchmarkService,
         private readonly http: HttpClient,
-        private readonly router: Router) {
-        const tokens = this.router.url.split('/');
-        benchmarkService.getSingle(tokens[tokens.length - 1]).subscribe(r => {
-            this.benchmark = r;
-        }, error => console.error(error));
+        private route: ActivatedRoute) {
     }
 
     ngOnInit(): void {
+        this.benchmarkService.getSingle(this.route.snapshot.paramMap.get('id')).subscribe(r => {
+            this.benchmark = r;
+        }, error => console.error(error));
     }
 
     getResultUnit(result: ResultSpecification): string {

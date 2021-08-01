@@ -4,10 +4,11 @@ import {HttpClient} from '@angular/common/http';
 import {BenchmarkStatisticsPreview} from '../models/benchmark-statistics/benchmark-statistics-preview';
 import {BenchmarkStatistics} from '../models/benchmark-statistics/benchmark-statistics';
 import {Filter} from '../models/filter';
-import {StringComparisons, StringFilter} from '../models/filters/string-filter';
+import {StringFilter} from '../models/filters/string-filter';
 import {CpuService} from './cpu.service';
 import {BenchmarkStatisticItemComponent} from '../components/collection/items/benchmark-statistic-item/benchmark-statistic-item.component';
 import {Query} from '../models/query';
+import {NumberComparisons, NumberFilter} from '../models/filters/number-filter';
 
 @Injectable({
     providedIn: 'root'
@@ -21,7 +22,10 @@ export class BenchmarkStatisticsService extends CollectionService<BenchmarkStati
     protected readonly baseRoute: string = 'BenchmarkStatistics';
 
     public createAdvancedFilters(): Filter[] {
-        return this.cpuService.createAdvancedFilters();
+        return this.cpuService.createAdvancedFilters()
+            .concat([
+                this.createBenchmarkScoreMeanFilter(),
+            ]);
     }
 
     public createCollectionItemComponent(item: BenchmarkStatisticsPreview, componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef): any {
@@ -38,7 +42,10 @@ export class BenchmarkStatisticsService extends CollectionService<BenchmarkStati
     }
 
     public createOrderByFilters(): Filter[] {
-        return this.cpuService.createOrderByFilters();
+        return this.cpuService.createOrderByFilters()
+            .concat([
+                this.createBenchmarkScoreMeanFilter(),
+            ]);
     }
 
     public createSearchFilter(): StringFilter {
@@ -46,6 +53,13 @@ export class BenchmarkStatisticsService extends CollectionService<BenchmarkStati
     }
 
     public createSimpleFilters(): Filter[] {
-        return this.cpuService.createSimpleFilters();
+        return this.cpuService.createSimpleFilters()
+            .concat([
+                this.createBenchmarkScoreMeanFilter(),
+            ]);
+    }
+
+    public createBenchmarkScoreMeanFilter() {
+        return new NumberFilter('Benchmark score mean', 'benchmarkScoreMean', true);
     }
 }

@@ -37,7 +37,7 @@
 }
 
 .machineNode {
-    background-color: #b1b1b1;
+    background-color: #aebfef;
 }
 
 .packageNode {
@@ -49,7 +49,7 @@
 }
 
 .numanodeNode {
-    background-color: #acb4ec;
+    background-color: #d4d4a1;
 }
 
 .l1dcacheNode {
@@ -85,3 +85,6 @@
     background-color: #c8caea;
 }
 
+.dieNode {
+    background-color: #a9a9a9;
+}

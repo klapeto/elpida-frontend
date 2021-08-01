@@ -1,11 +1,11 @@
-<a [routerLink]="'/cpu/' + item.id" class="collection-item collection-item-container">
+<a [routerLink]="['/cpu/', item.id]" class="collection-item collection-item-container">
     <img [src]="'./assets/cpus/'+ item.vendor + '.svg'"
          [alt]="item.vendor"
          loading="lazy"
          class="collection-item-img">
     <div>
         <h3 class="collection-item-detail">
-            {{item.brand}}
+            {{item.modelName}}
         </h3>
         <div>
             <strong>Task types: </strong>

@@ -29,3 +29,16 @@
     justify-items: center;
     margin: 0.5em;
 }
+
+.benchmark-logo-container {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.benchmark-logo-img {
+    width: 5em;
+    height: 5em;
+    padding: 1em;
+}

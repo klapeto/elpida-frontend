@@ -8,40 +8,46 @@ import {StringFilter} from '../models/filters/string-filter';
 import {BenchmarkItemComponent} from '../components/collection/items/benchmark-item/benchmark-item.component';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class BenchmarkService extends CollectionService<Benchmark, BenchmarkPreview> {
 
-  public constructor(http: HttpClient) {
-    super(http);
-  }
+    public constructor(http: HttpClient) {
+        super(http);
+    }
 
-  protected readonly baseRoute: string = 'benchmark';
+    protected readonly baseRoute: string = 'benchmark';
 
-  createAdvancedFilters(): Filter[] {
-    return [
-      new StringFilter('Benchmark name', 'benchmarkName', true)
-    ];
-  }
+    createAdvancedFilters(): Filter[] {
+        return [
+            new StringFilter('Benchmark name', 'benchmarkName', true)
+        ];
+    }
 
-  createCollectionItemComponent(item: BenchmarkPreview, componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef): any {
-    const component = viewContainerRef.createComponent<BenchmarkItemComponent>(
-        componentFactoryResolver.resolveComponentFactory<BenchmarkItemComponent>(BenchmarkItemComponent)
-    );
+    createCollectionItemComponent(item: BenchmarkPreview, componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef, customRoutePrefix: string): any {
+        const component = viewContainerRef.createComponent<BenchmarkItemComponent>(
+            componentFactoryResolver.resolveComponentFactory<BenchmarkItemComponent>(BenchmarkItemComponent)
+        );
 
-    component.instance.item = item;
-    return component;
-  }
+        component.instance.item = item;
 
-  createOrderByFilters(): Filter[] {
-    return this.createAdvancedFilters();
-  }
+        if (customRoutePrefix !== undefined) {
+            component.instance.routePrefix = customRoutePrefix;
+        }
 
-  createSearchFilter(): StringFilter {
-    return new StringFilter('Benchmark name', 'benchmarkName', true);
-  }
 
-  createSimpleFilters(): Filter[] {
-    return this.createAdvancedFilters();
-  }
+        return component;
+    }
+
+    createOrderByFilters(): Filter[] {
+        return this.createAdvancedFilters();
+    }
+
+    createSearchFilter(): StringFilter {
+        return new StringFilter('Benchmark name', 'benchmarkName', true);
+    }
+
+    createSimpleFilters(): Filter[] {
+        return this.createAdvancedFilters();
+    }
 }
