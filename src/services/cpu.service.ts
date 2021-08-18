@@ -49,9 +49,7 @@ export class CpuService extends CollectionService<Cpu, CpuPreview> {
         return [
             new StringFilter('CPU Vendor', 'cpuVendor', true),
             new StringFilter('CPU Brand', 'cpuBrand', true),
-            new NumberFilter('CPU Frequency', 'cpuFrequency', true),
-            new NumberFilter('CPU Cores', 'cpuCores', true),
-            new NumberFilter('CPU Logical Cores', 'cpuLogicalCores', true)
+            new NumberFilter('CPU Frequency', 'cpuFrequency', true)
         ];
     }
 
@@ -77,15 +75,7 @@ export class CpuService extends CollectionService<Cpu, CpuPreview> {
                 500_000_000,
                 10_000_000_000,
                 undefined,
-                2_500_000_000),
-            new RangeFilter('Min CPU Cores',
-                'cpuCores',
-                false,
-                NumberComparisons.GreaterEqual,
-                undefined,
-                1, 128,
-                undefined,
-                4)
+                2_500_000_000)
         ];
     }
 

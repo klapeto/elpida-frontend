@@ -1,17 +1,18 @@
-import {AfterViewInit, Component, ComponentFactoryResolver, Input, ViewChild, ViewContainerRef} from '@angular/core';
+import {AfterViewInit, Component, ComponentFactoryResolver, Input, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import {PagedResult} from '../../../models/paged-result';
 import {Query} from '../../../models/query';
 import {PageRequest} from '../../../models/page-request';
 import {ValueConverter} from '../../../services/value-converter';
 import {CollectionService} from '../../../services/collection-service';
 import {Filter} from '../../../models/filter';
+import {StringFilter} from '../../../models/filters/string-filter';
 
 @Component({
     selector: 'app-paged-collection',
     templateUrl: './paged-collection.component.html',
     styleUrls: ['./paged-collection.component.css']
 })
-export class PagedCollectionComponent implements AfterViewInit {
+export class PagedCollectionComponent implements AfterViewInit, OnInit {
 
     public pagedResult: PagedResult<any>;
     public maxResultPages: number;
@@ -21,6 +22,10 @@ export class PagedCollectionComponent implements AfterViewInit {
     private curPage = 0;
 
     private currentQuery: Query;
+
+    searchName: string;
+
+    filtersPanelShown: boolean;
 
     @Input() service: CollectionService<any, any>;
     @Input() showSearchBox: boolean;
@@ -40,13 +45,14 @@ export class PagedCollectionComponent implements AfterViewInit {
 
     ngAfterViewInit(): void {
         this.currentQuery = this.service.createDefaultQuery();
+
         this.appendLockedFilters();
         this.replaceOrderByIfNeeded();
         this.reloadPageSafe();
     }
 
     public onFiltersButtonClick() {
-        this.showFilters = !this.showFilters;
+        this.filtersPanelShown = !this.filtersPanelShown;
     }
 
     private appendLockedFilters() {
@@ -127,5 +133,14 @@ export class PagedCollectionComponent implements AfterViewInit {
         }
 
         this.itemContainer.element.nativeElement.scrollIntoView({behavior: 'smooth', block: 'end', inline: 'nearest'});
+    }
+
+    ngOnInit(): void {
+        const searchFilter = this.service.createSearchFilter();
+        if (searchFilter === undefined) {
+            this.showSearchBox = false;
+        } else {
+            this.searchName = searchFilter.title;
+        }
     }
 }

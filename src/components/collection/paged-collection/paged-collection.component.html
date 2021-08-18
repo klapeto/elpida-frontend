@@ -2,16 +2,16 @@
        type="search"
        (keyup)="onSearch($event)"
        [(ngModel)]="searchString"
-       placeholder="Search (Press 'enter' to search)"
+       [placeholder]="'Search by ' + searchName + ' (Press enter to search)'"
        style="width: 100%;">
 <hr *ngIf="showSearchBox"/>
 <div *ngIf="showFilters" class="non-a-button button button-default-size"
      (click)="onFiltersButtonClick()"
-     [ngClass]="{'active': showFilters}">
+     [ngClass]="{'active': filtersPanelShown}">
     Filters
 </div>
 
-<app-collection-filters *ngIf="showFilters"
+<app-collection-filters *ngIf="filtersPanelShown"
                         [service]="service"
                         (submitted)="onFiltersSubmitted($event)">
 

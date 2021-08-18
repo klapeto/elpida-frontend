@@ -12,26 +12,27 @@ import {OptionFilter} from '../models/filters/option-filter';
 import {RangeFilter} from '../models/filters/range-filter';
 import {CpuItemComponent} from '../components/collection/items/cpu-item/cpu-item.component';
 import {TopologyItemComponent} from '../components/collection/items/topology-item/topology-item.component';
+import {CpuService} from './cpu.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class TopologyService extends CollectionService<Topology, TopologyPreview> {
 
-    public constructor(http: HttpClient) {
+    public constructor(http: HttpClient, private cpuService: CpuService) {
         super(http);
     }
 
     protected readonly baseRoute: string = 'topology';
 
     createAdvancedFilters(): Filter[] {
-        return [
-            new NumberFilter('Machines', 'machines', true),
+        return this.cpuService.createAdvancedFilters()
+            .concat([
             new NumberFilter('CPU Packages', 'cpuPackages', true),
             new NumberFilter('CPU Numa Nodes', 'cpuNumaNodes', true),
             new NumberFilter('CPU Cores', 'cpuCores', true),
             new NumberFilter('CPU Logical Cores', 'cpuLogicalCores', true)
-        ];
+        ]);
     }
 
     createCollectionItemComponent(item: TopologyPreview, componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef): any {
@@ -49,11 +50,11 @@ export class TopologyService extends CollectionService<Topology, TopologyPreview
     }
 
     createSearchFilter(): StringFilter {
-        return undefined;
+        return this.cpuService.createSearchFilter();
     }
 
     createSimpleFilters(): Filter[] {
-        return [
+        return this.cpuService.createSimpleFilters().concat([
             new RangeFilter('Min CPU Cores',
                 'cpuCores',
                 false,
@@ -90,6 +91,6 @@ export class TopologyService extends CollectionService<Topology, TopologyPreview
                 512,
                 1,
                 32)
-        ];
+        ]);
     }
 }
