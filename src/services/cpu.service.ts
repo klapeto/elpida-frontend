@@ -48,13 +48,13 @@ export class CpuService extends CollectionService<Cpu, CpuPreview> {
     createAdvancedFilters(): Filter[] {
         return [
             new StringFilter('CPU Vendor', 'cpuVendor', true),
-            new StringFilter('CPU Brand', 'cpuBrand', true),
+            new StringFilter('CPU Brand', 'cpuModelName', true),
             new NumberFilter('CPU Frequency', 'cpuFrequency', true)
         ];
     }
 
     createDefaultQuery(): Query {
-        return new Query([], new StringFilter('CPU Brand', 'cpuBrand', true), false);
+        return new Query([], new StringFilter('CPU Brand', 'cpuModelName', true), false);
     }
 
     createOrderByFilters(): Filter[] {
@@ -62,12 +62,12 @@ export class CpuService extends CollectionService<Cpu, CpuPreview> {
     }
 
     createSearchFilter(): StringFilter {
-        return new StringFilter('CPU Brand', 'cpuBrand', true);
+        return new StringFilter('CPU Brand', 'cpuModelName', true);
     }
 
     createSimpleFilters(): Filter[] {
         return [
-            new OptionFilter('CPU Brand', 'cpuBrand', Object.keys(this.cpuDictionary), this.cpuDictionary),
+            new OptionFilter('CPU Brand', 'cpuModelName', Object.keys(this.cpuDictionary), this.cpuDictionary),
             new RangeFilter('Min CPU Frequency',
                 'cpuFrequency', false,
                 NumberComparisons.GreaterEqual,
