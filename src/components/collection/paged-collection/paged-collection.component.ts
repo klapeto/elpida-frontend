@@ -106,7 +106,7 @@ export class PagedCollectionComponent implements AfterViewInit, OnInit {
     private fillItems() {
         this.itemContainer.clear();
         if (this.pagedResult !== undefined) {
-            this.pagedResult.list.forEach(i => {
+            this.pagedResult.items.forEach(i => {
                 this.service.createCollectionItemComponent(i, this.componentFactoryResolver, this.itemContainer, this.customRoutePrefix);
             });
         }

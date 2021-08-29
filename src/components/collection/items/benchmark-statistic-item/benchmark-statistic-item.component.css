@@ -1,7 +1,6 @@
 .statistics-item {
     display: grid;
     grid-template-columns: auto auto auto 1fr;
-
 }
 
 .statistics-value-container {

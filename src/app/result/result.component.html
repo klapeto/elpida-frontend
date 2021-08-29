@@ -4,14 +4,14 @@
 <div *ngIf="result">
 
     <app-group-box [title]="'Results'">
-        <app-benchmark-result [benchmarkResult]="result.result"></app-benchmark-result>
+        <app-benchmark-result [benchmarkResult]="result"></app-benchmark-result>
     </app-group-box>
 
     <app-group-box [title]="'Info'">
         <div class="details-grid">
 
             <strong>Name:</strong>
-            <div>{{result.result.name}}</div>
+            <div>{{result.name}}</div>
 
             <strong>Date:</strong>
             <div>{{result.timeStamp.toDateString()}} {{result.timeStamp.toLocaleTimeString()}}</div>

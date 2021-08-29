@@ -12,7 +12,6 @@ export class Topology extends FoundationModel {
         public readonly totalNumaNodes: number,
         public readonly totalPackages: number,
         public readonly totalMachines: number,
-        public readonly totalDepth: number,
         public readonly root: CpuNode
     ) {
         super(id);

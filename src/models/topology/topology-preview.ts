@@ -8,7 +8,6 @@ export class TopologyPreview {
         public readonly totalPhysicalCores: number,
         public readonly totalNumaNodes: number,
         public readonly totalPackages: number,
-        public readonly totalDepth: number,
         public readonly hash: string,
     ) {
     }

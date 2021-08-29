@@ -5,6 +5,7 @@ import {TaskResult} from '../../../models/result/task-result';
 import {ModalService} from '../../../services/modal.service';
 import {ResultDetailsComponent} from '../result-details/result-details.component';
 import {ResultType} from '../../../models/task/result-specification';
+import {Result} from '../../../models/result/result';
 
 @Component({
     selector: 'app-benchmark-result',
@@ -23,7 +24,7 @@ export class BenchmarkResultComponent implements OnInit {
 
     view: number[];
 
-    @Input() public readonly benchmarkResult: BenchmarkResult;
+    @Input() public readonly benchmarkResult: Result;
 
     constructor(public valueConverter: ValueConverter,
                 public el: ElementRef,
@@ -34,11 +35,11 @@ export class BenchmarkResultComponent implements OnInit {
     ngOnInit() {
         const first = this.benchmarkResult.taskResults[0];
         this.useLineChart = this.benchmarkResult.taskResults.length > 1
-            && this.benchmarkResult.taskResults.every(x => x.name === first.name && x.result.type === first.result.type);
+            && this.benchmarkResult.taskResults.every(x => x.result.unit === first.result.unit && x.result.type === first.result.type);
 
         if (this.useLineChart) {
 
-            this.yAxisLabel = first.name;
+            this.yAxisLabel = first.result.name;
             this.yAxisUnit = first.result.unit;
             this.data = [
                 {

@@ -41,8 +41,8 @@ export class ResultsService extends CollectionService<Result, ResultPreview> {
                 new StringFilter('Os Category', 'osCategory', true),
                 new StringFilter('Os Name', 'osName', true),
                 new StringFilter('Os Version', 'osVersion', true),
-                new DateFilter('From', 'startTime', false, DateComparisons.GreaterEqual),
-                new DateFilter('To', 'endTime', false, DateComparisons.LessEqual)
+                new DateFilter('From', 'timeStamp', false, DateComparisons.GreaterEqual),
+                new DateFilter('To', 'timeStamp', false, DateComparisons.LessEqual)
             ]);
     }
 

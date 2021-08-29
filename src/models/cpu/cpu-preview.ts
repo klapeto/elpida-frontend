@@ -6,7 +6,7 @@ export class CpuPreview extends FoundationModel {
         public readonly vendor: string,
         public readonly modelName: string,
         public readonly topologiesCount: number,
-        public readonly taskStatisticsCount: number
+        public readonly benchmarkStatisticsCount: number
     ) {
         super(id);
     }
