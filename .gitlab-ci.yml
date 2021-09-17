@@ -35,13 +35,13 @@ build:staging:
   before_script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
-    - docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_ENVIRONMENT_NAME" $DockerFile
+    - docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_ENVIRONMENT_NAME" -f ./docker/$DockerFile .
     - docker push "$CI_REGISTRY_IMAGE:$CI_ENVIRONMENT_NAME"
 
 docker-image-build:production:
   extends: .docker-image-build
   variables:
-    DockerFile: Dockerfile
+    DockerFile: Dockerfile.default
   environment:
     name: production
     url: https://www.elpida.dev
