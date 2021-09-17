@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {CpuCache} from '../../../../../models/result/cpu-cache';
+import {CpuCache} from '../../../../../models/cpu/cpu-cache';
 import {ValueConverter} from '../../../../../services/value-converter';
 
 @Component({

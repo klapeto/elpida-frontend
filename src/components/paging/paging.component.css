@@ -1,5 +1,0 @@
-.page-items-container {
-    display: grid;
-    place-content: center;
-    grid-template-columns: repeat(auto-fit, minmax(1rem, min-content));
-}

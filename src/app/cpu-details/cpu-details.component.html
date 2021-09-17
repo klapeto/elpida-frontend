@@ -1,0 +1,13 @@
+<app-loading-indicator *ngIf="!cpu">
+</app-loading-indicator>
+<div *ngIf="cpu">
+    <app-group-box [title]="'Information'">
+        <div class="cpu-details-container">
+            <img [src]="'./assets/cpus/'+ cpu.vendor + '.svg'"
+                 [alt]="cpu.vendor"
+                 loading="lazy"
+                 class="cpu-vendor-img">
+            <app-cpu [cpu]="cpu"></app-cpu>
+        </div>
+    </app-group-box>
+</div>

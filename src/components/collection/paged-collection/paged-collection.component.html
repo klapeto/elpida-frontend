@@ -1,0 +1,32 @@
+<input *ngIf="showSearchBox"
+       type="search"
+       (keyup)="onSearch($event)"
+       [(ngModel)]="searchString"
+       [placeholder]="'Search by ' + searchName + ' (Press enter to search)'"
+       style="width: 100%;">
+<hr *ngIf="showSearchBox"/>
+<div *ngIf="showFilters" class="non-a-button button button-default-size"
+     (click)="onFiltersButtonClick()"
+     [ngClass]="{'active': filtersPanelShown}">
+    Filters
+</div>
+
+<app-collection-filters *ngIf="filtersPanelShown"
+                        [service]="service"
+                        (submitted)="onFiltersSubmitted($event)">
+
+</app-collection-filters>
+
+
+<app-loading-indicator *ngIf="!pagedResult">
+</app-loading-indicator>
+
+<h3 *ngIf="pagedResult">{{name}} found: {{valueConverter.convertToSI(pagedResult.totalCount, 0)}}</h3>
+<div>
+    <div #itemContainer>
+    </div>
+</div>
+<app-paging *ngIf="pagedResult"
+            (pageChanged)="onPageChange($event)"
+            [pagesCount]="maxResultPages">
+</app-paging>

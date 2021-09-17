@@ -1,0 +1,28 @@
+<app-loading-indicator *ngIf="!elpidaVersion">
+</app-loading-indicator>
+<div *ngIf="elpidaVersion" class="elpida-container">
+    <div class="compiler-logo-container">
+        <img [src]="'./assets/categories/elpida-versions.svg'"
+             alt="Elpida"
+             loading="lazy"
+             class="compiler-img">
+        <img [src]="'./assets/compilers/'+ elpidaVersion.compiler.name + '.svg'"
+             [alt]="elpidaVersion.compiler.name"
+             loading="lazy"
+             class="compiler-img">
+        <h1>Elpida + {{elpidaVersion.compiler.name}}</h1>
+    </div>
+
+    <app-group-box [title]="'Elpida info'">
+        <div class="details-grid">
+            <strong>Version:</strong>
+            <div>{{elpidaVersion.version.major}}.{{elpidaVersion.version.minor}}.{{elpidaVersion.version.revision}}.{{elpidaVersion.version.build}}</div>
+
+            <strong>Compiler name:</strong>
+            <div>{{elpidaVersion.compiler.name}}</div>
+
+            <strong>Compiler version:</strong>
+            <div>{{elpidaVersion.compiler.version}}</div>
+        </div>
+    </app-group-box>
+</div>

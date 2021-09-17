@@ -1,0 +1,22 @@
+<a [routerLink]="['/result/', item.id]" class="collection-item result-item">
+    <img [src]="'./assets/cpus/'+ item.cpuVendor + '.svg'"
+         [alt]="item.cpuVendor"
+         loading="lazy"
+         class="collection-item-img">
+
+    <img [src]="'./assets/benchmarks/'+ item.benchmarkUuid + '.svg'"
+         [alt]="item.benchmarkName"
+         loading="lazy"
+         class="collection-item-img">
+
+    <div>
+        <div>{{getTimestamp(item.timeStamp).toDateString()}} {{getTimestamp(item.timeStamp).toLocaleTimeString()}}</div>
+        <h3 class="collection-item-detail">
+            {{item.cpuModelName}}
+        </h3>
+    </div>
+    <div class="score-value-container">
+        <strong>{{this.item.benchmarkName}}</strong>
+        <strong class="boxed-value">{{calculateActualStatisticValue()}}</strong>
+    </div>
+</a>

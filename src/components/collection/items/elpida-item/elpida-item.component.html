@@ -1,0 +1,18 @@
+<a [routerLink]="['/elpida', item.id]" class="collection-item collection-item-container">
+    <img [src]="'./assets/categories/elpida-versions.svg'"
+         alt="Elpida"
+         loading="lazy"
+         class="collection-item-img">
+    <img [src]="'./assets/compilers/'+ item.compiler.name + '.svg'"
+         [alt]="item.compiler.name"
+         loading="lazy"
+         class="collection-item-img">
+    <div>
+        <h3 class="collection-item-detail">
+            Elpida ver. {{item.version.major}}.{{item.version.minor}}.{{item.version.revision}}.{{item.version.build}}
+        </h3>
+        <strong class="collection-item-detail">
+            Compiler: {{item.compiler.name}} ver {{item.compiler.version}}
+        </strong>
+    </div>
+</a>

@@ -8,4 +8,5 @@ import {Component, Input} from '@angular/core';
 export class GroupBoxComponent {
 
     @Input() public readonly title: string;
+    @Input() public readonly headerClasses: string;
 }

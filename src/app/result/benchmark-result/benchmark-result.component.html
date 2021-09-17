@@ -37,7 +37,8 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let result of benchmarkResult.taskResults">
+
+        <tr class="result-record" (click)="onRecordClick(result)" *ngFor="let result of benchmarkResult.taskResults">
             <td>{{result.name}}</td>
             <td>{{valueConverter.convertToSI(result.inputSize)}}</td>
             <td>{{calculateActualResultValue(result)}}</td>

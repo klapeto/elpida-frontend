@@ -1,15 +1,15 @@
 import {ValueFilter} from '../value-filter';
 import {FilterDto} from '../../services/filter-dto';
 import {ComponentFactoryResolver, ViewContainerRef} from '@angular/core';
-import {NumberFilterComponent} from '../../components/number-filter/number-filter.component';
+import {NumberFilterComponent} from '../../components/collection/filters/number-filter/number-filter.component';
 import {Utilities} from '../../services/utilities';
 
 export enum NumberComparisons {
-    Greater = 'g',
-    GreaterEqual = 'ge',
-    Equal = 'eq',
-    LessEqual = 'le',
-    Less = 'l'
+    Greater = 'greater',
+    GreaterEqual = 'greater-equal',
+    Equal = 'equal',
+    LessEqual = 'less-equal',
+    Less = 'less'
 }
 
 export class NumberFilter extends ValueFilter<number> {

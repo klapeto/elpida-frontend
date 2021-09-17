@@ -1,0 +1,10 @@
+<a [routerLink]="['/cpu/', item.id]" class="collection-item collection-item-container">
+    <img [src]="'./assets/cpus/'+ item.vendor + '.svg'"
+         [alt]="item.vendor"
+         loading="lazy"
+         class="collection-item-img">
+
+        <h3 class="collection-item-detail">
+            {{item.modelName}}
+        </h3>
+</a>

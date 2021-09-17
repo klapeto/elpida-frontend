@@ -1,6 +1,6 @@
 <div class="groupBox">
-    <div class="groupBoxHeader">
-        <strong>{{title}}</strong>
+    <div class="groupBoxHeader" [ngClass]="headerClasses">
+        <strong >{{title}}</strong>
     </div>
     <div class="groupBoxContent">
         <ng-content></ng-content>
