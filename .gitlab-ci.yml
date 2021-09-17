@@ -13,12 +13,12 @@ stages:
   before_script:
     - npm ci --cache .npm --prefer-offline
 
-build:production:
+build:default:
   extends: .build
   script:
     - npm run buildProd
-  only:
-    - master
+  except:
+    - staging
 
 build:staging:
   extends: .build
