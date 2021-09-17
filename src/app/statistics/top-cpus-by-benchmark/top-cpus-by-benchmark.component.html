@@ -1,5 +1,30 @@
 <app-loading-indicator *ngIf="!benchmark ; else elseBlock"></app-loading-indicator>
 <ng-template #elseBlock>
-    <h2>Top cpus for {{this.benchmark.name}}</h2>
-    <app-paged-collection *ngIf="benchmark" [service]="statisticsService" [lockedFilters]="filters" [lockedOrderBy]="orderBy" [name]="'Cpus'" [showFilters]="false" [showSearchBox]="false"></app-paged-collection>
+    <div class="container">
+        <h2>Top cpus for {{this.benchmark.name}} </h2>
+        <div>({{getComparisonDescription()}})</div>
+
+        <div style="height: 20em">
+            <ngx-charts-bar-horizontal *ngIf="chartData"
+                                       [scheme]="colourScheme"
+                                       [xAxis]="true"
+                                       [yAxis]="true"
+                                       [showXAxisLabel]="true"
+                                       [xAxisLabel]="this.chartXAxisLabel"
+                                       [showYAxisLabel]="true"
+                                       [yAxisLabel]="'Cpu'"
+                                       [showDataLabel]="true"
+                                       [results]="chartData"
+            ></ngx-charts-bar-horizontal>
+        </div>
+
+
+        <app-paged-collection [service]="statisticsService"
+                              [lockedFilters]="filters"
+                              [lockedOrderBy]="orderBy"
+                              [name]="'Cpus'"
+                              [showFilters]="false"
+                              [showSearchBox]="false"
+                              (pageChanged)="pageLoaded($event)"></app-paged-collection>
+    </div>
 </ng-template>

@@ -8,6 +8,8 @@ import {QueryRequest} from '../models/query-request';
 import {Filter} from '../models/filter';
 import {StringFilter} from '../models/filters/string-filter';
 import {ComponentFactoryResolver, ViewContainerRef} from '@angular/core';
+import {environment} from '../environments/environment';
+import {error} from 'protractor';
 
 export abstract class CollectionService<TModel, TPreview> implements ICollectionService<TModel, TPreview> {
 
@@ -15,14 +17,14 @@ export abstract class CollectionService<TModel, TPreview> implements ICollection
 
     }
 
-    //private readonly baseUrl: string = 'https://api.elpida.dev/api/v1/';
-    protected readonly baseUrl: string = 'http://localhost:5000/api/v1';
+    protected readonly baseUrl: string = environment.apiUrl;
     protected readonly searchRoute: string = 'search';
 
     protected readonly abstract baseRoute: string;
 
+
     protected getUrl(route: string): string {
-        return this.baseUrl + '/' + this.baseRoute + '/' + route;
+        return this.baseUrl + this.baseRoute + '/' + route;
     }
 
     public getPreviews(page: PageRequest, query: Query): Observable<PagedResult<TPreview>> {
@@ -46,6 +48,7 @@ export abstract class CollectionService<TModel, TPreview> implements ICollection
                                            componentFactoryResolver: ComponentFactoryResolver,
                                            viewContainerRef: ViewContainerRef,
                                            customRoutePrefix: string): any;
+
     public createDefaultQuery(): Query {
         return new Query([], undefined, false);
     }

@@ -1,0 +1,22 @@
+<div class="content">
+    <img [src]="'./assets/Elpida_Unknown_Icon.svg'"
+         alt="Elpida icon with question mark"
+         loading="lazy">
+    <h1>Error!</h1>
+    <h1 *ngIf="status">{{status}}: {{statusText}}</h1>
+    <app-group-box [title]="'Details'">
+        <div style="padding: 1em;">
+            <div>
+                <strong>Message:</strong> {{message}}
+            </div>
+            <div *ngIf="responseData">
+                <strong>Response Data:</strong> <code [innerHTML]="responseData"></code>
+            </div>
+
+            <div *ngIf="stackTrace">
+                <strong>Stack trace:</strong> <code [innerHTML]="stackTrace"></code>
+            </div>
+        </div>
+    </app-group-box>
+    <p>Please report this <a [href]="reportUrl">here</a> with as much details as possible.</p>
+</div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Elpida} from '../../../../models/elpida/elpida';
+import {ElpidaVersion} from '../../../../models/elpida/elpidaVersion';
 
 @Component({
   selector: 'app-elpida-item',
@@ -8,7 +8,7 @@ import {Elpida} from '../../../../models/elpida/elpida';
 })
 export class ElpidaItemComponent implements OnInit {
 
-  item: Elpida;
+  item: ElpidaVersion;
 
   constructor() { }
 

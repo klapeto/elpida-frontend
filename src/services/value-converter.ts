@@ -76,6 +76,24 @@ export class ValueConverter {
         return {value: (value / denominators[i]).toFixed(decimals), suffix: prefixes[i]};
     }
 
+    private static getValueScale(value: number, denominators: number[], prefixes: string[]): { value, suffix: string } {
+        if (value === 0) {
+            return {value: 1, suffix: ''};
+        }
+        let i = prefixes.length - 1;
+        while (i > 0) {
+            if (value >= denominators[i]) {
+                break;
+            }
+            i--;
+        }
+        return {value: denominators[i], suffix: prefixes[i]};
+    }
+
+    public getValueScaleSI(value: number): { value, suffix: string } {
+        return ValueConverter.getValueScale(value, ValueConverter.ScaleValuesSI, ValueConverter.PrefixesSI);
+    }
+
     public static convertToSI(value: number, decimals: number = 2): string {
         const result = ValueConverter.getValueScaleStringImpl(value, ValueConverter.ScaleValuesSI, ValueConverter.PrefixesSI, decimals);
 

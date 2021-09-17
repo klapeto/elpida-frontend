@@ -5,11 +5,11 @@ import {DateFilterComponent} from '../../components/collection/filters/date-filt
 import {Utilities} from '../../services/utilities';
 
 export enum DateComparisons {
-    Greater = 'g',
-    GreaterEqual = 'ge',
-    Equal = 'eq',
-    LessEqual = 'le',
-    Less = 'l'
+    Greater = 'greater',
+    GreaterEqual = 'greater-equal',
+    Equal = 'equal',
+    LessEqual = 'less-equal',
+    Less = 'less'
 }
 
 export class DateFilter extends ValueFilter<Date> {

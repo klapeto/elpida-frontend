@@ -5,11 +5,11 @@ import {NumberFilterComponent} from '../../components/collection/filters/number-
 import {Utilities} from '../../services/utilities';
 
 export enum NumberComparisons {
-    Greater = 'g',
-    GreaterEqual = 'ge',
-    Equal = 'eq',
-    LessEqual = 'le',
-    Less = 'l'
+    Greater = 'greater',
+    GreaterEqual = 'greater-equal',
+    Equal = 'equal',
+    LessEqual = 'less-equal',
+    Less = 'less'
 }
 
 export class NumberFilter extends ValueFilter<number> {

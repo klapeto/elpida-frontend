@@ -5,10 +5,10 @@ import {StringFilterComponent} from '../../components/collection/filters/string-
 import {Utilities} from '../../services/utilities';
 
 export enum StringComparisons {
-    Contains = 'c',
-    NotContain = 'nc',
-    Equal = 'eq',
-    NotEqual = 'neq'
+    Contains = 'contain',
+    NotContain = 'not-contain',
+    Equal = 'equal',
+    NotEqual = 'not-equal'
 }
 
 export class StringFilter extends ValueFilter<string> {

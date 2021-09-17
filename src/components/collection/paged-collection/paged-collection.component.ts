@@ -1,4 +1,14 @@
-import {AfterViewInit, Component, ComponentFactoryResolver, Input, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
+import {
+    AfterViewInit,
+    Component,
+    ComponentFactoryResolver,
+    EventEmitter,
+    Input,
+    OnInit,
+    Output,
+    ViewChild,
+    ViewContainerRef
+} from '@angular/core';
 import {PagedResult} from '../../../models/paged-result';
 import {Query} from '../../../models/query';
 import {PageRequest} from '../../../models/page-request';
@@ -6,6 +16,9 @@ import {ValueConverter} from '../../../services/value-converter';
 import {CollectionService} from '../../../services/collection-service';
 import {Filter} from '../../../models/filter';
 import {StringFilter} from '../../../models/filters/string-filter';
+import {Router} from '@angular/router';
+import {HttpErrorResponse} from '@angular/common/http';
+import {ErrorHandlerService} from '../../../services/error-handler.service';
 
 @Component({
     selector: 'app-paged-collection',
@@ -36,6 +49,8 @@ export class PagedCollectionComponent implements AfterViewInit, OnInit {
     @Input() lockedOrderBy;
 
     @Input() customRoutePrefix: string;
+
+    @Output() pageChanged: EventEmitter<PagedResult<any>> = new EventEmitter<PagedResult<any>>();
 
     @ViewChild('itemContainer', {read: ViewContainerRef}) itemContainer: ViewContainerRef;
 
@@ -92,7 +107,7 @@ export class PagedCollectionComponent implements AfterViewInit, OnInit {
     }
 
     private getPageResults(page: number): void {
-        this.service.getPreviews(new PageRequest(page * this.resultsPerPage, this.resultsPerPage, 0), this.currentQuery)
+        this.service.getPreviews(new PageRequest(page * this.resultsPerPage, this.resultsPerPage), this.currentQuery)
             .subscribe(result => {
                 this.curPage = page;
                 if (this.maxResultPages === undefined) {
@@ -100,7 +115,8 @@ export class PagedCollectionComponent implements AfterViewInit, OnInit {
                 }
                 this.pagedResult = result;
                 this.fillItems();
-            }, error => console.error(error));
+                this.pageChanged.emit(this.pagedResult);
+            });
     }
 
     private fillItems() {

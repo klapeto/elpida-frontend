@@ -1,6 +1,6 @@
 import {ComponentFactoryResolver, Injectable, ViewContainerRef} from '@angular/core';
 import {CollectionService} from './collection-service';
-import {Elpida} from '../models/elpida/elpida';
+import {ElpidaVersion} from '../models/elpida/elpidaVersion';
 import {HttpClient} from '@angular/common/http';
 import {Filter} from '../models/filter';
 import {StringFilter} from '../models/filters/string-filter';
@@ -12,13 +12,13 @@ import {ElpidaItemComponent} from '../components/collection/items/elpida-item/el
 @Injectable({
     providedIn: 'root'
 })
-export class ElpidaService extends CollectionService<Elpida, Elpida> {
+export class ElpidaVersionService extends CollectionService<ElpidaVersion, ElpidaVersion> {
 
     public constructor(http: HttpClient) {
         super(http);
     }
 
-    protected readonly baseRoute: string = 'Elpida';
+    protected readonly baseRoute: string = 'ElpidaVersion';
 
     private compilers = [
         'GNU'
@@ -35,7 +35,7 @@ export class ElpidaService extends CollectionService<Elpida, Elpida> {
         ];
     }
 
-    createCollectionItemComponent(item: Elpida, componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef): any {
+    createCollectionItemComponent(item: ElpidaVersion, componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef): any {
         const component = viewContainerRef.createComponent<ElpidaItemComponent>(
             componentFactoryResolver.resolveComponentFactory<ElpidaItemComponent>(ElpidaItemComponent)
         );

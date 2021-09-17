@@ -1,13 +1,15 @@
 <a class="collection-item statistics-item"
    [routerLink]="['/statistics/', item.id]">
-    <img [src]="'./assets/cpus/'+ item.cpuVendor + '.svg'"
-         [alt]="item.cpuVendor"
-         loading="lazy"
-         class="collection-item-img">
-    <img [src]="'./assets/benchmarks/'+ item.benchmarkUuid + '.svg'"
-         [alt]="item.benchmarkName"
-         loading="lazy"
-         class="collection-item-img">
+    <div>
+        <img [src]="'./assets/cpus/'+ item.cpuVendor + '.svg'"
+             [alt]="item.cpuVendor"
+             loading="lazy"
+             class="collection-item-img">
+        <img [src]="'./assets/benchmarks/'+ item.benchmarkUuid + '.svg'"
+             [alt]="item.benchmarkName"
+             loading="lazy"
+             class="collection-item-img">
+    </div>
 
     <h3>
         {{item.cpuModelName}}

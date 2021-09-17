@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {BenchmarkStatisticsService} from '../../../services/benchmark-statistics.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {BenchmarkStatistics} from '../../../models/benchmark-statistics/benchmark-statistics';
 import {ValueConverter} from '../../../services/value-converter';
 
@@ -12,7 +12,7 @@ import {FrequencyClass} from '../../../models/benchmark-statistics/frequency-cla
     templateUrl: './statistic-details.component.html',
     styleUrls: ['./statistic-details.component.css']
 })
-export class StatisticDetailsComponent {
+export class StatisticDetailsComponent implements OnInit {
 
     data: object[];
 
@@ -28,11 +28,27 @@ export class StatisticDetailsComponent {
     public statistics: BenchmarkStatistics;
 
     constructor(private readonly statisticsService: BenchmarkStatisticsService,
-                private readonly router: Router,
+                private readonly route: ActivatedRoute,
                 private readonly valueConverter: ValueConverter) {
+    }
 
-        const tokens = this.router.url.split('/');
-        statisticsService.getSingle(tokens[tokens.length - 1]).subscribe(r => {
+    private getClassString(cls: FrequencyClass): string {
+        return this.valueConverter.convertToSI(cls.low, 2)
+            + ' - ' + this.valueConverter.convertToSI(cls.high, 2);
+    }
+
+    public formatNumberSI(arg: number): string {
+        return ValueConverter.convertToSI(arg, 0);
+    }
+
+    getStringValue(value: number, suffix: string): string {
+        const result = this.valueConverter.getToSI(value);
+
+        return result.value + ' ' + result.suffix + suffix;
+    }
+
+    ngOnInit(): void {
+        this.statisticsService.getSingle(this.route.snapshot.paramMap.get('id')).subscribe(r => {
             this.statistics = r;
             const scoreData = this.valueConverter.getToSI(r.mean);
             this.scoreMean = scoreData.value;
@@ -50,20 +66,5 @@ export class StatisticDetailsComponent {
                 }
             ];
         }, error => console.error(error));
-    }
-
-    private getClassString(cls: FrequencyClass): string {
-        return this.valueConverter.convertToSI(cls.low, 2)
-            + ' - ' + this.valueConverter.convertToSI(cls.high, 2);
-    }
-
-    public formatNumberSI(arg: number): string {
-        return ValueConverter.convertToSI(arg, 0);
-    }
-
-    getStringValue(value: number, suffix: string): string {
-        const result = this.valueConverter.getToSI(value);
-
-        return result.value + ' ' + result.suffix + suffix;
     }
 }

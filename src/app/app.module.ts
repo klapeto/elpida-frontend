@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 
 import {AppComponent} from './app.component';
@@ -48,24 +48,26 @@ import {CpuItemComponent} from '../components/collection/items/cpu-item/cpu-item
 import {CpuDetailsComponent} from './cpu-details/cpu-details.component';
 import {BenchmarkStatisticItemComponent} from '../components/collection/items/benchmark-statistic-item/benchmark-statistic-item.component';
 import {BenchmarkStatisticsService} from '../services/benchmark-statistics.service';
-import { StatisticDetailsComponent } from './statistics/statistic-details/statistic-details.component';
+import {StatisticDetailsComponent} from './statistics/statistic-details/statistic-details.component';
 import {LoadingIndicatorComponent} from '../components/loading-indicator/loading-indicator.component';
 import {DatabaseComponent} from './database/database.component';
 import {CpusComponent} from './database/cpus/cpus.component';
 import {TopologyItemComponent} from '../components/collection/items/topology-item/topology-item.component';
 import {TopologiesComponent} from './database/topologies/topologies.component';
-import { TopologyDetailsComponent } from './topology-details/topology-details.component';
-import { BenchmarksComponent } from './database/benchmarks/benchmarks.component';
+import {TopologyDetailsComponent} from './topology-details/topology-details.component';
+import {BenchmarksComponent} from './database/benchmarks/benchmarks.component';
 import {BenchmarkItemComponent} from '../components/collection/items/benchmark-item/benchmark-item.component';
-import { BenchmarkDetailsComponent } from './benchmark-details/benchmark-details.component';
-import { OsesComponent } from './database/oses/oses.component';
+import {BenchmarkDetailsComponent} from './benchmark-details/benchmark-details.component';
+import {OsesComponent} from './database/oses/oses.component';
 import {OsItemComponent} from '../components/collection/items/os-item/os-item.component';
-import { OsDetailsComponent } from './os-details/os-details.component';
-import { ElpidasComponent } from './database/elpidas/elpidas.component';
+import {OsDetailsComponent} from './os-details/os-details.component';
+import {ElpidaVersionsComponent} from './database/elpida-versions/elpida-versions.component';
 import {ElpidaItemComponent} from '../components/collection/items/elpida-item/elpida-item.component';
-import { ElpidaDetailsComponent } from './elpida-details/elpida-details.component';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { TopCpusByBenchmarkComponent } from './statistics/top-cpus-by-benchmark/top-cpus-by-benchmark.component';
+import {ElpidaVersionDetailsComponent} from './elpida-details/elpida-version-details.component';
+import {NotFoundComponent} from './not-found/not-found.component';
+import {TopCpusByBenchmarkComponent} from './statistics/top-cpus-by-benchmark/top-cpus-by-benchmark.component';
+import {ErrorComponent} from './internal-error/error.component';
+import {GlobalHttpErrorInterceptor} from '../services/global-http-error.interceptor';
 
 @NgModule({
     declarations: [
@@ -117,11 +119,12 @@ import { TopCpusByBenchmarkComponent } from './statistics/top-cpus-by-benchmark/
         OsItemComponent,
         OsesComponent,
         OsDetailsComponent,
-        ElpidasComponent,
+        ElpidaVersionsComponent,
         ElpidaItemComponent,
-        ElpidaDetailsComponent,
+        ElpidaVersionDetailsComponent,
         NotFoundComponent,
-        TopCpusByBenchmarkComponent
+        TopCpusByBenchmarkComponent,
+        ErrorComponent
     ],
     imports: [
         BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
@@ -145,15 +148,20 @@ import { TopCpusByBenchmarkComponent } from './statistics/top-cpus-by-benchmark/
             {path: 'benchmark/:id', component: BenchmarkDetailsComponent},
             {path: 'oses', component: OsesComponent},
             {path: 'os/:id', component: OsDetailsComponent},
-            {path: 'elpidas', component: ElpidasComponent},
-            {path: 'elpida/:id', component: ElpidaDetailsComponent},
+            {path: 'elpida-versions', component: ElpidaVersionsComponent},
+            {path: 'elpida/:id', component: ElpidaVersionDetailsComponent},
             {path: 'top-cpus-by-benchmark/:id', component: TopCpusByBenchmarkComponent},
             {path: 'about', component: AboutComponent},
+            {path: 'internal-error', component: ErrorComponent},
             {path: '**', component: NotFoundComponent}
         ], {useHash: true}),
         ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
     ],
-    providers: [ValueConverter, ResultsService, LinksService, CpuService, BenchmarkStatisticsService],
+    providers: [ValueConverter, ResultsService, LinksService, CpuService, BenchmarkStatisticsService, {
+        provide: HTTP_INTERCEPTORS,
+        useClass: GlobalHttpErrorInterceptor,
+        multi: true
+    }],
     bootstrap: [AppComponent]
 })
 export class AppModule {

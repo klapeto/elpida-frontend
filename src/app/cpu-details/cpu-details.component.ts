@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Cpu} from '../../models/cpu/cpu';
 import {CpuService} from '../../services/cpu.service';
 import {BenchmarkStatisticsService} from '../../services/benchmark-statistics.service';
@@ -22,15 +22,14 @@ export class CpuDetailsComponent implements OnInit {
     constructor(
         private readonly cpuService: CpuService,
         private readonly http: HttpClient,
-        private readonly router: Router) {
-        const tokens = this.router.url.split('/');
-        cpuService.getSingle(tokens[tokens.length - 1]).subscribe(r => {
-            this.filters = [new NumberFilter('Cpu Id', 'cpuId', true, NumberComparisons.Equal, '', r.id)];
-            this.cpu = r;
-        }, error => console.error(error));
+        private route: ActivatedRoute) {
+
     }
 
     ngOnInit(): void {
+        this.cpuService.getSingle(this.route.snapshot.paramMap.get('id')).subscribe(r => {
+            this.cpu = r;
+        }, error => console.error(error));
     }
 
 }

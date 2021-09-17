@@ -52,6 +52,31 @@
               "buildOptimizer": true,
               "serviceWorker": true,
               "ngswConfigPath": "ngsw-config.json"
+            },
+            "staging": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.stage.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json"
             }
           }
         },
@@ -63,6 +88,9 @@
           "configurations": {
             "production": {
               "browserTarget": "Elpida.FrontEnd:build:production"
+            },
+            "staging": {
+              "browserTarget": "Elpida.FrontEnd:build:staging"
             }
           }
         },

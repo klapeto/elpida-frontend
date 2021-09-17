@@ -4,9 +4,7 @@ export class CpuPreview extends FoundationModel {
     constructor(
         id: number,
         public readonly vendor: string,
-        public readonly modelName: string,
-        public readonly topologiesCount: number,
-        public readonly benchmarkStatisticsCount: number
+        public readonly modelName: string
     ) {
         super(id);
     }

@@ -1,6 +1,6 @@
 .statistics-item {
     display: grid;
-    grid-template-columns: auto auto auto 1fr;
+    grid-template-columns: auto auto 1fr;
 }
 
 .statistics-value-container {
@@ -9,4 +9,5 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-left: 1em;
 }
