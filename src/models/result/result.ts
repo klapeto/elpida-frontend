@@ -1,15 +1,23 @@
-import {Elpida} from './elpida';
+import {ElpidaVersion} from '../elpida/elpidaVersion';
 import {System} from './system';
-import {BenchmarkResult} from './benchmark-result';
+import {FoundationModel} from '../foundation-model';
+import {TaskResult} from './task-result';
+import {BenchmarkScoreSpecification} from '../benchmark/benchmark-score-specification';
 
-export class Result {
+export class Result extends FoundationModel {
+
     constructor(
-        public readonly id: string,
+        id: number,
         public timeStamp: Date,
-        public readonly elpida: Elpida,
         public readonly affinity: number[],
+        public readonly elpidaVersion: ElpidaVersion,
         public readonly system: System,
-        public readonly result: BenchmarkResult
+        public readonly score: number,
+        public readonly uuid: string,
+        public readonly name: string,
+        public readonly taskResults: TaskResult[],
+        public readonly scoreSpecification: BenchmarkScoreSpecification
     ) {
+        super(id);
     }
 }

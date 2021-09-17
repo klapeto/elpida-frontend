@@ -1,6 +1,6 @@
 import {NumberComparisons, NumberFilter} from './number-filter';
 import {ComponentFactoryResolver, ViewContainerRef} from '@angular/core';
-import {RangeFilterComponent} from '../../components/range-filter/range-filter.component';
+import {RangeFilterComponent} from '../../components/collection/filters/range-filter/range-filter.component';
 
 export class RangeFilter extends NumberFilter {
 

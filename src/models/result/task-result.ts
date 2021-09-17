@@ -1,17 +1,22 @@
-export enum ResultType {
-    Throughput,
-    Raw
-}
+import {TaskRunStatistics} from './task-run-statistics';
+import {ResultSpecification} from '../task/result-specification';
+import {DataSpecification} from '../task/data-specification';
+import {Task} from '../task/task';
 
-export class TaskResult {
+export class TaskResult extends Task {
     constructor(
-        public readonly name: string,
-        public readonly description: string,
+        id: number,
+        uuid: string,
+        name: string,
+        description: string,
+        result: ResultSpecification,
+        input: DataSpecification,
+        output: DataSpecification,
         public readonly value: number,
         public readonly time: number,
-        public readonly type: ResultType,
-        public readonly suffix: string,
-        public readonly inputSize: number
+        public readonly inputSize: number,
+        public readonly statistics: TaskRunStatistics
     ) {
+        super(id, uuid, name, description, result, input, output);
     }
 }

@@ -1,0 +1,13 @@
+.statistics-item {
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+}
+
+.statistics-value-container {
+    justify-self: right;
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 1em;
+}

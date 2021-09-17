@@ -1,15 +1,15 @@
 import {ValueFilter} from '../value-filter';
 import {FilterDto} from '../../services/filter-dto';
 import {ComponentFactoryResolver, ViewContainerRef} from '@angular/core';
-import {DateFilterComponent} from '../../components/date-filter/date-filter.component';
+import {DateFilterComponent} from '../../components/collection/filters/date-filter/date-filter.component';
 import {Utilities} from '../../services/utilities';
 
 export enum DateComparisons {
-    Greater = 'g',
-    GreaterEqual = 'ge',
-    Equal = 'eq',
-    LessEqual = 'le',
-    Less = 'l'
+    Greater = 'greater',
+    GreaterEqual = 'greater-equal',
+    Equal = 'equal',
+    LessEqual = 'less-equal',
+    Less = 'less'
 }
 
 export class DateFilter extends ValueFilter<Date> {
@@ -32,7 +32,7 @@ export class DateFilter extends ValueFilter<Date> {
 
     protected static readonly backendToUiComparison = Utilities.reverseMap(DateFilter.uiComparisonToBackendComparison);
 
-    protected defaultValue: Date = new Date();
+    protected defaultValue: Date = <Date><unknown>'';
 
     public createComponent(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef): any {
         const component = viewContainerRef.createComponent<DateFilterComponent>(

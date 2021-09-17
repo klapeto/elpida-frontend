@@ -7,6 +7,10 @@ import {Link} from '../models/link';
 })
 export class LinksService {
 
+    public nativeRepoLink = 'https://gitlab.com/dev-hood/elpida/elpida';
+    public backendRepoLink = 'https://gitlab.com/dev-hood/elpida/backend';
+    public frontendRepoLink = 'https://gitlab.com/dev-hood/elpida/frontend';
+
     public readonly binariesLinks = [
         new DownloadInstance('Windows',
             [
@@ -49,7 +53,7 @@ export class LinksService {
             [
                 new Link(
                     'Git repository',
-                    'https://gitlab.com/dev-hood/elpida/elpida'
+                    this.nativeRepoLink
                 )
             ]
         ),
@@ -63,7 +67,7 @@ export class LinksService {
             [
                 new Link(
                     'Git repository',
-                    'https://gitlab.com/dev-hood/elpida/frontend'
+                    this.frontendRepoLink
                 )
             ]
         ),
@@ -77,7 +81,7 @@ export class LinksService {
             [
                 new Link(
                     'Git repository',
-                    'https://gitlab.com/dev-hood/elpida/backend'
+                    this.backendRepoLink
                 )
             ]
         )];

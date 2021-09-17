@@ -17,7 +17,10 @@ export abstract class ValueFilter<T> extends Filter {
     protected abstract defaultValue: T;
 
     public isSet(): boolean {
-        return this.comparison !== '' && this.value !== undefined && this.value !== this.defaultValue && this.value !== null;
+        return this.comparison !== ''
+            && this.value !== undefined
+            && this.value !== this.defaultValue
+            && this.value !== null;
     }
 
     public reset(): void {

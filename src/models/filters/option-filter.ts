@@ -1,6 +1,6 @@
 import {StringComparisons, StringFilter} from './string-filter';
 import {ComponentFactoryResolver, ViewContainerRef} from '@angular/core';
-import {OptionFilterComponent} from '../../components/option-filter/option-filter.component';
+import {OptionFilterComponent} from '../../components/collection/filters/option-filter/option-filter.component';
 import {FilterDto} from '../../services/filter-dto';
 
 

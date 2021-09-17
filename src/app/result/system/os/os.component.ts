@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Os} from 'src/models/result/os';
+import {Os} from 'src/models/os/os';
 
 @Component({
     selector: 'app-os',

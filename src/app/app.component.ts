@@ -1,4 +1,5 @@
-import {Component} from '@angular/core';
+import {Component, ViewContainerRef} from '@angular/core';
+import {ModalService} from '../services/modal.service';
 
 @Component({
     selector: 'app-root',
@@ -6,4 +7,8 @@ import {Component} from '@angular/core';
 })
 export class AppComponent {
     title = 'app';
+
+    constructor(private modalService: ModalService, private viewContainerRef: ViewContainerRef) {
+        this.modalService.initialize(this.viewContainerRef);
+    }
 }
