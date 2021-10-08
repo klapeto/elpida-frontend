@@ -4,7 +4,7 @@
         <h2>Top cpus for {{this.benchmark.name}} </h2>
         <div>({{getComparisonDescription()}})</div>
 
-        <div style="height: 20em">
+        <div style="height: 20em; width: 100%">
             <ngx-charts-bar-horizontal *ngIf="chartData"
                                        [scheme]="colourScheme"
                                        [xAxis]="true"

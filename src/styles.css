@@ -60,13 +60,13 @@ app-root {
 
 @media (min-width: 1200px) {
     .container-sized {
-        max-width: 65%;
+        max-width: 80%;
     }
 }
 
 @media (min-width: 1600px) {
     .container-sized {
-        max-width: 50%;
+        max-width: 60%;
     }
 }
 
