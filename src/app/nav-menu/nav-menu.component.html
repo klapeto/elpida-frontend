@@ -1,30 +1,43 @@
-<header>
-    <nav class="navbar container">
-        <div class="nav-container container-sized">
-            <a class="nav-logo" [routerLink]="['/']">
-                <img src="./assets/Elpida_Logo.svg" alt="Elpida Logo" loading="lazy" class="logo-img">
-            </a>
-            <div class="nav-item-container">
-                <a class="button" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }"
-                   [routerLink]="['/']">
-                    Home
+<header class="header">
+    <div class="container header-container">
+        <a [routerLink]="['/']" class="flex-center">
+            <img alt="Elpida Logo" class="logo" src="./assets/Elpida_Logo.svg"/>
+        </a>
+        <nav>
+            <div (click)="toggle()" class="menu-toggler"></div>
+            <div [ngClass]="{'collapse': !isExpanded}" class="nav-links">
+                <a [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']" [routerLink]="['/']"
+                   class="button">
+                    <app-icon-with-text [imgSrc]="'./assets/home.svg'">
+                        Home
+                    </app-icon-with-text>
                 </a>
-                <a class="button" [routerLinkActive]="['active']" [routerLink]="['/download']">
-                    Download
+                <a [routerLinkActive]="['active']" [routerLink]="['/Download']" class="button">
+                    <app-icon-with-text [imgSrc]="'./assets/download.svg'">
+                        Download
+                    </app-icon-with-text>
                 </a>
-                <a class="button" [routerLinkActive]="['active']" [routerLink]="['/database']">
-                    Database
+                <a [routerLinkActive]="['active']" [routerLink]="['/Database']" class="button">
+                    <app-icon-with-text [imgSrc]="'./assets/categories/database.svg'">
+                        Database
+                    </app-icon-with-text>
                 </a>
-                <a class="button" [routerLinkActive]="['active']" [routerLink]="['/statistics']">
-                    Statistics
+                <a [routerLinkActive]="['active']" [routerLink]="['/Statistics']" class="button">
+                    <app-icon-with-text [imgSrc]="'./assets/categories/statistics.svg'">
+                        Statistics
+                    </app-icon-with-text>
                 </a>
-                <a class="button" [routerLinkActive]="['active']" [routerLink]="['/results']">
-                    Latest Results
+                <a [routerLinkActive]="['active']" [routerLink]="['/Database/Result']" class="button">
+                    <app-icon-with-text [imgSrc]="'./assets/categories/results-o.svg'">
+                        Results
+                    </app-icon-with-text>
                 </a>
-                <a class="button" [routerLinkActive]="['active']" [routerLink]="['/about']">
-                    About
+                <a [routerLinkActive]="['active']" [routerLink]="['/About']" class="button">
+                    <app-icon-with-text [imgSrc]="'./assets/categories/elpida-versions-o.svg'">
+                        About
+                    </app-icon-with-text>
                 </a>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </div>
 </header>

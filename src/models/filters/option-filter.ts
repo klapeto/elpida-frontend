@@ -15,7 +15,7 @@ export class OptionFilter extends StringFilter {
                        public options: string[],
                        private optionsMap?: OptionFilterMap,
                        value?: string) {
-        super(title, internalName, false, StringComparisons.Contains, value);
+        super(title, internalName, StringComparisons.Contains, value);
     }
 
     public createDto(): FilterDto {

@@ -2,7 +2,6 @@ import {ComponentFactoryResolver, Injectable, ViewContainerRef} from '@angular/c
 import {CpuPreview} from '../models/cpu/cpu-preview';
 import {Cpu} from '../models/cpu/cpu';
 import {CollectionService} from './collection-service';
-import {Filter} from '../models/filter';
 import {StringFilter} from '../models/filters/string-filter';
 import {OptionFilter, OptionFilterMap} from '../models/filters/option-filter';
 import {RangeFilter} from '../models/filters/range-filter';
@@ -45,38 +44,30 @@ export class CpuService extends CollectionService<Cpu, CpuPreview> {
         'Intel Xeon': 'Intel(R) Xeon(TM)'
     };
 
-    createAdvancedFilters(): Filter[] {
-        return [
-            new StringFilter('CPU Vendor', 'cpuVendor', true),
-            new StringFilter('CPU Brand', 'cpuModelName', true),
-            new NumberFilter('CPU Frequency', 'cpuFrequency', true)
-        ];
+    createAdvancedQuery(): Query {
+        return new Query([
+            new StringFilter('CPU Vendor', 'cpuVendor'),
+            new StringFilter('CPU Brand', 'cpuModelName'),
+            new NumberFilter('CPU Frequency', 'cpuFrequency')
+        ], null, false);
     }
 
-    createDefaultQuery(): Query {
-        return new Query([], new StringFilter('CPU Brand', 'cpuModelName', true), false);
+    createSearchFilter(): StringFilter | null {
+        return new StringFilter('CPU Brand', 'cpuModelName');
     }
 
-    createOrderByFilters(): Filter[] {
-        return this.createAdvancedFilters();
-    }
-
-    createSearchFilter(): StringFilter {
-        return new StringFilter('CPU Brand', 'cpuModelName', true);
-    }
-
-    createSimpleFilters(): Filter[] {
-        return [
+    createSimpleQuery(): Query {
+        return new Query([
             new OptionFilter('CPU Brand', 'cpuModelName', Object.keys(this.cpuDictionary), this.cpuDictionary),
             new RangeFilter('Min CPU Frequency',
-                'cpuFrequency', false,
+                'cpuFrequency',
                 NumberComparisons.GreaterEqual,
                 'HZ',
                 500_000_000,
                 10_000_000_000,
                 undefined,
                 2_500_000_000)
-        ];
+        ], null, false);
     }
 
     createCollectionItemComponent(item: CpuPreview, componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
@@ -90,6 +81,6 @@ export class CpuService extends CollectionService<Cpu, CpuPreview> {
 
     public getStatisticsPreviews(cpuId: number, page: PageRequest, query: Query): Observable<PagedResult<BenchmarkStatisticsPreview>> {
         return this.http.post<PagedResult<BenchmarkStatisticsPreview>>(this.getUrl(cpuId.toString() + this.statisticsRoute),
-            new QueryRequest(page, query.orderBy.internalName, query.descending, query.filters));
+            new QueryRequest(page, query.orderBy, query.descending, query.filters));
     }
 }

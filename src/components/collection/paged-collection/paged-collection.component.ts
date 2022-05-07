@@ -34,7 +34,9 @@ export class PagedCollectionComponent implements AfterViewInit, OnInit {
     private resultsPerPage = 10;
     private curPage = 0;
 
-    private currentQuery: Query;
+    public currentQuery: Query;
+
+    public advancedShown: boolean;
 
     searchName: string;
 
@@ -58,8 +60,18 @@ export class PagedCollectionComponent implements AfterViewInit, OnInit {
 
     }
 
+    public onSimpleClicked() {
+        this.advancedShown = false;
+        this.currentQuery = this.service.createSimpleQuery();
+    }
+
+    public onAdvancedClicked() {
+        this.advancedShown = true;
+        this.currentQuery = this.service.createAdvancedQuery();
+    }
+
     ngAfterViewInit(): void {
-        this.currentQuery = this.service.createDefaultQuery();
+        this.onSimpleClicked();
 
         this.appendLockedFilters();
         this.replaceOrderByIfNeeded();
@@ -126,6 +138,10 @@ export class PagedCollectionComponent implements AfterViewInit, OnInit {
                 this.service.createCollectionItemComponent(i, this.componentFactoryResolver, this.itemContainer, this.customRoutePrefix);
             });
         }
+    }
+
+    public revertPage() {
+
     }
 
     public onSearch(ev: KeyboardEvent): void {

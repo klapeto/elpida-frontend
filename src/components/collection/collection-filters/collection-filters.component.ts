@@ -1,7 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Query} from '../../../models/query';
-import {Filter} from '../../../models/filter';
-import {CollectionService} from '../../../services/collection-service';
 
 @Component({
     selector: 'app-collection-filters',
@@ -10,15 +8,16 @@ import {CollectionService} from '../../../services/collection-service';
 })
 export class CollectionFiltersComponent {
 
-    @Input() public readonly service: CollectionService<any, any>;
-    @Input() public readonly query: Query;
-    @Input() public readonly orderByFilters: Filter[];
+    @Input() public readonly allowSort: boolean;
+    @Input() public query: Query;
 
     @Output() public readonly submitted = new EventEmitter<Query>();
 
-    public advanced: boolean;
+    public onSubmit(): void {
+        this.submitted.emit(this.query);
+    }
 
-    public onSubmit(query: Query): void {
-        this.submitted.emit(query);
+    public onReset() {
+        this.query.filters.forEach(f => f.reset());
     }
 }

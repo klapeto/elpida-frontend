@@ -1,7 +1,14 @@
-<app-nav-menu></app-nav-menu>
-<div class="container main-container">
-    <div class="container-sized contentContainer">
-        <router-outlet></router-outlet>
+<div class="background-back">
+    <div class="background-front">
+        <div class="header-wrapper">
+            <app-nav-menu></app-nav-menu>
+        </div>
+        <div class="content-wrapper">
+            <div class="content-container">
+                <main class="container content-bg">
+                    <router-outlet></router-outlet>
+                </main>
+            </div>
+        </div>
     </div>
 </div>
-

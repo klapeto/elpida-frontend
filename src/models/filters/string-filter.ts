@@ -15,12 +15,10 @@ export class StringFilter extends ValueFilter<string> {
 
     constructor(title: string,
                 internalName: string,
-                allowComparison: boolean,
                 comparison: StringComparisons = StringComparisons.Contains,
                 value?: string) {
         super(title,
             internalName,
-            allowComparison,
             Object.keys(StringFilter.uiComparisonToBackendComparison),
             StringFilter.backendToUiComparison[comparison],
             value

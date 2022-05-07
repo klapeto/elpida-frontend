@@ -16,13 +16,11 @@ export class NumberFilter extends ValueFilter<number> {
 
     public constructor(title: string,
                        internalName: string,
-                       allowComparison: boolean,
                        comparison: NumberComparisons = NumberComparisons.Equal,
                        public suffix?: string,
                        value?: number) {
         super(title,
             internalName,
-            allowComparison,
             Object.keys(NumberFilter.uiComparisonToBackendComparison),
             NumberFilter.backendToUiComparison[comparison],
             value);

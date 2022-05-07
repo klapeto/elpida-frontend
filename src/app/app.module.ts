@@ -29,8 +29,6 @@ import {CollectionFiltersComponent} from '../components/collection/collection-fi
 import {AboutComponent} from './about/about.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
-import {SimpleFiltersComponent} from '../components/collection/collection-filters/simple-filters/simple-filters.component';
-import {AdvancedFiltersComponent} from '../components/collection/collection-filters/advanced-filters/advanced-filters.component';
 import {OptionFilterComponent} from '../components/collection/filters/option-filter/option-filter.component';
 import {RangeFilterComponent} from '../components/collection/filters/range-filter/range-filter.component';
 import {FilterContainerComponent} from '../components/collection/collection-filters/filter-container/filter-container.component';
@@ -68,6 +66,7 @@ import {NotFoundComponent} from './not-found/not-found.component';
 import {TopCpusByBenchmarkComponent} from './statistics/top-cpus-by-benchmark/top-cpus-by-benchmark.component';
 import {ErrorComponent} from './internal-error/error.component';
 import {GlobalHttpErrorInterceptor} from '../services/global-http-error.interceptor';
+import {IconWithTextComponent} from '../components/icon-with-text/icon-with-text.component';
 
 @NgModule({
     declarations: [
@@ -89,8 +88,6 @@ import {GlobalHttpErrorInterceptor} from '../services/global-http-error.intercep
         OsComponent,
         CollectionFiltersComponent,
         AboutComponent,
-        SimpleFiltersComponent,
-        AdvancedFiltersComponent,
         OptionFilterComponent,
         NumberFilterComponent,
         StringFilterComponent,
@@ -124,7 +121,8 @@ import {GlobalHttpErrorInterceptor} from '../services/global-http-error.intercep
         ElpidaVersionDetailsComponent,
         NotFoundComponent,
         TopCpusByBenchmarkComponent,
-        ErrorComponent
+        ErrorComponent,
+        IconWithTextComponent
     ],
     imports: [
         BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
@@ -134,25 +132,25 @@ import {GlobalHttpErrorInterceptor} from '../services/global-http-error.intercep
         BrowserAnimationsModule,
         RouterModule.forRoot([
             {path: '', component: HomeComponent, pathMatch: 'full'},
-            {path: 'download', component: DownloadComponent},
-            {path: 'statistics', component: StatisticsComponent},
-            {path: 'statistics/:id', component: StatisticDetailsComponent},
-            {path: 'database', component: DatabaseComponent},
-            {path: 'results', component: LatestResultsComponent},
-            {path: 'result/:id', component: ResultComponent},
-            {path: 'cpus', component: CpusComponent},
-            {path: 'cpu/:id', component: CpuDetailsComponent},
-            {path: 'topologies', component: TopologiesComponent},
-            {path: 'topology/:id', component: TopologyDetailsComponent},
-            {path: 'benchmarks', component: BenchmarksComponent},
-            {path: 'benchmark/:id', component: BenchmarkDetailsComponent},
-            {path: 'oses', component: OsesComponent},
-            {path: 'os/:id', component: OsDetailsComponent},
-            {path: 'elpida-versions', component: ElpidaVersionsComponent},
-            {path: 'elpida/:id', component: ElpidaVersionDetailsComponent},
-            {path: 'top-cpus-by-benchmark/:id', component: TopCpusByBenchmarkComponent},
-            {path: 'about', component: AboutComponent},
-            {path: 'internal-error', component: ErrorComponent},
+            {path: 'Download', component: DownloadComponent},
+            {path: 'Statistics', component: StatisticsComponent},
+            {path: 'Statistics/:id', component: StatisticDetailsComponent},
+            {path: 'Database', component: DatabaseComponent},
+            {path: 'Database/Results', component: LatestResultsComponent, },
+            {path: 'Database/Result/:id', component: ResultComponent},
+            {path: 'Database/Cpu', component: CpusComponent},
+            {path: 'Database/Cpu/:id', component: CpuDetailsComponent},
+            {path: 'Database/Topology', component: TopologiesComponent},
+            {path: 'Database/Topology/:id', component: TopologyDetailsComponent},
+            {path: 'Database/Benchmark', component: BenchmarksComponent},
+            {path: 'Database/Benchmark/:id', component: BenchmarkDetailsComponent},
+            {path: 'Database/Operating-System', component: OsesComponent},
+            {path: 'Database/Operating-System/:id', component: OsDetailsComponent},
+            {path: 'Database/Elpida-Version', component: ElpidaVersionsComponent},
+            {path: 'Database/Elpida-Version/:id', component: ElpidaVersionDetailsComponent},
+            {path: 'Top-Cpus-By-Benchmark/:id', component: TopCpusByBenchmarkComponent},
+            {path: 'About', component: AboutComponent},
+            {path: 'Internal-Error', component: ErrorComponent},
             {path: '**', component: NotFoundComponent}
         ], {useHash: true}),
         ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})

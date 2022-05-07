@@ -16,10 +16,9 @@ export class DateFilter extends ValueFilter<Date> {
 
     constructor(title: string,
                 internalName: string,
-                allowComparison: boolean,
                 comparison: DateComparisons = DateComparisons.Equal,
                 value?: Date) {
-        super(title, internalName, allowComparison, [], DateFilter.backendToUiComparison[comparison], value);
+        super(title, internalName, [], DateFilter.backendToUiComparison[comparison], value);
     }
 
     protected static readonly uiComparisonToBackendComparison: object = {

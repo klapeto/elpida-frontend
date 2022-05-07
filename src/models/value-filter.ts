@@ -3,14 +3,15 @@ import {Filter} from './filter';
 export abstract class ValueFilter<T> extends Filter {
 
     private readonly defaultComparison: string;
+    private readonly originalValue?: T;
 
     protected constructor(title: string,
                           internalName: string,
-                          public allowComparison: boolean,
                           public comparisonModes: string[],
                           public comparison?: string,
                           public value?: T) {
         super(title, internalName);
+        this.originalValue = value;
         this.defaultComparison = comparison;
     }
 
@@ -24,7 +25,7 @@ export abstract class ValueFilter<T> extends Filter {
     }
 
     public reset(): void {
-        this.value = undefined;
+        this.value = this.originalValue;
         this.comparison = this.defaultComparison;
     }
 }

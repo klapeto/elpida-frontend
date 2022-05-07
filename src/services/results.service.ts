@@ -28,42 +28,25 @@ export class ResultsService extends CollectionService<Result, ResultPreview> {
         'Linux'
     ];
 
-    public createSimpleFilters(): Filter[] {
-        return this.cpuService.createSimpleFilters()
-            .concat([new OptionFilter('Os', 'osCategory', this.oses)]);
+    public createSimpleQuery(): Query {
+        return new Query(this.cpuService.createSimpleQuery()
+            .filters
+            .concat([new OptionFilter('Os', 'osCategory', this.oses)]));
     }
 
-    public createAdvancedFilters(): Filter[] {
-        return this.cpuService.createAdvancedFilters()
-            .concat([
-                new StringFilter('Benchmark Name', 'benchmarkName', true),
-                new NumberFilter('Main Memory Size', 'memorySize', true),
-                new StringFilter('Os Category', 'osCategory', true),
-                new StringFilter('Os Name', 'osName', true),
-                new StringFilter('Os Version', 'osVersion', true),
-                new DateFilter('From', 'timeStamp', false, DateComparisons.GreaterEqual),
-                new DateFilter('To', 'timeStamp', false, DateComparisons.LessEqual)
-            ]);
-    }
-
-    public createOrderByFilters(): Filter[] {
-        return this.cpuService.createOrderByFilters()
-            .concat([
-                new StringFilter('Benchmark Name', 'benchmarkName', true),
-                new NumberFilter('Main Memory Size', 'memorySize', true),
-                new NumberFilter('Os Category', 'osCategory', true),
-                new NumberFilter('Os Name', 'osName', true),
-                new NumberFilter('Os Version', 'osVersion', true),
-                new DateFilter('Timestamp', 'timestamp', false),
-            ]);
+    public createAdvancedQuery(): Query {
+        return new Query([
+            new StringFilter('Benchmark Name', 'benchmarkName'),
+            new NumberFilter('Main Memory Size', 'memorySize'),
+            new StringFilter('Os Category', 'osCategory'),
+            new StringFilter('Os Name', 'osName'),
+            new StringFilter('Os Version', 'osVersion'),
+            new DateFilter('Timestamp', 'timeStamp'),
+        ]);
     }
 
     public createSearchFilter(): StringFilter {
-        return new StringFilter('Benchmark Name', 'benchmarkName', true);
-    }
-
-   public createDefaultQuery(): Query {
-        return new Query([], new DateFilter('Timestamp', 'timestamp', false), true);
+        return new StringFilter('Benchmark Name', 'benchmarkName');
     }
 
     public createCollectionItemComponent(item: ResultPreview, componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {

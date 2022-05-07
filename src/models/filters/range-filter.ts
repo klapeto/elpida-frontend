@@ -6,14 +6,13 @@ export class RangeFilter extends NumberFilter {
 
     constructor(title: string,
                 internalName: string,
-                allowComparison: boolean,
                 comparison: NumberComparisons = NumberComparisons.Equal,
                 suffix?: string,
                 public min?: number,
                 public max?: number,
                 public step?: number,
                 value?: number) {
-        super(title, internalName, allowComparison, comparison, suffix, value);
+        super(title, internalName, comparison, suffix, value);
     }
 
     public createComponent(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef): any {
