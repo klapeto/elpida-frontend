@@ -41,7 +41,6 @@ import {ResultDetailsComponent} from './result/result-details/result-details.com
 import {StatisticsComponent} from './statistics/statistics.component';
 import {PagedCollectionComponent} from '../components/collection/paged-collection/paged-collection.component';
 import {CpuService} from '../services/cpu.service';
-import {ResultItemComponent} from '../components/collection/items/result-item/result-item.component';
 import {CpuItemComponent} from '../components/collection/items/cpu-item/cpu-item.component';
 import {CpuDetailsComponent} from './cpu-details/cpu-details.component';
 import {BenchmarkStatisticItemComponent} from '../components/collection/items/benchmark-statistic-item/benchmark-statistic-item.component';
@@ -99,7 +98,6 @@ import {IconWithTextComponent} from '../components/icon-with-text/icon-with-text
         ResultDetailsComponent,
         StatisticsComponent,
         PagedCollectionComponent,
-        ResultItemComponent,
         CpuItemComponent,
         CpuDetailsComponent,
         BenchmarkStatisticItemComponent,

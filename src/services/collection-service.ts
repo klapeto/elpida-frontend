@@ -5,7 +5,6 @@ import {Query} from '../models/query';
 import {Observable} from 'rxjs';
 import {PagedResult} from '../models/paged-result';
 import {QueryRequest} from '../models/query-request';
-import {ComponentFactoryResolver, ViewContainerRef} from '@angular/core';
 import {environment} from '../environments/environment';
 import {StringFilter} from '../models/filters/string-filter';
 
@@ -37,9 +36,4 @@ export abstract class CollectionService<TModel, TPreview> implements ICollection
     abstract createSimpleQuery(): Query;
     abstract createAdvancedQuery(): Query;
     abstract createSearchFilter(): StringFilter | null;
-
-    abstract createCollectionItemComponent(item: TPreview,
-                                           componentFactoryResolver: ComponentFactoryResolver,
-                                           viewContainerRef: ViewContainerRef,
-                                           customRoutePrefix: string): any;
 }

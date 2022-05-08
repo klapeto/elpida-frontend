@@ -1,11 +1,11 @@
 import {
     AfterViewInit,
     Component,
-    ComponentFactoryResolver,
+    ComponentFactoryResolver, ContentChild,
     EventEmitter,
     Input,
     OnInit,
-    Output,
+    Output, TemplateRef,
     ViewChild,
     ViewContainerRef
 } from '@angular/core';
@@ -15,10 +15,6 @@ import {PageRequest} from '../../../models/page-request';
 import {ValueConverter} from '../../../services/value-converter';
 import {CollectionService} from '../../../services/collection-service';
 import {Filter} from '../../../models/filter';
-import {StringFilter} from '../../../models/filters/string-filter';
-import {Router} from '@angular/router';
-import {HttpErrorResponse} from '@angular/common/http';
-import {ErrorHandlerService} from '../../../services/error-handler.service';
 
 @Component({
     selector: 'app-paged-collection',
@@ -55,6 +51,8 @@ export class PagedCollectionComponent implements AfterViewInit, OnInit {
     @Output() pageChanged: EventEmitter<PagedResult<any>> = new EventEmitter<PagedResult<any>>();
 
     @ViewChild('itemContainer', {read: ViewContainerRef}) itemContainer: ViewContainerRef;
+
+    @Input() itemTemplate: TemplateRef<any>;
 
     constructor(public valueConverter: ValueConverter, private componentFactoryResolver: ComponentFactoryResolver) {
 
@@ -132,12 +130,12 @@ export class PagedCollectionComponent implements AfterViewInit, OnInit {
     }
 
     private fillItems() {
-        this.itemContainer.clear();
-        if (this.pagedResult !== undefined) {
-            this.pagedResult.items.forEach(i => {
-                this.service.createCollectionItemComponent(i, this.componentFactoryResolver, this.itemContainer, this.customRoutePrefix);
-            });
-        }
+        // this.itemContainer.clear();
+        // if (this.pagedResult !== undefined) {
+        //     this.pagedResult.items.forEach(i => {
+        //         this.service.createCollectionItemComponent(i, this.componentFactoryResolver, this.itemContainer, this.customRoutePrefix);
+        //     });
+        // }
     }
 
     public revertPage() {
@@ -164,7 +162,9 @@ export class PagedCollectionComponent implements AfterViewInit, OnInit {
             this.getPageResults(page);
         }
 
-        this.itemContainer.element.nativeElement.scrollIntoView({behavior: 'smooth', block: 'end', inline: 'nearest'});
+        if (this.itemContainer !== undefined) {
+            this.itemContainer.element.nativeElement.scrollIntoView({behavior: 'smooth', block: 'end', inline: 'nearest'});
+        }
     }
 
     ngOnInit(): void {

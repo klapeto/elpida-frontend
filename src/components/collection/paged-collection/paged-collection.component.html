@@ -39,14 +39,19 @@
         </app-collection-filters>
     </app-group-box>
 
-    <app-loading-indicator *ngIf="!pagedResult">
-    </app-loading-indicator>
+    <div *ngIf="pagedResult; else elseBlock">
+        <p>Records found: {{valueConverter.convertToSI(pagedResult.totalCount, 0)}}, Pages: {{maxResultPages}}</p>
+        <ul #itemContainer>
+            <li *ngFor="let item of pagedResult.items" class="collection-item">
+                <ng-container *ngTemplateOutlet="itemTemplate; context: {$implicit: 'no-data', itemModel: item}"></ng-container>
+            </li>
+        </ul>
+    </div>
 
-    <p *ngIf="pagedResult">Records found: {{valueConverter.convertToSI(pagedResult.totalCount, 0)}},
-        Pages: {{maxResultPages}}</p>
-    <ul>
-        <div #itemContainer></div>
-    </ul>
+    <ng-template #elseBlock>
+        <app-loading-indicator></app-loading-indicator>
+    </ng-template>
+
     <app-paging (pageChanged)="onPageChange($event)"
                 *ngIf="pagedResult"
                 [pagesCount]="maxResultPages">

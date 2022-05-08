@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {ResultsService} from '../../services/results.service';
+import {ResultPreview} from '../../models/result/result-preview';
 
 @Component({
     selector: 'app-latest-results',
@@ -11,5 +12,9 @@ export class LatestResultsComponent {
         public readonly resultService: ResultsService
     ) {
 
+    }
+
+    public toItem(context: any): ResultPreview {
+        return context as ResultPreview;
     }
 }
