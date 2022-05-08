@@ -2,66 +2,63 @@ import {ComponentFactoryResolver, Injectable, ViewContainerRef} from '@angular/c
 import {CpuPreview} from '../models/cpu/cpu-preview';
 import {Cpu} from '../models/cpu/cpu';
 import {CollectionService} from './collection-service';
-import {StringFilter} from '../models/filters/string-filter';
-import {OptionFilter, OptionFilterMap} from '../models/filters/option-filter';
-import {RangeFilter} from '../models/filters/range-filter';
-import {NumberComparisons, NumberFilter} from '../models/filters/number-filter';
+import {StringFilterModel} from '../models/filters/string-filter.model';
+import {OptionFilterModel, OptionModel} from '../models/filters/option-filter.model';
+import {RangeFilterModel} from '../models/filters/range-filter.model';
+import {NumberFilterModel} from '../models/filters/number-filter.model';
 import {HttpClient} from '@angular/common/http';
 import {CpuItemComponent} from '../components/collection/items/cpu-item/cpu-item.component';
-import {PageRequest} from '../models/page-request';
-import {Query} from '../models/query';
-import {Observable} from 'rxjs';
-import {PagedResult} from '../models/paged-result';
-import {QueryRequest} from '../models/query-request';
-import {BenchmarkStatisticsPreview} from '../models/benchmark-statistics/benchmark-statistics-preview';
+import {QueryModel} from '../models/query.model';
+import {DtoService} from './dto.service';
+import {ComparisonModel} from '../models/comparison.model';
 
 @Injectable({
     providedIn: 'root'
 })
 export class CpuService extends CollectionService<Cpu, CpuPreview> {
 
-    public constructor(http: HttpClient) {
-        super(http);
+    public constructor(http: HttpClient, dtoService: DtoService) {
+        super(http, dtoService);
     }
 
     protected readonly baseRoute: string = 'cpu';
 
     protected readonly statisticsRoute = 'TaskStatistics/Search';
 
-    private cpuDictionary: OptionFilterMap = {
-        'AMD Ryzen 3': 'AMD Ryzen 3',
-        'AMD Ryzen 5': 'AMD Ryzen 5',
-        'AMD Ryzen 7': 'AMD Ryzen 7',
-        'AMD Ryzen 9': 'AMD Ryzen 9',
-        'AMD Ryzen Threadripper': 'AMD Ryzen Threadripper',
-        'AMD Epyc': 'AMD Epyc',
-        'Intel Celeron': 'Intel(R) Celeron',
-        'Intel Pentium': 'Intel(R) Pentium',
-        'Intel Core i3': 'Intel(R) Core(TM) i3',
-        'Intel Core i5': 'Intel(R) Core(TM) i5',
-        'Intel Core i7': 'Intel(R) Core(TM) i7',
-        'Intel Core i9': 'Intel(R) Core(TM) i9',
-        'Intel Xeon': 'Intel(R) Xeon(TM)'
-    };
+    private readonly cpuOptions: OptionModel[] = [
+        new OptionModel('AMD Ryzen 3', 'AMD Ryzen 3'),
+        new OptionModel('AMD Ryzen 5', 'AMD Ryzen 5'),
+        new OptionModel('AMD Ryzen 7', 'AMD Ryzen 7'),
+        new OptionModel('AMD Ryzen 9', 'AMD Ryzen 9'),
+        new OptionModel('AMD Ryzen Threadripper', 'AMD Ryzen Threadripper'),
+        new OptionModel('AMD Epyc', 'AMD Epyc'),
+        new OptionModel('Intel Celeron', 'Intel(R) Celeron'),
+        new OptionModel('Intel Pentium', 'Intel(R) Pentium'),
+        new OptionModel('Intel Core i3', 'Intel(R) Core(TM) i3'),
+        new OptionModel('Intel Core i5', 'Intel(R) Core(TM) i5'),
+        new OptionModel('Intel Core i7', 'Intel(R) Core(TM) i7'),
+        new OptionModel('Intel Core i9', 'Intel(R) Core(TM) i9'),
+        new OptionModel('Intel Xeon', 'Intel(R) Xeon(TM)')
+    ];
 
-    createAdvancedQuery(): Query {
-        return new Query([
-            new StringFilter('CPU Vendor', 'cpuVendor'),
-            new StringFilter('CPU Brand', 'cpuModelName'),
-            new NumberFilter('CPU Frequency', 'cpuFrequency')
+    createAdvancedQuery(): QueryModel {
+        return new QueryModel([
+            new StringFilterModel('CPU Vendor', 'cpuVendor'),
+            new StringFilterModel('CPU Brand', 'cpuModelName'),
+            new NumberFilterModel('CPU Frequency', 'cpuFrequency')
         ], null, false);
     }
 
-    createSearchFilter(): StringFilter | null {
-        return new StringFilter('CPU Brand', 'cpuModelName');
+    createSearchFilter(): StringFilterModel | null {
+        return new StringFilterModel('CPU Brand', 'cpuModelName');
     }
 
-    createSimpleQuery(): Query {
-        return new Query([
-            new OptionFilter('CPU Brand', 'cpuModelName', Object.keys(this.cpuDictionary), this.cpuDictionary),
-            new RangeFilter('Min CPU Frequency',
+    createSimpleQuery(): QueryModel {
+        return new QueryModel([
+            new OptionFilterModel('CPU Brand', 'cpuModelName', this.cpuOptions),
+            new RangeFilterModel('Min CPU Frequency',
                 'cpuFrequency',
-                NumberComparisons.GreaterEqual,
+                ComparisonModel.greaterEqual(),
                 'HZ',
                 500_000_000,
                 10_000_000_000,
@@ -79,8 +76,8 @@ export class CpuService extends CollectionService<Cpu, CpuPreview> {
         return component;
     }
 
-    public getStatisticsPreviews(cpuId: number, page: PageRequest, query: Query): Observable<PagedResult<BenchmarkStatisticsPreview>> {
-        return this.http.post<PagedResult<BenchmarkStatisticsPreview>>(this.getUrl(cpuId.toString() + this.statisticsRoute),
-            new QueryRequest(page, query.orderBy, query.descending, query.filters));
-    }
+    // public getStatisticsPreviews(cpuId: number, page: PageRequest, query: Query): Observable<PagedResult<BenchmarkStatisticsPreview>> {
+    //     return this.http.post<PagedResult<BenchmarkStatisticsPreview>>(this.getUrl(cpuId.toString() + this.statisticsRoute),
+    //         new QueryRequest(page, query.orderBy, query.descending, query.filters));
+    // }
 }

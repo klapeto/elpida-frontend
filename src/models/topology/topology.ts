@@ -1,5 +1,5 @@
 import {CpuNode} from './cpuNode';
-import {FoundationModel} from '../foundation-model';
+import {FoundationModel} from '../foundation.model';
 
 export class Topology extends FoundationModel {
     constructor(

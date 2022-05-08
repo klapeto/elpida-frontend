@@ -66,6 +66,7 @@ import {TopCpusByBenchmarkComponent} from './statistics/top-cpus-by-benchmark/to
 import {ErrorComponent} from './internal-error/error.component';
 import {GlobalHttpErrorInterceptor} from '../services/global-http-error.interceptor';
 import {IconWithTextComponent} from '../components/icon-with-text/icon-with-text.component';
+import {DtoService} from '../services/dto.service';
 
 @NgModule({
     declarations: [
@@ -153,7 +154,7 @@ import {IconWithTextComponent} from '../components/icon-with-text/icon-with-text
         ], {useHash: true}),
         ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
     ],
-    providers: [ValueConverter, ResultsService, LinksService, CpuService, BenchmarkStatisticsService, {
+    providers: [ValueConverter, ResultsService, LinksService, CpuService, BenchmarkStatisticsService, DtoService, {
         provide: HTTP_INTERCEPTORS,
         useClass: GlobalHttpErrorInterceptor,
         multi: true

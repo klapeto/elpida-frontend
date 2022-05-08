@@ -1,5 +1,5 @@
 import {TaskResult} from './task-result';
-import {FoundationModel} from '../foundation-model';
+import {FoundationModel} from '../foundation.model';
 
 export class BenchmarkResult extends FoundationModel {
     constructor(

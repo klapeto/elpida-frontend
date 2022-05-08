@@ -1,6 +1,6 @@
 import {ElpidaVersion} from '../elpida/elpidaVersion';
 import {System} from './system';
-import {FoundationModel} from '../foundation-model';
+import {FoundationModel} from '../foundation.model';
 import {TaskResult} from './task-result';
 import {BenchmarkScoreSpecification} from '../benchmark/benchmark-score-specification';
 

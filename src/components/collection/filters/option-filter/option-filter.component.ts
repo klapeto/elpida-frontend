@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {ValueFilter} from '../../../../models/value-filter';
+import {OptionFilterModel} from '../../../../models/filters/option-filter.model';
 
 @Component({
   selector: 'app-option-simple-filter',
@@ -8,8 +8,8 @@ import {ValueFilter} from '../../../../models/value-filter';
 })
 export class OptionFilterComponent {
 
-  @Input() filter: ValueFilter<string>;
-  @Input() options: string[];
+  @Input() filter: OptionFilterModel;
+  @Input() allowComparison: boolean;
 
   constructor() {
   }

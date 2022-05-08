@@ -1,6 +1,6 @@
 import {CpuCache} from './cpu-cache';
 import {ICpuAdditionalInfo} from './icpu-additional-info';
-import {FoundationModel} from '../foundation-model';
+import {FoundationModel} from '../foundation.model';
 
 export class Cpu extends FoundationModel {
     constructor(

@@ -1,10 +1,10 @@
-import {PageRequest} from './page-request';
+import {PageDto} from './page.dto';
 
-export class PagedResult<T> {
+export class PagedResultDto<T> {
     constructor(
         public readonly count: number,
         public readonly items: T[],
         public readonly totalCount: number,
-        public readonly nextPage: PageRequest) {
+        public readonly nextPage: PageDto) {
     }
 }

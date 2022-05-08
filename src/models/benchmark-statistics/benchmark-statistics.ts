@@ -1,6 +1,6 @@
 import {Cpu} from '../cpu/cpu';
 import {Topology} from '../topology/topology';
-import {FoundationModel} from '../foundation-model';
+import {FoundationModel} from '../foundation.model';
 import {Benchmark} from '../benchmark/benchmark';
 import {FrequencyClass} from './frequency-class';
 

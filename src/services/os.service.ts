@@ -2,33 +2,34 @@ import {ComponentFactoryResolver, Injectable, ViewContainerRef} from '@angular/c
 import {CollectionService} from './collection-service';
 import {HttpClient} from '@angular/common/http';
 import {Os} from '../models/os/os';
-import {Filter} from '../models/filter';
-import {StringFilter} from '../models/filters/string-filter';
-import {OptionFilter} from '../models/filters/option-filter';
-import {BenchmarkItemComponent} from '../components/collection/items/benchmark-item/benchmark-item.component';
+import {FilterModel} from '../models/filter.model';
+import {StringFilterModel} from '../models/filters/string-filter.model';
+import {OptionFilterModel, OptionModel} from '../models/filters/option-filter.model';
 import {OsItemComponent} from '../components/collection/items/os-item/os-item.component';
+import {DtoService} from './dto.service';
+import {QueryModel} from '../models/query.model';
 
 @Injectable({
     providedIn: 'root'
 })
 export class OsService extends CollectionService<Os, Os> {
 
-    public constructor(http: HttpClient) {
-        super(http);
+    public constructor(http: HttpClient, dtoService: DtoService) {
+        super(http, dtoService);
     }
 
     protected readonly baseRoute: string = 'Os';
 
-    private oses = [
-        'Windows',
-        'Linux'
+    private oses: OptionModel[] = [
+        new OptionModel('Windows'),
+        new OptionModel('Linux'),
     ];
 
-    createAdvancedFilters(): Filter[] {
+    createAdvancedFilters(): FilterModel[] {
         return [
-            new StringFilter('Os category', 'osCategory', true),
-            new StringFilter('Os name', 'osName', true),
-            new StringFilter('Os version', 'osVersion', true)
+            new StringFilterModel('Os category', 'osCategory'),
+            new StringFilterModel('Os name', 'osName'),
+            new StringFilterModel('Os version', 'osVersion')
         ];
     }
 
@@ -41,17 +42,25 @@ export class OsService extends CollectionService<Os, Os> {
         return component;
     }
 
-    createOrderByFilters(): Filter[] {
+    createOrderByFilters(): FilterModel[] {
         return this.createAdvancedFilters();
     }
 
-    createSearchFilter(): StringFilter {
-        return new StringFilter('Os name', 'osName', true);
+    createSearchFilter(): StringFilterModel {
+        return new StringFilterModel('Os name', 'osName');
     }
 
-    createSimpleFilters(): Filter[] {
+    createSimpleFilters(): FilterModel[] {
         return [
-            new OptionFilter('Os', 'osCategory', this.oses)
+            new OptionFilterModel('Os', 'osCategory', this.oses)
         ];
+    }
+
+    createAdvancedQuery(): QueryModel {
+        return undefined;
+    }
+
+    createSimpleQuery(): QueryModel {
+        return undefined;
     }
 }

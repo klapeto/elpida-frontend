@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Query} from '../../../models/query';
+import {QueryModel} from '../../../models/query.model';
 
 @Component({
     selector: 'app-collection-filters',
@@ -9,9 +9,9 @@ import {Query} from '../../../models/query';
 export class CollectionFiltersComponent {
 
     @Input() public readonly allowSort: boolean;
-    @Input() public query: Query;
+    @Input() public query: QueryModel;
 
-    @Output() public readonly submitted = new EventEmitter<Query>();
+    @Output() public readonly submitted = new EventEmitter<QueryModel>();
 
     public onSubmit(): void {
         this.submitted.emit(this.query);

@@ -3,24 +3,26 @@ import {CollectionService} from './collection-service';
 import {HttpClient} from '@angular/common/http';
 import {Benchmark} from '../models/benchmark/benchmark';
 import {BenchmarkPreview} from '../models/benchmark/benchmark-preview';
-import {Filter} from '../models/filter';
-import {StringFilter} from '../models/filters/string-filter';
+import {FilterModel} from '../models/filter.model';
+import {StringFilterModel} from '../models/filters/string-filter.model';
 import {BenchmarkItemComponent} from '../components/collection/items/benchmark-item/benchmark-item.component';
+import {DtoService} from './dto.service';
+import {QueryModel} from '../models/query.model';
 
 @Injectable({
     providedIn: 'root'
 })
 export class BenchmarkService extends CollectionService<Benchmark, BenchmarkPreview> {
 
-    public constructor(http: HttpClient) {
-        super(http);
+    public constructor(http: HttpClient, dtoService: DtoService) {
+        super(http, dtoService);
     }
 
     protected readonly baseRoute: string = 'benchmark';
 
-    createAdvancedFilters(): Filter[] {
+    createAdvancedFilters(): FilterModel[] {
         return [
-            new StringFilter('Benchmark name', 'benchmarkName', true)
+            new StringFilterModel('Benchmark name', 'benchmarkName')
         ];
     }
 
@@ -39,15 +41,23 @@ export class BenchmarkService extends CollectionService<Benchmark, BenchmarkPrev
         return component;
     }
 
-    createOrderByFilters(): Filter[] {
+    createOrderByFilters(): FilterModel[] {
         return this.createAdvancedFilters();
     }
 
-    createSearchFilter(): StringFilter {
-        return new StringFilter('Benchmark name', 'benchmarkName', true);
+    createSearchFilter(): StringFilterModel {
+        return new StringFilterModel('Benchmark name', 'benchmarkName');
     }
 
-    createSimpleFilters(): Filter[] {
+    createSimpleFilters(): FilterModel[] {
         return this.createAdvancedFilters();
+    }
+
+    createAdvancedQuery(): QueryModel {
+        return undefined;
+    }
+
+    createSimpleQuery(): QueryModel {
+        return undefined;
     }
 }

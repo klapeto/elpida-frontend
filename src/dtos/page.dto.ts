@@ -1,6 +1,6 @@
 import {HttpParams} from '@angular/common/http';
 
-export class PageRequest {
+export class PageDto {
     constructor(
         public readonly next: number,
         public readonly count: number

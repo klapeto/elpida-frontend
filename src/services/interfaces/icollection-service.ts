@@ -1,10 +1,10 @@
 import {Observable} from 'rxjs';
-import {PageRequest} from '../../models/page-request';
-import {Query} from '../../models/query';
-import {PagedResult} from '../../models/paged-result';
+import {PageDto} from '../../dtos/page.dto';
+import {QueryModel} from '../../models/query.model';
+import {PagedResultDto} from '../../dtos/paged-result.dto';
 import {IQueries} from './iqueries';
 
 export interface ICollectionService<TModel, TPreviewModel> extends IQueries {
     getSingle(id: string): Observable<TModel>;
-    getPreviews(page: PageRequest, query: Query): Observable<PagedResult<TPreviewModel>>;
+    getPreviews(page: PageDto, query: QueryModel): Observable<PagedResultDto<TPreviewModel>>;
 }

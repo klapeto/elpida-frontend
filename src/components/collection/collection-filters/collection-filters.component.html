@@ -1,4 +1,4 @@
-<form class="query-form" (ngSubmit)="onSubmit()">
+<form class="query-form">
     <span *ngFor="let filter of query.filters" class="query-filter">
         <app-filter-container [filter]="filter"></app-filter-container>
     </span>
@@ -8,7 +8,9 @@
             <span>Sort by</span>
             <select [(ngModel)]="query.orderBy" name="order-by">
                 <option value=""></option>
-                <option *ngFor="let filter of query.filters.slice()" [value]="filter.internalName"> {{filter.title}}</option>
+                <option *ngFor="let filter of query.filters.slice()" [value]="filter.internalName">
+                    {{filter.title}}
+                </option>
             </select>
         </label>
 
@@ -19,7 +21,7 @@
     </div>
 
     <div class="query-controls">
-        <button type="submit">Submit</button>
+        <button type="submit" (click)="onSubmit()">Submit</button>
         <button (click)="onReset()">Reset</button>
     </div>
 </form>

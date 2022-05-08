@@ -1,4 +1,4 @@
-import {FoundationModel} from '../foundation-model';
+import {FoundationModel} from '../foundation.model';
 
 export class ResultPreview extends FoundationModel {
     constructor(

@@ -1,6 +1,6 @@
 import {ResultSpecification} from './result-specification';
 import {DataSpecification} from './data-specification';
-import {FoundationModel} from '../foundation-model';
+import {FoundationModel} from '../foundation.model';
 
 export class Task extends FoundationModel {
     constructor(

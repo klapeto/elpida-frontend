@@ -1,7 +1,7 @@
-import {Filter} from './filter';
+import {FilterModel} from './filter.model';
 
-export class Query {
-    constructor(public filters: Filter[],
+export class QueryModel {
+    constructor(public filters: FilterModel[],
                 public orderBy: string | null = null,
                 public descending: boolean = false) {
     }

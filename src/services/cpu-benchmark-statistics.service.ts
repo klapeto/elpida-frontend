@@ -1,28 +1,29 @@
 import {BenchmarkStatisticsService} from './benchmark-statistics.service';
-import {Filter} from '../models/filter';
+import {FilterModel} from '../models/filter.model';
 import {HttpClient} from '@angular/common/http';
 import {CpuService} from './cpu.service';
-import {StringFilter} from '../models/filters/string-filter';
+import {StringFilterModel} from '../models/filters/string-filter.model';
+import {DtoService} from './dto.service';
 
 export class CpuBenchmarkStatisticsService extends BenchmarkStatisticsService {
 
-    constructor(http: HttpClient, cpuService: CpuService) {
-        super(http, cpuService);
+    constructor(http: HttpClient, cpuService: CpuService, dtoService: DtoService) {
+        super(http, cpuService, dtoService);
     }
 
-    createOrderByFilters(): Filter[] {
+    createOrderByFilters(): FilterModel[] {
         return [
-            new StringFilter('Benchmark name', 'benchmarkName', true)
+            new StringFilterModel('Benchmark name', 'benchmarkName')
         ];
     }
 
-    createAdvancedFilters(): Filter[] {
+    createAdvancedFilters(): FilterModel[] {
         return [
-            new StringFilter('Benchmark name', 'benchmarkName', true)
+            new StringFilterModel('Benchmark name', 'benchmarkName')
         ];
     }
 
-    createSimpleFilters(): Filter[] {
+    createSimpleFilters(): FilterModel[] {
         return this.createAdvancedFilters();
     }
 }

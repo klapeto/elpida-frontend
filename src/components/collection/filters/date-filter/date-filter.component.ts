@@ -1,15 +1,17 @@
 import {Component, Input} from '@angular/core';
-import {ValueFilter} from '../../../../models/value-filter';
+import {ValueFilterModel} from '../../../../models/value-filter.model';
+import {FilterComponent} from '../filter-component';
 
 @Component({
     selector: 'app-date-filter',
     templateUrl: './date-filter.component.html',
     styleUrls: ['./date-filter.component.css']
 })
-export class DateFilterComponent {
-
-    @Input() filter: ValueFilter<Date>;
+export class DateFilterComponent extends FilterComponent<Date> {
+    @Input() filter: ValueFilterModel<Date>;
+    @Input() allowComparison: boolean;
 
     constructor() {
+        super();
     }
 }

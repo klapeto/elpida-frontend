@@ -1,4 +1,4 @@
-import {FoundationModel} from '../foundation-model';
+import {FoundationModel} from '../foundation.model';
 
 export class CpuPreview extends FoundationModel {
     constructor(

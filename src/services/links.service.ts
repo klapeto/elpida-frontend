@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {DownloadInstance} from '../models/download-instance';
-import {Link} from '../models/link';
+import {DownloadInstanceModel} from '../models/download-instance.model';
+import {LinkModel} from '../models/link.model';
 
 @Injectable({
     providedIn: 'root'
@@ -12,29 +12,29 @@ export class LinksService {
     public frontendRepoLink = 'https://gitlab.com/dev-hood/elpida/frontend';
 
     public readonly binariesLinks = [
-        new DownloadInstance('Windows',
+        new DownloadInstanceModel('Windows',
             [
-                new Link(
+                new LinkModel(
                     'Beta x86-64 (.zip)',
                     'https://gitlab.com/dev-hood/elpida/elpida/-/jobs/artifacts/master/raw/Elpida-latest-x86_64.zip?job=deploy:windows'
                 )
             ],
             [
-                new Link(
+                new LinkModel(
                     'sha256sum',
                     'https://gitlab.com/dev-hood/elpida/elpida/-/jobs/artifacts/master/raw/Elpida-latest-x86_64.zip.SHA256SUMS?job=deploy:windows'
                 )
             ]
         ),
-        new DownloadInstance('Linux',
+        new DownloadInstanceModel('Linux',
             [
-                new Link(
+                new LinkModel(
                     'Beta x86-64 (.AppImage)',
                     'https://gitlab.com/dev-hood/elpida/elpida/-/jobs/artifacts/master/raw/Elpida-latest-x86_64.AppImage?job=deploy:linux'
                 )
             ],
             [
-                new Link(
+                new LinkModel(
                     'sha256sum',
                     'https://gitlab.com/dev-hood/elpida/elpida/-/jobs/artifacts/master/raw/Elpida-latest-x86_64.AppImage.SHA256SUMS?job=deploy:linux'
                 )
@@ -43,43 +43,43 @@ export class LinksService {
     ];
 
     public readonly sourcesLinks = [
-        new DownloadInstance('Elpida source code',
+        new DownloadInstanceModel('Elpida source code',
             [
-                new Link(
+                new LinkModel(
                     'Beta source code (.tar.gz)',
                     'https://gitlab.com/dev-hood/elpida/elpida/-/archive/master/elpida-master.tar.gz'
                 )
             ],
             [
-                new Link(
+                new LinkModel(
                     'Git repository',
                     this.nativeRepoLink
                 )
             ]
         ),
-        new DownloadInstance('Website source code',
+        new DownloadInstanceModel('Website source code',
             [
-                new Link(
+                new LinkModel(
                     'Beta source code (.tar.gz)',
                     'https://gitlab.com/dev-hood/elpida/frontend/-/archive/master/frontend-master.tar.gz'
                 )
             ],
             [
-                new Link(
+                new LinkModel(
                     'Git repository',
                     this.frontendRepoLink
                 )
             ]
         ),
-        new DownloadInstance('HTTP Rest Api source code',
+        new DownloadInstanceModel('HTTP Rest Api source code',
             [
-                new Link(
+                new LinkModel(
                     'Beta source code (.tar.gz)',
                     'https://gitlab.com/dev-hood/elpida/backend/-/archive/master/backend-master.tar.gz'
                 )
             ],
             [
-                new Link(
+                new LinkModel(
                     'Git repository',
                     this.backendRepoLink
                 )

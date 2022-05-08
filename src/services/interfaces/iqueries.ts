@@ -1,8 +1,8 @@
-import {Query} from '../../models/query';
-import {StringFilter} from '../../models/filters/string-filter';
+import {QueryModel} from '../../models/query.model';
+import {StringFilterModel} from '../../models/filters/string-filter.model';
 
 export interface IQueries {
-     createSimpleQuery(): Query;
-     createAdvancedQuery(): Query;
-     createSearchFilter(): StringFilter | null;
+     createSimpleQuery(): QueryModel;
+     createAdvancedQuery(): QueryModel;
+     createSearchFilter(): StringFilterModel | null;
 }

@@ -1,16 +1,17 @@
 import {ICollectionService} from './interfaces/icollection-service';
 import {HttpClient} from '@angular/common/http';
-import {PageRequest} from '../models/page-request';
-import {Query} from '../models/query';
+import {PageDto} from '../dtos/page.dto';
+import {QueryModel} from '../models/query.model';
 import {Observable} from 'rxjs';
-import {PagedResult} from '../models/paged-result';
-import {QueryRequest} from '../models/query-request';
+import {PagedResultDto} from '../dtos/paged-result.dto';
+import {QueryDto} from '../dtos/query.dto';
 import {environment} from '../environments/environment';
-import {StringFilter} from '../models/filters/string-filter';
+import {StringFilterModel} from '../models/filters/string-filter.model';
+import {DtoService} from './dto.service';
 
 export abstract class CollectionService<TModel, TPreview> implements ICollectionService<TModel, TPreview> {
 
-    protected constructor(protected readonly http: HttpClient) {
+    protected constructor(protected readonly http: HttpClient, protected readonly dtoService: DtoService) {
 
     }
 
@@ -24,16 +25,25 @@ export abstract class CollectionService<TModel, TPreview> implements ICollection
         return this.baseUrl + this.baseRoute + '/' + route;
     }
 
-    public getPreviews(page: PageRequest, query: Query): Observable<PagedResult<TPreview>> {
-        return this.http.post<PagedResult<TPreview>>(this.getUrl(this.searchRoute),
-            new QueryRequest(page, query.orderBy, query.descending, query.filters));
+    public getPreviews(page: PageDto, query: QueryModel): Observable<PagedResultDto<TPreview>> {
+        const queryRequest = new QueryDto(
+            page,
+            query.orderBy,
+            query.descending,
+            query.filters
+                .filter(f => f.isSet())
+                .map(f => this.dtoService.createFromFilter(f))
+        );
+        return this.http.post<PagedResultDto<TPreview>>(this.getUrl(this.searchRoute), queryRequest);
     }
 
     public getSingle(id: string): Observable<TModel> {
         return this.http.get<TModel>(this.getUrl(id));
     }
 
-    abstract createSimpleQuery(): Query;
-    abstract createAdvancedQuery(): Query;
-    abstract createSearchFilter(): StringFilter | null;
+    abstract createSimpleQuery(): QueryModel;
+
+    abstract createAdvancedQuery(): QueryModel;
+
+    abstract createSearchFilter(): StringFilterModel | null;
 }

@@ -1,4 +1,4 @@
-import {FoundationModel} from '../foundation-model';
+import {FoundationModel} from '../foundation.model';
 
 export class Os extends FoundationModel {
     constructor(

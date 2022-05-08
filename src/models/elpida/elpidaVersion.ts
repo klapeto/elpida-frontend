@@ -1,6 +1,6 @@
 import {Version} from './version';
 import {CompilerInfo} from './compiler-info';
-import {FoundationModel} from '../foundation-model';
+import {FoundationModel} from '../foundation.model';
 
 export class ElpidaVersion extends FoundationModel {
     constructor(

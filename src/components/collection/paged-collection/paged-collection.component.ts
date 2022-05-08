@@ -1,7 +1,7 @@
 import {
     AfterViewInit,
     Component,
-    ComponentFactoryResolver, ContentChild,
+    ComponentFactoryResolver,
     EventEmitter,
     Input,
     OnInit,
@@ -9,12 +9,12 @@ import {
     ViewChild,
     ViewContainerRef
 } from '@angular/core';
-import {PagedResult} from '../../../models/paged-result';
-import {Query} from '../../../models/query';
-import {PageRequest} from '../../../models/page-request';
+import {PagedResultDto} from '../../../dtos/paged-result.dto';
+import {QueryModel} from '../../../models/query.model';
+import {PageDto} from '../../../dtos/page.dto';
 import {ValueConverter} from '../../../services/value-converter';
 import {CollectionService} from '../../../services/collection-service';
-import {Filter} from '../../../models/filter';
+import {FilterModel} from '../../../models/filter.model';
 
 @Component({
     selector: 'app-paged-collection',
@@ -23,14 +23,14 @@ import {Filter} from '../../../models/filter';
 })
 export class PagedCollectionComponent implements AfterViewInit, OnInit {
 
-    public pagedResult: PagedResult<any>;
+    public pagedResult: PagedResultDto<any>;
     public maxResultPages: number;
     public searchString: string;
 
     private resultsPerPage = 10;
     private curPage = 0;
 
-    public currentQuery: Query;
+    public currentQuery: QueryModel;
 
     public advancedShown: boolean;
 
@@ -43,12 +43,12 @@ export class PagedCollectionComponent implements AfterViewInit, OnInit {
     @Input() showFilters: boolean;
     @Input() name: string;
 
-    @Input() lockedFilters: Filter[];
+    @Input() lockedFilters: FilterModel[];
     @Input() lockedOrderBy;
 
     @Input() customRoutePrefix: string;
 
-    @Output() pageChanged: EventEmitter<PagedResult<any>> = new EventEmitter<PagedResult<any>>();
+    @Output() pageChanged: EventEmitter<PagedResultDto<any>> = new EventEmitter<PagedResultDto<any>>();
 
     @ViewChild('itemContainer', {read: ViewContainerRef}) itemContainer: ViewContainerRef;
 
@@ -92,7 +92,7 @@ export class PagedCollectionComponent implements AfterViewInit, OnInit {
         }
     }
 
-    public onFiltersSubmitted(query: Query): void {
+    public onFiltersSubmitted(query: QueryModel): void {
         Object.assign(this.currentQuery, query);
         this.appendLockedFilters();
         this.replaceOrderByIfNeeded();
@@ -117,25 +117,15 @@ export class PagedCollectionComponent implements AfterViewInit, OnInit {
     }
 
     private getPageResults(page: number): void {
-        this.service.getPreviews(new PageRequest(page * this.resultsPerPage, this.resultsPerPage), this.currentQuery)
+        this.service.getPreviews(new PageDto(page * this.resultsPerPage, this.resultsPerPage), this.currentQuery)
             .subscribe(result => {
                 this.curPage = page;
                 if (this.maxResultPages === undefined) {
                     this.maxResultPages = Math.ceil(result.totalCount / this.resultsPerPage);
                 }
                 this.pagedResult = result;
-                this.fillItems();
                 this.pageChanged.emit(this.pagedResult);
             });
-    }
-
-    private fillItems() {
-        // this.itemContainer.clear();
-        // if (this.pagedResult !== undefined) {
-        //     this.pagedResult.items.forEach(i => {
-        //         this.service.createCollectionItemComponent(i, this.componentFactoryResolver, this.itemContainer, this.customRoutePrefix);
-        //     });
-        // }
     }
 
     public revertPage() {
@@ -146,7 +136,7 @@ export class PagedCollectionComponent implements AfterViewInit, OnInit {
         if (ev.key === 'Enter') {
             const filter = this.service.createSearchFilter();
             filter.value = this.searchString;
-            this.currentQuery = new Query(
+            this.currentQuery = new QueryModel(
                 [filter],
                 this.currentQuery.orderBy,
                 this.currentQuery.descending

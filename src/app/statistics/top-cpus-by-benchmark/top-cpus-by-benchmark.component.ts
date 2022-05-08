@@ -3,12 +3,13 @@ import {ActivatedRoute} from '@angular/router';
 import {BenchmarkStatisticsService} from '../../../services/benchmark-statistics.service';
 import {BenchmarkService} from '../../../services/benchmark.service';
 import {Benchmark} from '../../../models/benchmark/benchmark';
-import {NumberComparisons, NumberFilter} from '../../../models/filters/number-filter';
-import {Filter} from '../../../models/filter';
-import {PagedResult} from '../../../models/paged-result';
+import {NumberFilterModel} from '../../../models/filters/number-filter.model';
+import {FilterModel} from '../../../models/filter.model';
+import {PagedResultDto} from '../../../dtos/paged-result.dto';
 import {BenchmarkStatisticsPreview} from '../../../models/benchmark-statistics/benchmark-statistics-preview';
 import {ValueConverter} from '../../../services/value-converter';
 import {BenchmarkComparison} from '../../../models/benchmark/benchmark-score-specification';
+import {ComparisonModel} from '../../../models/comparison.model';
 
 @Component({
     selector: 'app-top-cpus-by-benchmark',
@@ -19,8 +20,8 @@ export class TopCpusByBenchmarkComponent implements OnInit {
 
     public benchmark: Benchmark;
 
-    public filters: Filter[];
-    public orderBy: Filter;
+    public filters: FilterModel[];
+    public orderBy: FilterModel;
 
     public chartXAxisLabel: string;
 
@@ -37,7 +38,7 @@ export class TopCpusByBenchmarkComponent implements OnInit {
     async ngOnInit() {
         this.benchmark = await this.benchmarkService.getSingle(this.route.snapshot.paramMap.get('id')).toPromise();
         this.filters = [
-            new NumberFilter('', 'benchmarkId', true, NumberComparisons.Equal, '', this.benchmark.id)
+            new NumberFilterModel('', 'benchmarkId', ComparisonModel.equals(), null, this.benchmark.id)
         ];
         this.orderBy = this.statisticsService.createBenchmarkScoreMeanFilter();
     }
@@ -48,7 +49,7 @@ export class TopCpusByBenchmarkComponent implements OnInit {
             : 'Higher is better';
     }
 
-    public pageLoaded(page: PagedResult<BenchmarkStatisticsPreview>) {
+    public pageLoaded(page: PagedResultDto<BenchmarkStatisticsPreview>) {
         if (this.chartData === undefined) {
             if (page.items.length > 0) {
                 const value = this.valueConverter.getValueScaleSI(page.items[0].mean);

@@ -1,4 +1,4 @@
-import {FoundationModel} from '../foundation-model';
+import {FoundationModel} from '../foundation.model';
 import {BenchmarkScoreSpecification} from './benchmark-score-specification';
 import {Task} from '../task/task';
 import {BenchmarkTask} from './benchmark-task';
