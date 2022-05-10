@@ -17,7 +17,7 @@ export class DtoService {
 
     private static createDateFilterDto(filter: DateFilterModel): FilterDto {
 
-        const comparison = filter ?? ComparisonModel.greaterEqual();
+        const comparison = filter.comparison ?? ComparisonModel.greaterEqual();
 
         const value = (filter.value as Date) === undefined ?
             filter.value.toISOString() :
@@ -33,7 +33,7 @@ export class DtoService {
     private static createNumberFilterDto(filter: NumberFilterModel): FilterDto {
 
         const comparison = filter.comparison ?? ComparisonModel.greaterEqual();
-        console.log(filter);
+
         return new FilterDto(
             filter.internalName,
             filter.value,
@@ -43,12 +43,13 @@ export class DtoService {
 
     private static createStringFilterDto(filter: StringFilterModel): FilterDto {
 
-        const comparison = filter ?? ComparisonModel.greaterEqual();
+        const comparison = filter.comparison ?? ComparisonModel.greaterEqual();
 
         return new FilterDto(
             filter.internalName,
             filter.value,
-            comparison.internalName);
+            comparison.internalName
+        );
     }
 
     public createFromFilter(filter: FilterModel): FilterDto {

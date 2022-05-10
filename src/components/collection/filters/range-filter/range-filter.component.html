@@ -1,11 +1,7 @@
-<label>
-    <strong class="filter-group-label">{{filter.title}}:</strong>
-    <select *ngIf="allowComparison" [(ngModel)]="filter.comparison">
-        <option *ngFor="let option of filter.comparisonModes">
-            {{option}}
-        </option>
-    </select>
-    <input type="range" [(ngModel)]="filter.value" [max]="max" [min]="min">
-    <span class="filter-value">{{valueConverter.convertToSI(filter.value, getDecimals())}}{{suffix}}</span>
+<label class="raw-value-filter">
+    <    <span>{{filter.title}}:</span>
+    <div class="range-filter-slider">
+        <input type="range" [(ngModel)]="filter.value" [max]="max" [min]="min"/>
+        <output class="range-value">{{valueConverter.convertToSI(filter.value, getDecimals())}}{{suffix}}</output>
+    </div>
 </label>
-

@@ -1,10 +1,10 @@
-<label>
-    <strong class="filter-group-label">{{filter.title}}:</strong>
-<!--    <select [(ngModel)]="filter.comparison.internalName">-->
-<!--        <option *ngFor="let option of filter.allowedComparisons" [value]="option.internalName">-->
-<!--            {{option.displayName}}-->
-<!--        </option>-->
-<!--    </select>-->
+<label class="raw-value-filter">
+    <span>{{filter.title}}:</span>
+    <select *ngIf="allowComparison" [(ngModel)]="filter.comparison.internalName">
+        <option *ngFor="let option of filter.allowedComparisons" [value]="option.internalName">
+            {{option.displayName}}
+        </option>
+    </select>
     <select [(ngModel)]="filter.value">
         <option *ngFor="let option of filter.options" [value]="option.internalName">
             {{option.displayName}}
