@@ -4,12 +4,13 @@ import {Result} from '../models/result/result';
 import {HttpClient} from '@angular/common/http';
 import {CollectionService} from './collection-service';
 import {StringFilterModel} from '../models/filters/string-filter.model';
-import {OptionFilterModel, OptionModel} from '../models/filters/option-filter.model';
+import {OptionFilterModel} from '../models/filters/option-filter.model';
 import {DateFilterModel} from '../models/filters/date-filter.model';
 import {CpuService} from './cpu.service';
 import {NumberFilterModel} from '../models/filters/number-filter.model';
 import {QueryModel} from '../models/query.model';
 import {DtoService} from './dto.service';
+import {OptionModel} from '../models/option.model';
 
 @Injectable({
     providedIn: 'root'

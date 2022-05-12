@@ -1,5 +1,6 @@
 import {ValueFilterModel} from '../value-filter.model';
 import {ComparisonModel} from '../comparison.model';
+import {FilterModel} from '../filter.model';
 
 export class StringFilterModel extends ValueFilterModel<string> {
     constructor(title: string,
@@ -15,4 +16,8 @@ export class StringFilterModel extends ValueFilterModel<string> {
     }
 
     protected defaultValue = '';
+
+    public clone(): FilterModel {
+        return new StringFilterModel(this.title, this.internalName, this.comparison, this.value);
+    }
 }

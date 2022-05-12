@@ -1,0 +1,5 @@
+<select [(ngModel)]="selectedComparison">
+    <option *ngFor="let option of filter.allowedComparisons">
+        {{option.displayName}}
+    </option>
+</select>

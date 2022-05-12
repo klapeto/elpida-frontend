@@ -5,10 +5,11 @@ import {HttpClient} from '@angular/common/http';
 import {FilterModel} from '../models/filter.model';
 import {StringFilterModel} from '../models/filters/string-filter.model';
 import {NumberFilterModel} from '../models/filters/number-filter.model';
-import {OptionFilterModel, OptionModel} from '../models/filters/option-filter.model';
+import {OptionFilterModel} from '../models/filters/option-filter.model';
 import {ElpidaItemComponent} from '../components/collection/items/elpida-item/elpida-item.component';
 import {QueryModel} from '../models/query.model';
 import {DtoService} from './dto.service';
+import {OptionModel} from '../models/option.model';
 
 @Injectable({
     providedIn: 'root'

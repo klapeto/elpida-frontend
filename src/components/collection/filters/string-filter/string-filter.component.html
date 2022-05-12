@@ -1,9 +1,5 @@
 <label class="raw-value-filter">
     <span>{{filter.title}}:</span>
-    <select *ngIf="allowComparison" [(ngModel)]="filter.comparison">
-        <option *ngFor="let option of filter.allowedComparisons">
-            {{option.displayName}}
-        </option>
-    </select>
+    <app-comparison-select *ngIf="allowComparison" [filter]="filter"></app-comparison-select>
     <input type="text" [(ngModel)]="filter.value"/>
 </label>

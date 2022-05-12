@@ -166,6 +166,8 @@ button.disabled:hover,
 .button.disabled,
 .button.disabled:hover {
     background-color: rgb(212, 219, 224);
+    cursor: default;
+    pointer-events: none;
 }
 
 .non-a-button {
@@ -341,8 +343,8 @@ input[type="range"] {
     place-content: center;
 }
 .modal-container {
-    width: 95%;
-    height: 95%;
+    max-width: 95%;
+    max-height: 95%;
     display: flex;
     flex-flow: column;
 }
@@ -354,8 +356,8 @@ input[type="range"] {
 
 @media (min-width: 960px) {
     .modal-container {
-        width: 50%;
-        height: 50%;
+        max-width: 50%;
+        max-height: 50%;
     }
 }
 
@@ -670,3 +672,16 @@ input[type="range"] {
     margin-top: 1em;
 }
 /*Benchmark*/
+
+/*Filter*/
+.pool-filter {
+    background-color: var(--button-active-bg-color);
+    box-shadow: var(--shadow);
+    border-radius: 1em;
+    padding: 0.5em;
+    margin: 0.25em;
+    display: flex;
+    flex-flow: row;
+}
+
+/*Filter*/

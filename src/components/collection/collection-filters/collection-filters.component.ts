@@ -9,6 +9,7 @@ import {QueryModel} from '../../../models/query.model';
 export class CollectionFiltersComponent {
 
     @Input() public readonly allowSort: boolean;
+    @Input() public readonly allowComparisons: boolean;
     @Input() public query: QueryModel;
 
     @Output() public readonly submitted = new EventEmitter<QueryModel>();

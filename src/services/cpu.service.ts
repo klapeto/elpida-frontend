@@ -3,7 +3,7 @@ import {CpuPreview} from '../models/cpu/cpu-preview';
 import {Cpu} from '../models/cpu/cpu';
 import {CollectionService} from './collection-service';
 import {StringFilterModel} from '../models/filters/string-filter.model';
-import {OptionFilterModel, OptionModel} from '../models/filters/option-filter.model';
+import {OptionFilterModel} from '../models/filters/option-filter.model';
 import {RangeFilterModel} from '../models/filters/range-filter.model';
 import {NumberFilterModel} from '../models/filters/number-filter.model';
 import {HttpClient} from '@angular/common/http';
@@ -11,6 +11,7 @@ import {CpuItemComponent} from '../components/collection/items/cpu-item/cpu-item
 import {QueryModel} from '../models/query.model';
 import {DtoService} from './dto.service';
 import {ComparisonModel} from '../models/comparison.model';
+import { OptionModel } from 'src/models/option.model';
 
 @Injectable({
     providedIn: 'root'

@@ -1,6 +1,6 @@
 <div class="query-form">
     <span *ngFor="let filter of query.filters" class="query-filter">
-        <app-filter-container [filter]="filter"></app-filter-container>
+        <app-filter-container [allowComparisons]="allowComparisons" [filter]="filter"></app-filter-container>
     </span>
 
     <div *ngIf="allowSort" class="query-filter">

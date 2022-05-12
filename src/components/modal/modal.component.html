@@ -1,10 +1,11 @@
-<div class="modal-bg" [ngStyle]="{'display': isShown ? 'block': 'none'}">
-    <div class="modal-container">
-        <div class="modal-header">
-            <span class="modal-close button non-a-button" (click)="isShown = false">&times;</span>
-            <h3 style="margin: 0.5em">{{title}}</h3>
-        </div>
-        <div appChildContainer>
+<div class="modal-bg" [ngClass]="{'hidden': !isShown }">
+    <div class="groupBox modal-container @GetContainerAdditionalClasses()">
+        <h3 class="modal-header">
+            {{title}}
+            <button class="button small close" (click)="hide()" style="margin: 0.4em;">🗙</button>
+        </h3>
+        <div class="groupBoxContent modal-content">
+            <div appChildContainer></div>
         </div>
     </div>
 </div>

@@ -25,25 +25,33 @@
 
     <app-group-box *ngIf="filtersPanelShown" [title]="'Query editor'">
         <div class="flex-center row">
-            <button style="margin: 1em" class="button non-a-button medium @SimpleButtonActiveClass" [ngClass]="{'active': !advancedShown}" (click)="onSimpleClicked()">
+            <button style="margin: 1em" class="button non-a-button medium @SimpleButtonActiveClass"
+                    [ngClass]="{'active': !advancedShown}" (click)="onSimpleClicked()">
                 Simple
             </button>
-            <button class="button non-a-button medium" [ngClass]="{'active': advancedShown}" (click)="onAdvancedClicked()">
+            <button class="button non-a-button medium" [ngClass]="{'active': advancedShown}"
+                    (click)="onAdvancedClicked()">
                 Advanced
             </button>
         </div>
-        <app-collection-filters (submitted)="onFiltersSubmitted($event)"
-                                *ngIf="filtersPanelShown"
-                                [allowSort]="advancedShown"
-                                [query]="currentQuery">
-        </app-collection-filters>
+
+        <div *ngIf="filtersPanelShown">
+            <app-collection-filters *ngIf="!advancedShown; else filterPool" (submitted)="onFiltersSubmitted($event)"
+                                    [query]="currentQuery">
+            </app-collection-filters>
+            <ng-template #filterPool>
+                <app-filter-pool [availableFilters]="currentQuery.filters"></app-filter-pool>
+            </ng-template>
+        </div>
+
     </app-group-box>
 
     <div *ngIf="pagedResult; else elseBlock">
         <p>Records found: {{valueConverter.convertToSI(pagedResult.totalCount, 0)}}, Pages: {{maxResultPages}}</p>
         <ul #itemContainer>
             <li *ngFor="let item of pagedResult.items" class="collection-item">
-                <ng-container *ngTemplateOutlet="itemTemplate; context: {$implicit: 'no-data', itemModel: item}"></ng-container>
+                <ng-container
+                        *ngTemplateOutlet="itemTemplate; context: {$implicit: 'no-data', itemModel: item}"></ng-container>
             </li>
         </ul>
     </div>

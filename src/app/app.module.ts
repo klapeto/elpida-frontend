@@ -31,7 +31,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
 import {OptionFilterComponent} from '../components/collection/filters/option-filter/option-filter.component';
 import {RangeFilterComponent} from '../components/collection/filters/range-filter/range-filter.component';
-import {FilterContainerComponent} from '../components/collection/collection-filters/filter-container/filter-container.component';
+import {FilterContainerComponent} from '../components/collection/filter-container/filter-container.component';
 import {NumberFilterComponent} from '../components/collection/filters/number-filter/number-filter.component';
 import {StringFilterComponent} from '../components/collection/filters/string-filter/string-filter.component';
 import {DateFilterComponent} from '../components/collection/filters/date-filter/date-filter.component';
@@ -67,6 +67,10 @@ import {ErrorComponent} from './internal-error/error.component';
 import {GlobalHttpErrorInterceptor} from '../services/global-http-error.interceptor';
 import {IconWithTextComponent} from '../components/icon-with-text/icon-with-text.component';
 import {DtoService} from '../services/dto.service';
+import {OptionComponent} from '../components/option/option.component';
+import {FilterPoolComponent} from '../components/collection/filter-pool/filter-pool.component';
+import {NewFilterComponent} from '../components/collection/filter-pool/new-filter/new-filter.component';
+import {ComparisonSelectComponent} from '../components/collection/filters/comparison-select/comparison-select.component';
 
 @NgModule({
     declarations: [
@@ -121,7 +125,11 @@ import {DtoService} from '../services/dto.service';
         NotFoundComponent,
         TopCpusByBenchmarkComponent,
         ErrorComponent,
-        IconWithTextComponent
+        IconWithTextComponent,
+        OptionComponent,
+        FilterPoolComponent,
+        NewFilterComponent,
+        ComparisonSelectComponent
     ],
     imports: [
         BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),

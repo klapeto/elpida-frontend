@@ -4,10 +4,11 @@ import {HttpClient} from '@angular/common/http';
 import {Os} from '../models/os/os';
 import {FilterModel} from '../models/filter.model';
 import {StringFilterModel} from '../models/filters/string-filter.model';
-import {OptionFilterModel, OptionModel} from '../models/filters/option-filter.model';
+import {OptionFilterModel} from '../models/filters/option-filter.model';
 import {OsItemComponent} from '../components/collection/items/os-item/os-item.component';
 import {DtoService} from './dto.service';
 import {QueryModel} from '../models/query.model';
+import {OptionModel} from '../models/option.model';
 
 @Injectable({
     providedIn: 'root'

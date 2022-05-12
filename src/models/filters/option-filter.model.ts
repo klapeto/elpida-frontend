@@ -1,11 +1,7 @@
 import {StringFilterModel} from './string-filter.model';
 import {ComparisonModel} from '../comparison.model';
-
-export class OptionModel {
-    constructor(public readonly displayName: string,
-                public readonly internalName: string = displayName) {
-    }
-}
+import {OptionModel} from '../option.model';
+import {FilterModel} from '../filter.model';
 
 export class OptionFilterModel extends StringFilterModel {
 
@@ -14,5 +10,9 @@ export class OptionFilterModel extends StringFilterModel {
                        public options: OptionModel[],
                        value?: string) {
         super(title, internalName, ComparisonModel.contains(), value);
+    }
+
+    public clone(): FilterModel {
+        return new OptionFilterModel(this.title, this.internalName, this.options, this.value);
     }
 }

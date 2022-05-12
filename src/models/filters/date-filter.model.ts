@@ -1,5 +1,6 @@
 import {ValueFilterModel} from '../value-filter.model';
 import {ComparisonModel} from '../comparison.model';
+import {FilterModel} from '../filter.model';
 
 export class DateFilterModel extends ValueFilterModel<Date> {
 
@@ -11,4 +12,8 @@ export class DateFilterModel extends ValueFilterModel<Date> {
     }
 
     protected defaultValue: Date = <Date><unknown>'';
+
+    public clone(): FilterModel {
+        return new DateFilterModel(this.title, this.internalName, this.comparison, this.value);
+    }
 }

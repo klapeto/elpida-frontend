@@ -10,7 +10,7 @@ export class ModalComponent {
 
     @Input() public title: string;
     @ViewChild(ChildContainerDirective, {static: true}) modalContent: ChildContainerDirective;
-    public isShown: boolean;
+    public isShown = false;
 
     constructor(private componentResolver: ComponentFactoryResolver) {
     }

@@ -1,5 +1,6 @@
 import {ValueFilterModel} from '../value-filter.model';
 import {ComparisonModel} from '../comparison.model';
+import {FilterModel} from '../filter.model';
 
 export class NumberFilterModel extends ValueFilterModel<number> {
 
@@ -16,4 +17,8 @@ export class NumberFilterModel extends ValueFilterModel<number> {
     }
 
     protected defaultValue = 0;
+
+    public clone(): FilterModel {
+        return new NumberFilterModel(this.title, this.internalName, this.comparison, this.suffix, this.value);
+    }
 }

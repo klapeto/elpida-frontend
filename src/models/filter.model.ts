@@ -7,4 +7,6 @@ export abstract class FilterModel {
     public abstract reset(): void;
 
     public abstract isSet(): boolean;
+
+    public abstract clone(): FilterModel;
 }

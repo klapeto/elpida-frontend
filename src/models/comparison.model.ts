@@ -3,11 +3,11 @@ export class ComparisonModel {
     }
 
     public static equals(): ComparisonModel {
-        return new ComparisonModel('equals to', 'equals');
+        return new ComparisonModel('=', 'equals');
     }
 
     public static notEqual(): ComparisonModel {
-        return new ComparisonModel('is not equal to', 'not-equal');
+        return new ComparisonModel('!=', 'not-equal');
     }
 
     public static contains(): ComparisonModel {
@@ -15,22 +15,22 @@ export class ComparisonModel {
     }
 
     public static notContain(): ComparisonModel {
-        return new ComparisonModel('does not contain', 'not-contain');
+        return new ComparisonModel('not contain', 'not-contain');
     }
 
     public static greater(): ComparisonModel {
-        return new ComparisonModel('is greater to', 'greater');
+        return new ComparisonModel('>', 'greater');
     }
 
     public static greaterEqual(): ComparisonModel {
-        return new ComparisonModel('is greater or equal to', 'greater-equal');
+        return new ComparisonModel('>=', 'greater-equal');
     }
 
     public static less(): ComparisonModel {
-        return new ComparisonModel('is less than', 'less');
+        return new ComparisonModel('<', 'less');
     }
 
     public static lessEqual(): ComparisonModel {
-        return new ComparisonModel('is less or equal than', 'less-equal');
+        return new ComparisonModel('=<', 'less-equal');
     }
 }
