@@ -14,7 +14,7 @@
 </app-filter-container>
 <div style="margin-top: 0.25em"></div>
 <div class="flex-center row">
-    <button class="button medium" [ngClass]="{'disabled': !selectedFilter}" (click)="onAddClick()">
+    <button class="button medium" [ngClass]="{'disabled': !selectedFilter || !selectedFilter.isSet()}" (click)="onAddClick()">
         Add filter
     </button>
 </div>

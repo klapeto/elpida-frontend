@@ -1,10 +1,14 @@
-<div class="flex-center row">
-    <div *ngFor="let filter of filters" class="pool-filter">
-        <app-filter-container [filter]="filter" [allowComparisons]="true">
-        </app-filter-container>
-        <button class="button small close" (click)="onCloseClick(filter)" style="margin: 0.4em;">🗙</button>
+<div class="flex-center column">
+    <span>Search for records that:</span>
+    <div *ngFor="let filter of filters; index as i" class="flex-center column">
+        <div class="pool-filter">
+            <app-filter-container [filter]="filter" [allowComparisons]="true"></app-filter-container>
+            <button class="button small close" (click)="onCloseClick(filter)" style="margin: 0.4em;">🗙</button>
+        </div>
+        <strong *ngIf="filters.length > 1 && i < filters.length - 1">and</strong>
     </div>
 </div>
 <div class="flex-center row">
     <button class="button medium" (click)="onAddClick()">Add filter</button>
+    <button class="button medium">Search</button>
 </div>
