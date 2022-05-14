@@ -7,8 +7,22 @@
         </div>
         <strong *ngIf="filters.length > 1 && i < filters.length - 1">and</strong>
     </div>
+    <label *ngIf="filters.length > 0">
+        Sort by:
+        <select [(ngModel)]="orderBy">
+            <option [value]="null"></option>
+            <option *ngFor="let filter of availableFilters" [value]="filter.internalName">
+                {{filter.title}}
+            </option>
+        </select>
+    </label>
+    <label *ngIf="filters.length > 0">
+        Descending:
+        <input type="checkbox" [(ngModel)]="descending"/>
+    </label>
 </div>
 <div class="flex-center row">
     <button class="button medium" (click)="onAddClick()">Add filter</button>
-    <button class="button medium">Search</button>
+    <button class="button medium" (click)="onSearchClick()" [ngClass]="{'disabled': filters.length === 0 }">Search
+    </button>
 </div>

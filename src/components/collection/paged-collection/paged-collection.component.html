@@ -40,7 +40,7 @@
                                     [query]="currentQuery">
             </app-collection-filters>
             <ng-template #filterPool>
-                <app-filter-pool [availableFilters]="currentQuery.filters"></app-filter-pool>
+                <app-filter-pool [availableFilters]="service.createAdvancedQuery().filters" (submitted)="onFiltersSubmitted($event)"></app-filter-pool>
             </ng-template>
         </div>
 
