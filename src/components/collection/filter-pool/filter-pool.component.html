@@ -10,8 +10,8 @@
     <label *ngIf="filters.length > 0">
         Sort by:
         <select [(ngModel)]="orderBy">
-            <option [value]="null"></option>
-            <option *ngFor="let filter of availableFilters" [value]="filter.internalName">
+            <option></option>
+            <option *ngFor="let filter of _availableFilters" [value]="filter.internalName">
                 {{filter.title}}
             </option>
         </select>

@@ -16,6 +16,9 @@ export class FilterPoolComponent implements OnInit {
 
     filters: FilterModel[] = [];
 
+    // This is needed because for some reason angular reverts the selection to ui after change
+    _availableFilters: FilterModel[];
+
     orderBy?: string = null;
 
     descending: boolean;
@@ -24,7 +27,11 @@ export class FilterPoolComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this._availableFilters = this.availableFilters.map(f => f.clone());
+    }
 
+    onOrderSelected(ev: any) {
+        console.log(ev);
     }
 
     onCloseClick(filter: FilterModel) {
