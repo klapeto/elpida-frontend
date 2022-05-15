@@ -682,6 +682,7 @@ input[type="range"] {
     margin: 0.25em;
     display: flex;
     flex-flow: row;
+    align-items: center;
 }
 
 /*Filter*/

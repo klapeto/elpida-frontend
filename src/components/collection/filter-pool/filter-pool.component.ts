@@ -30,10 +30,6 @@ export class FilterPoolComponent implements OnInit {
         this._availableFilters = this.availableFilters.map(f => f.clone());
     }
 
-    onOrderSelected(ev: any) {
-        console.log(ev);
-    }
-
     onCloseClick(filter: FilterModel) {
         this.filters = this.filters.filter(f => f !== filter);
     }
@@ -45,9 +41,10 @@ export class FilterPoolComponent implements OnInit {
     onAddClick() {
         this.modalService.show<NewFilterComponent>('Add filter', NewFilterComponent, c => {
             c.availableFilters = this.availableFilters.map(f => f.clone());
-            c.filterAdded.subscribe(f => {
+            const subscription = c.filterAdded.subscribe(f => {
                 this.filters.push(f);
                 this.modalService.hide();
+                subscription.unsubscribe();
             });
         });
     }

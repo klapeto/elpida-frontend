@@ -71,6 +71,7 @@ import {OptionComponent} from '../components/option/option.component';
 import {FilterPoolComponent} from '../components/collection/filter-pool/filter-pool.component';
 import {NewFilterComponent} from '../components/collection/filter-pool/new-filter/new-filter.component';
 import {ComparisonSelectComponent} from '../components/collection/filters/comparison-select/comparison-select.component';
+import {JumpToPageComponent} from '../components/collection/paging/jump-to-page/jump-to-page.component';
 
 @NgModule({
     declarations: [
@@ -129,7 +130,8 @@ import {ComparisonSelectComponent} from '../components/collection/filters/compar
         OptionComponent,
         FilterPoolComponent,
         NewFilterComponent,
-        ComparisonSelectComponent
+        ComparisonSelectComponent,
+        JumpToPageComponent
     ],
     imports: [
         BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),

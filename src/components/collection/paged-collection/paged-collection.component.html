@@ -48,21 +48,18 @@
 
     <div *ngIf="pagedResult; else elseBlock">
         <p>Records found: {{valueConverter.convertToSI(pagedResult.totalCount, 0)}}, Pages: {{maxResultPages}}</p>
-        <ul #itemContainer>
+        <ul>
             <li *ngFor="let item of pagedResult.items" class="collection-item">
-                <ng-container
-                        *ngTemplateOutlet="itemTemplate; context: {$implicit: 'no-data', itemModel: item}"></ng-container>
+                <ng-container *ngTemplateOutlet="itemTemplate; context: {context: item}"></ng-container>
             </li>
         </ul>
+
+        <app-paging (pageChanged)="onPageChange($event)"
+                    [pagesCount]="maxResultPages">
+        </app-paging>
     </div>
 
     <ng-template #elseBlock>
         <app-loading-indicator></app-loading-indicator>
     </ng-template>
-
-    <app-paging (pageChanged)="onPageChange($event)"
-                *ngIf="pagedResult"
-                [pagesCount]="maxResultPages">
-    </app-paging>
-
 </div>

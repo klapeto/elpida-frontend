@@ -1,13 +1,10 @@
 import {
     AfterViewInit,
     Component,
-    ComponentFactoryResolver,
     EventEmitter,
     Input,
     OnInit,
     Output, TemplateRef,
-    ViewChild,
-    ViewContainerRef
 } from '@angular/core';
 import {PagedResultDto} from '../../../dtos/paged-result.dto';
 import {QueryModel} from '../../../models/query.model';
@@ -21,9 +18,9 @@ import {FilterModel} from '../../../models/filter.model';
     templateUrl: './paged-collection.component.html',
     styleUrls: ['./paged-collection.component.css']
 })
-export class PagedCollectionComponent implements AfterViewInit, OnInit {
+export class PagedCollectionComponent<TPreview, TModel> implements AfterViewInit, OnInit {
 
-    public pagedResult: PagedResultDto<any>;
+    public pagedResult: PagedResultDto<TPreview>;
     public maxResultPages: number;
     public searchString: string;
 
@@ -38,7 +35,7 @@ export class PagedCollectionComponent implements AfterViewInit, OnInit {
 
     filtersPanelShown: boolean;
 
-    @Input() service: CollectionService<any, any>;
+    @Input() service: CollectionService<TModel, TPreview>;
     @Input() showSearchBox: boolean;
     @Input() showFilters: boolean;
     @Input() name: string;
@@ -48,13 +45,11 @@ export class PagedCollectionComponent implements AfterViewInit, OnInit {
 
     @Input() customRoutePrefix: string;
 
-    @Output() pageChanged: EventEmitter<PagedResultDto<any>> = new EventEmitter<PagedResultDto<any>>();
+    @Output() pageChanged: EventEmitter<PagedResultDto<TPreview>> = new EventEmitter<PagedResultDto<TPreview>>();
 
-    @ViewChild('itemContainer', {read: ViewContainerRef}) itemContainer: ViewContainerRef;
+    @Input() itemTemplate: TemplateRef<TPreview>;
 
-    @Input() itemTemplate: TemplateRef<any>;
-
-    constructor(public valueConverter: ValueConverter, private componentFactoryResolver: ComponentFactoryResolver) {
+    constructor(public valueConverter: ValueConverter) {
 
     }
 
@@ -150,10 +145,6 @@ export class PagedCollectionComponent implements AfterViewInit, OnInit {
     public onPageChange(page: number): void {
         if (this.curPage !== page) {    // avoid multiple API Calls from initialisation
             this.getPageResults(page);
-        }
-
-        if (this.itemContainer !== undefined) {
-            this.itemContainer.element.nativeElement.scrollIntoView({behavior: 'smooth', block: 'end', inline: 'nearest'});
         }
     }
 

@@ -4,7 +4,7 @@
                       [itemTemplate]="template">
 </app-paged-collection>
 
-<ng-template #template let-model="itemModel">
+<ng-template #template let-model="context">
     <ng-container *ngIf="toItem(model); let item">
         <a class="button medium collection-item-link" [routerLink]="['/result/', item.id]">
             <img alt="@context.CpuVendor logo" [src]="'./assets/cpus/'+ item.cpuVendor + '.svg'" class="collection-item-icon" loading="lazy">

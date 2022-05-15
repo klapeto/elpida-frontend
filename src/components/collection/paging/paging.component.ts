@@ -1,4 +1,6 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild} from '@angular/core';
+import {ModalService} from '../../../services/modal.service';
+import {JumpToPageComponent} from './jump-to-page/jump-to-page.component';
 
 @Component({
     selector: 'app-paging',
@@ -11,10 +13,13 @@ export class PagingComponent implements OnInit {
     @Input() public readonly pagesCount: number;
     @Output() public readonly pageChanged = new EventEmitter<number>();
 
+    @ViewChild('jumpToPageTemplate') jumpToPageTemplate: TemplateRef<number>;
+
     public pages: number[];
     public currentPage: number;
 
-    public inputPage: number;
+    constructor(private modalService: ModalService) {
+    }
 
     public changePage(page: number): void {
         this.currentPage = page;
@@ -44,7 +49,7 @@ export class PagingComponent implements OnInit {
         // Recalculate distance (this should equal to 'thisMaxButtons')
         diff = b - a;
 
-        this.pages = new Array<number>();
+        this.pages = [];
         for (let i = 0; i < diff; i++) {
             this.pages.push(a++);
         }
@@ -60,17 +65,19 @@ export class PagingComponent implements OnInit {
     }
 
     public jumpToPage(): void {
-        if (this.inputPage <= 0) {
-            this.inputPage = undefined;
-            alert('The page number can only be a positive number starting from 1');
-            return;
-        }
-        if (this.inputPage - 1 <= this.pagesCount) {
-            this.changePage(this.inputPage - 1);
-        } else {
-            this.inputPage = undefined;
-            alert('The max page number is ' + this.pagesCount);
-        }
+        this.modalService.show('Jump to page', JumpToPageComponent, component => {
+            component.currentPage = this.currentPage;
+            component.pagesCount = this.pagesCount;
+            const subscription = component.currentPageChanged.subscribe(p => {
+                subscription.unsubscribe();
+                this.modalService.hide();
+                this.changePage(p);
+            });
+        });
+    }
+
+    toPage(i: any): number {
+        return i as number;
     }
 
     public getPreviousPage(): void {

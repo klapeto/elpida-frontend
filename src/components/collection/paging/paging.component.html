@@ -1,30 +1,28 @@
-<div class="page-items-container">
-    <div class="non-a-button button-default-size button" (click)="getPreviousPage()"
-         [ngClass]="{'disabled': currentPage <=0 }"
-         aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
+<div class="pager-container">
+    <button class="small pager-page-button"
+            [ngClass]="{'disabled': currentPage == 0 }"
+            [disabled]="currentPage == 0"
+            aria-label="Previous"
+            (click)="getPreviousPage()">
+        &laquo;
+    </button>
+    <div class="pager-pages">
+        <button *ngFor="let page of pages"
+                class="small pager-page-button"
+                [ngClass]="{'active': page == currentPage}"
+                (click)="changePage(page)">
+            {{page + 1}}
+        </button>
     </div>
-    <div class="non-a-button button-default-size button" *ngFor="let page of pages" (click)="changePage(page)"
-         [ngClass]="{'active': page == currentPage}">
-        <span class="page-link">{{page + 1}}</span>
-    </div>
-    <div class="non-a-button button-default-size button" (click)="getNextPage()"
-         [ngClass]="{'disabled': currentPage + 1 >= pagesCount }"
-         aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-    </div>
-
-    <div class="jumper-container">
-        <div>
-            Pages: {{pagesCount}}
-        </div>
-        <div class="jumper-controls-container">
-            <input placeholder="Page" [(ngModel)]="inputPage" class="jumper-input" [ngClass]="{'disabled': pagesCount === 0 }">
-            <div class="non-a-button button jumper-button" (click)="jumpToPage()"
-                 [ngClass]="{'disabled': pagesCount === 0 }"
-                 aria-label="Jump">
-                <span aria-hidden="true">Jump</span>
-            </div>
-        </div>
-    </div>
+    <button class="small pager-page-button"
+            [ngClass]="{'disabled': currentPage + 1 >= pagesCount }"
+            [disabled]="currentPage + 1 >= pagesCount"
+            aria-label="Next"
+            (click)="getNextPage()">
+        &raquo;
+    </button>
+    <button class="small pager-page-button"
+            (click)="jumpToPage()">
+        Jump to custom page
+    </button>
 </div>
