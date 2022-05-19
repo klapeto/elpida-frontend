@@ -29,28 +29,21 @@ export class StatisticDetailsComponent implements OnInit {
 
     constructor(private readonly statisticsService: BenchmarkStatisticsService,
                 private readonly route: ActivatedRoute,
-                private readonly valueConverter: ValueConverter) {
+                public readonly valueConverter: ValueConverter) {
     }
 
     private getClassString(cls: FrequencyClass): string {
-        return this.valueConverter.convertToSI(cls.low, 2)
-            + ' - ' + this.valueConverter.convertToSI(cls.high, 2);
+        return `${this.valueConverter.toStringSI(cls.low)} - ${this.valueConverter.toStringSI(cls.high)}`;
     }
 
     public formatNumberSI(arg: number): string {
-        return ValueConverter.convertToSI(arg, 0);
-    }
-
-    getStringValue(value: number, suffix: string): string {
-        const result = this.valueConverter.getToSI(value);
-
-        return result.value + ' ' + result.suffix + suffix;
+        return this.valueConverter.toStringSI(arg, '', 0);
     }
 
     ngOnInit(): void {
         this.statisticsService.getSingle(this.route.snapshot.paramMap.get('id')).subscribe(r => {
             this.statistics = r;
-            const scoreData = this.valueConverter.getToSI(r.mean);
+            const scoreData = this.valueConverter.getValueScaleSI(r.mean);
             this.scoreMean = scoreData.value;
             this.scoreSuffix = scoreData.suffix + this.statistics.benchmark.scoreSpecification.unit;
 

@@ -46,7 +46,7 @@ export class BenchmarkResultComponent implements OnInit {
                     'name': this.benchmarkResult.name,
                     'series': this.benchmarkResult.taskResults.map(r => {
                         return {
-                            'name': this.valueConverter.convertToSI(r.inputSize),
+                            'name': this.valueConverter.toStringSI(r.inputSize),
                             'value': r.value
                         };
                     })
@@ -61,13 +61,13 @@ export class BenchmarkResultComponent implements OnInit {
     }
 
     public formatNumberSI(arg: number): string {
-        return ValueConverter.convertToSI(arg);
+        return this.valueConverter.toStringSI(arg);
     }
 
     public calculateActualResultValue(result: TaskResult): string {
         if (result.result.type === ResultType.Throughput) {
-            return this.valueConverter.convertToSI(result.value / result.time) + result.result.unit + '/s';
+            return this.valueConverter.toStringSI(result.value / result.time, `${result.result.unit}/s`);
         }
-        return this.valueConverter.convertToSI(result.value) + result.result.unit;
+        return this.valueConverter.toStringSI(result.value, result.result.unit);
     }
 }

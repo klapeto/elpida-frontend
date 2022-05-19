@@ -77,26 +77,26 @@
 
                     <tr>
                         <td>Sample size</td>
-                        <td>{{this.valueConverter.getStringValueSI(statistics.sampleSize, '', 0)}}</td>
+                        <td>{{this.valueConverter.toStringSI(statistics.sampleSize, '', 0)}}</td>
                     </tr>
                     <tr>
                         <td>Min</td>
-                        <td>{{this.valueConverter.getStringValueSI(statistics.min, statistics.benchmark.scoreSpecification.unit)}}</td>
+                        <td>{{this.valueConverter.toStringSI(statistics.min, statistics.benchmark.scoreSpecification.unit)}}</td>
                     </tr>
 
                     <tr>
                         <td>Max</td>
-                        <td>{{this.valueConverter.getStringValueSI(statistics.max, statistics.benchmark.scoreSpecification.unit)}}</td>
+                        <td>{{this.valueConverter.toStringSI(statistics.max, statistics.benchmark.scoreSpecification.unit)}}</td>
                     </tr>
 
                     <tr>
                         <td>Margin of error</td>
-                        <td>{{this.valueConverter.getStringValueSI(statistics.marginOfError, statistics.benchmark.scoreSpecification.unit)}}</td>
+                        <td>{{this.valueConverter.toStringSI(statistics.marginOfError, statistics.benchmark.scoreSpecification.unit)}}</td>
                     </tr>
 
                     <tr>
                         <td>Standard deviation</td>
-                        <td>{{this.valueConverter.getStringValueSI(statistics.standardDeviation, statistics.benchmark.scoreSpecification.unit)}}</td>
+                        <td>{{this.valueConverter.toStringSI(statistics.standardDeviation, statistics.benchmark.scoreSpecification.unit)}}</td>
                     </tr>
 
                     </tbody>

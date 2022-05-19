@@ -1,32 +1,65 @@
-<app-loading-indicator *ngIf="!result">
-</app-loading-indicator>
+<div *ngIf="result; else elseBlock">
+    <app-tab-control [tabs]="tabs">
 
-<div *ngIf="result">
-
-    <app-group-box [title]="'Results'">
-        <app-benchmark-result [benchmarkResult]="result"></app-benchmark-result>
-    </app-group-box>
-
-    <app-group-box [title]="'Info'">
-        <div class="details-grid">
-
-            <strong>Name:</strong>
-            <div>{{result.name}}</div>
-
-            <strong>Date:</strong>
-            <div>{{result.timeStamp.toDateString()}} {{result.timeStamp.toLocaleTimeString()}}</div>
-
-            <strong>Elpida Version:</strong>
-            <div>{{result.elpidaVersion.version.major}}.{{result.elpidaVersion.version.minor}}.{{result.elpidaVersion.version.revision}}.{{result.elpidaVersion.version.build}}</div>
-
-            <strong>Compiler:</strong>
-            <div>{{result.elpidaVersion.compiler.name}} {{result.elpidaVersion.compiler.version}}</div>
-
-        </div>
-    </app-group-box>
+    </app-tab-control>
 </div>
 
-<app-group-box [title]="'System'" *ngIf="result">
-    <app-system [system]="result.system" [affinity]="result.affinity"></app-system>
-</app-group-box>
+<ng-template #elseBlock>
+    <app-loading-indicator></app-loading-indicator>
+</ng-template>
+
+<ng-template #summaryTitle>
+    <app-icon-with-text [imgSrc]="'./assets/categories/summary.svg'">
+        Summary
+    </app-icon-with-text>
+</ng-template>
+<ng-template #summaryContent>
+    <div class="result-summary-container">
+        <div class="flex-center row">
+            <div class="flex-center column" style="margin: 0 1em 2em 1em">
+                <div>
+                    <img class="details-image" [src]="imageLinksService.getCpuImageLink(result.system.cpu.vendor)"
+                         [alt]="result.system.cpu.vendor + 'logo'">
+                    <img class="details-image" [src]="imageLinksService.getBenchmarkImage(result.uuid)"
+                         [alt]="result.name + 'representative image'">
+                </div>
+                <b style="font-size: larger">{{result.system.cpu.modelName}}</b>
+            </div>
+            <div style="margin: 1em">
+                <app-group-box [title]="result.name">
+                    <div class="text-center">{{this.valueConverter.toStringSI(result.score, result.scoreSpecification.unit)}}</div>
+                </app-group-box>
+            </div>
+        </div>
+        <div class="details-grid">
+            <b>Timestamp:</b><span>{{result.timeStamp.toLocaleString()}}</span>
+            <b>Benchmark name:</b><span>{{result.name}}</span>
+            <b>CPU model:</b><span>{{result.system.cpu.modelName}}</span>
+            <b>CPU frequency:</b><span>{{this.valueConverter.toStringSI(result.system.cpu.frequency, 'HZ')}}</span>
+            <b>Total memory:</b><span>{{this.valueConverter.toStringIEC(result.system.memory.totalSize, 'B')}}</span>
+            <b>Os:</b><span>{{result.system.os.name}}</span>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #cpuTitle>
+    <app-icon-with-text [imgSrc]="'./assets/categories/cpus.svg'">
+        CPU
+    </app-icon-with-text>
+</ng-template>
+<ng-template #cpuContent>
+    <app-cpu [cpu]="result.system.cpu"></app-cpu>
+</ng-template>
+
+
+<ng-template #topologyTitle>
+    <app-icon-with-text [imgSrc]="'./assets/categories/topology-o.svg'">
+        Topology
+    </app-icon-with-text>
+</ng-template>
+<ng-template #topologyContent>
+    <div class="flex-center row">
+        <app-topology [topology]="result.system.topology" [affinity]="result.affinity"></app-topology>
+    </div>
+</ng-template>
 

@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {ResultsService} from '../../services/results.service';
 import {ResultPreview} from '../../models/result/result-preview';
+import {NodeType} from '../../models/topology/cpuNode';
 
 @Component({
     selector: 'app-latest-results',

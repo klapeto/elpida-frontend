@@ -6,7 +6,7 @@
 
 <ng-template #template let-model="context">
     <ng-container *ngIf="toItem(model); let item">
-        <a class="button medium collection-item-link" [routerLink]="['/result/', item.id]">
+        <a class="button medium collection-item-link" [routerLink]="['/Database/Result/', item.id]">
             <img alt="@context.CpuVendor logo" [src]="'./assets/cpus/'+ item.cpuVendor + '.svg'" class="collection-item-icon" loading="lazy">
             <img alt="@context.BenchmarkName representative image" [src]="'./assets/benchmarks/'+ item.benchmarkUuid + '.svg'" class="collection-item-icon" loading="lazy">
             <div class="collection-item-name-container">

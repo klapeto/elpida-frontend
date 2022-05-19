@@ -47,7 +47,7 @@
     </app-group-box>
 
     <div *ngIf="pagedResult; else elseBlock">
-        <p>Records found: {{valueConverter.convertToSI(pagedResult.totalCount, 0)}}, Pages: {{maxResultPages}}</p>
+        <p>Records found: {{valueConverter.toStringSI(pagedResult.totalCount, '', 0)}}, Pages: {{maxResultPages}}</p>
         <ul>
             <li *ngFor="let item of pagedResult.items" class="collection-item">
                 <ng-container *ngTemplateOutlet="itemTemplate; context: {context: item}"></ng-container>

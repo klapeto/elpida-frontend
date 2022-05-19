@@ -3,6 +3,6 @@
     <app-comparison-select *ngIf="allowComparison" [filter]="filter"></app-comparison-select>
     <div class="range-filter-slider">
         <input type="range" [(ngModel)]="filter.value" [max]="max" [min]="min"/>
-        <output class="range-value">{{valueConverter.convertToSI(filter.value, getDecimals())}}{{suffix}}</output>
+        <output class="range-value">{{valueConverter.toStringSI(filter.value, suffix, getDecimals())}}</output>
     </div>
 </label>

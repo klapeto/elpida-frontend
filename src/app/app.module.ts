@@ -15,8 +15,6 @@ import {GroupBoxComponent} from '../components/group-box/group-box.component';
 import {CpuComponent} from './result/system/cpu/cpu.component';
 import {TopologyComponent} from '../components/topology/topology.component';
 import {MemoryComponent} from './result/system/memory/memory.component';
-import {CpuCacheComponent} from './result/system/cpu/cpu-cache/cpu-cache.component';
-import {CpuNodeComponent} from '../components/topology/cpu-node/cpu-node.component';
 import {ValueConverter} from '../services/value-converter';
 import {LatestResultsComponent} from './latest-results/latest-results.component';
 import {PagingComponent} from '../components/collection/paging/paging.component';
@@ -72,6 +70,7 @@ import {FilterPoolComponent} from '../components/collection/filter-pool/filter-p
 import {NewFilterComponent} from '../components/collection/filter-pool/new-filter/new-filter.component';
 import {ComparisonSelectComponent} from '../components/collection/filters/comparison-select/comparison-select.component';
 import {JumpToPageComponent} from '../components/collection/paging/jump-to-page/jump-to-page.component';
+import {TabControlComponent} from '../components/tab-control/tab-control.component';
 
 @NgModule({
     declarations: [
@@ -86,8 +85,6 @@ import {JumpToPageComponent} from '../components/collection/paging/jump-to-page/
         CpuComponent,
         TopologyComponent,
         MemoryComponent,
-        CpuCacheComponent,
-        CpuNodeComponent,
         LatestResultsComponent,
         PagingComponent,
         OsComponent,
@@ -131,7 +128,8 @@ import {JumpToPageComponent} from '../components/collection/paging/jump-to-page/
         FilterPoolComponent,
         NewFilterComponent,
         ComparisonSelectComponent,
-        JumpToPageComponent
+        JumpToPageComponent,
+        TabControlComponent
     ],
     imports: [
         BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),

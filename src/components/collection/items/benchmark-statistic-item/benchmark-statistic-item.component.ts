@@ -17,6 +17,6 @@ export class BenchmarkStatisticItemComponent implements OnInit {
   }
 
   public calculateActualStatisticValue(): string {
-    return this.valueConverter.convertToSI(this.item.mean) + this.item.benchmarkScoreUnit;
+    return this.valueConverter.toStringSI(this.item.mean, this.item.benchmarkScoreUnit);
   }
 }

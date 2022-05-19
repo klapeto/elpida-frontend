@@ -5,6 +5,7 @@ import {FoundationModel} from '../foundation.model';
 export class Cpu extends FoundationModel {
     constructor(
         id: number,
+        public readonly architecture: string,
         public readonly vendor: string,
         public readonly modelName: string,
         public readonly frequency: number,

@@ -11,9 +11,9 @@ export class ResultDetailsComponent {
 
   @Input() taskResult: TaskResult;
 
-  constructor() { }
+  constructor(private valueConverter: ValueConverter) { }
 
   public formatNumberSI(arg: number): string {
-    return ValueConverter.convertToSI(arg);
+    return this.valueConverter.toStringSI(arg);
   }
 }
