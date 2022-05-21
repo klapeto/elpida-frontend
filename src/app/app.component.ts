@@ -8,7 +8,8 @@ import {ModalService} from '../services/modal.service';
 export class AppComponent {
     title = 'app';
 
-    constructor(private modalService: ModalService, private viewContainerRef: ViewContainerRef) {
+    constructor(private modalService: ModalService,
+                private viewContainerRef: ViewContainerRef) {
         this.modalService.initialize(this.viewContainerRef);
     }
 }

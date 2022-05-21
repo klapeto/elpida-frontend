@@ -1,11 +1,4 @@
-import {
-    AfterViewInit,
-    Component,
-    EventEmitter,
-    Input,
-    OnInit,
-    Output, TemplateRef,
-} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewEncapsulation,} from '@angular/core';
 import {PagedResultDto} from '../../../dtos/paged-result.dto';
 import {QueryModel} from '../../../models/query.model';
 import {PageDto} from '../../../dtos/page.dto';

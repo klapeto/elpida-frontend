@@ -20,8 +20,8 @@ export enum NodeType {
 export class CpuNode {
     constructor(public readonly nodeType: NodeType,
                 public readonly name: string,
-                public readonly osIndex: number,
-                public readonly value: number,
+                public readonly osIndex: number | null,
+                public readonly value: number | null,
                 public readonly children: CpuNode[],
                 public readonly memoryChildren: CpuNode[]) {
     }

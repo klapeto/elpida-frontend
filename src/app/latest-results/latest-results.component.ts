@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {ResultsService} from '../../services/results.service';
 import {ResultPreview} from '../../models/result/result-preview';
-import {NodeType} from '../../models/topology/cpuNode';
+import {ValueConverter} from '../../services/value-converter';
 
 @Component({
     selector: 'app-latest-results',
@@ -10,7 +10,8 @@ import {NodeType} from '../../models/topology/cpuNode';
 })
 export class LatestResultsComponent {
     constructor(
-        public readonly resultService: ResultsService
+        public readonly resultService: ResultsService,
+        public readonly valueConverter: ValueConverter,
     ) {
 
     }

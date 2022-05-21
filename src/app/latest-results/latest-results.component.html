@@ -1,3 +1,4 @@
+<h3>Results</h3>
 <app-paged-collection [service]="resultService"
                       [showFilters]="true"
                       [name]="'Results'" [showSearchBox]="true"
@@ -6,18 +7,18 @@
 
 <ng-template #template let-model="context">
     <ng-container *ngIf="toItem(model); let item">
-        <a class="button medium collection-item-link" [routerLink]="['/Database/Result/', item.id]">
+        <a class="button collection-item-link" [routerLink]="['/Database/Result/', item.id]">
             <img alt="@context.CpuVendor logo" [src]="'./assets/cpus/'+ item.cpuVendor + '.svg'" class="collection-item-icon" loading="lazy">
             <img alt="@context.BenchmarkName representative image" [src]="'./assets/benchmarks/'+ item.benchmarkUuid + '.svg'" class="collection-item-icon" loading="lazy">
             <div class="collection-item-name-container">
-                <span>{{item.timeStamp}}</span>
+                <span>{{item.timeStamp.toLocaleString()}}</span>
                 <span class="collection-item-name">{{item.cpuModelName}}</span>
             </div>
             <div class="collection-item-details-container">
             <span class="collection-item-name">
                 {{item.benchmarkName}}
             </span>
-                <span class="result-value">{{item.benchmarkScoreUnit}}</span>
+                <span class="result-value">{{valueConverter.toStringSI(item.score, item.benchmarkScoreUnit)}}</span>
             </div>
         </a>
     </ng-container>

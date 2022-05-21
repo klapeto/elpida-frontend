@@ -71,6 +71,9 @@ import {NewFilterComponent} from '../components/collection/filter-pool/new-filte
 import {ComparisonSelectComponent} from '../components/collection/filters/comparison-select/comparison-select.component';
 import {JumpToPageComponent} from '../components/collection/paging/jump-to-page/jump-to-page.component';
 import {TabControlComponent} from '../components/tab-control/tab-control.component';
+import {IconComponent} from '../components/icon/icon.component';
+import {IconTemplateDirective} from '../directives/icon-template.directive';
+import {IconTemplateCollectionComponent} from './icon-template-collection/icon-template-collection.component';
 
 @NgModule({
     declarations: [
@@ -129,7 +132,10 @@ import {TabControlComponent} from '../components/tab-control/tab-control.compone
         NewFilterComponent,
         ComparisonSelectComponent,
         JumpToPageComponent,
-        TabControlComponent
+        TabControlComponent,
+        IconComponent,
+        IconTemplateDirective,
+        IconTemplateCollectionComponent
     ],
     imports: [
         BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),

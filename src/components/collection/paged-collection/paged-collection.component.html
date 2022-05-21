@@ -1,5 +1,4 @@
 <div class="flex-center column">
-
     <div class="collection-controls flex-center row">
 
         <button *ngIf="showFilters"
@@ -40,26 +39,30 @@
                                     [query]="currentQuery">
             </app-collection-filters>
             <ng-template #filterPool>
-                <app-filter-pool [availableFilters]="service.createAdvancedQuery().filters" (submitted)="onFiltersSubmitted($event)"></app-filter-pool>
+                <app-filter-pool [availableFilters]="service.createAdvancedQuery().filters"
+                                 (submitted)="onFiltersSubmitted($event)"></app-filter-pool>
             </ng-template>
         </div>
 
     </app-group-box>
-
-    <div *ngIf="pagedResult; else elseBlock">
-        <p>Records found: {{valueConverter.toStringSI(pagedResult.totalCount, '', 0)}}, Pages: {{maxResultPages}}</p>
-        <ul>
-            <li *ngFor="let item of pagedResult.items" class="collection-item">
-                <ng-container *ngTemplateOutlet="itemTemplate; context: {context: item}"></ng-container>
-            </li>
-        </ul>
-
-        <app-paging (pageChanged)="onPageChange($event)"
-                    [pagesCount]="maxResultPages">
-        </app-paging>
-    </div>
-
-    <ng-template #elseBlock>
-        <app-loading-indicator></app-loading-indicator>
-    </ng-template>
+    <p *ngIf="pagedResult">Records found: {{valueConverter.toStringSI(pagedResult.totalCount, '', 0)}},
+        Pages: {{maxResultPages}}</p>
 </div>
+
+<div *ngIf="pagedResult; else elseBlock">
+
+    <ul>
+        <li *ngFor="let item of pagedResult.items" class="collection-item">
+            <ng-container *ngTemplateOutlet="itemTemplate; context: {context: item}"></ng-container>
+        </li>
+    </ul>
+</div>
+
+<ng-template #elseBlock>
+    <app-loading-indicator></app-loading-indicator>
+</ng-template>
+
+<app-paging *ngIf="pagedResult"
+            (pageChanged)="onPageChange($event)"
+            [pagesCount]="maxResultPages">
+</app-paging>

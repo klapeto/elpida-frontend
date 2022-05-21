@@ -7,7 +7,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class IconWithTextComponent implements OnInit {
 
-  @Input() imgSrc: string;
+  @Input() iconName: string;
 
   constructor() { }
 

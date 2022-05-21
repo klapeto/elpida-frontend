@@ -8,32 +8,32 @@
             <div [ngClass]="{'collapse': !isExpanded}" class="nav-links">
                 <a [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']" [routerLink]="['/']"
                    class="button">
-                    <app-icon-with-text [imgSrc]="'./assets/home.svg'">
+                    <app-icon-with-text [iconName]="'home'">
                         Home
                     </app-icon-with-text>
                 </a>
                 <a [routerLinkActive]="['active']" [routerLink]="['/Download']" class="button">
-                    <app-icon-with-text [imgSrc]="'./assets/download.svg'">
+                    <app-icon-with-text [iconName]="'download'">
                         Download
                     </app-icon-with-text>
                 </a>
                 <a [routerLinkActive]="['active']" [routerLink]="['/Database']" class="button">
-                    <app-icon-with-text [imgSrc]="'./assets/categories/database.svg'">
+                    <app-icon-with-text [iconName]="'database'">
                         Database
                     </app-icon-with-text>
                 </a>
                 <a [routerLinkActive]="['active']" [routerLink]="['/Statistics']" class="button">
-                    <app-icon-with-text [imgSrc]="'./assets/categories/statistics.svg'">
+                    <app-icon-with-text [iconName]="'statistics'">
                         Statistics
                     </app-icon-with-text>
                 </a>
                 <a [routerLinkActive]="['active']" [routerLink]="['/Database/Result']" class="button">
-                    <app-icon-with-text [imgSrc]="'./assets/categories/results-o.svg'">
+                    <app-icon-with-text [iconName]="'result'">
                         Results
                     </app-icon-with-text>
                 </a>
                 <a [routerLinkActive]="['active']" [routerLink]="['/About']" class="button">
-                    <app-icon-with-text [imgSrc]="'./assets/categories/elpida-versions-o.svg'">
+                    <app-icon-with-text [iconName]="'elpida'">
                         About
                     </app-icon-with-text>
                 </a>
