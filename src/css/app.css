@@ -658,6 +658,48 @@ input[type="range"] {
 }
 /*list*/
 
+/*table*/
+table {
+    box-shadow: var(--shadow);
+    margin: 1em;
+    background-color: white;
+    border: 1px var(--hr-color) solid;
+    border-radius: 0.5em;
+    padding: 0 0 0 0;
+    border-spacing: 0;
+}
+
+th {
+    border-bottom: 1px var(--hr-color) solid;
+    background-color: var(--table-header-bg-color);
+}
+
+th:first-child {
+    border-top-left-radius: 0.5em;
+}
+
+th:last-child {
+    border-top-right-radius: 0.5em;
+}
+
+
+th,td {
+    padding: 0.2em;
+    border-right: 1px var(--hr-color) solid;
+}
+
+tr:hover {
+    background-color: rgb(221, 219, 243);
+}
+
+th:last-child,
+td:last-child {
+    border-right: 0;
+}
+
+
+/*table*/
+
 /*Benchmark*/
 .benchmark-task-name {
     font-size: large;

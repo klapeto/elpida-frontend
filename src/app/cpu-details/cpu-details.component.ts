@@ -6,7 +6,7 @@ import {FilterModel} from '../../models/filter.model';
 import {HttpClient} from '@angular/common/http';
 
 @Component({
-    selector: 'app-cpu-details',
+    selector: 'app-cpu-details-details',
     templateUrl: './cpu-details.component.html',
     styleUrls: ['./cpu-details.component.css']
 })

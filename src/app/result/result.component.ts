@@ -22,6 +22,13 @@ export class ResultComponent implements OnInit, AfterViewInit {
     @ViewChild('cpuContent') cpuContent: TemplateRef<any>;
     @ViewChild('topologyTitle') topologyTitle: TemplateRef<any>;
     @ViewChild('topologyContent') topologyContent: TemplateRef<any>;
+    @ViewChild('osTitle') osTitle: TemplateRef<any>;
+    @ViewChild('osContent') osContent: TemplateRef<any>;
+    @ViewChild('elpidaTitle') elpidaTitle: TemplateRef<any>;
+    @ViewChild('elpidaContent') elpidaContent: TemplateRef<any>;
+    @ViewChild('taskResultsTitle') taskResultsTitle: TemplateRef<any>;
+    @ViewChild('taskResultsContent') taskResultsContent: TemplateRef<any>;
+
 
     tabs: TabModel[];
 
@@ -46,6 +53,20 @@ export class ResultComponent implements OnInit, AfterViewInit {
             new TabModel(this.summaryTitle, this.summaryContent),
             new TabModel(this.cpuTitle, this.cpuContent),
             new TabModel(this.topologyTitle, this.topologyContent),
+            new TabModel(this.osTitle, this.osContent),
+            new TabModel(this.elpidaTitle, this.elpidaContent),
+            new TabModel(this.taskResultsTitle, this.taskResultsContent),
         ];
+    }
+
+    public getCpuInfoPairs(): { name: string, value: string }[] {
+        const returnValue = [];
+        if (this.result.system.cpu.additionalInfo) {
+            Object.keys(this.result.system.cpu.additionalInfo).forEach(key => {
+                returnValue.push({name: key, value: this.result.system.cpu.additionalInfo[key]});
+            });
+        }
+
+        return returnValue;
     }
 }

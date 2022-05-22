@@ -35,6 +35,7 @@ export class PagedCollectionComponent<TPreview, TModel> implements AfterViewInit
 
     @Input() lockedFilters: FilterModel[];
     @Input() lockedOrderBy;
+    @Input() initialQuery: QueryModel;
 
     @Input() customRoutePrefix: string;
 
@@ -57,7 +58,11 @@ export class PagedCollectionComponent<TPreview, TModel> implements AfterViewInit
     }
 
     ngAfterViewInit(): void {
-        this.onSimpleClicked();
+        if (this.initialQuery !== undefined) {
+            this.currentQuery = this.initialQuery;
+        } else {
+            this.onSimpleClicked();
+        }
 
         this.appendLockedFilters();
         this.replaceOrderByIfNeeded();

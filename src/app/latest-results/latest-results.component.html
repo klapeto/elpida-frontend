@@ -1,7 +1,9 @@
 <h3>Results</h3>
 <app-paged-collection [service]="resultService"
                       [showFilters]="true"
-                      [name]="'Results'" [showSearchBox]="true"
+                      [name]="'Results'"
+                      [showSearchBox]="true"
+                      [initialQuery]="initialQuery"
                       [itemTemplate]="template">
 </app-paged-collection>
 
@@ -11,7 +13,7 @@
             <img alt="@context.CpuVendor logo" [src]="'./assets/cpus/'+ item.cpuVendor + '.svg'" class="collection-item-icon" loading="lazy">
             <img alt="@context.BenchmarkName representative image" [src]="'./assets/benchmarks/'+ item.benchmarkUuid + '.svg'" class="collection-item-icon" loading="lazy">
             <div class="collection-item-name-container">
-                <span>{{item.timeStamp.toLocaleString()}}</span>
+                <span>{{getTimestampString(item.timeStamp)}}</span>
                 <span class="collection-item-name">{{item.cpuModelName}}</span>
             </div>
             <div class="collection-item-details-container">

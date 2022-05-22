@@ -28,10 +28,25 @@ export class ResultsService extends CollectionService<Result, ResultPreview> {
         new OptionModel('Linux')
     ];
 
+    private readonly benchmarkOptions: OptionModel[] = [
+        new OptionModel('Overall memory latency'),
+        new OptionModel('L1D Cache Latency'),
+        new OptionModel('L2D Cache Latency'),
+        new OptionModel('L3D Cache Latency'),
+        new OptionModel('DRAM Latency'),
+        new OptionModel('Memory Read Bandwidth'),
+        new OptionModel('Floyd Steinberg Dithering'),
+        new OptionModel('Png Encoding'),
+        new OptionModel('Png Decoding'),
+    ];
+
     public createSimpleQuery(): QueryModel {
         return new QueryModel(this.cpuService.createSimpleQuery()
             .filters
-            .concat([new OptionFilterModel('Os', 'osCategory', this.oses)]));
+            .concat([
+                new OptionFilterModel('Benchmark', 'benchmarkName', this.benchmarkOptions),
+                new OptionFilterModel('Os', 'osCategory', this.oses),
+            ]));
     }
 
     public createAdvancedQuery(): QueryModel {

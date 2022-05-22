@@ -9,16 +9,12 @@ import {NavMenuComponent} from './nav-menu/nav-menu.component';
 import {HomeComponent} from './home/home.component';
 import {DownloadComponent} from './download/download.component';
 import {ResultComponent} from './result/result.component';
-import {SystemComponent} from './result/system/system.component';
-import {BenchmarkResultComponent} from './result/benchmark-result/benchmark-result.component';
+import {TaskResultsComponent} from './result/task-results/task-results.component';
 import {GroupBoxComponent} from '../components/group-box/group-box.component';
-import {CpuComponent} from './result/system/cpu/cpu.component';
 import {TopologyComponent} from '../components/topology/topology.component';
-import {MemoryComponent} from './result/system/memory/memory.component';
 import {ValueConverter} from '../services/value-converter';
 import {LatestResultsComponent} from './latest-results/latest-results.component';
 import {PagingComponent} from '../components/collection/paging/paging.component';
-import {OsComponent} from './result/system/os/os.component';
 import {ResultsService} from '../services/results.service';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
@@ -35,7 +31,6 @@ import {StringFilterComponent} from '../components/collection/filters/string-fil
 import {DateFilterComponent} from '../components/collection/filters/date-filter/date-filter.component';
 import {ModalComponent} from '../components/modal/modal.component';
 import {ChildContainerDirective} from '../directives/child-container.directive';
-import {ResultDetailsComponent} from './result/result-details/result-details.component';
 import {StatisticsComponent} from './statistics/statistics.component';
 import {PagedCollectionComponent} from '../components/collection/paged-collection/paged-collection.component';
 import {CpuService} from '../services/cpu.service';
@@ -74,6 +69,7 @@ import {TabControlComponent} from '../components/tab-control/tab-control.compone
 import {IconComponent} from '../components/icon/icon.component';
 import {IconTemplateDirective} from '../directives/icon-template.directive';
 import {IconTemplateCollectionComponent} from './icon-template-collection/icon-template-collection.component';
+import { ResultSummaryComponent } from './result/result-summary/result-summary.component';
 
 @NgModule({
     declarations: [
@@ -82,15 +78,11 @@ import {IconTemplateCollectionComponent} from './icon-template-collection/icon-t
         HomeComponent,
         DownloadComponent,
         ResultComponent,
-        SystemComponent,
-        BenchmarkResultComponent,
+        TaskResultsComponent,
         GroupBoxComponent,
-        CpuComponent,
         TopologyComponent,
-        MemoryComponent,
         LatestResultsComponent,
         PagingComponent,
-        OsComponent,
         CollectionFiltersComponent,
         AboutComponent,
         OptionFilterComponent,
@@ -101,7 +93,6 @@ import {IconTemplateCollectionComponent} from './icon-template-collection/icon-t
         FilterContainerComponent,
         ModalComponent,
         ChildContainerDirective,
-        ResultDetailsComponent,
         StatisticsComponent,
         PagedCollectionComponent,
         CpuItemComponent,
@@ -135,7 +126,8 @@ import {IconTemplateCollectionComponent} from './icon-template-collection/icon-t
         TabControlComponent,
         IconComponent,
         IconTemplateDirective,
-        IconTemplateCollectionComponent
+        IconTemplateCollectionComponent,
+        ResultSummaryComponent,
     ],
     imports: [
         BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),

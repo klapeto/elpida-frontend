@@ -102,15 +102,15 @@ export class ValueConverter {
         return ValueConverter.getValueScaleStringImpl(value, ValueConverter.ScaleValuesIEC, ValueConverter.PrefixesIEC, decimals);
     }
 
-    public toStringSI(value: number, unit: string = '', decimals: number = 2, spaceBetween: boolean = true): string {
+    public toStringSI(value: number, unit: string | null = '', decimals: number = 2, spaceBetween: boolean = true): string {
         const result = ValueConverter.getValueScaleStringImpl(value, ValueConverter.ScaleValuesSI, ValueConverter.PrefixesSI, decimals);
 
-        return `${result.value}${spaceBetween ? ' ' : ''}${result.suffix}${unit}`;
+        return `${result.value}${spaceBetween ? ' ' : ''}${result.suffix}${unit !== null ? unit : ''}`;
     }
 
-    public toStringIEC(value: number, unit: string = '', decimals: number = 2, spaceBetween: boolean = true): string {
+    public toStringIEC(value: number, unit: string | null = '', decimals: number = 2, spaceBetween: boolean = true): string {
         const result = ValueConverter.getValueScaleStringImpl(value, ValueConverter.ScaleValuesIEC, ValueConverter.PrefixesIEC, decimals);
 
-        return `${result.value}${spaceBetween ? ' ' : ''}${result.suffix}${unit}`;
+        return `${result.value}${spaceBetween ? ' ' : ''}${result.suffix}${unit !== null ? unit : ''}`;
     }
 }

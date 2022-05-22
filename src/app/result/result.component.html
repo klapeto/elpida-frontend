@@ -15,32 +15,7 @@
     </app-icon-with-text>
 </ng-template>
 <ng-template #summaryContent>
-    <div class="result-summary-container">
-        <div class="flex-center row">
-            <div class="flex-center column" style="margin: 0 1em 2em 1em">
-                <div>
-                    <img class="details-image" [src]="imageLinksService.getCpuImageLink(result.system.cpu.vendor)"
-                         [alt]="result.system.cpu.vendor + 'logo'">
-                    <img class="details-image" [src]="imageLinksService.getBenchmarkImage(result.uuid)"
-                         [alt]="result.name + 'representative image'">
-                </div>
-                <b style="font-size: larger">{{result.system.cpu.modelName}}</b>
-            </div>
-            <div style="margin: 1em">
-                <app-group-box [title]="result.name">
-                    <div class="text-center">{{this.valueConverter.toStringSI(result.score, result.scoreSpecification.unit)}}</div>
-                </app-group-box>
-            </div>
-        </div>
-        <div class="details-grid">
-            <b>Timestamp:</b><span>{{result.timeStamp.toLocaleString()}}</span>
-            <b>Benchmark name:</b><span>{{result.name}}</span>
-            <b>CPU model:</b><span>{{result.system.cpu.modelName}}</span>
-            <b>CPU frequency:</b><span>{{this.valueConverter.toStringSI(result.system.cpu.frequency, 'HZ')}}</span>
-            <b>Total memory:</b><span>{{this.valueConverter.toStringIEC(result.system.memory.totalSize, 'B')}}</span>
-            <b>Os:</b><span>{{result.system.os.name}}</span>
-        </div>
-    </div>
+    <app-result-summary [result]="result"></app-result-summary>
 </ng-template>
 
 <ng-template #cpuTitle>
@@ -49,7 +24,35 @@
     </app-icon-with-text>
 </ng-template>
 <ng-template #cpuContent>
-    <app-cpu [cpu]="result.system.cpu"></app-cpu>
+    <div class="flex-center" style="place-content: start; flex-flow: row wrap">
+        <img class="details-image" [src]="this.imageLinksService.getCpuImageLink(result.system.cpu.vendor)"
+             [alt]="result.system.cpu.vendor + 'logo'">
+        <div class="details-grid">
+            <b>Architecture:</b><span>{{result.system.cpu.architecture}}</span>
+            <b>Vendor:</b><span>{{result.system.cpu.vendor}}</span>
+            <b>Model:</b><span>{{result.system.cpu.modelName}}</span>
+            <b>Frequency:</b><span>{{valueConverter.toStringIEC(result.system.cpu.frequency, 'HZ')}}</span>
+            <b>SMT:</b><span>{{result.system.cpu.smt}}</span>
+            <b>Features:</b><span>{{result.system.cpu.features.join(' ')}}</span>
+            <ng-container *ngFor="let pair of getCpuInfoPairs()">
+                <b>{{pair.name}}</b><span>{{pair.value}}</span>
+            </ng-container>
+
+            <b>Caches:</b>
+            <div class="flex-center row">
+
+                <div *ngFor="let cache of result.system.cpu.caches"
+                     class="cpu-cache">
+                    <div class="cpu-cache-name">{{cache.name}}</div>
+                    <div class="details-grid cpu-cache-details">
+                        <b>Size:</b><span>{{this.valueConverter.toStringIEC(cache.size, 'B', 2, true)}}</span>
+                        <b>Associativity:</b><span>{{cache.associativity}}</span>
+                        <b>Line Size:</b><span>{{cache.lineSize}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </ng-template>
 
 
@@ -63,4 +66,49 @@
         <app-topology [topology]="result.system.topology" [affinity]="result.affinity"></app-topology>
     </div>
 </ng-template>
+
+<ng-template #osTitle>
+    <app-icon-with-text [iconName]="'os'">
+        Os
+    </app-icon-with-text>
+</ng-template>
+<ng-template #osContent>
+    <div class="flex-center" style="place-content: start; flex-flow: row wrap">
+        <img class="details-image" [src]="imageLinksService.getOsImageLink(result.system.os.category)"
+             [alt]="result.system.os.category + 'logo'">
+        <div class="details-grid">
+            <b>Category:</b><span>{{result.system.os.category}}</span>
+            <b>Name:</b><span>{{result.system.os.name}}</span>
+            <b>Version:</b><span>{{result.system.os.version}}</span>
+        </div>
+    </div>
+</ng-template>
+
+
+<ng-template #elpidaTitle>
+    <app-icon-with-text [iconName]="'elpida'">
+        Elpida version
+    </app-icon-with-text>
+</ng-template>
+<ng-template #elpidaContent>
+    <div class="flex-center" style="place-content: start; flex-flow: row wrap">
+        <img class="details-image" [src]="imageLinksService.getElpidaMonochromeAvatarLink()"
+             alt="Elpida monochrome stylized mascot">
+        <div class="details-grid">
+            <b>Version:</b><span>{{result.elpidaVersion.version.major}}.{{result.elpidaVersion.version.minor}}
+            .{{result.elpidaVersion.version.revision}}.{{result.elpidaVersion.version.build}}</span>
+            <b>Compiler:</b><span>{{result.elpidaVersion.compiler.name}} {{result.elpidaVersion.compiler.version}}</span>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #taskResultsTitle>
+    <app-icon-with-text [iconName]="'benchmark'">
+        Task results
+    </app-icon-with-text>
+</ng-template>
+<ng-template #taskResultsContent>
+    <app-task-results [benchmarkResult]="result"></app-task-results>
+</ng-template>
+
 

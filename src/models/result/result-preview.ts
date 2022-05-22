@@ -3,7 +3,7 @@ import {FoundationModel} from '../foundation.model';
 export class ResultPreview extends FoundationModel {
     constructor(
         id: number,
-        public timeStamp: Date,
+        public timeStamp: string,
         public readonly osName: string,
         public readonly cpuVendor: string,
         public readonly cpuModelName: string,

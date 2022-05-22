@@ -15,7 +15,7 @@
                         {{node.osIndex}}
                     </div>
                     <div *ngIf="shouldShowAffinityBox(node)" class="topology-node-checkbox">
-                        <div [style]="'mask: url(\'./assets/checkmark.svg\'); mask-size: contain; background: currentcolor;'" class="icon"></div>
+                        <app-icon [iconName]="'checkmark'"></app-icon>
                     </div>
                 </ng-container>
                 <div *ngIf="node.value" class="topology-node-value">
