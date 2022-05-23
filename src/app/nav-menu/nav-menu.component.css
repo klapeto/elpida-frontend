@@ -32,7 +32,7 @@ nav {
     justify-content: flex-end;
 }
 
-.menu-toggler {
+.menu-button {
     height: 4em;
     width: 4em;
     border: 1px solid var(--border-color);
@@ -41,7 +41,7 @@ nav {
     margin: 0.5em;
 }
 
-.menu-toggler:hover {
+.menu-button:hover {
     background-color: var(--button-hover-bg-color);
 }
 
@@ -50,7 +50,7 @@ nav {
 }
 
 @media (min-width: 67rem) {
-    .menu-toggler {
+    .menu-button {
         display: none;
     }
     .nav-links {

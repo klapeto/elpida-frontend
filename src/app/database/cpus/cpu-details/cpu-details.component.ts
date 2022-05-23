@@ -1,12 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {Cpu} from '../../models/cpu/cpu';
-import {CpuService} from '../../services/cpu.service';
-import {FilterModel} from '../../models/filter.model';
-import {HttpClient} from '@angular/common/http';
+import {Cpu} from '../../../../models/cpu/cpu';
+import {CpuService} from '../../../../services/cpu.service';
+import {FilterModel} from '../../../../models/filter.model';
+import {ImageLinksService} from '../../../../services/image-links.service';
+import {ValueConverter} from '../../../../services/value-converter';
 
 @Component({
-    selector: 'app-cpu-details-details',
+    selector: 'app-cpu-view-details-details',
     templateUrl: './cpu-details.component.html',
     styleUrls: ['./cpu-details.component.css']
 })
@@ -18,7 +19,8 @@ export class CpuDetailsComponent implements OnInit {
 
     constructor(
         private readonly cpuService: CpuService,
-        private readonly http: HttpClient,
+        public readonly imageLinksService: ImageLinksService,
+        public readonly valueConverter: ValueConverter,
         private route: ActivatedRoute) {
 
     }

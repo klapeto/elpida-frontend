@@ -21,7 +21,7 @@ export class TopCpusByBenchmarkComponent implements OnInit {
     public benchmark: Benchmark;
 
     public filters: FilterModel[];
-    public orderBy: FilterModel;
+    public orderBy: string;
 
     public chartXAxisLabel: string;
 
@@ -40,7 +40,7 @@ export class TopCpusByBenchmarkComponent implements OnInit {
         this.filters = [
             new NumberFilterModel('', 'benchmarkId', ComparisonModel.equals(), null, this.benchmark.id)
         ];
-        this.orderBy = this.statisticsService.createBenchmarkScoreMeanFilter();
+        this.orderBy = this.statisticsService.createBenchmarkScoreMeanFilter().internalName;
     }
 
     public getComparisonDescription(): string {

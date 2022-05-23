@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {CpuPreview} from '../../../../models/cpu/cpu-preview';
 
 @Component({
-  selector: 'app-cpu-details-item',
+  selector: 'app-cpu-view-details-item',
   templateUrl: './cpu-item.component.html',
   styleUrls: ['./cpu-item.component.css']
 })

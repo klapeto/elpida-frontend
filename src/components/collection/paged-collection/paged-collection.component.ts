@@ -1,10 +1,11 @@
-import {AfterViewInit, Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewEncapsulation,} from '@angular/core';
+import {AfterViewInit, Component, ContentChild, EventEmitter, Input, OnInit, Output, TemplateRef, ViewEncapsulation,} from '@angular/core';
 import {PagedResultDto} from '../../../dtos/paged-result.dto';
 import {QueryModel} from '../../../models/query.model';
 import {PageDto} from '../../../dtos/page.dto';
 import {ValueConverter} from '../../../services/value-converter';
 import {CollectionService} from '../../../services/collection-service';
 import {FilterModel} from '../../../models/filter.model';
+import {ModalService} from '../../../services/modal.service';
 
 @Component({
     selector: 'app-paged-collection',
@@ -34,16 +35,17 @@ export class PagedCollectionComponent<TPreview, TModel> implements AfterViewInit
     @Input() name: string;
 
     @Input() lockedFilters: FilterModel[];
-    @Input() lockedOrderBy;
+    @Input() lockedOrderBy: string;
     @Input() initialQuery: QueryModel;
 
     @Input() customRoutePrefix: string;
 
     @Output() pageChanged: EventEmitter<PagedResultDto<TPreview>> = new EventEmitter<PagedResultDto<TPreview>>();
 
-    @Input() itemTemplate: TemplateRef<TPreview>;
+    @ContentChild('itemTemplate') itemTemplate: TemplateRef<TPreview>;
 
-    constructor(public valueConverter: ValueConverter) {
+    constructor(public valueConverter: ValueConverter,
+                private modalService: ModalService) {
 
     }
 
@@ -67,6 +69,7 @@ export class PagedCollectionComponent<TPreview, TModel> implements AfterViewInit
         this.appendLockedFilters();
         this.replaceOrderByIfNeeded();
         this.reloadPageSafe();
+        this.currentQuery = this.service.createSimpleQuery();   // revert to simple
     }
 
     public onFiltersButtonClick() {
@@ -86,7 +89,7 @@ export class PagedCollectionComponent<TPreview, TModel> implements AfterViewInit
     }
 
     public onFiltersSubmitted(query: QueryModel): void {
-        Object.assign(this.currentQuery, query);
+        this.currentQuery = query;
         this.appendLockedFilters();
         this.replaceOrderByIfNeeded();
         this.reloadPageSafe();
@@ -102,7 +105,7 @@ export class PagedCollectionComponent<TPreview, TModel> implements AfterViewInit
         try {
             this.getPageResults(this.curPage);
         } catch (e) {
-            alert(e);
+            this.modalService.showMessage('Error', e);
             this.pagedResult = previousResult;
             this.maxResultPages = prevMaxPages;
             this.curPage = prevCurPage;
@@ -122,7 +125,7 @@ export class PagedCollectionComponent<TPreview, TModel> implements AfterViewInit
     }
 
     public revertPage() {
-
+        this.ngAfterViewInit();
     }
 
     public onSearch(ev: KeyboardEvent): void {

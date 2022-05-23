@@ -58,15 +58,4 @@ export class ResultComponent implements OnInit, AfterViewInit {
             new TabModel(this.taskResultsTitle, this.taskResultsContent),
         ];
     }
-
-    public getCpuInfoPairs(): { name: string, value: string }[] {
-        const returnValue = [];
-        if (this.result.system.cpu.additionalInfo) {
-            Object.keys(this.result.system.cpu.additionalInfo).forEach(key => {
-                returnValue.push({name: key, value: this.result.system.cpu.additionalInfo[key]});
-            });
-        }
-
-        return returnValue;
-    }
 }

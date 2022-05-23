@@ -4,7 +4,7 @@
             <img alt="Elpida Logo" class="logo" src="./assets/Elpida_Logo.svg"/>
         </a>
         <nav>
-            <div (click)="toggle()" class="menu-toggler"></div>
+            <div (click)="toggle()" class="menu-button"></div>
             <div [ngClass]="{'collapse': !isExpanded}" class="nav-links">
                 <a [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']" [routerLink]="['/']"
                    class="button">

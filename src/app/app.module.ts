@@ -35,7 +35,7 @@ import {StatisticsComponent} from './statistics/statistics.component';
 import {PagedCollectionComponent} from '../components/collection/paged-collection/paged-collection.component';
 import {CpuService} from '../services/cpu.service';
 import {CpuItemComponent} from '../components/collection/items/cpu-item/cpu-item.component';
-import {CpuDetailsComponent} from './cpu-details/cpu-details.component';
+import {CpuDetailsComponent} from './database/cpus/cpu-details/cpu-details.component';
 import {BenchmarkStatisticItemComponent} from '../components/collection/items/benchmark-statistic-item/benchmark-statistic-item.component';
 import {BenchmarkStatisticsService} from '../services/benchmark-statistics.service';
 import {StatisticDetailsComponent} from './statistics/statistic-details/statistic-details.component';
@@ -70,6 +70,7 @@ import {IconComponent} from '../components/icon/icon.component';
 import {IconTemplateDirective} from '../directives/icon-template.directive';
 import {IconTemplateCollectionComponent} from './icon-template-collection/icon-template-collection.component';
 import { ResultSummaryComponent } from './result/result-summary/result-summary.component';
+import {CpuViewComponent} from '../components/cpu-view/cpu-view.component';
 
 @NgModule({
     declarations: [
@@ -128,6 +129,7 @@ import { ResultSummaryComponent } from './result/result-summary/result-summary.c
         IconTemplateDirective,
         IconTemplateCollectionComponent,
         ResultSummaryComponent,
+        CpuViewComponent,
     ],
     imports: [
         BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
@@ -141,7 +143,7 @@ import { ResultSummaryComponent } from './result/result-summary/result-summary.c
             {path: 'Statistics', component: StatisticsComponent},
             {path: 'Statistics/:id', component: StatisticDetailsComponent},
             {path: 'Database', component: DatabaseComponent},
-            {path: 'Database/Results', component: LatestResultsComponent, },
+            {path: 'Database/Result', component: LatestResultsComponent, },
             {path: 'Database/Result/:id', component: ResultComponent},
             {path: 'Database/Cpu', component: CpusComponent},
             {path: 'Database/Cpu/:id', component: CpuDetailsComponent},
