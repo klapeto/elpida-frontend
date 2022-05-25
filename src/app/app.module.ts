@@ -47,7 +47,7 @@ import {TopologiesComponent} from './database/topologies/topologies.component';
 import {TopologyDetailsComponent} from './topology-details/topology-details.component';
 import {BenchmarksComponent} from './database/benchmarks/benchmarks.component';
 import {BenchmarkItemComponent} from '../components/collection/items/benchmark-item/benchmark-item.component';
-import {BenchmarkDetailsComponent} from './benchmark-details/benchmark-details.component';
+import {BenchmarkDetailsComponent} from './database/benchmarks/benchmark-details/benchmark-details.component';
 import {OsesComponent} from './database/oses/oses.component';
 import {OsItemComponent} from '../components/collection/items/os-item/os-item.component';
 import {OsDetailsComponent} from './os-details/os-details.component';

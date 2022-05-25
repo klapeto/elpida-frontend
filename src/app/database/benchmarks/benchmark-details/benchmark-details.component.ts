@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute} from '@angular/router';
-import {Benchmark} from '../../models/benchmark/benchmark';
-import {BenchmarkService} from '../../services/benchmark.service';
-import {ResultSpecification, ResultType} from '../../models/task/result-specification';
+import {Benchmark} from '../../../../models/benchmark/benchmark';
+import {BenchmarkService} from '../../../../services/benchmark.service';
+import {ResultSpecification, ResultType} from '../../../../models/task/result-specification';
+import {ImageLinksService} from '../../../../services/image-links.service';
 
 @Component({
     selector: 'app-benchmark-details',
@@ -16,6 +17,7 @@ export class BenchmarkDetailsComponent implements OnInit {
 
     constructor(
         private readonly benchmarkService: BenchmarkService,
+        public readonly imageLinksService: ImageLinksService,
         private readonly http: HttpClient,
         private route: ActivatedRoute) {
     }

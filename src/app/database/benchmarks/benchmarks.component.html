@@ -1,7 +1,15 @@
 <app-paged-collection [service]="benchmarkService"
                       [name]="'Benchmarks'"
-                      [customRoutePrefix]="customRoute"
                       [showFilters]="true"
                       [showSearchBox]="true">
-    
+    <ng-template #itemTemplate let-model="context">
+        <ng-container *ngIf="toItem(model); let item">
+            <a class="button collection-item-link" [routerLink]="['/Database/Benchmark/', item.id]">
+                <img [alt]="item.name +  'image'" [src]="imageLinksService.getBenchmarkImage(item.uuid)" class="collection-item-icon" loading="lazy">
+                <span class="collection-item-name">
+                {{item.name}}
+            </span>
+            </a>
+        </ng-container>
+    </ng-template>
 </app-paged-collection>

@@ -19,6 +19,10 @@ hr {
     width: 1em;
 }
 
+.reduced-text {
+    max-width: 20em;
+}
+
 /* main layout*/
 .background-back {
     background-image: url("../assets/Elpida.svg");
@@ -68,7 +72,7 @@ hr {
 
 /* main layout */
 
-code,samp,kbd {
+code, samp, kbd {
     display: inline-block;
     font-family: monospace;
     white-space: normal;
@@ -107,7 +111,7 @@ code,samp,kbd {
 }
 
 /* button */
-select,button,.button {
+select, button, .button {
     padding: 1.3em;
     text-decoration: none;
     display: inline-block;
@@ -121,23 +125,23 @@ select,button,.button {
     position: relative;
 }
 
-select:hover,button:hover,.button:hover  {
+select:hover, button:hover, .button:hover {
     background-color: var(--button-hover-bg-color);
     color: var(--font-color);
 }
 
-button.active,.button.active  {
+button.active, .button.active {
     background-color: var(--button-active-bg-color);
     color: var(--font-color);
     /*text-decoration: solid underline var(--hr-color) 0.1em;*/
     z-index: 0;
 }
 
-button.medium,.button.medium {
+button.medium, .button.medium {
     padding: 1em;
 }
 
-button.small,.button.small {
+button.small, .button.small {
     padding: 0.8em;
 }
 
@@ -148,17 +152,17 @@ button {
 }
 
 .button.close {
-    background-color: var( --close-button-bg);
+    background-color: var(--close-button-bg);
     border-radius: 0.4em;
     padding: 0.2em 0.6em;
 }
 
 .button.close:hover {
-    background-color: var( --close-button-hover-bg);
+    background-color: var(--close-button-hover-bg);
 }
 
 .button.close.active {
-    background-color: var( --close-button-active-bg);
+    background-color: var(--close-button-active-bg);
 }
 
 button.disabled,
@@ -187,6 +191,7 @@ button.disabled:hover,
 .icon-text {
     margin-left: 0.5em;
 }
+
 /* Icon */
 
 /* Group Box*/
@@ -210,6 +215,7 @@ button.disabled:hover,
     background-color: var(--group-box-bg-color);
     padding: 1em;
 }
+
 /* Group Box*/
 
 
@@ -259,6 +265,7 @@ button.disabled:hover,
 select {
     padding: 1em;
 }
+
 /* select */
 
 /* input */
@@ -275,6 +282,7 @@ input[type="range"] {
     padding: revert;
     box-shadow: revert;
 }
+
 /* input */
 
 /* Collection */
@@ -336,12 +344,13 @@ input[type="range"] {
     z-index: 99;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0,0,0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     flex-flow: column;
     place-items: center;
     place-content: center;
 }
+
 .modal-container {
     max-width: 95%;
     max-height: 95%;
@@ -390,6 +399,7 @@ input[type="range"] {
         grid-gap: 0.5em;
     }
 }
+
 /* Modal */
 
 /* Pager */
@@ -405,6 +415,7 @@ input[type="range"] {
 .pager-page-button {
     margin: 0.2em;
 }
+
 /* Pager */
 
 /* Details */
@@ -484,6 +495,7 @@ input[type="range"] {
         border-radius: 0 1em 1em 1em;
     }
 }
+
 /* Tab Control */
 
 /* Topology */
@@ -535,43 +547,43 @@ input[type="range"] {
 }
 
 .topology-node-numanode {
-    background-color:#d4d4a1;
+    background-color: #d4d4a1;
 }
 
 .topology-node-group {
-    background-color:#db8ced;
+    background-color: #db8ced;
 }
 
 .topology-node-die {
-    background-color:#a9a9a9;
+    background-color: #a9a9a9;
 }
 
 .topology-node-core {
-    background-color:#9297e3;
+    background-color: #9297e3;
 }
 
 .topology-node-l1icache {
-    background-color:#f5bfbf;
+    background-color: #f5bfbf;
 }
 
 .topology-node-l1dcache {
-    background-color:#fa9e9e;
+    background-color: #fa9e9e;
 }
 
 .topology-node-l2icache {
-    background-color:#e6abab;
+    background-color: #e6abab;
 }
 
 .topology-node-l2dcache {
-    background-color:#e48b8b;
+    background-color: #e48b8b;
 }
 
 .topology-node-l3icache {
-    background-color:#c68989;
+    background-color: #c68989;
 }
 
 .topology-node-l3dcache {
-    background-color:#ca7878;
+    background-color: #ca7878;
 }
 
 .topology-node-l4cache {
@@ -583,7 +595,7 @@ input[type="range"] {
 }
 
 .topology-node-executionunit {
-    background-color:#c8caea;
+    background-color: #c8caea;
 }
 
 .topology-node-unknown {
@@ -622,6 +634,7 @@ input[type="range"] {
     padding: 0.5em 0.5em 0.5em 0.5em;
     text-align: center;
 }
+
 /*Cpu*/
 
 /*list*/
@@ -656,6 +669,7 @@ input[type="range"] {
     padding: 0.3em;
     cursor: pointer;
 }
+
 /*list*/
 
 /*table*/
@@ -683,7 +697,7 @@ th:last-child {
 }
 
 
-th,td {
+th, td {
     padding: 0.2em;
     border-right: 1px var(--hr-color) solid;
 }
@@ -706,13 +720,24 @@ td:last-child {
     text-align: center;
     margin: 0.5em 0 0.5em 0;
 }
-.benchmark-task-input {
-    margin-bottom: 1em;
+
+.benchmark-task-details {
+    border-right: 1px solid var(--hr-color);
+    margin: 1em 1em 1em 0;
+    padding: 1em;
 }
 
-.benchmark-task-output {
-    margin-top: 1em;
+.benchmark-value {
+    background-color: #cbc7f7;
+    padding: 0.5em;
+    margin: 0.5em;
+    text-align: center;
 }
+
+.benchmark-arrow {
+    margin: 1em 0 1em 0;
+}
+
 /*Benchmark*/
 
 /*Filter*/
@@ -728,3 +753,14 @@ td:last-child {
 }
 
 /*Filter*/
+
+/*Badge*/
+.badge {
+    margin: 0.2em;
+    padding: 0.2em;
+    background-color: var(--content-bg-color);
+    border-radius: 0.5em;
+    border: 1px solid var(--border-color);
+}
+
+/*Badge*/

@@ -68,15 +68,6 @@ export class CpuService extends CollectionService<Cpu, CpuPreview> {
         ], null, false);
     }
 
-    createCollectionItemComponent(item: CpuPreview, componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
-        const component = viewContainerRef.createComponent<CpuItemComponent>(
-            componentFactoryResolver.resolveComponentFactory<CpuItemComponent>(CpuItemComponent)
-        );
-
-        component.instance.item = item;
-        return component;
-    }
-
     // public getStatisticsPreviews(cpuId: number, page: PageRequest, query: Query): Observable<PagedResult<BenchmarkStatisticsPreview>> {
     //     return this.http.post<PagedResult<BenchmarkStatisticsPreview>>(this.getUrl(cpuId.toString() + this.statisticsRoute),
     //         new QueryRequest(page, query.orderBy, query.descending, query.filters));
