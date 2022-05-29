@@ -4,7 +4,7 @@ export enum BenchmarkComparison {
 }
 
 export class BenchmarkScoreSpecificationModel {
-    constructor(
+    public constructor(
         public readonly unit: string,
         public readonly comparison: BenchmarkComparison
     ) {

@@ -8,17 +8,17 @@ import {IconService} from '../../services/icon.service';
 })
 export class IconComponent {
 
-    @Input() set iconName(s: string) {
+    public constructor(private iconService: IconService,
+                private container: ViewContainerRef) {
+
+    }
+
+    @Input() public set iconName(s: string) {
         const template = this.iconService.templateMap[s];
         if (template !== undefined) {
             this.container.clear();
             this.container.createEmbeddedView(template);
         }
-    }
-
-    constructor(private iconService: IconService,
-                private container: ViewContainerRef) {
-
     }
 
 }

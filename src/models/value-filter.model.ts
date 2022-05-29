@@ -30,6 +30,8 @@ export abstract class ValueFilterModel<T> extends FilterModel {
         ComparisonModel.notContain()
     ];
 
+    protected abstract defaultValue: T;
+
     private readonly defaultComparison: ComparisonModel;
     private readonly originalValue?: T;
 
@@ -42,8 +44,6 @@ export abstract class ValueFilterModel<T> extends FilterModel {
         this.originalValue = value;
         this.defaultComparison = comparison;
     }
-
-    protected abstract defaultValue: T;
 
     public isSet(): boolean {
         return this.comparison !== null

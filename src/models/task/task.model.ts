@@ -3,7 +3,7 @@ import {DataSpecificationModel} from './data-specification.model';
 import {FoundationModel} from '../foundation.model';
 
 export class TaskModel extends FoundationModel {
-    constructor(
+    public constructor(
         id: number,
         public readonly uuid: string,
         public readonly name: string,

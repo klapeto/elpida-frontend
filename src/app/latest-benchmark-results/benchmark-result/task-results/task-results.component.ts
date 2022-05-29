@@ -15,7 +15,7 @@ export class TaskResultsComponent {
 
     public selectedResult: TaskResultModel;
 
-    constructor(public readonly valueConverter: ValueConverter) {
+    public constructor(public readonly valueConverter: ValueConverter) {
 
     }
 

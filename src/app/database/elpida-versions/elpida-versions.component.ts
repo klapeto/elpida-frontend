@@ -10,7 +10,7 @@ import {ImageLinksService} from '../../../services/image-links.service';
 })
 export class ElpidaVersionsComponent {
 
-    constructor(public readonly elpidaVersionService: ElpidaVersionService,
+    public constructor(public readonly elpidaVersionService: ElpidaVersionService,
                 public readonly imageLinksService: ImageLinksService) {
     }
 

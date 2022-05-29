@@ -13,7 +13,7 @@ export class OperatingSystemDetailsComponent implements OnInit {
 
     public operatingSystem: OperatingSystemModel;
 
-    constructor(
+    public constructor(
         private readonly osService: OperatingSystemService,
         private readonly http: HttpClient,
         private route: ActivatedRoute) {

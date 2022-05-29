@@ -8,23 +8,23 @@ import {FilterModel} from '../../../../models/filter.model';
 })
 export class NewFilterComponent implements OnInit {
 
-    @Input() availableFilters: FilterModel[];
-    @Output() filterAdded: EventEmitter<FilterModel> = new EventEmitter<FilterModel>();
+    @Input() public availableFilters: FilterModel[];
+    @Output() public filterAdded: EventEmitter<FilterModel> = new EventEmitter<FilterModel>();
 
-    selectedFilter: FilterModel;
+    public selectedFilter: FilterModel;
 
-    constructor() {
+    public constructor() {
     }
 
-    ngOnInit(): void {
+    public ngOnInit(): void {
 
     }
 
-    onSelectionChange(event: any) {
+    public onSelectionChange(event: any) {
         this.selectedFilter = this.availableFilters.find(f => f.title === event.target.value);
     }
 
-    onAddClick(): void {
+    public onAddClick(): void {
         this.filterAdded.emit(this.selectedFilter);
     }
 

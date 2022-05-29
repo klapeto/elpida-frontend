@@ -4,7 +4,7 @@ export enum ResultType {
 }
 
 export class ResultSpecificationModel {
-    constructor(
+    public constructor(
         public readonly name: string,
         public readonly description: string,
         public readonly unit: string,

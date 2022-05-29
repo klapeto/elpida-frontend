@@ -1,5 +1,5 @@
 export class TimingModel {
-    constructor(
+    public constructor(
         public readonly notifyOverhead: number,
         public readonly wakeupOverhead: number,
         public readonly sleepOverhead: number,

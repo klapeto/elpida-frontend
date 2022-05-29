@@ -1,7 +1,7 @@
 import {TaskModel} from '../task/task.model';
 
 export class BenchmarkTaskModel {
-    constructor(
+    public constructor(
         public readonly uuid: string,
         public readonly task: TaskModel,
         public readonly canBeMultiThreaded: boolean,

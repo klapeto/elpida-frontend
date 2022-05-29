@@ -13,7 +13,7 @@ export class TopologyDetailsComponent implements OnInit {
 
   public topology: TopologyModel;
 
-  constructor(
+  public constructor(
       private readonly topologyService: TopologyService,
       private readonly http: HttpClient,
       private route: ActivatedRoute) {

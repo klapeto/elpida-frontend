@@ -7,7 +7,7 @@ import {Component} from '@angular/core';
 })
 export class DatabaseComponent {
 
-    public categories = [
+    public categories: ({ name: string; link: string; icon: string })[] = [
         {name: 'Results', link: '/Database/Result', icon: './assets/categories/results.svg'},
         {name: 'CPUs', link: '/Database/Cpu', icon: './assets/categories/cpus.svg'},
         {name: 'Topologies', link: '/Database/Topology', icon: './assets/categories/topologies.svg'},
@@ -16,6 +16,6 @@ export class DatabaseComponent {
         {name: 'Elpida versions', link: '/Database/Elpida-Version', icon: './assets/categories/elpida-versions.svg'},
     ];
 
-    constructor() {
+    public constructor() {
     }
 }

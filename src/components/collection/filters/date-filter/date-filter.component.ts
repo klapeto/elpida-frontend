@@ -1,17 +1,17 @@
 import {Component, Input} from '@angular/core';
-import {ValueFilterModel} from '../../../../models/value-filter.model';
 import {FilterComponent} from '../filter-component';
+import {DateFilterModel} from '../../../../models/filters/date-filter.model';
 
 @Component({
     selector: 'app-date-filter',
     templateUrl: './date-filter.component.html',
     styleUrls: ['./date-filter.component.css']
 })
-export class DateFilterComponent extends FilterComponent<Date> {
-    @Input() public filter: ValueFilterModel<Date>;
+export class DateFilterComponent extends FilterComponent<DateFilterModel> {
+    @Input() public filter: DateFilterModel;
     @Input() public allowComparison: boolean;
 
-    constructor() {
+    public constructor() {
         super();
     }
 }

@@ -10,8 +10,9 @@ import {OperatingSystemModel} from '../../../models/operating-system.model';
 export class OperatingSystemViewComponent {
 
     @Input() public operatingSystem: OperatingSystemModel;
+    @Input() public largeLogo: boolean = false;
 
-    constructor(public readonly imageLinksService: ImageLinksService) {
+    public constructor(public readonly imageLinksService: ImageLinksService) {
     }
 
 

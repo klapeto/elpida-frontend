@@ -29,13 +29,13 @@ export class TopCpusByBenchmarkComponent implements OnInit {
 
     public colourScheme = {domain: ['#898EE2FF']};
 
-    constructor(private route: ActivatedRoute,
+    public constructor(private route: ActivatedRoute,
                 private benchmarkService: BenchmarkService,
                 public statisticsService: BenchmarkStatisticsService,
                 public valueConverter: ValueConverter) {
     }
 
-    async ngOnInit() {
+    public async ngOnInit() {
         this.benchmark = await this.benchmarkService.getSingle(this.route.snapshot.paramMap.get('id')).toPromise();
         this.filters = [
             new NumberFilterModel('', 'benchmarkId', ComparisonModel.equals(), null, this.benchmark.id)

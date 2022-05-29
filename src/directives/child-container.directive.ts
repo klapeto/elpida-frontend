@@ -5,7 +5,7 @@ import {Directive, ViewContainerRef} from '@angular/core';
 })
 export class ChildContainerDirective {
 
-    constructor(public readonly viewContainerRef: ViewContainerRef) {
+    public constructor(public readonly viewContainerRef: ViewContainerRef) {
     }
 
 }

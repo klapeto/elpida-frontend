@@ -1,7 +1,7 @@
 import {PageDto} from './page.dto';
 
 export class PagedResultDto<T> {
-    constructor(
+    public constructor(
         public readonly count: number,
         public readonly items: T[],
         public readonly totalCount: number,

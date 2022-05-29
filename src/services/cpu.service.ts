@@ -17,13 +17,9 @@ import { OptionModel } from 'src/models/option.model';
 })
 export class CpuService extends CollectionService<CpuModel, CpuPreviewModel> {
 
-    public constructor(http: HttpClient, dtoService: DtoService) {
-        super(http, dtoService);
-    }
-
     protected readonly baseRoute: string = 'cpu';
 
-    protected readonly statisticsRoute = 'TaskStatistics/Search';
+    protected readonly statisticsRoute: string = 'TaskStatistics/Search';
 
     private readonly cpuOptions: OptionModel[] = [
         new OptionModel('AMD Ryzen 3', 'AMD Ryzen 3'),
@@ -41,7 +37,11 @@ export class CpuService extends CollectionService<CpuModel, CpuPreviewModel> {
         new OptionModel('Intel Xeon', 'Intel(R) Xeon(TM)')
     ];
 
-    createAdvancedQuery(): QueryModel {
+    public constructor(http: HttpClient, dtoService: DtoService) {
+        super(http, dtoService);
+    }
+
+    public createAdvancedQuery(): QueryModel {
         return new QueryModel([
             new StringFilterModel('CPU Vendor', 'cpuVendor'),
             new StringFilterModel('CPU Brand', 'cpuModelName'),
@@ -49,11 +49,11 @@ export class CpuService extends CollectionService<CpuModel, CpuPreviewModel> {
         ], null, false);
     }
 
-    createSearchFilter(): StringFilterModel | null {
+    public createSearchFilter(): StringFilterModel | null {
         return new StringFilterModel('CPU Brand', 'cpuModelName');
     }
 
-    createSimpleQuery(): QueryModel {
+    public createSimpleQuery(): QueryModel {
         return new QueryModel([
             new OptionFilterModel('CPU Brand', 'cpuModelName', this.cpuOptions),
             new RangeFilterModel('Min CPU Frequency',
@@ -62,7 +62,7 @@ export class CpuService extends CollectionService<CpuModel, CpuPreviewModel> {
                 'HZ',
                 500_000_000,
                 10_000_000_000,
-                undefined,
+                null,
                 2_500_000_000)
         ], null, false);
     }

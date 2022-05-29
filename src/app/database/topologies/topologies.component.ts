@@ -10,7 +10,7 @@ import {ImageLinksService} from '../../../services/image-links.service';
 })
 export class TopologiesComponent {
 
-    constructor(public readonly topologyService: TopologyService,
+    public constructor(public readonly topologyService: TopologyService,
                 public readonly imageLinksService: ImageLinksService) {
     }
 

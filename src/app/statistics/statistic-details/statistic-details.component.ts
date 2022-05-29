@@ -14,33 +14,29 @@ import {FrequencyClassModel} from '../../../models/benchmark-statistics/frequenc
 })
 export class StatisticDetailsComponent implements OnInit {
 
-    data: object[];
+    public data: object[];
 
-    curve = shape.curveBumpX;
+    public curve = shape.curveBumpX;
 
-    scoreMean: number;
-    scoreSuffix: string;
+    public scoreMean: number;
+    public scoreSuffix: string;
 
-    colorScheme = {
+    public colorScheme = {
         domain: ['#898ee2']
     };
 
     public statistics: BenchmarkStatisticsModel;
 
-    constructor(private readonly statisticsService: BenchmarkStatisticsService,
+    public constructor(private readonly statisticsService: BenchmarkStatisticsService,
                 private readonly route: ActivatedRoute,
                 public readonly valueConverter: ValueConverter) {
-    }
-
-    private getClassString(cls: FrequencyClassModel): string {
-        return `${this.valueConverter.toStringSI(cls.low)} - ${this.valueConverter.toStringSI(cls.high)}`;
     }
 
     public formatNumberSI(arg: number): string {
         return this.valueConverter.toStringSI(arg, '', 0);
     }
 
-    ngOnInit(): void {
+    public ngOnInit(): void {
         this.statisticsService.getSingle(this.route.snapshot.paramMap.get('id')).subscribe(r => {
             this.statistics = r;
             const scoreData = this.valueConverter.getValueScaleSI(r.mean);
@@ -59,5 +55,9 @@ export class StatisticDetailsComponent implements OnInit {
                 }
             ];
         }, error => console.error(error));
+    }
+
+    private getClassString(cls: FrequencyClassModel): string {
+        return `${this.valueConverter.toStringSI(cls.low)} - ${this.valueConverter.toStringSI(cls.high)}`;
     }
 }

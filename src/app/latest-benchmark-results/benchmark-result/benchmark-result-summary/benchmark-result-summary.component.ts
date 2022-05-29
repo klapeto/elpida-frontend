@@ -22,11 +22,11 @@ export class BenchmarkResultSummaryComponent implements OnInit {
 
     public view: number[];
 
-    public yTickFormatter = (x) => this.valueConverter.toStringSI(x, this.yAxisUnit);
-
-    constructor(public readonly imageLinksService: ImageLinksService,
+    public constructor(public readonly imageLinksService: ImageLinksService,
                 public readonly valueConverter: ValueConverter) {
     }
+
+    public yTickFormatter = (x) => this.valueConverter.toStringSI(x, this.yAxisUnit);
 
     public ngOnInit(): void {
         const first = this.result.taskResults[0];

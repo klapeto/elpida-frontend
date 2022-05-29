@@ -3,7 +3,7 @@ import {ICpuAdditionalInfo} from './icpu-additional-info';
 import {FoundationModel} from '../foundation.model';
 
 export class CpuModel extends FoundationModel {
-    constructor(
+    public constructor(
         id: number,
         public readonly architecture: string,
         public readonly vendor: string,

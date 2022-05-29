@@ -4,6 +4,8 @@ import {FilterModel} from '../filter.model';
 
 export class NumberFilterModel extends ValueFilterModel<number> {
 
+    protected defaultValue: number = 0;
+
     public constructor(title: string,
                        internalName: string,
                        comparison: ComparisonModel = ComparisonModel.equals(),
@@ -15,8 +17,6 @@ export class NumberFilterModel extends ValueFilterModel<number> {
             comparison,
             value);
     }
-
-    protected defaultValue = 0;
 
     public clone(): FilterModel {
         return new NumberFilterModel(this.title, this.internalName, this.comparison, this.suffix, this.value);

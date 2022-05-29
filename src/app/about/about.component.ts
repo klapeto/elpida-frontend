@@ -7,6 +7,6 @@ import {Component} from '@angular/core';
 })
 export class AboutComponent {
 
-    constructor() {
+    public constructor() {
     }
 }

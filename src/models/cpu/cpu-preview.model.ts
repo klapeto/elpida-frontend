@@ -1,7 +1,7 @@
 import {FoundationModel} from '../foundation.model';
 
 export class CpuPreviewModel extends FoundationModel {
-    constructor(
+    public constructor(
         id: number,
         public readonly vendor: string,
         public readonly modelName: string

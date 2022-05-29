@@ -12,7 +12,7 @@ export class TabControlComponent implements OnInit {
 
     public activeTab: TabModel;
 
-    constructor() {
+    public constructor() {
     }
 
     public ngOnInit(): void {

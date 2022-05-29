@@ -4,15 +4,26 @@ import {FilterModel} from '../filter.model';
 
 export class RangeFilterModel extends NumberFilterModel {
 
-    constructor(title: string,
-                internalName: string,
-                comparison: ComparisonModel = ComparisonModel.equals(),
-                suffix?: string,
-                public min?: number,
-                public max?: number,
-                public step?: number,
-                value?: number) {
+    public dirty: boolean = false;
+
+    public constructor(title: string,
+                       internalName: string,
+                       comparison: ComparisonModel = ComparisonModel.equals(),
+                       suffix?: string,
+                       public min?: number,
+                       public max?: number,
+                       public step?: number,
+                       value?: number) {
         super(title, internalName, comparison, suffix, value);
+    }
+
+    public isSet(): boolean {
+        return super.isSet() && this.dirty;
+    }
+
+    public reset(): void {
+        super.reset();
+        this.dirty = false;
     }
 
     public clone(): FilterModel {

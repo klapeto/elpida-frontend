@@ -13,16 +13,16 @@ import {OptionModel} from '../models/option.model';
 })
 export class OperatingSystemService extends CollectionService<OperatingSystemModel, OperatingSystemModel> {
 
-    public constructor(http: HttpClient, dtoService: DtoService) {
-        super(http, dtoService);
-    }
-
     protected readonly baseRoute: string = 'Os';
 
     private oses: OptionModel[] = [
         new OptionModel('Windows'),
         new OptionModel('Linux'),
     ];
+
+    public constructor(http: HttpClient, dtoService: DtoService) {
+        super(http, dtoService);
+    }
 
 
     public createSearchFilter(): StringFilterModel {

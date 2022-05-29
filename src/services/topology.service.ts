@@ -1,7 +1,6 @@
-import {ComponentFactoryResolver, Injectable, ViewContainerRef} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {CollectionService} from './collection-service';
 import {HttpClient} from '@angular/common/http';
-import {FilterModel} from '../models/filter.model';
 import {StringFilterModel} from '../models/filters/string-filter.model';
 import {TopologyModel} from '../models/topology/topology.model';
 import {TopologyPreviewModel} from '../models/topology/topology-preview.model';
@@ -17,13 +16,13 @@ import {ComparisonModel} from '../models/comparison.model';
 })
 export class TopologyService extends CollectionService<TopologyModel, TopologyPreviewModel> {
 
+    protected readonly baseRoute: string = 'topology';
+
     public constructor(http: HttpClient, private cpuService: CpuService, dtoService: DtoService) {
         super(http, dtoService);
     }
 
-    protected readonly baseRoute: string = 'topology';
-
-    createAdvancedQuery(): QueryModel {
+    public createAdvancedQuery(): QueryModel {
         return new QueryModel(this.cpuService.createAdvancedQuery()
             .filters
             .concat([
@@ -34,7 +33,7 @@ export class TopologyService extends CollectionService<TopologyModel, TopologyPr
             ]));
     }
 
-    createSimpleQuery(): QueryModel {
+    public createSimpleQuery(): QueryModel {
         return new QueryModel(this.cpuService.createSimpleQuery()
             .filters
             .concat([
@@ -73,7 +72,7 @@ export class TopologyService extends CollectionService<TopologyModel, TopologyPr
             ]));
     }
 
-    createSearchFilter(): StringFilterModel | null {
+    public createSearchFilter(): StringFilterModel | null {
         return null;
     }
 }

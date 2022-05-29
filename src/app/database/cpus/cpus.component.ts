@@ -10,11 +10,11 @@ import {ImageLinksService} from '../../../services/image-links.service';
 })
 export class CpusComponent {
 
-    constructor(public readonly cpuService: CpuService,
-                public readonly imageLinksService: ImageLinksService) {
+    public constructor(public readonly cpuService: CpuService,
+                       public readonly imageLinksService: ImageLinksService) {
     }
 
-    public toItem(context: any): CpuPreviewModel {
+    public toItem(context: object): CpuPreviewModel {
         return context as CpuPreviewModel;
     }
 

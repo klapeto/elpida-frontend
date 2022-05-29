@@ -18,7 +18,7 @@ export enum NodeType {
 }
 
 export class CpuNodeModel {
-    constructor(public readonly nodeType: NodeType,
+    public constructor(public readonly nodeType: NodeType,
                 public readonly name: string,
                 public readonly osIndex: number | null,
                 public readonly value: number | null,

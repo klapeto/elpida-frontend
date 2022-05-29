@@ -13,7 +13,18 @@
             "app",
             "kebab-case"
         ],
-        "member-access": true,
+        "member-access": {
+            "options": [
+                "check-accessor",
+                "check-constructor",
+                "check-parameter-property"
+            ]
+        },
+        "unified-signatures": true,
+        "switch-default": true,
+        "restrict-plus-operands": true,
+
+        "no-inferrable-types": false,
         "arrow-return-shorthand": true,
         "array-type": {
             "options": "array"
@@ -50,15 +61,23 @@
         "no-invalid-this": {
             "options": "check-function-in-method"
         },
-        "no-magic-numbers": true,
         "no-return-await": true,
         "no-unsafe-finally": true,
-        "number-literal-format": true,
         "prefer-readonly": true,
-        "prefer-function-over-method": true,
+        "prefer-function-over-method": {
+            "options": "allow-public"
+        },
         "prefer-template": true,
         "semicolon": true,
         "strict-boolean-expressions": true,
-        "triple-equals": true
+        "triple-equals": true,
+        "typedef": {
+            "options": [
+                "member-variable-declaration",
+                "call-signature",
+                "parameter",
+                "property-declaration"
+            ]
+        }
     }
 }

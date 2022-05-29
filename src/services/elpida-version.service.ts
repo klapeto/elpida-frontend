@@ -14,21 +14,21 @@ import {OptionModel} from '../models/option.model';
 })
 export class ElpidaVersionService extends CollectionService<ElpidaVersionModel, ElpidaVersionModel> {
 
-    public constructor(http: HttpClient, dtoService: DtoService) {
-        super(http, dtoService);
-    }
-
     protected readonly baseRoute: string = 'ElpidaVersion';
 
     private compilers: OptionModel[] = [
         new OptionModel('GNU')
     ];
 
-    createSearchFilter(): StringFilterModel {
+    public constructor(http: HttpClient, dtoService: DtoService) {
+        super(http, dtoService);
+    }
+
+    public createSearchFilter(): StringFilterModel {
         return undefined;
     }
 
-    createAdvancedQuery(): QueryModel {
+    public createAdvancedQuery(): QueryModel {
         return new QueryModel([
             new NumberFilterModel('Major version', 'majorVersion'),
             new NumberFilterModel('Minor version', 'minorVersion'),
@@ -39,7 +39,7 @@ export class ElpidaVersionService extends CollectionService<ElpidaVersionModel, 
         ]);
     }
 
-    createSimpleQuery(): QueryModel {
+    public createSimpleQuery(): QueryModel {
         return new QueryModel([
             new OptionFilterModel('Compiler', 'compilerName', this.compilers),
             new NumberFilterModel('Major version', 'majorVersion'),

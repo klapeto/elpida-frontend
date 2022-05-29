@@ -5,7 +5,7 @@ import {BenchmarkModel} from '../benchmark/benchmark.model';
 import {FrequencyClassModel} from './frequency-class.model';
 
 export class BenchmarkStatisticsModel extends FoundationModel {
-    constructor(
+    public constructor(
         id: number,
         public readonly cpu: CpuModel,
         public readonly benchmark: BenchmarkModel,

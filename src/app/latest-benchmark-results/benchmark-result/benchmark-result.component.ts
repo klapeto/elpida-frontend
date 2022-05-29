@@ -31,7 +31,7 @@ export class BenchmarkResultComponent implements OnInit, AfterViewInit {
 
     public tabs: TabModel[];
 
-    constructor(
+    public constructor(
         private readonly resultsService: BenchmarkResultsService,
         private readonly http: HttpClient,
         public readonly imageLinksService: ImageLinksService,

@@ -10,10 +10,6 @@ import {LinksService} from '../../services/links.service';
 })
 export class ErrorComponent implements OnInit {
 
-    constructor(private readonly errorHandler: ErrorHandlerService,
-                private readonly linksService: LinksService) {
-    }
-
     public status: number;
     public statusText: string;
     public message: string;
@@ -21,8 +17,8 @@ export class ErrorComponent implements OnInit {
     public responseData: string;
     public stackTrace: string;
 
-    private static sanitizeInternalError(str: string): string {
-        return str.replace(new RegExp('\n', 'g'), '<br/>');
+    public constructor(private readonly errorHandler: ErrorHandlerService,
+                private readonly linksService: LinksService) {
     }
 
     public ngOnInit(): void {
@@ -36,6 +32,10 @@ export class ErrorComponent implements OnInit {
         } else {
             this.resetError();
         }
+    }
+
+    private static sanitizeInternalError(str: string): string {
+        return str.replace(new RegExp('\n', 'g'), '<br/>');
     }
 
     private resetError(): void {

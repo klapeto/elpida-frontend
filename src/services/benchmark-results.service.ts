@@ -17,10 +17,6 @@ import {OptionModel} from '../models/option.model';
 })
 export class BenchmarkResultsService extends CollectionService<BenchmarkResultModel, BenchmarkResultPreviewModel> {
 
-    constructor(http: HttpClient, private readonly cpuService: CpuService, dtoService: DtoService) {
-        super(http, dtoService);
-    }
-
     protected readonly baseRoute: string = 'result';
 
     private oses: OptionModel[] = [
@@ -39,6 +35,10 @@ export class BenchmarkResultsService extends CollectionService<BenchmarkResultMo
         new OptionModel('Png Encoding'),
         new OptionModel('Png Decoding'),
     ];
+
+    public constructor(http: HttpClient, private readonly cpuService: CpuService, dtoService: DtoService) {
+        super(http, dtoService);
+    }
 
     public createSimpleQuery(): QueryModel {
         return new QueryModel(this.cpuService.createSimpleQuery()

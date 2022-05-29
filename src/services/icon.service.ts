@@ -7,6 +7,6 @@ export class IconService {
 
     public templateMap: { [name: string]: TemplateRef<any> } = {};
 
-    constructor() {
+    public constructor() {
     }
 }

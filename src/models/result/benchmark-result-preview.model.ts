@@ -1,7 +1,7 @@
 import {FoundationModel} from '../foundation.model';
 
 export class BenchmarkResultPreviewModel extends FoundationModel {
-    constructor(
+    public constructor(
         id: number,
         public timeStamp: string,
         public readonly osName: string,

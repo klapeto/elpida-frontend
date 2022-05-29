@@ -18,7 +18,7 @@ export class PagingComponent implements OnInit {
     public pages: number[];
     public currentPage: number;
 
-    constructor(private readonly modalService: ModalService) {
+    public constructor(private readonly modalService: ModalService) {
     }
 
     public changePage(page: number): void {

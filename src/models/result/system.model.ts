@@ -5,7 +5,7 @@ import {OperatingSystemModel} from '../operating-system.model';
 import {TimingModel} from './timing.model';
 
 export class SystemModel {
-    constructor(
+    public constructor(
         public readonly os: OperatingSystemModel,
         public readonly cpu: CpuModel,
         public readonly topology: TopologyModel,

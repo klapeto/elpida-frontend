@@ -6,7 +6,7 @@ import {BenchmarkScoreSpecificationModel} from '../benchmark/benchmark-score-spe
 
 export class BenchmarkResultModel extends FoundationModel {
 
-    constructor(
+    public constructor(
         id: number,
         public timeStamp: Date,
         public readonly affinity: number[],

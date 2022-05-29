@@ -1,16 +1,16 @@
 import {Component, Input} from '@angular/core';
 import {ValueConverter} from '../../../../services/value-converter';
-import {ValueFilterModel} from '../../../../models/value-filter.model';
 import {FilterComponent} from '../filter-component';
+import {RangeFilterModel} from '../../../../models/filters/range-filter.model';
 
 @Component({
     selector: 'app-number-simple-filter',
     templateUrl: './range-filter.component.html',
     styleUrls: ['./range-filter.component.css']
 })
-export class RangeFilterComponent extends FilterComponent<number> {
+export class RangeFilterComponent extends FilterComponent<RangeFilterModel> {
 
-    @Input() public filter: ValueFilterModel<number>;
+    @Input() public filter: RangeFilterModel;
 
     @Input() public suffix: string;
     @Input() public min: number;
@@ -19,7 +19,7 @@ export class RangeFilterComponent extends FilterComponent<number> {
 
     @Input() public allowComparison: boolean;
 
-    constructor(public valueConverter: ValueConverter) {
+    public constructor(public readonly valueConverter: ValueConverter) {
         super();
     }
 

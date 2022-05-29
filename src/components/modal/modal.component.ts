@@ -14,7 +14,7 @@ export class ModalComponent {
 
     public isShown = false;
 
-    constructor(private componentResolver: ComponentFactoryResolver) {
+    public constructor(private componentResolver: ComponentFactoryResolver) {
     }
 
     public hide(): void {

@@ -10,18 +10,18 @@ export class ComparisonSelectComponent implements OnInit {
 
     @Input() public filter: ValueFilterModel<any>;
 
-    set selectedComparison(s: string) {
+    private _selectedComparison: string;
+
+    public constructor() {
+    }
+
+    public set selectedComparison(s: string) {
         this.filter.comparison = this.filter.allowedComparisons.find(f => f.displayName === s);
         this._selectedComparison = s;
     }
 
-    get selectedComparison() {
+    public get selectedComparison(): string {
         return this._selectedComparison;
-    }
-
-    private _selectedComparison: string;
-
-    constructor() {
     }
 
     public ngOnInit(): void {

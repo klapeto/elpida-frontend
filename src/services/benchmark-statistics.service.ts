@@ -15,11 +15,11 @@ import {DtoService} from './dto.service';
 })
 export class BenchmarkStatisticsService extends CollectionService<BenchmarkStatisticsModel, BenchmarkStatisticsPreviewModel> {
 
+    protected readonly baseRoute: string = 'BenchmarkStatistics';
+
     public constructor(http: HttpClient, private readonly cpuService: CpuService, dtoService: DtoService) {
         super(http, dtoService);
     }
-
-    protected readonly baseRoute: string = 'BenchmarkStatistics';
 
     public createAdvancedFilters(): FilterModel[] {
         return this.cpuService.createAdvancedQuery()
@@ -51,7 +51,7 @@ export class BenchmarkStatisticsService extends CollectionService<BenchmarkStati
     //         ]);
     // }
 
-    public createBenchmarkScoreMeanFilter() {
+    public createBenchmarkScoreMeanFilter(): NumberFilterModel {
         return new NumberFilterModel('Benchmark score mean', 'benchmarkScoreMean');
     }
 

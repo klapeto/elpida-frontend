@@ -7,23 +7,23 @@ import {DtoService} from './dto.service';
 
 export class CpuBenchmarkStatisticsService extends BenchmarkStatisticsService {
 
-    constructor(http: HttpClient, cpuService: CpuService, dtoService: DtoService) {
+    public constructor(http: HttpClient, cpuService: CpuService, dtoService: DtoService) {
         super(http, cpuService, dtoService);
     }
 
-    createOrderByFilters(): FilterModel[] {
+    public createOrderByFilters(): FilterModel[] {
         return [
             new StringFilterModel('Benchmark name', 'benchmarkName')
         ];
     }
 
-    createAdvancedFilters(): FilterModel[] {
+    public createAdvancedFilters(): FilterModel[] {
         return [
             new StringFilterModel('Benchmark name', 'benchmarkName')
         ];
     }
 
-    createSimpleFilters(): FilterModel[] {
+    public createSimpleFilters(): FilterModel[] {
         return this.createAdvancedFilters();
     }
 }

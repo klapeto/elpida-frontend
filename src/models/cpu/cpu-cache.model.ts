@@ -1,5 +1,5 @@
 export class CpuCacheModel {
-    constructor(
+    public constructor(
         public readonly name: string,
         public readonly associativity: string,
         public readonly size: number,

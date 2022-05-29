@@ -12,13 +12,13 @@ export class CollectionFiltersComponent {
     @Input() public readonly allowComparisons: boolean;
     @Input() public query: QueryModel;
 
-    @Output() public readonly submitted = new EventEmitter<QueryModel>();
+    @Output() public readonly submitted: EventEmitter<QueryModel> = new EventEmitter<QueryModel>();
 
     public onSubmit(): void {
         this.submitted.emit(this.query);
     }
 
-    public onReset() {
+    public onReset(): void {
         this.query.filters.forEach(f => f.reset());
     }
 }

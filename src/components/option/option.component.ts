@@ -13,6 +13,6 @@ export class OptionComponent {
     @Input() public options: OptionModel[];
     @Input() public selectedOption: Observable<string>;
 
-    constructor() {
+    public constructor() {
     }
 }

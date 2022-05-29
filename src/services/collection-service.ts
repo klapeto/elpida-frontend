@@ -44,6 +44,6 @@ export abstract class CollectionService<TModel, TPreview> implements ICollection
 
 
     protected getUrl(route: string): string {
-        return this.baseUrl + this.baseRoute + '/' + route;
+        return `${this.baseUrl + this.baseRoute}/${route}`;
     }
 }

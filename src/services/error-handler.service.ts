@@ -8,7 +8,7 @@ export class ErrorHandlerService {
 
     public lastError: Error;
 
-    constructor(private router: Router) {
+    public constructor(private router: Router) {
     }
 
     public async handle(error: Error): Promise<void> {

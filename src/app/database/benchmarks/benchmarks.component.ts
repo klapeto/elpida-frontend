@@ -10,7 +10,7 @@ import {ImageLinksService} from '../../../services/image-links.service';
 })
 export class BenchmarksComponent {
 
-    constructor(public benchmarkService: BenchmarkService,
+    public constructor(public benchmarkService: BenchmarkService,
                 public imageLinksService: ImageLinksService) {
     }
 

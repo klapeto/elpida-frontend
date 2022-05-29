@@ -1,5 +1,5 @@
 export class MemoryModel {
-    constructor(
+    public constructor(
         public readonly totalSize: number,
         public readonly pageSize: number,
     ) {

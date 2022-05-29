@@ -8,7 +8,7 @@ export class IconTemplateDirective implements OnInit, OnDestroy {
 
     @Input('appIconTemplate') public name: string;
 
-    constructor(private iconService: IconService,
+    public constructor(private iconService: IconService,
                 private template: TemplateRef<any>) {
     }
 

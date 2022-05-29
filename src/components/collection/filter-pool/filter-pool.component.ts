@@ -23,7 +23,7 @@ export class FilterPoolComponent implements OnInit {
 
     public descending: boolean;
 
-    constructor(private modalService: ModalService) {
+    public constructor(private modalService: ModalService) {
     }
 
     public ngOnInit(): void {

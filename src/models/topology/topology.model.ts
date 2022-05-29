@@ -2,7 +2,7 @@ import {CpuNodeModel} from './cpuNode.model';
 import {FoundationModel} from '../foundation.model';
 
 export class TopologyModel extends FoundationModel {
-    constructor(
+    public constructor(
         id: number,
         public readonly cpuId: number,
         public readonly cpuModelName: string,

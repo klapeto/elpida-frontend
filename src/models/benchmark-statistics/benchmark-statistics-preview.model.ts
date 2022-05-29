@@ -2,7 +2,7 @@ import {FoundationModel} from '../foundation.model';
 import {BenchmarkComparison} from '../benchmark/benchmark-score-specification.model';
 
 export class BenchmarkStatisticsPreviewModel extends FoundationModel {
-    constructor(
+    public constructor(
         id: number,
         public readonly cpuVendor: string,
         public readonly cpuModelName: string,

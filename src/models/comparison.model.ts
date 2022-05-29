@@ -3,7 +3,7 @@ export class ComparisonModel {
     }
 
     public static equals(): ComparisonModel {
-        return new ComparisonModel('=', 'equals');
+        return new ComparisonModel('=', 'equal');
     }
 
     public static notEqual(): ComparisonModel {

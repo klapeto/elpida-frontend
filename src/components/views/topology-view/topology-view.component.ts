@@ -13,7 +13,7 @@ export class TopologyViewComponent {
     @Input() public topology: TopologyModel;
     @Input() public affinity: number[];
 
-    constructor(public readonly valueConverter: ValueConverter) {
+    public constructor(public readonly valueConverter: ValueConverter) {
     }
 
     public toNode(node: any): CpuNodeModel {

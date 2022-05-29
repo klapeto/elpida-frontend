@@ -14,7 +14,7 @@ export class BenchmarkDetailsComponent implements OnInit {
 
     public benchmark: BenchmarkModel;
 
-    constructor(
+    public constructor(
         private readonly benchmarkService: BenchmarkService,
         public readonly imageLinksService: ImageLinksService,
         private readonly http: HttpClient,

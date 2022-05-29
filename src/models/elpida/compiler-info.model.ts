@@ -1,5 +1,5 @@
 export class CompilerInfoModel {
-    constructor(
+    public constructor(
         public readonly name: string,
         public readonly version: string
     ) {

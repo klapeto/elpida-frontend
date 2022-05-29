@@ -11,6 +11,6 @@ export class OptionFilterComponent {
     @Input() public filter: OptionFilterModel;
     @Input() public allowComparison: boolean;
 
-    constructor() {
+    public constructor() {
     }
 }

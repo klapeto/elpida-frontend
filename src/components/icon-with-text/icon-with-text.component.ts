@@ -9,7 +9,7 @@ export class IconWithTextComponent {
 
     @Input() public iconName: string;
 
-    constructor() {
+    public constructor() {
     }
 
 }

@@ -14,7 +14,7 @@ export class JumpToPageComponent implements OnInit {
 
     public pageToJump: number;
 
-    constructor(private modalService: ModalService) {
+    public constructor(private modalService: ModalService) {
     }
 
     public ngOnInit(): void {

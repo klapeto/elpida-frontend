@@ -3,7 +3,7 @@ import {CompilerInfoModel} from './compiler-info.model';
 import {FoundationModel} from '../foundation.model';
 
 export class ElpidaVersionModel extends FoundationModel {
-    constructor(
+    public constructor(
         id: number,
         public readonly version: VersionModel,
         public readonly compiler: CompilerInfoModel

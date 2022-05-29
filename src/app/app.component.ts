@@ -6,9 +6,9 @@ import {ModalService} from '../services/modal.service';
     templateUrl: './app.component.html'
 })
 export class AppComponent {
-    title = 'app';
+    public title: string = 'app';
 
-    constructor(private modalService: ModalService,
+    public constructor(private modalService: ModalService,
                 private viewContainerRef: ViewContainerRef) {
         this.modalService.initialize(this.viewContainerRef);
     }

@@ -1,5 +1,5 @@
 export class TopologyPreviewModel {
-    constructor(
+    public constructor(
         public readonly id: number,
         public readonly cpuId: number,
         public readonly cpuVendor: string,

@@ -12,7 +12,20 @@ import {ComparisonModel} from '../models/comparison.model';
 })
 export class DtoService {
 
-    constructor() {
+    public constructor() {
+    }
+
+    public createFromFilter(filter: FilterModel): FilterDto {
+        if (filter instanceof DateFilterModel) {
+            return DtoService.createDateFilterDto(filter);
+        } else if (filter instanceof OptionFilterModel) {
+            return DtoService.createOptionFilterDto(filter);
+        } else if (filter instanceof StringFilterModel) {
+            return DtoService.createStringFilterDto(filter);
+        } else if (filter instanceof NumberFilterModel) {
+            return DtoService.createNumberFilterDto(filter);
+        }
+        return null;
     }
 
     private static createDateFilterDto(filter: DateFilterModel): FilterDto {
@@ -50,18 +63,5 @@ export class DtoService {
             filter.value,
             comparison.internalName
         );
-    }
-
-    public createFromFilter(filter: FilterModel): FilterDto {
-        if (filter instanceof DateFilterModel) {
-            return DtoService.createDateFilterDto(filter);
-        } else if (filter instanceof OptionFilterModel) {
-            return DtoService.createOptionFilterDto(filter);
-        } else if (filter instanceof StringFilterModel) {
-            return DtoService.createStringFilterDto(filter);
-        } else if (filter instanceof NumberFilterModel) {
-            return DtoService.createNumberFilterDto(filter);
-        }
-        return null;
     }
 }

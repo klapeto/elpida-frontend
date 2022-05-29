@@ -8,10 +8,10 @@ export class ModalService {
 
     private modalComponentRef: ComponentRef<ModalComponent>;
 
-    constructor(private factoryResolver: ComponentFactoryResolver) {
+    public constructor(private factoryResolver: ComponentFactoryResolver) {
     }
 
-    initialize(viewContainer: ViewContainerRef): void {
+    public initialize(viewContainer: ViewContainerRef): void {
         const factory = this.factoryResolver.resolveComponentFactory(ModalComponent);
         this.modalComponentRef = viewContainer.createComponent<ModalComponent>(factory);
     }
@@ -24,7 +24,7 @@ export class ModalService {
         this.modalComponentRef.instance.showTemplate<T>(title, template, initializer);
     }
 
-    public showMessage(title: string, message: string) {
+    public showMessage(title: string, message: string): void {
         this.modalComponentRef.instance.showMessage(title, message);
     }
 

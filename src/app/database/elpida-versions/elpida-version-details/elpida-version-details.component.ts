@@ -13,7 +13,7 @@ export class ElpidaVersionDetailsComponent implements OnInit {
 
     public elpidaVersion: ElpidaVersionModel;
 
-    constructor(
+    public constructor(
         private readonly elpidaVersionService: ElpidaVersionService,
         private readonly http: HttpClient,
         private route: ActivatedRoute) {

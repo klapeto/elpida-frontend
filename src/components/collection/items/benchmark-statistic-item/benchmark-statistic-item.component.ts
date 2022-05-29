@@ -11,7 +11,7 @@ export class BenchmarkStatisticItemComponent {
 
     @Input() public item: BenchmarkStatisticsPreviewModel;
 
-    constructor(private readonly valueConverter: ValueConverter) {
+    public constructor(private readonly valueConverter: ValueConverter) {
     }
 
     public calculateActualStatisticValue(): string {

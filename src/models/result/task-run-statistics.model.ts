@@ -1,5 +1,5 @@
 export class TaskRunStatisticsModel {
-    constructor(
+    public constructor(
         public readonly sampleSize: number,
         public readonly max: number,
         public readonly min: number,

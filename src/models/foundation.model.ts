@@ -1,5 +1,5 @@
 export class FoundationModel {
 
-    constructor(public readonly id: number) {
+    public constructor(public readonly id: number) {
     }
 }

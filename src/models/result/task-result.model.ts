@@ -4,7 +4,7 @@ import {DataSpecificationModel} from '../task/data-specification.model';
 import {TaskModel} from '../task/task.model';
 
 export class TaskResultModel extends TaskModel {
-    constructor(
+    public constructor(
         id: number,
         uuid: string,
         name: string,

@@ -256,7 +256,7 @@ button.disabled:hover,
 .range-value {
     margin: auto;
     text-align: center;
-    width: 3.5em;
+    width: 6em;
 }
 
 /* QueryEditor */
@@ -429,6 +429,10 @@ input[type="range"] {
 .details-image {
     margin: 1em;
     height: 5em;
+}
+
+.details-image.large {
+    height: 10em;
 }
 
 /* Details */

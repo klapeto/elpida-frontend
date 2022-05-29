@@ -13,7 +13,7 @@ export class LatestBenchmarkResultsComponent {
 
     public initialQuery = new QueryModel([], 'timestamp', true);
 
-    constructor(
+    public constructor(
         public readonly resultService: BenchmarkResultsService,
         public readonly valueConverter: ValueConverter,
     ) {

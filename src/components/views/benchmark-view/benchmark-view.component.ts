@@ -12,7 +12,7 @@ export class BenchmarkViewComponent {
 
     @Input() public benchmark: BenchmarkModel;
 
-    constructor(
+    public constructor(
         public readonly imageLinksService: ImageLinksService) {
     }
 

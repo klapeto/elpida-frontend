@@ -12,7 +12,7 @@ export class CpuViewComponent {
 
     @Input() public cpu: CpuModel;
 
-    constructor(
+    public constructor(
         public readonly imageLinksService: ImageLinksService,
         public readonly valueConverter: ValueConverter) {
     }

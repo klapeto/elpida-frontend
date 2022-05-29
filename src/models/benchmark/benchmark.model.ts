@@ -3,7 +3,7 @@ import {BenchmarkScoreSpecificationModel} from './benchmark-score-specification.
 import {BenchmarkTaskModel} from './benchmark-task.model';
 
 export class BenchmarkModel extends FoundationModel {
-    constructor(
+    public constructor(
         id: number,
         public readonly uuid: string,
         public readonly name: string,

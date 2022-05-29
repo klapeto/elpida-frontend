@@ -17,7 +17,7 @@ export class CpuDetailsComponent implements OnInit {
 
     public filters: FilterModel[];
 
-    constructor(
+    public constructor(
         private readonly cpuService: CpuService,
         public readonly imageLinksService: ImageLinksService,
         public readonly valueConverter: ValueConverter,
