@@ -35,8 +35,6 @@ export class PagedCollectionComponent<TPreview, TModel> implements AfterViewInit
     @Input() public lockedOrderBy: string;
     @Input() public initialQuery: QueryModel;
 
-    @Input() public customRoutePrefix: string;
-
     @Output() public pageChanged: EventEmitter<PagedResultDto<TPreview>> = new EventEmitter<PagedResultDto<TPreview>>();
 
     @ContentChild('itemTemplate') public itemTemplate: TemplateRef<TPreview>;

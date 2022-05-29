@@ -5,7 +5,7 @@
          style="width: 5em; height: 5em; padding: 1em;">
     <h2 class="flex-center column">
         {{benchmark.name}}
-        <div class="benchmark-value">{{benchmark.scoreSpecification.unit}}</div>
+        <div class="boxed-value">{{benchmark.scoreSpecification.unit}}</div>
     </h2>
 </div>
 <hr/>
@@ -45,7 +45,7 @@
                     </div>
                     <div>
                         <strong>{{benchmarkTask.task.result.name}} in </strong>
-                        <h3 class="benchmark-value reduced-text">{{getResultUnit(benchmarkTask.task.result)}}</h3>
+                        <h3 class="boxed-value reduced-text">{{getResultUnit(benchmarkTask.task.result)}}</h3>
                     </div>
                 </div>
 

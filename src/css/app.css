@@ -731,13 +731,6 @@ td:last-child {
     padding: 1em;
 }
 
-.benchmark-value {
-    background-color: #cbc7f7;
-    padding: 0.5em;
-    margin: 0.5em;
-    text-align: center;
-}
-
 .benchmark-arrow {
     margin: 1em 0 1em 0;
 }
@@ -765,6 +758,13 @@ td:last-child {
     background-color: var(--content-bg-color);
     border-radius: 0.5em;
     border: 1px solid var(--border-color);
+}
+
+.boxed-value {
+    background-color: #cbc7f7;
+    padding: 0.5em;
+    margin: 0.5em;
+    text-align: center;
 }
 
 /*Badge*/

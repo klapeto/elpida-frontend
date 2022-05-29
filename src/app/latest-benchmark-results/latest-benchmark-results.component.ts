@@ -11,7 +11,7 @@ import {QueryModel} from '../../models/query.model';
 })
 export class LatestBenchmarkResultsComponent {
 
-    public initialQuery = new QueryModel([], 'timestamp', true);
+    public initialQuery: QueryModel = new QueryModel([], 'timestamp', true);
 
     public constructor(
         public readonly resultService: BenchmarkResultsService,

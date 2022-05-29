@@ -17,6 +17,6 @@ export class BenchmarkViewComponent {
     }
 
     public getResultUnit(result: ResultSpecificationModel): string {
-        return result.type === ResultType.Raw ? result.unit : result.unit + '/s';
+        return result.type === ResultType.Raw ? result.unit : `${result.unit}/s`;
     }
 }

@@ -15,8 +15,8 @@ export class BenchmarkResultSummaryComponent implements OnInit {
     public data: object[];
 
     public useLineChart: boolean;
-    public xAxisLabel = 'Input Size';
-    public yAxisLabel = 'Throughput';
+    public xAxisLabel: string = 'Input Size';
+    public yAxisLabel: string = 'Throughput';
 
     public yAxisUnit: string;
 
@@ -26,7 +26,7 @@ export class BenchmarkResultSummaryComponent implements OnInit {
                 public readonly valueConverter: ValueConverter) {
     }
 
-    public yTickFormatter = (x) => this.valueConverter.toStringSI(x, this.yAxisUnit);
+    public yTickFormatter = (x: any) => this.valueConverter.toStringSI(x, this.yAxisUnit);
 
     public ngOnInit(): void {
         const first = this.result.taskResults[0];

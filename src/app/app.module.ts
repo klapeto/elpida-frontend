@@ -35,7 +35,6 @@ import {StatisticsComponent} from './statistics/statistics.component';
 import {PagedCollectionComponent} from '../components/collection/paged-collection/paged-collection.component';
 import {CpuService} from '../services/cpu.service';
 import {CpuDetailsComponent} from './database/cpus/cpu-details/cpu-details.component';
-import {BenchmarkStatisticItemComponent} from '../components/collection/items/benchmark-statistic-item/benchmark-statistic-item.component';
 import {BenchmarkStatisticsService} from '../services/benchmark-statistics.service';
 import {StatisticDetailsComponent} from './statistics/statistic-details/statistic-details.component';
 import {LoadingIndicatorComponent} from '../components/loading-indicator/loading-indicator.component';
@@ -95,7 +94,6 @@ import {OperatingSystemViewComponent} from '../components/views/operating-system
         StatisticsComponent,
         PagedCollectionComponent,
         CpuDetailsComponent,
-        BenchmarkStatisticItemComponent,
         StatisticDetailsComponent,
         LoadingIndicatorComponent,
         DatabaseComponent,
@@ -151,7 +149,7 @@ import {OperatingSystemViewComponent} from '../components/views/operating-system
             {path: 'Database/Operating-System/:id', component: OperatingSystemDetailsComponent},
             {path: 'Database/Elpida-Version', component: ElpidaVersionsComponent},
             {path: 'Database/Elpida-Version/:id', component: ElpidaVersionDetailsComponent},
-            {path: 'Top-Cpus-By-Benchmark/:id', component: TopCpusByBenchmarkComponent},
+            {path: 'Statistics/Top-Cpus-By-Benchmark/:id', component: TopCpusByBenchmarkComponent},
             {path: 'About', component: AboutComponent},
             {path: 'Internal-Error', component: ErrorComponent},
             {path: '**', component: NotFoundComponent}
