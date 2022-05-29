@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {BenchmarkStatisticsPreview} from '../../../../models/benchmark-statistics/benchmark-statistics-preview';
+import {BenchmarkStatisticsPreviewModel} from '../../../../models/benchmark-statistics/benchmark-statistics-preview.model';
 import {ValueConverter} from '../../../../services/value-converter';
 
 @Component({
@@ -9,7 +9,7 @@ import {ValueConverter} from '../../../../services/value-converter';
 })
 export class BenchmarkStatisticItemComponent implements OnInit {
 
-  @Input() item: BenchmarkStatisticsPreview;
+  @Input() item: BenchmarkStatisticsPreviewModel;
 
   constructor(private valueConverter: ValueConverter) { }
 

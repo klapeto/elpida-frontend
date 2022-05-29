@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {BenchmarkStatisticsService} from '../../../services/benchmark-statistics.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {BenchmarkStatistics} from '../../../models/benchmark-statistics/benchmark-statistics';
+import {BenchmarkStatisticsModel} from '../../../models/benchmark-statistics/benchmark-statistics.model';
 import {ValueConverter} from '../../../services/value-converter';
 
 import * as shape from 'd3-shape';
-import {FrequencyClass} from '../../../models/benchmark-statistics/frequency-class';
+import {FrequencyClassModel} from '../../../models/benchmark-statistics/frequency-class.model';
 
 @Component({
     selector: 'app-statistic-details',
@@ -25,14 +25,14 @@ export class StatisticDetailsComponent implements OnInit {
         domain: ['#898ee2']
     };
 
-    public statistics: BenchmarkStatistics;
+    public statistics: BenchmarkStatisticsModel;
 
     constructor(private readonly statisticsService: BenchmarkStatisticsService,
                 private readonly route: ActivatedRoute,
                 public readonly valueConverter: ValueConverter) {
     }
 
-    private getClassString(cls: FrequencyClass): string {
+    private getClassString(cls: FrequencyClassModel): string {
         return `${this.valueConverter.toStringSI(cls.low)} - ${this.valueConverter.toStringSI(cls.high)}`;
     }
 

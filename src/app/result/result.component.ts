@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
-import {Result} from '../../models/result/result';
+import {BenchmarkResultModel} from '../../models/result/benchmark-result.model';
 import {ActivatedRoute} from '@angular/router';
-import {ResultsService} from '../../services/results.service';
+import {BenchmarkResultsService} from '../../services/benchmark-results.service';
 import {HttpClient} from '@angular/common/http';
 import {ImageLinksService} from '../../services/image-links.service';
 import {ValueConverter} from '../../services/value-converter';
@@ -14,7 +14,7 @@ import {TabModel} from '../../models/tab.model';
 })
 export class ResultComponent implements OnInit, AfterViewInit {
 
-    public result: Result;
+    public result: BenchmarkResultModel;
 
     @ViewChild('summaryTitle') summaryTitle: TemplateRef<any>;
     @ViewChild('summaryContent') summaryContent: TemplateRef<any>;
@@ -33,7 +33,7 @@ export class ResultComponent implements OnInit, AfterViewInit {
     tabs: TabModel[];
 
     constructor(
-        private readonly resultsService: ResultsService,
+        private readonly resultsService: BenchmarkResultsService,
         private readonly http: HttpClient,
         public readonly imageLinksService: ImageLinksService,
         public readonly valueConverter: ValueConverter,

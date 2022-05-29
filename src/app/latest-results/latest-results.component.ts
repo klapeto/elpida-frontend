@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {ResultsService} from '../../services/results.service';
-import {ResultPreview} from '../../models/result/result-preview';
+import {BenchmarkResultsService} from '../../services/benchmark-results.service';
+import {BenchmarkResultPreviewModel} from '../../models/result/benchmark-result-preview.model';
 import {ValueConverter} from '../../services/value-converter';
 import {QueryModel} from '../../models/query.model';
 
@@ -14,14 +14,14 @@ export class LatestResultsComponent {
     public initialQuery = new QueryModel([], 'timestamp', true);
 
     constructor(
-        public readonly resultService: ResultsService,
+        public readonly resultService: BenchmarkResultsService,
         public readonly valueConverter: ValueConverter,
     ) {
 
     }
 
-    public toItem(context: any): ResultPreview {
-        return context as ResultPreview;
+    public toItem(context: any): BenchmarkResultPreviewModel {
+        return context as BenchmarkResultPreviewModel;
     }
 
     public getTimestampString(timestamp: string): string {

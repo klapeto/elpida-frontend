@@ -1,0 +1,5 @@
+<app-loading-indicator *ngIf="!operatingSystem; else elseBlock">
+</app-loading-indicator>
+<ng-template #elseBlock>
+    <app-operating-system-view [operatingSystem]="operatingSystem"></app-operating-system-view>
+</ng-template>

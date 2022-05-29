@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Result} from '../../../models/result/result';
+import {BenchmarkResultModel} from '../../../models/result/benchmark-result.model';
 import {ImageLinksService} from '../../../services/image-links.service';
 import {ValueConverter} from '../../../services/value-converter';
 
@@ -10,7 +10,7 @@ import {ValueConverter} from '../../../services/value-converter';
 })
 export class ResultSummaryComponent implements OnInit {
 
-    @Input() public readonly result: Result;
+    @Input() public readonly result: BenchmarkResultModel;
 
     data: object[];
 

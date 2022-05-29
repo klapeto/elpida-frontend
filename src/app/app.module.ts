@@ -11,11 +11,11 @@ import {DownloadComponent} from './download/download.component';
 import {ResultComponent} from './result/result.component';
 import {TaskResultsComponent} from './result/task-results/task-results.component';
 import {GroupBoxComponent} from '../components/group-box/group-box.component';
-import {TopologyComponent} from '../components/topology/topology.component';
+import {TopologyViewComponent} from '../components/views/topology-view/topology-view.component';
 import {ValueConverter} from '../services/value-converter';
 import {LatestResultsComponent} from './latest-results/latest-results.component';
 import {PagingComponent} from '../components/collection/paging/paging.component';
-import {ResultsService} from '../services/results.service';
+import {BenchmarkResultsService} from '../services/benchmark-results.service';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
 import {LinksService} from '../services/links.service';
@@ -34,7 +34,6 @@ import {ChildContainerDirective} from '../directives/child-container.directive';
 import {StatisticsComponent} from './statistics/statistics.component';
 import {PagedCollectionComponent} from '../components/collection/paged-collection/paged-collection.component';
 import {CpuService} from '../services/cpu.service';
-import {CpuItemComponent} from '../components/collection/items/cpu-item/cpu-item.component';
 import {CpuDetailsComponent} from './database/cpus/cpu-details/cpu-details.component';
 import {BenchmarkStatisticItemComponent} from '../components/collection/items/benchmark-statistic-item/benchmark-statistic-item.component';
 import {BenchmarkStatisticsService} from '../services/benchmark-statistics.service';
@@ -42,18 +41,14 @@ import {StatisticDetailsComponent} from './statistics/statistic-details/statisti
 import {LoadingIndicatorComponent} from '../components/loading-indicator/loading-indicator.component';
 import {DatabaseComponent} from './database/database.component';
 import {CpusComponent} from './database/cpus/cpus.component';
-import {TopologyItemComponent} from '../components/collection/items/topology-item/topology-item.component';
 import {TopologiesComponent} from './database/topologies/topologies.component';
 import {TopologyDetailsComponent} from './topology-details/topology-details.component';
 import {BenchmarksComponent} from './database/benchmarks/benchmarks.component';
-import {BenchmarkItemComponent} from '../components/collection/items/benchmark-item/benchmark-item.component';
 import {BenchmarkDetailsComponent} from './database/benchmarks/benchmark-details/benchmark-details.component';
-import {OsesComponent} from './database/oses/oses.component';
-import {OsItemComponent} from '../components/collection/items/os-item/os-item.component';
-import {OsDetailsComponent} from './os-details/os-details.component';
+import {OperatingSystemsComponent} from './database/operating-systems/operating-systems.component';
+import {OperatingSystemDetailsComponent} from './database/operating-systems/operating-system-details/operating-system-details.component';
 import {ElpidaVersionsComponent} from './database/elpida-versions/elpida-versions.component';
-import {ElpidaItemComponent} from '../components/collection/items/elpida-item/elpida-item.component';
-import {ElpidaVersionDetailsComponent} from './elpida-details/elpida-version-details.component';
+import {ElpidaVersionDetailsComponent} from './database/elpida-versions/elpida-version-details/elpida-version-details.component';
 import {NotFoundComponent} from './not-found/not-found.component';
 import {TopCpusByBenchmarkComponent} from './statistics/top-cpus-by-benchmark/top-cpus-by-benchmark.component';
 import {ErrorComponent} from './internal-error/error.component';
@@ -70,7 +65,10 @@ import {IconComponent} from '../components/icon/icon.component';
 import {IconTemplateDirective} from '../directives/icon-template.directive';
 import {IconTemplateCollectionComponent} from './icon-template-collection/icon-template-collection.component';
 import { ResultSummaryComponent } from './result/result-summary/result-summary.component';
-import {CpuViewComponent} from '../components/cpu-view/cpu-view.component';
+import {CpuViewComponent} from '../components/views/cpu-view/cpu-view.component';
+import {BenchmarkViewComponent} from '../components/views/benchmark-view/benchmark-view.component';
+import {ElpidaViewComponent} from '../components/views/elpida-view/elpida-view.component';
+import {OperatingSystemViewComponent} from '../components/views/operating-system-view/operating-system-view.component';
 
 @NgModule({
     declarations: [
@@ -81,7 +79,7 @@ import {CpuViewComponent} from '../components/cpu-view/cpu-view.component';
         ResultComponent,
         TaskResultsComponent,
         GroupBoxComponent,
-        TopologyComponent,
+        TopologyViewComponent,
         LatestResultsComponent,
         PagingComponent,
         CollectionFiltersComponent,
@@ -96,24 +94,19 @@ import {CpuViewComponent} from '../components/cpu-view/cpu-view.component';
         ChildContainerDirective,
         StatisticsComponent,
         PagedCollectionComponent,
-        CpuItemComponent,
         CpuDetailsComponent,
         BenchmarkStatisticItemComponent,
         StatisticDetailsComponent,
         LoadingIndicatorComponent,
         DatabaseComponent,
         CpusComponent,
-        TopologyItemComponent,
         TopologiesComponent,
         TopologyDetailsComponent,
         BenchmarksComponent,
-        BenchmarkItemComponent,
         BenchmarkDetailsComponent,
-        OsItemComponent,
-        OsesComponent,
-        OsDetailsComponent,
+        OperatingSystemsComponent,
+        OperatingSystemDetailsComponent,
         ElpidaVersionsComponent,
-        ElpidaItemComponent,
         ElpidaVersionDetailsComponent,
         NotFoundComponent,
         TopCpusByBenchmarkComponent,
@@ -130,6 +123,9 @@ import {CpuViewComponent} from '../components/cpu-view/cpu-view.component';
         IconTemplateCollectionComponent,
         ResultSummaryComponent,
         CpuViewComponent,
+        BenchmarkViewComponent,
+        ElpidaViewComponent,
+        OperatingSystemViewComponent
     ],
     imports: [
         BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
@@ -151,8 +147,8 @@ import {CpuViewComponent} from '../components/cpu-view/cpu-view.component';
             {path: 'Database/Topology/:id', component: TopologyDetailsComponent},
             {path: 'Database/Benchmark', component: BenchmarksComponent},
             {path: 'Database/Benchmark/:id', component: BenchmarkDetailsComponent},
-            {path: 'Database/Operating-System', component: OsesComponent},
-            {path: 'Database/Operating-System/:id', component: OsDetailsComponent},
+            {path: 'Database/Operating-System', component: OperatingSystemsComponent},
+            {path: 'Database/Operating-System/:id', component: OperatingSystemDetailsComponent},
             {path: 'Database/Elpida-Version', component: ElpidaVersionsComponent},
             {path: 'Database/Elpida-Version/:id', component: ElpidaVersionDetailsComponent},
             {path: 'Top-Cpus-By-Benchmark/:id', component: TopCpusByBenchmarkComponent},
@@ -162,7 +158,7 @@ import {CpuViewComponent} from '../components/cpu-view/cpu-view.component';
         ], {useHash: true}),
         ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
     ],
-    providers: [ValueConverter, ResultsService, LinksService, CpuService, BenchmarkStatisticsService, DtoService, {
+    providers: [ValueConverter, BenchmarkResultsService, LinksService, CpuService, BenchmarkStatisticsService, DtoService, {
         provide: HTTP_INTERCEPTORS,
         useClass: GlobalHttpErrorInterceptor,
         multi: true

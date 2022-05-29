@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {Cpu} from '../../../../models/cpu/cpu';
+import {CpuModel} from '../../../../models/cpu/cpu.model';
 import {CpuService} from '../../../../services/cpu.service';
 import {FilterModel} from '../../../../models/filter.model';
 import {ImageLinksService} from '../../../../services/image-links.service';
@@ -13,7 +13,7 @@ import {ValueConverter} from '../../../../services/value-converter';
 })
 export class CpuDetailsComponent implements OnInit {
 
-    cpu: Cpu;
+    cpu: CpuModel;
 
     filters: FilterModel[];
 

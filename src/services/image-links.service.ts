@@ -16,7 +16,7 @@ export class ImageLinksService {
         return `./assets/benchmarks/${benchmarkUuid}.svg`;
     }
 
-    public getOsImageLink(osCategory: string) {
+    public getOperatingSystemImageLink(osCategory: string) {
         return `./assets/oses/${osCategory}.svg`;
     }
 

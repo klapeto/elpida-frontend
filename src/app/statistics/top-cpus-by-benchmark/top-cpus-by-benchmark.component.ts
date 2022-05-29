@@ -2,13 +2,13 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {BenchmarkStatisticsService} from '../../../services/benchmark-statistics.service';
 import {BenchmarkService} from '../../../services/benchmark.service';
-import {Benchmark} from '../../../models/benchmark/benchmark';
+import {BenchmarkModel} from '../../../models/benchmark/benchmark.model';
 import {NumberFilterModel} from '../../../models/filters/number-filter.model';
 import {FilterModel} from '../../../models/filter.model';
 import {PagedResultDto} from '../../../dtos/paged-result.dto';
-import {BenchmarkStatisticsPreview} from '../../../models/benchmark-statistics/benchmark-statistics-preview';
+import {BenchmarkStatisticsPreviewModel} from '../../../models/benchmark-statistics/benchmark-statistics-preview.model';
 import {ValueConverter} from '../../../services/value-converter';
-import {BenchmarkComparison} from '../../../models/benchmark/benchmark-score-specification';
+import {BenchmarkComparison} from '../../../models/benchmark/benchmark-score-specification.model';
 import {ComparisonModel} from '../../../models/comparison.model';
 
 @Component({
@@ -18,7 +18,7 @@ import {ComparisonModel} from '../../../models/comparison.model';
 })
 export class TopCpusByBenchmarkComponent implements OnInit {
 
-    public benchmark: Benchmark;
+    public benchmark: BenchmarkModel;
 
     public filters: FilterModel[];
     public orderBy: string;
@@ -49,7 +49,7 @@ export class TopCpusByBenchmarkComponent implements OnInit {
             : 'Higher is better';
     }
 
-    public pageLoaded(page: PagedResultDto<BenchmarkStatisticsPreview>) {
+    public pageLoaded(page: PagedResultDto<BenchmarkStatisticsPreviewModel>) {
         if (this.chartData === undefined) {
             if (page.items.length > 0) {
                 const value = this.valueConverter.getValueScaleSI(page.items[0].mean);

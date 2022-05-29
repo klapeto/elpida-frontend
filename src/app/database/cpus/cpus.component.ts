@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {CpuService} from '../../../services/cpu.service';
-import {CpuPreview} from '../../../models/cpu/cpu-preview';
+import {CpuPreviewModel} from '../../../models/cpu/cpu-preview.model';
 import {ImageLinksService} from '../../../services/image-links.service';
 
 @Component({
@@ -14,8 +14,8 @@ export class CpusComponent {
                 public readonly imageLinksService: ImageLinksService) {
     }
 
-    public toItem(context: any): CpuPreview {
-        return context as CpuPreview;
+    public toItem(context: any): CpuPreviewModel {
+        return context as CpuPreviewModel;
     }
 
 }

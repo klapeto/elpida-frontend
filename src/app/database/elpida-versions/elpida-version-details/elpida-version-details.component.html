@@ -1,0 +1,5 @@
+<app-loading-indicator *ngIf="!elpidaVersion; else elseBlock">
+</app-loading-indicator>
+<ng-template #elseBlock>
+    <app-elpida-view [elpida]="elpidaVersion"></app-elpida-view>
+</ng-template>

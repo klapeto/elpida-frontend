@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {BenchmarkService} from '../../../services/benchmark.service';
-import {BenchmarkPreview} from '../../../models/benchmark/benchmark-preview';
+import {BenchmarkPreviewModel} from '../../../models/benchmark/benchmark-preview.model';
 import {ImageLinksService} from '../../../services/image-links.service';
 
 @Component({
@@ -15,8 +15,8 @@ export class BenchmarksComponent {
     }
 
 
-    public toItem(context: any): BenchmarkPreview {
-        return context as BenchmarkPreview;
+    public toItem(context: any): BenchmarkPreviewModel {
+        return context as BenchmarkPreviewModel;
     }
 
 

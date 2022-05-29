@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute} from '@angular/router';
-import {Benchmark} from '../../../../models/benchmark/benchmark';
+import {BenchmarkModel} from '../../../../models/benchmark/benchmark.model';
 import {BenchmarkService} from '../../../../services/benchmark.service';
-import {ResultSpecification, ResultType} from '../../../../models/task/result-specification';
+import {ResultSpecificationModel, ResultType} from '../../../../models/task/result-specification.model';
 import {ImageLinksService} from '../../../../services/image-links.service';
 
 @Component({
@@ -13,7 +13,7 @@ import {ImageLinksService} from '../../../../services/image-links.service';
 })
 export class BenchmarkDetailsComponent implements OnInit {
 
-    benchmark: Benchmark;
+    benchmark: BenchmarkModel;
 
     constructor(
         private readonly benchmarkService: BenchmarkService,
@@ -28,7 +28,7 @@ export class BenchmarkDetailsComponent implements OnInit {
         }, error => console.error(error));
     }
 
-    getResultUnit(result: ResultSpecification): string {
+    getResultUnit(result: ResultSpecificationModel): string {
         return result.type === ResultType.Raw ? result.unit : result.unit + '/s';
     }
 

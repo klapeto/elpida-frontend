@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ValueConverter} from '../../../services/value-converter';
-import {TaskResult} from '../../../models/result/task-result';
-import {ResultType} from '../../../models/task/result-specification';
-import {Result} from '../../../models/result/result';
+import {TaskResultModel} from '../../../models/result/task-result.model';
+import {ResultType} from '../../../models/task/result-specification.model';
+import {BenchmarkResultModel} from '../../../models/result/benchmark-result.model';
 
 @Component({
     selector: 'app-task-results',
@@ -11,9 +11,9 @@ import {Result} from '../../../models/result/result';
 })
 export class TaskResultsComponent implements OnInit {
 
-    @Input() public readonly benchmarkResult: Result;
+    @Input() public readonly benchmarkResult: BenchmarkResultModel;
 
-    selectedResult: TaskResult;
+    selectedResult: TaskResultModel;
 
     constructor(public valueConverter: ValueConverter) {
 
@@ -23,7 +23,7 @@ export class TaskResultsComponent implements OnInit {
 
     }
 
-    public calculateActualResultValue(result: TaskResult): string {
+    public calculateActualResultValue(result: TaskResultModel): string {
         if (result.result.type === ResultType.Throughput) {
             return this.valueConverter.toStringSI(result.value / result.time, `${result.result.unit}/s`);
         }

@@ -8,8 +8,6 @@ import {
 import {Observable, of, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {Router} from '@angular/router';
-import {ModalService} from './modal.service';
-import {ErrorComponent} from '../app/internal-error/error.component';
 import {ErrorHandlerService} from './error-handler.service';
 
 @Injectable()

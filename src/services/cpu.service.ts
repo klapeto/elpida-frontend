@@ -1,13 +1,12 @@
-import {ComponentFactoryResolver, Injectable, ViewContainerRef} from '@angular/core';
-import {CpuPreview} from '../models/cpu/cpu-preview';
-import {Cpu} from '../models/cpu/cpu';
+import {Injectable} from '@angular/core';
+import {CpuPreviewModel} from '../models/cpu/cpu-preview.model';
+import {CpuModel} from '../models/cpu/cpu.model';
 import {CollectionService} from './collection-service';
 import {StringFilterModel} from '../models/filters/string-filter.model';
 import {OptionFilterModel} from '../models/filters/option-filter.model';
 import {RangeFilterModel} from '../models/filters/range-filter.model';
 import {NumberFilterModel} from '../models/filters/number-filter.model';
 import {HttpClient} from '@angular/common/http';
-import {CpuItemComponent} from '../components/collection/items/cpu-item/cpu-item.component';
 import {QueryModel} from '../models/query.model';
 import {DtoService} from './dto.service';
 import {ComparisonModel} from '../models/comparison.model';
@@ -16,7 +15,7 @@ import { OptionModel } from 'src/models/option.model';
 @Injectable({
     providedIn: 'root'
 })
-export class CpuService extends CollectionService<Cpu, CpuPreview> {
+export class CpuService extends CollectionService<CpuModel, CpuPreviewModel> {
 
     public constructor(http: HttpClient, dtoService: DtoService) {
         super(http, dtoService);

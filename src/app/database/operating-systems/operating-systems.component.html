@@ -1,0 +1,16 @@
+<app-paged-collection [service]="osService"
+                      [name]="'Operating systems'"
+                      [showFilters]="true"
+                      [showSearchBox]="true">
+    <ng-template #itemTemplate let-model="context">
+        <ng-container *ngIf="toItem(model); let item">
+            <a class="button collection-item-link" [routerLink]="['/Database/Operating-System/', item.id]">
+                <img alt="Elpida logo" [src]="imageLinksService.getOperatingSystemImageLink(item.category)"
+                     class="collection-item-icon" loading="lazy">
+                <span class="collection-item-name">
+                    {{item.name}} <br> {{item.version}}
+                </span>
+            </a>
+        </ng-container>
+    </ng-template>
+</app-paged-collection>

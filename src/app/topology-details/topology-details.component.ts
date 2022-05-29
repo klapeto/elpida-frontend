@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
-import {Topology} from '../../models/topology/topology';
+import {TopologyModel} from '../../models/topology/topology.model';
 import {TopologyService} from '../../services/topology.service';
 
 @Component({
-  selector: 'app-topology-details',
+  selector: 'app-topology-view-details',
   templateUrl: './topology-details.component.html',
   styleUrls: ['./topology-details.component.css']
 })
 export class TopologyDetailsComponent implements OnInit {
 
-  topology: Topology;
+  topology: TopologyModel;
 
   constructor(
       private readonly topologyService: TopologyService,

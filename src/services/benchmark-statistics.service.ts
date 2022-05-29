@@ -1,12 +1,11 @@
-import {ComponentFactoryResolver, Injectable, ViewContainerRef} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {CollectionService} from './collection-service';
 import {HttpClient} from '@angular/common/http';
-import {BenchmarkStatisticsPreview} from '../models/benchmark-statistics/benchmark-statistics-preview';
-import {BenchmarkStatistics} from '../models/benchmark-statistics/benchmark-statistics';
+import {BenchmarkStatisticsPreviewModel} from '../models/benchmark-statistics/benchmark-statistics-preview.model';
+import {BenchmarkStatisticsModel} from '../models/benchmark-statistics/benchmark-statistics.model';
 import {FilterModel} from '../models/filter.model';
 import {StringFilterModel} from '../models/filters/string-filter.model';
 import {CpuService} from './cpu.service';
-import {BenchmarkStatisticItemComponent} from '../components/collection/items/benchmark-statistic-item/benchmark-statistic-item.component';
 import {QueryModel} from '../models/query.model';
 import {NumberFilterModel} from '../models/filters/number-filter.model';
 import {DtoService} from './dto.service';
@@ -14,7 +13,7 @@ import {DtoService} from './dto.service';
 @Injectable({
     providedIn: 'root'
 })
-export class BenchmarkStatisticsService extends CollectionService<BenchmarkStatistics, BenchmarkStatisticsPreview> {
+export class BenchmarkStatisticsService extends CollectionService<BenchmarkStatisticsModel, BenchmarkStatisticsPreviewModel> {
 
     public constructor(http: HttpClient, private readonly cpuService: CpuService, dtoService: DtoService) {
         super(http, dtoService);
@@ -28,15 +27,6 @@ export class BenchmarkStatisticsService extends CollectionService<BenchmarkStati
             .concat([
                 this.createBenchmarkScoreMeanFilter(),
             ]);
-    }
-
-    public createCollectionItemComponent(item: BenchmarkStatisticsPreview, componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef): any {
-        const component = viewContainerRef.createComponent<BenchmarkStatisticItemComponent>(
-            componentFactoryResolver.resolveComponentFactory<BenchmarkStatisticItemComponent>(BenchmarkStatisticItemComponent)
-        );
-
-        component.instance.item = item;
-        return component;
     }
 
     public createDefaultQuery(): QueryModel {
