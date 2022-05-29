@@ -60,7 +60,7 @@ export class FilterContainerComponent {
         return component;
     }
 
-    onChange(filter: FilterModel) {
+    public onChange(filter: FilterModel) {
         if (filter instanceof DateFilterModel) {
             const component = this.createComponent<DateFilterModel, DateFilterComponent>(DateFilterComponent, filter);
             component.instance.allowComparison = this.allowComparisons;

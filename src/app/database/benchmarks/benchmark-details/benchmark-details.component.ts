@@ -3,7 +3,6 @@ import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute} from '@angular/router';
 import {BenchmarkModel} from '../../../../models/benchmark/benchmark.model';
 import {BenchmarkService} from '../../../../services/benchmark.service';
-import {ResultSpecificationModel, ResultType} from '../../../../models/task/result-specification.model';
 import {ImageLinksService} from '../../../../services/image-links.service';
 
 @Component({
@@ -13,7 +12,7 @@ import {ImageLinksService} from '../../../../services/image-links.service';
 })
 export class BenchmarkDetailsComponent implements OnInit {
 
-    benchmark: BenchmarkModel;
+    public benchmark: BenchmarkModel;
 
     constructor(
         private readonly benchmarkService: BenchmarkService,
@@ -22,14 +21,10 @@ export class BenchmarkDetailsComponent implements OnInit {
         private route: ActivatedRoute) {
     }
 
-    ngOnInit(): void {
+    public ngOnInit(): void {
         this.benchmarkService.getSingle(this.route.snapshot.paramMap.get('id')).subscribe(r => {
             this.benchmark = r;
         }, error => console.error(error));
-    }
-
-    getResultUnit(result: ResultSpecificationModel): string {
-        return result.type === ResultType.Raw ? result.unit : result.unit + '/s';
     }
 
 }

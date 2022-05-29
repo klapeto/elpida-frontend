@@ -13,9 +13,9 @@ import {ValueConverter} from '../../../../services/value-converter';
 })
 export class CpuDetailsComponent implements OnInit {
 
-    cpu: CpuModel;
+    public cpu: CpuModel;
 
-    filters: FilterModel[];
+    public filters: FilterModel[];
 
     constructor(
         private readonly cpuService: CpuService,
@@ -25,7 +25,7 @@ export class CpuDetailsComponent implements OnInit {
 
     }
 
-    ngOnInit(): void {
+    public ngOnInit(): void {
         this.cpuService.getSingle(this.route.snapshot.paramMap.get('id')).subscribe(r => {
             this.cpu = r;
         }, error => console.error(error));

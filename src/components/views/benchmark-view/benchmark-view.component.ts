@@ -10,7 +10,7 @@ import {ResultSpecificationModel, ResultType} from '../../../models/task/result-
 })
 export class BenchmarkViewComponent {
 
-    @Input() benchmark: BenchmarkModel;
+    @Input() public benchmark: BenchmarkModel;
 
     constructor(
         public readonly imageLinksService: ImageLinksService) {

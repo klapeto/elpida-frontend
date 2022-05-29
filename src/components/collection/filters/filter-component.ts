@@ -1,7 +1,7 @@
 import {ValueFilterModel} from '../../../models/value-filter.model';
 
 export abstract class FilterComponent<T> {
-    abstract filter: ValueFilterModel<T>;
+    public abstract filter: ValueFilterModel<T>;
 
-    abstract allowComparison: boolean;
+    public abstract allowComparison: boolean;
 }

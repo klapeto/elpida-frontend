@@ -15,7 +15,7 @@
     </app-icon-with-text>
 </ng-template>
 <ng-template #summaryContent>
-    <app-result-summary [result]="result"></app-result-summary>
+    <app-benchmark-result-summary [result]="result"></app-benchmark-result-summary>
 </ng-template>
 
 <ng-template #cpuTitle>
@@ -24,7 +24,9 @@
     </app-icon-with-text>
 </ng-template>
 <ng-template #cpuContent>
-    <app-cpu-view [cpu]="result.system.cpu"></app-cpu-view>
+    <div class="flex-center row" style="place-content: start;">
+        <app-cpu-view [cpu]="result.system.cpu"></app-cpu-view>
+    </div>
 </ng-template>
 
 
@@ -45,7 +47,9 @@
     </app-icon-with-text>
 </ng-template>
 <ng-template #osContent>
-    <app-operating-system-view [operatingSystem]="result.system.os"></app-operating-system-view>
+    <div class="flex-center row" style="place-content: start;">
+        <app-operating-system-view [operatingSystem]="result.system.os"></app-operating-system-view>
+    </div>
 </ng-template>
 
 
@@ -55,7 +59,9 @@
     </app-icon-with-text>
 </ng-template>
 <ng-template #elpidaContent>
-    <app-elpida-view [elpida]="result.elpidaVersion"></app-elpida-view>
+    <div class="flex-center row" style="place-content: start;">
+        <app-elpida-view [elpida]="result.elpidaVersion"></app-elpida-view>
+    </div>
 </ng-template>
 
 <ng-template #taskResultsTitle>
@@ -64,7 +70,9 @@
     </app-icon-with-text>
 </ng-template>
 <ng-template #taskResultsContent>
-    <app-task-results [benchmarkResult]="result"></app-task-results>
+    <div class="flex-center row" style="place-content: start;">
+        <app-task-results [benchmarkResult]="result"></app-task-results>
+    </div>
 </ng-template>
 
 

@@ -11,34 +11,34 @@ import {QueryModel} from '../../../models/query.model';
 })
 export class FilterPoolComponent implements OnInit {
 
-    @Input() availableFilters: FilterModel[];
-    @Output() submitted: EventEmitter<QueryModel> = new EventEmitter<QueryModel>();
+    @Input() public availableFilters: FilterModel[];
+    @Output() public submitted: EventEmitter<QueryModel> = new EventEmitter<QueryModel>();
 
-    filters: FilterModel[] = [];
+    public filters: FilterModel[] = [];
 
     // This is needed because for some reason angular reverts the selection to ui after change
-    _availableFilters: FilterModel[];
+    public _availableFilters: FilterModel[];
 
-    orderBy?: string = null;
+    public orderBy?: string = null;
 
-    descending: boolean;
+    public descending: boolean;
 
     constructor(private modalService: ModalService) {
     }
 
-    ngOnInit(): void {
+    public ngOnInit(): void {
         this._availableFilters = this.availableFilters.map(f => f.clone());
     }
 
-    onCloseClick(filter: FilterModel) {
+    public onCloseClick(filter: FilterModel) {
         this.filters = this.filters.filter(f => f !== filter);
     }
 
-    onSearchClick() {
+    public onSearchClick() {
         this.submitted.emit(new QueryModel(this.filters, this.orderBy, this.descending));
     }
 
-    onAddClick() {
+    public onAddClick() {
         this.modalService.show<NewFilterComponent>('Add filter', NewFilterComponent, c => {
             c.availableFilters = this.availableFilters.map(f => f.clone());
             const subscription = c.filterAdded.subscribe(f => {

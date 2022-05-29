@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HttpErrorResponse} from '@angular/common/http';
 import {ErrorHandlerService} from '../../services/error-handler.service';
 import {LinksService} from '../../services/links.service';
@@ -10,7 +10,8 @@ import {LinksService} from '../../services/links.service';
 })
 export class ErrorComponent implements OnInit {
 
-    constructor(private errorHandler: ErrorHandlerService, private linksService: LinksService) {
+    constructor(private readonly errorHandler: ErrorHandlerService,
+                private readonly linksService: LinksService) {
     }
 
     public status: number;
@@ -24,7 +25,7 @@ export class ErrorComponent implements OnInit {
         return str.replace(new RegExp('\n', 'g'), '<br/>');
     }
 
-    ngOnInit(): void {
+    public ngOnInit(): void {
         if (this.errorHandler.lastError) {
             console.error(this.errorHandler.lastError);
             if (this.errorHandler.lastError instanceof HttpErrorResponse) {

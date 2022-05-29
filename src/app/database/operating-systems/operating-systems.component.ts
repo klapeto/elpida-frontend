@@ -10,9 +10,9 @@ import {ImageLinksService} from '../../../services/image-links.service';
 })
 export class OperatingSystemsComponent {
 
-    constructor(public readonly osService: OperatingSystemService, public readonly imageLinksService: ImageLinksService) {
+    constructor(public readonly osService: OperatingSystemService,
+                public readonly imageLinksService: ImageLinksService) {
     }
-
 
     public toItem(context: any): OperatingSystemModel {
         return context as OperatingSystemModel;

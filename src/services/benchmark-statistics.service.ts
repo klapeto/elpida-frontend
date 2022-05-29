@@ -55,11 +55,11 @@ export class BenchmarkStatisticsService extends CollectionService<BenchmarkStati
         return new NumberFilterModel('Benchmark score mean', 'benchmarkScoreMean');
     }
 
-    createAdvancedQuery(): QueryModel {
+    public createAdvancedQuery(): QueryModel {
         return undefined;
     }
 
-    createSimpleQuery(): QueryModel {
+    public createSimpleQuery(): QueryModel {
         return undefined;
     }
 }

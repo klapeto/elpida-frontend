@@ -10,11 +10,11 @@ import {ImageLinksService} from '../../../services/image-links.service';
 })
 export class CpuViewComponent {
 
-    @Input() cpu: CpuModel;
+    @Input() public cpu: CpuModel;
 
     constructor(
-        public imageLinksService: ImageLinksService,
-        public valueConverter: ValueConverter) {
+        public readonly imageLinksService: ImageLinksService,
+        public readonly valueConverter: ValueConverter) {
     }
 
     public getCpuInfoPairs(): { name: string, value: string }[] {

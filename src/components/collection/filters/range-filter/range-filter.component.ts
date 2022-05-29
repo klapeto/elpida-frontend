@@ -10,14 +10,14 @@ import {FilterComponent} from '../filter-component';
 })
 export class RangeFilterComponent extends FilterComponent<number> {
 
-    @Input() filter: ValueFilterModel<number>;
+    @Input() public filter: ValueFilterModel<number>;
 
-    @Input() suffix: string;
-    @Input() min: number;
-    @Input() max: number;
-    @Input() step: number;
+    @Input() public suffix: string;
+    @Input() public min: number;
+    @Input() public max: number;
+    @Input() public step: number;
 
-    @Input() allowComparison: boolean;
+    @Input() public allowComparison: boolean;
 
     constructor(public valueConverter: ValueConverter) {
         super();

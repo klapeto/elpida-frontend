@@ -12,22 +12,22 @@ import {QueryModel} from '../models/query.model';
 })
 export class BenchmarkService extends CollectionService<BenchmarkModel, BenchmarkPreviewModel> {
 
+    protected readonly baseRoute: string = 'benchmark';
+
     public constructor(http: HttpClient, dtoService: DtoService) {
         super(http, dtoService);
     }
 
-    protected readonly baseRoute: string = 'benchmark';
 
-
-    createAdvancedQuery(): QueryModel {
+    public createAdvancedQuery(): QueryModel {
         return new QueryModel([this.createSearchFilter()]);
     }
 
-    createSimpleQuery(): QueryModel {
+    public createSimpleQuery(): QueryModel {
         return this.createAdvancedQuery();
     }
 
-    createSearchFilter(): StringFilterModel | null {
+    public createSearchFilter(): StringFilterModel | null {
         return new StringFilterModel('Benchmark name', 'benchmarkName');
     }
 }

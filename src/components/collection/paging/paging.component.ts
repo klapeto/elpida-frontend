@@ -13,12 +13,12 @@ export class PagingComponent implements OnInit {
     @Input() public readonly pagesCount: number;
     @Output() public readonly pageChanged = new EventEmitter<number>();
 
-    @ViewChild('jumpToPageTemplate') jumpToPageTemplate: TemplateRef<number>;
+    @ViewChild('jumpToPageTemplate') public jumpToPageTemplate: TemplateRef<number>;
 
     public pages: number[];
     public currentPage: number;
 
-    constructor(private modalService: ModalService) {
+    constructor(private readonly modalService: ModalService) {
     }
 
     public changePage(page: number): void {
@@ -76,10 +76,6 @@ export class PagingComponent implements OnInit {
         });
     }
 
-    toPage(i: any): number {
-        return i as number;
-    }
-
     public getPreviousPage(): void {
         if (this.currentPage > 0) {
             this.changePage(this.currentPage - 1);
@@ -88,7 +84,7 @@ export class PagingComponent implements OnInit {
         }
     }
 
-    ngOnInit() {
+    public ngOnInit() {
         this.changePage(0);
     }
 

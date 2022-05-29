@@ -5,11 +5,11 @@ import {ValueConverter} from '../../services/value-converter';
 import {QueryModel} from '../../models/query.model';
 
 @Component({
-    selector: 'app-latest-results',
-    templateUrl: './latest-results.component.html',
-    styleUrls: ['./latest-results.component.css']
+    selector: 'app-latest-benchmark-results',
+    templateUrl: './latest-benchmark-results.component.html',
+    styleUrls: ['./latest-benchmark-results.component.css']
 })
-export class LatestResultsComponent {
+export class LatestBenchmarkResultsComponent {
 
     public initialQuery = new QueryModel([], 'timestamp', true);
 

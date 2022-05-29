@@ -9,8 +9,8 @@ import {FilterComponent} from '../filter-component';
 })
 export class NumberFilterComponent extends FilterComponent<number> {
 
-    @Input() filter: ValueFilterModel<number>;
-    @Input() allowComparison: boolean;
+    @Input() public filter: ValueFilterModel<number>;
+    @Input() public allowComparison: boolean;
 
     constructor() {
         super();

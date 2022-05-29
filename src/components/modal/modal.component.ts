@@ -9,8 +9,8 @@ import {ChildContainerDirective} from '../../directives/child-container.directiv
 export class ModalComponent {
 
     @Input() public title: string;
-    @ViewChild(ChildContainerDirective, {static: true}) modalContent: ChildContainerDirective;
-    @ViewChild('messageTemplate') messageTemplate: TemplateRef<{ context: string }>;
+    @ViewChild(ChildContainerDirective, {static: true}) public modalContent: ChildContainerDirective;
+    @ViewChild('messageTemplate') public messageTemplate: TemplateRef<{ context: string }>;
 
     public isShown = false;
 

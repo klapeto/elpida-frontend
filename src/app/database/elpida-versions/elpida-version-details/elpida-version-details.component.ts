@@ -11,7 +11,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export class ElpidaVersionDetailsComponent implements OnInit {
 
-    elpidaVersion: ElpidaVersionModel;
+    public elpidaVersion: ElpidaVersionModel;
 
     constructor(
         private readonly elpidaVersionService: ElpidaVersionService,
@@ -20,7 +20,7 @@ export class ElpidaVersionDetailsComponent implements OnInit {
 
     }
 
-    ngOnInit(): void {
+    public ngOnInit(): void {
         this.elpidaVersionService.getSingle(this.route.snapshot.paramMap.get('id')).subscribe(r => {
             this.elpidaVersion = r;
         }, error => console.error(error));

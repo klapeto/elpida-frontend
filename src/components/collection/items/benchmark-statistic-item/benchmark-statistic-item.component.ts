@@ -1,22 +1,20 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {BenchmarkStatisticsPreviewModel} from '../../../../models/benchmark-statistics/benchmark-statistics-preview.model';
 import {ValueConverter} from '../../../../services/value-converter';
 
 @Component({
-  selector: 'app-benchmark-statistic-item',
-  templateUrl: './benchmark-statistic-item.component.html',
-  styleUrls: ['./benchmark-statistic-item.component.css']
+    selector: 'app-benchmark-statistic-item',
+    templateUrl: './benchmark-statistic-item.component.html',
+    styleUrls: ['./benchmark-statistic-item.component.css']
 })
-export class BenchmarkStatisticItemComponent implements OnInit {
+export class BenchmarkStatisticItemComponent {
 
-  @Input() item: BenchmarkStatisticsPreviewModel;
+    @Input() public item: BenchmarkStatisticsPreviewModel;
 
-  constructor(private valueConverter: ValueConverter) { }
+    constructor(private readonly valueConverter: ValueConverter) {
+    }
 
-  ngOnInit(): void {
-  }
-
-  public calculateActualStatisticValue(): string {
-    return this.valueConverter.toStringSI(this.item.mean, this.item.benchmarkScoreUnit);
-  }
+    public calculateActualStatisticValue(): string {
+        return this.valueConverter.toStringSI(this.item.mean, this.item.benchmarkScoreUnit);
+    }
 }

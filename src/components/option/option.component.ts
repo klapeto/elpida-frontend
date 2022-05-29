@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {OptionModel} from '../../models/option.model';
 import {Observable} from 'rxjs';
 
@@ -7,16 +7,12 @@ import {Observable} from 'rxjs';
     templateUrl: './option.component.html',
     styleUrls: ['./option.component.css']
 })
-export class OptionComponent implements OnInit {
+export class OptionComponent {
 
-    @Input() displayName: string;
-    @Input() options: OptionModel[];
-    @Input() selectedOption: Observable<string>;
+    @Input() public displayName: string;
+    @Input() public options: OptionModel[];
+    @Input() public selectedOption: Observable<string>;
 
     constructor() {
     }
-
-    ngOnInit(): void {
-    }
-
 }

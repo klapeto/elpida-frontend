@@ -11,18 +11,13 @@ import {DtoService} from './dto.service';
 
 export abstract class CollectionService<TModel, TPreview> implements ICollectionService<TModel, TPreview> {
 
-    protected constructor(protected readonly http: HttpClient, protected readonly dtoService: DtoService) {
-
-    }
-
     protected readonly baseUrl: string = environment.apiUrl;
     protected readonly searchRoute: string = 'search';
 
     protected readonly abstract baseRoute: string;
 
+    protected constructor(protected readonly http: HttpClient, protected readonly dtoService: DtoService) {
 
-    protected getUrl(route: string): string {
-        return this.baseUrl + this.baseRoute + '/' + route;
     }
 
     public getPreviews(page: PageDto, query: QueryModel): Observable<PagedResultDto<TPreview>> {
@@ -41,9 +36,14 @@ export abstract class CollectionService<TModel, TPreview> implements ICollection
         return this.http.get<TModel>(this.getUrl(id));
     }
 
-    abstract createSimpleQuery(): QueryModel;
+    public abstract createSimpleQuery(): QueryModel;
 
-    abstract createAdvancedQuery(): QueryModel;
+    public abstract createAdvancedQuery(): QueryModel;
 
-    abstract createSearchFilter(): StringFilterModel | null;
+    public abstract createSearchFilter(): StringFilterModel | null;
+
+
+    protected getUrl(route: string): string {
+        return this.baseUrl + this.baseRoute + '/' + route;
+    }
 }

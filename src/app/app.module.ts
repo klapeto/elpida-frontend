@@ -8,12 +8,12 @@ import {AppComponent} from './app.component';
 import {NavMenuComponent} from './nav-menu/nav-menu.component';
 import {HomeComponent} from './home/home.component';
 import {DownloadComponent} from './download/download.component';
-import {ResultComponent} from './result/result.component';
-import {TaskResultsComponent} from './result/task-results/task-results.component';
+import {BenchmarkResultComponent} from './latest-benchmark-results/benchmark-result/benchmark-result.component';
+import {TaskResultsComponent} from './latest-benchmark-results/benchmark-result/task-results/task-results.component';
 import {GroupBoxComponent} from '../components/group-box/group-box.component';
 import {TopologyViewComponent} from '../components/views/topology-view/topology-view.component';
 import {ValueConverter} from '../services/value-converter';
-import {LatestResultsComponent} from './latest-results/latest-results.component';
+import {LatestBenchmarkResultsComponent} from './latest-benchmark-results/latest-benchmark-results.component';
 import {PagingComponent} from '../components/collection/paging/paging.component';
 import {BenchmarkResultsService} from '../services/benchmark-results.service';
 import {ServiceWorkerModule} from '@angular/service-worker';
@@ -42,7 +42,7 @@ import {LoadingIndicatorComponent} from '../components/loading-indicator/loading
 import {DatabaseComponent} from './database/database.component';
 import {CpusComponent} from './database/cpus/cpus.component';
 import {TopologiesComponent} from './database/topologies/topologies.component';
-import {TopologyDetailsComponent} from './topology-details/topology-details.component';
+import {TopologyDetailsComponent} from './database/topologies/topology-details/topology-details.component';
 import {BenchmarksComponent} from './database/benchmarks/benchmarks.component';
 import {BenchmarkDetailsComponent} from './database/benchmarks/benchmark-details/benchmark-details.component';
 import {OperatingSystemsComponent} from './database/operating-systems/operating-systems.component';
@@ -64,7 +64,7 @@ import {TabControlComponent} from '../components/tab-control/tab-control.compone
 import {IconComponent} from '../components/icon/icon.component';
 import {IconTemplateDirective} from '../directives/icon-template.directive';
 import {IconTemplateCollectionComponent} from './icon-template-collection/icon-template-collection.component';
-import { ResultSummaryComponent } from './result/result-summary/result-summary.component';
+import { BenchmarkResultSummaryComponent } from './latest-benchmark-results/benchmark-result/benchmark-result-summary/benchmark-result-summary.component';
 import {CpuViewComponent} from '../components/views/cpu-view/cpu-view.component';
 import {BenchmarkViewComponent} from '../components/views/benchmark-view/benchmark-view.component';
 import {ElpidaViewComponent} from '../components/views/elpida-view/elpida-view.component';
@@ -76,11 +76,11 @@ import {OperatingSystemViewComponent} from '../components/views/operating-system
         NavMenuComponent,
         HomeComponent,
         DownloadComponent,
-        ResultComponent,
+        BenchmarkResultComponent,
         TaskResultsComponent,
         GroupBoxComponent,
         TopologyViewComponent,
-        LatestResultsComponent,
+        LatestBenchmarkResultsComponent,
         PagingComponent,
         CollectionFiltersComponent,
         AboutComponent,
@@ -121,7 +121,7 @@ import {OperatingSystemViewComponent} from '../components/views/operating-system
         IconComponent,
         IconTemplateDirective,
         IconTemplateCollectionComponent,
-        ResultSummaryComponent,
+        BenchmarkResultSummaryComponent,
         CpuViewComponent,
         BenchmarkViewComponent,
         ElpidaViewComponent,
@@ -139,8 +139,8 @@ import {OperatingSystemViewComponent} from '../components/views/operating-system
             {path: 'Statistics', component: StatisticsComponent},
             {path: 'Statistics/:id', component: StatisticDetailsComponent},
             {path: 'Database', component: DatabaseComponent},
-            {path: 'Database/Result', component: LatestResultsComponent, },
-            {path: 'Database/Result/:id', component: ResultComponent},
+            {path: 'Database/Result', component: LatestBenchmarkResultsComponent, },
+            {path: 'Database/Result/:id', component: BenchmarkResultComponent},
             {path: 'Database/Cpu', component: CpusComponent},
             {path: 'Database/Cpu/:id', component: CpuDetailsComponent},
             {path: 'Database/Topology', component: TopologiesComponent},

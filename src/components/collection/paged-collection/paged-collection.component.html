@@ -12,10 +12,9 @@
             Revert page
         </button>
 
-        <label>
+        <label *ngIf="showSearchBox">
             Search:
             <input (keyup)="onSearch($event)"
-                   *ngIf="showSearchBox"
                    [(ngModel)]="searchString"
                    [placeholder]="searchName + ' (Enter)'"
                    type="search">

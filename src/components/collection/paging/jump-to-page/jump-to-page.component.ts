@@ -8,20 +8,20 @@ import {ModalService} from '../../../../services/modal.service';
 })
 export class JumpToPageComponent implements OnInit {
 
-    @Input() pagesCount: number;
-    @Input() currentPage: number;
-    @Output() currentPageChanged: EventEmitter<number> = new EventEmitter<number>();
+    @Input() public pagesCount: number;
+    @Input() public currentPage: number;
+    @Output() public currentPageChanged: EventEmitter<number> = new EventEmitter<number>();
 
-    pageToJump: number;
+    public pageToJump: number;
 
     constructor(private modalService: ModalService) {
     }
 
-    ngOnInit(): void {
+    public ngOnInit(): void {
         this.pageToJump = this.currentPage + 1;
     }
 
-    onJumpToPageSubmitted(): void {
+    public onJumpToPageSubmitted(): void {
         if (this.pageToJump < 1 || this.pageToJump > this.pagesCount) {
             this.modalService.showMessage('Invalid page', 'Page must be between 1 and ' + this.pagesCount + '.');
             return;

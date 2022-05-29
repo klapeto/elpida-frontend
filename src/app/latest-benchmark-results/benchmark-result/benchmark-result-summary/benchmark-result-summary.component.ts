@@ -1,26 +1,26 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {BenchmarkResultModel} from '../../../models/result/benchmark-result.model';
-import {ImageLinksService} from '../../../services/image-links.service';
-import {ValueConverter} from '../../../services/value-converter';
+import {BenchmarkResultModel} from '../../../../models/result/benchmark-result.model';
+import {ImageLinksService} from '../../../../services/image-links.service';
+import {ValueConverter} from '../../../../services/value-converter';
 
 @Component({
-    selector: 'app-result-summary',
-    templateUrl: './result-summary.component.html',
-    styleUrls: ['./result-summary.component.css']
+    selector: 'app-benchmark-result-summary',
+    templateUrl: './benchmark-result-summary.component.html',
+    styleUrls: ['./benchmark-result-summary.component.css']
 })
-export class ResultSummaryComponent implements OnInit {
+export class BenchmarkResultSummaryComponent implements OnInit {
 
     @Input() public readonly result: BenchmarkResultModel;
 
-    data: object[];
+    public data: object[];
 
-    useLineChart: boolean;
-    xAxisLabel = 'Input Size';
-    yAxisLabel = 'Throughput';
+    public useLineChart: boolean;
+    public xAxisLabel = 'Input Size';
+    public yAxisLabel = 'Throughput';
 
-    yAxisUnit: string;
+    public yAxisUnit: string;
 
-    view: number[];
+    public view: number[];
 
     public yTickFormatter = (x) => this.valueConverter.toStringSI(x, this.yAxisUnit);
 
@@ -28,7 +28,7 @@ export class ResultSummaryComponent implements OnInit {
                 public readonly valueConverter: ValueConverter) {
     }
 
-    ngOnInit(): void {
+    public ngOnInit(): void {
         const first = this.result.taskResults[0];
         this.useLineChart = this.result.taskResults.length > 1
             && this.result.taskResults.every(x => x.result.unit === first.result.unit && x.result.type === first.result.type);

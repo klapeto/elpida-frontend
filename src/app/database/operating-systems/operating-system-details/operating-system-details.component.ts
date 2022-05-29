@@ -11,7 +11,7 @@ import {OperatingSystemService} from '../../../../services/operating-system.serv
 })
 export class OperatingSystemDetailsComponent implements OnInit {
 
-    operatingSystem: OperatingSystemModel;
+    public operatingSystem: OperatingSystemModel;
 
     constructor(
         private readonly osService: OperatingSystemService,
@@ -19,7 +19,7 @@ export class OperatingSystemDetailsComponent implements OnInit {
         private route: ActivatedRoute) {
     }
 
-    ngOnInit(): void {
+    public ngOnInit(): void {
         this.osService.getSingle(this.route.snapshot.paramMap.get('id')).subscribe(r => {
             this.operatingSystem = r;
         }, error => console.error(error));

@@ -14,10 +14,8 @@ export class BenchmarksComponent {
                 public imageLinksService: ImageLinksService) {
     }
 
-
     public toItem(context: any): BenchmarkPreviewModel {
         return context as BenchmarkPreviewModel;
     }
-
 
 }

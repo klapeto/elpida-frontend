@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ContentChild, EventEmitter, Input, OnInit, Output, TemplateRef, ViewEncapsulation,} from '@angular/core';
+import {AfterViewInit, Component, ContentChild, EventEmitter, Input, OnInit, Output, TemplateRef} from '@angular/core';
 import {PagedResultDto} from '../../../dtos/paged-result.dto';
 import {QueryModel} from '../../../models/query.model';
 import {PageDto} from '../../../dtos/page.dto';
@@ -25,24 +25,24 @@ export class PagedCollectionComponent<TPreview, TModel> implements AfterViewInit
 
     public advancedShown: boolean;
 
-    searchName: string;
+    public searchName: string;
 
-    filtersPanelShown: boolean;
+    public filtersPanelShown: boolean;
 
-    @Input() service: CollectionService<TModel, TPreview>;
-    @Input() showSearchBox: boolean;
-    @Input() showFilters: boolean;
-    @Input() name: string;
+    @Input() public service: CollectionService<TModel, TPreview>;
+    @Input() public showSearchBox: boolean;
+    @Input() public showFilters: boolean;
+    @Input() public name: string;
 
-    @Input() lockedFilters: FilterModel[];
-    @Input() lockedOrderBy: string;
-    @Input() initialQuery: QueryModel;
+    @Input() public lockedFilters: FilterModel[];
+    @Input() public lockedOrderBy: string;
+    @Input() public initialQuery: QueryModel;
 
-    @Input() customRoutePrefix: string;
+    @Input() public customRoutePrefix: string;
 
-    @Output() pageChanged: EventEmitter<PagedResultDto<TPreview>> = new EventEmitter<PagedResultDto<TPreview>>();
+    @Output() public pageChanged: EventEmitter<PagedResultDto<TPreview>> = new EventEmitter<PagedResultDto<TPreview>>();
 
-    @ContentChild('itemTemplate') itemTemplate: TemplateRef<TPreview>;
+    @ContentChild('itemTemplate') public itemTemplate: TemplateRef<TPreview>;
 
     constructor(public valueConverter: ValueConverter,
                 private modalService: ModalService) {
@@ -59,7 +59,7 @@ export class PagedCollectionComponent<TPreview, TModel> implements AfterViewInit
         this.currentQuery = this.service.createAdvancedQuery();
     }
 
-    ngAfterViewInit(): void {
+    public ngAfterViewInit(): void {
         if (this.initialQuery !== undefined) {
             this.currentQuery = this.initialQuery;
         } else {
@@ -149,9 +149,9 @@ export class PagedCollectionComponent<TPreview, TModel> implements AfterViewInit
         }
     }
 
-    ngOnInit(): void {
+    public ngOnInit(): void {
         const searchFilter = this.service.createSearchFilter();
-        if (searchFilter === undefined) {
+        if (searchFilter === undefined || searchFilter === null) {
             this.showSearchBox = false;
         } else {
             this.searchName = searchFilter.title;

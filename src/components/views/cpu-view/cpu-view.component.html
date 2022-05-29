@@ -1,31 +1,29 @@
-<div class="flex-center" style="place-content: start; flex-flow: row wrap">
-    <img class="details-image" [src]="this.imageLinksService.getCpuImageLink(cpu.vendor)"
-         [alt]="cpu.vendor + 'logo'">
-    <div class="details-grid">
-        <b>Architecture:</b><span>{{cpu.architecture}}</span>
-        <b>Vendor:</b><span>{{cpu.vendor}}</span>
-        <b>Model:</b><span>{{cpu.modelName}}</span>
-        <b>Frequency:</b><span>{{valueConverter.toStringSI(cpu.frequency, 'HZ')}}</span>
-        <b>SMT:</b><span>{{cpu.smt}}</span>
-        <b>Features:</b>
-        <div class="flex-row">
-            <span *ngFor="let feature of cpu.features.sort()" class="badge">{{feature}}</span>
-        </div>
-        <ng-container *ngFor="let pair of getCpuInfoPairs()">
-            <b>{{pair.name}}</b><span>{{pair.value}}</span>
-        </ng-container>
+<img class="details-image" [src]="this.imageLinksService.getCpuImageLink(cpu.vendor)"
+     [alt]="cpu.vendor + 'logo'">
+<div class="details-grid">
+    <b>Architecture:</b><span>{{cpu.architecture}}</span>
+    <b>Vendor:</b><span>{{cpu.vendor}}</span>
+    <b>Model:</b><span>{{cpu.modelName}}</span>
+    <b>Frequency:</b><span>{{valueConverter.toStringSI(cpu.frequency, 'HZ')}}</span>
+    <b>SMT:</b><span>{{cpu.smt}}</span>
+    <b>Features:</b>
+    <div class="flex-row">
+        <span *ngFor="let feature of cpu.features.sort()" class="badge">{{feature}}</span>
+    </div>
+    <ng-container *ngFor="let pair of getCpuInfoPairs()">
+        <b>{{pair.name}}</b><span>{{pair.value}}</span>
+    </ng-container>
 
-        <b>Caches:</b>
-        <div class="flex-center row">
+    <b>Caches:</b>
+    <div class="flex-center row">
 
-            <div *ngFor="let cache of cpu.caches"
-                 class="cpu-cache">
-                <div class="cpu-cache-name">{{cache.name}}</div>
-                <div class="details-grid cpu-cache-details">
-                    <b>Size:</b><span>{{this.valueConverter.toStringIEC(cache.size, 'B', 2, true)}}</span>
-                    <b>Associativity:</b><span>{{cache.associativity}}</span>
-                    <b>Line Size:</b><span>{{cache.lineSize}}</span>
-                </div>
+        <div *ngFor="let cache of cpu.caches"
+             class="cpu-cache">
+            <div class="cpu-cache-name">{{cache.name}}</div>
+            <div class="details-grid cpu-cache-details">
+                <b>Size:</b><span>{{this.valueConverter.toStringIEC(cache.size, 'B', 2, true)}}</span>
+                <b>Associativity:</b><span>{{cache.associativity}}</span>
+                <b>Line Size:</b><span>{{cache.lineSize}}</span>
             </div>
         </div>
     </div>

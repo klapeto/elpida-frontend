@@ -1,25 +1,21 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ValueConverter} from '../../../services/value-converter';
-import {TaskResultModel} from '../../../models/result/task-result.model';
-import {ResultType} from '../../../models/task/result-specification.model';
-import {BenchmarkResultModel} from '../../../models/result/benchmark-result.model';
+import {Component, Input} from '@angular/core';
+import {ValueConverter} from '../../../../services/value-converter';
+import {TaskResultModel} from '../../../../models/result/task-result.model';
+import {ResultType} from '../../../../models/task/result-specification.model';
+import {BenchmarkResultModel} from '../../../../models/result/benchmark-result.model';
 
 @Component({
     selector: 'app-task-results',
     templateUrl: './task-results.component.html',
     styleUrls: ['./task-results.component.css']
 })
-export class TaskResultsComponent implements OnInit {
+export class TaskResultsComponent {
 
     @Input() public readonly benchmarkResult: BenchmarkResultModel;
 
-    selectedResult: TaskResultModel;
+    public selectedResult: TaskResultModel;
 
-    constructor(public valueConverter: ValueConverter) {
-
-    }
-
-    ngOnInit() {
+    constructor(public readonly valueConverter: ValueConverter) {
 
     }
 
