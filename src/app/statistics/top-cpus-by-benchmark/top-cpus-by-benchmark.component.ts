@@ -47,7 +47,7 @@ export class TopCpusByBenchmarkComponent implements OnInit {
     }
 
     public async ngOnInit(): Promise<void> {
-        this.benchmark = await this.benchmarkService.getSingle(this.route.snapshot.paramMap.get('id')).toPromise();
+        this.benchmark = await this.benchmarkService.getSingle(this.route.snapshot.paramMap.get('id'));
         this.filters = [
             new NumberFilterModel('', 'benchmarkId', ComparisonModel.equals(), null, this.benchmark.id)
         ];

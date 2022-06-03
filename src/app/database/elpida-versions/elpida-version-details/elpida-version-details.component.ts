@@ -16,14 +16,12 @@ export class ElpidaVersionDetailsComponent implements OnInit {
     public constructor(
         private readonly elpidaVersionService: ElpidaVersionService,
         private readonly http: HttpClient,
-        private route: ActivatedRoute) {
+        private readonly route: ActivatedRoute) {
 
     }
 
-    public ngOnInit(): void {
-        this.elpidaVersionService.getSingle(this.route.snapshot.paramMap.get('id')).subscribe(r => {
-            this.elpidaVersion = r;
-        }, error => console.error(error));
+    public async ngOnInit(): Promise<void> {
+        this.elpidaVersion = await this.elpidaVersionService.getSingle(this.route.snapshot.paramMap.get('id'));
     }
 
 }

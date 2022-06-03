@@ -15,16 +15,14 @@ export class BenchmarkDetailsComponent implements OnInit {
     public benchmark: BenchmarkModel;
 
     public constructor(
-        private readonly benchmarkService: BenchmarkService,
         public readonly imageLinksService: ImageLinksService,
+        private readonly benchmarkService: BenchmarkService,
         private readonly http: HttpClient,
-        private route: ActivatedRoute) {
+        private readonly route: ActivatedRoute) {
     }
 
-    public ngOnInit(): void {
-        this.benchmarkService.getSingle(this.route.snapshot.paramMap.get('id')).subscribe(r => {
-            this.benchmark = r;
-        }, error => console.error(error));
+    public async ngOnInit(): Promise<void> {
+        this.benchmark = await this.benchmarkService.getSingle(this.route.snapshot.paramMap.get('id'));
     }
 
 }

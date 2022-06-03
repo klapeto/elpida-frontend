@@ -6,7 +6,4 @@ import {Component} from '@angular/core';
     styleUrls: ['./icon-template-collection.component.css']
 })
 export class IconTemplateCollectionComponent {
-
-    public constructor() {
-    }
 }

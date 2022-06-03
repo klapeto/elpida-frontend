@@ -16,13 +16,11 @@ export class OperatingSystemDetailsComponent implements OnInit {
     public constructor(
         private readonly osService: OperatingSystemService,
         private readonly http: HttpClient,
-        private route: ActivatedRoute) {
+        private readonly route: ActivatedRoute) {
     }
 
-    public ngOnInit(): void {
-        this.osService.getSingle(this.route.snapshot.paramMap.get('id')).subscribe(r => {
-            this.operatingSystem = r;
-        }, error => console.error(error));
+    public async ngOnInit(): Promise<void> {
+        this.operatingSystem = await this.osService.getSingle(this.route.snapshot.paramMap.get('id'));
     }
 
 }

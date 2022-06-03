@@ -144,15 +144,13 @@ export class PagedCollectionComponent<TPreview, TModel> implements AfterViewInit
         }
     }
 
-    private getPageResults(page: number): void {
-        this.service.getPreviews(new PageDto(page * this.resultsPerPage, this.resultsPerPage), this.currentQuery)
-            .subscribe(result => {
-                this.curPage = page;
-                if (this.maxResultPages === undefined) {
-                    this.maxResultPages = Math.ceil(result.totalCount / this.resultsPerPage);
-                }
-                this.pagedResult = result;
-                this.pageChanged.emit(this.pagedResult);
-            });
+    private async getPageResults(page: number): Promise<void> {
+        const result = await this.service.getPreviews(new PageDto(page * this.resultsPerPage, this.resultsPerPage), this.currentQuery);
+        this.curPage = page;
+        if (this.maxResultPages === undefined) {
+            this.maxResultPages = Math.ceil(result.totalCount / this.resultsPerPage);
+        }
+        this.pagedResult = result;
+        this.pageChanged.emit(this.pagedResult);
     }
 }

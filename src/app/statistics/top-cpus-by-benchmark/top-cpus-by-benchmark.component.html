@@ -1,55 +1,54 @@
 <app-loading-indicator *ngIf="!benchmark ; else elseBlock"></app-loading-indicator>
 <ng-template #elseBlock>
-    <div class="flex-center row">
-        <h2>Top cpus for {{this.benchmark.name}} </h2>
-        <div>({{getComparisonDescription()}})</div>
 
-        <div style="height: 20em; width: 100%">
-            <ngx-charts-bar-horizontal *ngIf="chartData"
-                                       [scheme]="colourScheme"
-                                       [xAxis]="true"
-                                       [yAxis]="true"
-                                       [showXAxisLabel]="true"
-                                       [xAxisLabel]="this.chartXAxisLabel"
-                                       [showYAxisLabel]="true"
-                                       [yAxisLabel]="'Cpu'"
-                                       [showDataLabel]="true"
-                                       [results]="chartData">
+    <h2 style="text-align: center">Top cpus for {{this.benchmark.name}} </h2>
+    <div style="text-align: center">({{getComparisonDescription()}})</div>
 
-            </ngx-charts-bar-horizontal>
-        </div>
+    <div style="height: 20em; width: 100%">
+        <ngx-charts-bar-horizontal *ngIf="chartData"
+                                   [scheme]="colourScheme"
+                                   [xAxis]="true"
+                                   [yAxis]="true"
+                                   [showXAxisLabel]="true"
+                                   [xAxisLabel]="this.chartXAxisLabel"
+                                   [showYAxisLabel]="true"
+                                   [yAxisLabel]="'Cpu'"
+                                   [showDataLabel]="true"
+                                   [results]="chartData">
+
+        </ngx-charts-bar-horizontal>
+    </div>
 
 
-        <app-paged-collection [service]="statisticsService"
-                              [lockedFilters]="filters"
-                              [lockedOrderBy]="orderBy"
-                              [name]="'Cpus'"
-                              [showFilters]="false"
-                              [showSearchBox]="false"
-                              (pageChanged)="pageLoaded($event)">
-            <ng-template #itemTemplate let-model="context">
-                <ng-container *ngIf="toItem(model); let item">
-                    <a class="button collection-item-link" [routerLink]="['/Statistics/', item.id]">
-                        <div>
-                            <img [src]="imageLinksService.getCpuImageLink(item.cpuVendor)"
-                                 [alt]="item.cpuVendor"
-                                 loading="lazy"
-                                 class="collection-item-icon">
-                            <img [src]="imageLinksService.getBenchmarkImage(item.benchmarkUuid)"
-                                 [alt]="item.benchmarkName"
-                                 loading="lazy"
-                                 class="collection-item-icon">
-                        </div>
-                        <span class="collection-item-name">
+    <app-paged-collection [service]="statisticsService"
+                          [lockedFilters]="filters"
+                          [lockedOrderBy]="orderBy"
+                          [name]="'Cpus'"
+                          [showFilters]="false"
+                          [showSearchBox]="false"
+                          (pageChanged)="pageLoaded($event)">
+        <ng-template #itemTemplate let-model="context">
+            <ng-container *ngIf="toItem(model); let item">
+                <a class="button collection-item-link" [routerLink]="['/Statistics/', item.id]">
+                    <div>
+                        <img [src]="imageLinksService.getCpuImageLink(item.cpuVendor)"
+                             [alt]="item.cpuVendor"
+                             loading="lazy"
+                             class="collection-item-icon">
+                        <img [src]="imageLinksService.getBenchmarkImage(item.benchmarkUuid)"
+                             [alt]="item.benchmarkName"
+                             loading="lazy"
+                             class="collection-item-icon">
+                    </div>
+                    <span class="collection-item-name">
                             {{item.cpuModelName}}
                         </span>
-                        <div class="collection-item-details-container">
-                            <b>{{this.item.benchmarkName}} &#8773; </b>
-                            <b class="badge">{{calculateActualStatisticValue(item)}}</b>
-                        </div>
-                    </a>
-                </ng-container>
-            </ng-template>
-        </app-paged-collection>
-    </div>
+                    <div class="collection-item-details-container">
+                        <b>{{this.item.benchmarkName}} &#8773; </b>
+                        <b class="badge">{{calculateActualStatisticValue(item)}}</b>
+                    </div>
+                </a>
+            </ng-container>
+        </ng-template>
+    </app-paged-collection>
 </ng-template>

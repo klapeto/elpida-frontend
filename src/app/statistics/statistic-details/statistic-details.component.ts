@@ -32,7 +32,7 @@ export class StatisticDetailsComponent implements OnInit {
     public yTickFormatter = (x: any) => this.valueConverter.toStringSI(x, '', 0);
 
     public async ngOnInit(): Promise<void> {
-        this.statistics = await this.statisticsService.getSingle(this.route.snapshot.paramMap.get('id')).toPromise();
+        this.statistics = await this.statisticsService.getSingle(this.route.snapshot.paramMap.get('id'));
         this.score = this.valueConverter.toStringSI(this.statistics.mean, this.statistics.benchmark.scoreSpecification.unit);
         this.data = [
             {

@@ -11,7 +11,7 @@ import {ImageLinksService} from '../../../services/image-links.service';
 export class TopologiesComponent {
 
     public constructor(public readonly topologyService: TopologyService,
-                public readonly imageLinksService: ImageLinksService) {
+                       public readonly imageLinksService: ImageLinksService) {
     }
 
     public toItem(context: any): TopologyPreviewModel {

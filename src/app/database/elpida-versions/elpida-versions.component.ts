@@ -11,7 +11,7 @@ import {ImageLinksService} from '../../../services/image-links.service';
 export class ElpidaVersionsComponent {
 
     public constructor(public readonly elpidaVersionService: ElpidaVersionService,
-                public readonly imageLinksService: ImageLinksService) {
+                       public readonly imageLinksService: ImageLinksService) {
     }
 
     public toItem(context: any): ElpidaVersionModel {

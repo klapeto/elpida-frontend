@@ -715,7 +715,6 @@ td:last-child {
     border-right: 0;
 }
 
-
 /*table*/
 
 /*Benchmark*/
@@ -768,3 +767,16 @@ td:last-child {
 }
 
 /*Badge*/
+
+/*Download*/
+.download-links {
+    padding: 1em;
+}
+
+/*Download*/
+
+/*Home*/
+.screenshot {
+    max-width: 100%;
+}
+/*Home*/

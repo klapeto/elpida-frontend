@@ -40,11 +40,9 @@ export class BenchmarkResultComponent implements OnInit, AfterViewInit {
 
     }
 
-    public ngOnInit(): void {
-        this.resultsService.getSingle(this.route.snapshot.paramMap.get('id')).subscribe(r => {
-            this.result = r;
-            this.result.timeStamp = new Date(this.result.timeStamp.toString());
-        }, error => console.error(error));
+    public async ngOnInit(): Promise<void> {
+        this.result = await this.resultsService.getSingle(this.route.snapshot.paramMap.get('id'));
+        this.result.timeStamp = new Date(this.result.timeStamp.toString());
     }
 
     public ngAfterViewInit(): void {

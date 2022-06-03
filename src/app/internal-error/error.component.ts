@@ -18,7 +18,7 @@ export class ErrorComponent implements OnInit {
     public stackTrace: string;
 
     public constructor(private readonly errorHandler: ErrorHandlerService,
-                private readonly linksService: LinksService) {
+                       private readonly linksService: LinksService) {
     }
 
     public ngOnInit(): void {

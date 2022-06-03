@@ -20,7 +20,7 @@ export abstract class CollectionService<TModel, TPreview> implements ICollection
 
     }
 
-    public getPreviews(page: PageDto, query: QueryModel): Observable<PagedResultDto<TPreview>> {
+    public getPreviews(page: PageDto, query: QueryModel): Promise<PagedResultDto<TPreview>> {
         const queryRequest = new QueryDto(
             page,
             query.orderBy,
@@ -29,11 +29,11 @@ export abstract class CollectionService<TModel, TPreview> implements ICollection
                 .filter(f => f.isSet())
                 .map(f => this.dtoService.createFromFilter(f))
         );
-        return this.http.post<PagedResultDto<TPreview>>(this.getUrl(this.searchRoute), queryRequest);
+        return this.http.post<PagedResultDto<TPreview>>(this.getUrl(this.searchRoute), queryRequest).toPromise();
     }
 
-    public getSingle(id: string): Observable<TModel> {
-        return this.http.get<TModel>(this.getUrl(id));
+    public getSingle(id: string): Promise<TModel> {
+        return this.http.get<TModel>(this.getUrl(id)).toPromise();
     }
 
     public abstract createSimpleQuery(): QueryModel;

@@ -10,8 +10,8 @@ import {ImageLinksService} from '../../../services/image-links.service';
 })
 export class BenchmarksComponent {
 
-    public constructor(public benchmarkService: BenchmarkService,
-                public imageLinksService: ImageLinksService) {
+    public constructor(public readonly benchmarkService: BenchmarkService,
+                       public readonly imageLinksService: ImageLinksService) {
     }
 
     public toItem(context: any): BenchmarkPreviewModel {

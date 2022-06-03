@@ -14,19 +14,23 @@
     flex-flow: row wrap;
 }
 
-
 .flex-center {
     display: flex;
     justify-content: center;
     align-content: center;
     place-items: center;
 }
+
 .flex-center.row {
     flex-flow: row wrap;
 }
 
 .flex-center.column {
     flex-flow: column wrap;
+}
+
+.flex-center.space-evenly {
+    justify-content: space-evenly;
 }
 
 @media (min-width: 992px) {

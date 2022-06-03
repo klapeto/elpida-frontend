@@ -18,17 +18,15 @@ export class CpuDetailsComponent implements OnInit {
     public filters: FilterModel[];
 
     public constructor(
-        private readonly cpuService: CpuService,
         public readonly imageLinksService: ImageLinksService,
         public readonly valueConverter: ValueConverter,
-        private route: ActivatedRoute) {
+        private readonly cpuService: CpuService,
+        private readonly route: ActivatedRoute) {
 
     }
 
-    public ngOnInit(): void {
-        this.cpuService.getSingle(this.route.snapshot.paramMap.get('id')).subscribe(r => {
-            this.cpu = r;
-        }, error => console.error(error));
+    public async ngOnInit(): Promise<void> {
+        this.cpu = await this.cpuService.getSingle(this.route.snapshot.paramMap.get('id'));
     }
 
 }
