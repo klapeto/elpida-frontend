@@ -36,7 +36,7 @@ export class BenchmarkResultComponent implements OnInit, AfterViewInit {
         private readonly http: HttpClient,
         public readonly imageLinksService: ImageLinksService,
         public readonly valueConverter: ValueConverter,
-        private route: ActivatedRoute) {
+        private readonly route: ActivatedRoute) {
 
     }
 

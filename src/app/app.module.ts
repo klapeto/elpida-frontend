@@ -68,6 +68,7 @@ import {CpuViewComponent} from '../components/views/cpu-view/cpu-view.component'
 import {BenchmarkViewComponent} from '../components/views/benchmark-view/benchmark-view.component';
 import {ElpidaViewComponent} from '../components/views/elpida-view/elpida-view.component';
 import {OperatingSystemViewComponent} from '../components/views/operating-system-view/operating-system-view.component';
+import {CarouselComponent} from '../components/carousel/carousel.component';
 
 @NgModule({
     declarations: [
@@ -123,7 +124,8 @@ import {OperatingSystemViewComponent} from '../components/views/operating-system
         CpuViewComponent,
         BenchmarkViewComponent,
         ElpidaViewComponent,
-        OperatingSystemViewComponent
+        OperatingSystemViewComponent,
+        CarouselComponent
     ],
     imports: [
         BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),

@@ -1,0 +1,11 @@
+.visible {
+    left: 0 !important;
+}
+
+.panel {
+    position: relative;
+    left: -100%;
+    float: left;
+    transition: left 0.5s ease-out;
+    background-color: #99da9f;
+}
