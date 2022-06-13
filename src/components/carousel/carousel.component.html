@@ -1,8 +1,9 @@
 <div style="position: relative;width: 100%;overflow: hidden;">
-    <div *ngFor="let panel of panels; index as i">
-        <div [ngClass]="{'visible': i === index}" class="panel" >
-            <ng-container *ngTemplateOutlet="panel; context: {context: panel}">
+    <div *ngFor="let panel of panelData; index as i" [ngClass]="{'visible': panel.visible}" [class]="panel.classes" class="panel">
+        <div class="flex-center row">
+            <ng-container *ngTemplateOutlet="panel.template; context: {context: panel}">
             </ng-container>
         </div>
+
     </div>
 </div>
