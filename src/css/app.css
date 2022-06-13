@@ -778,6 +778,33 @@ td:last-child {
 /*Home*/
 .screenshot {
     max-width: 100%;
-    max-height: 20em;
+    max-height: 30em;
 }
 /*Home*/
+
+/*Carousel*/
+.carousel-panel.next {
+    transform: translateX(100%);
+}
+
+.carousel-panel.previous {
+    transform: translateX(-100%);
+}
+
+.carousel-panel.current {
+    transform: translateX(0);
+}
+
+.carousel-panel.visible {
+    display: block !important;
+}
+
+.carousel-panel {
+    position: relative;
+    transition: transform 0.6s ease-out;
+    margin-right: -100%;
+    width: 100%;
+    float: left;
+    display: none;
+}
+/*Carousel*/

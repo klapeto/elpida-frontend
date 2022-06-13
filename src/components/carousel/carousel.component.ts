@@ -1,49 +1,49 @@
-import {AfterContentInit, AfterViewInit, Component, ContentChildren, Input, OnDestroy, OnInit, QueryList, TemplateRef} from '@angular/core';
+import {AfterContentInit, Component, ContentChildren, Input, OnDestroy, QueryList, TemplateRef} from '@angular/core';
 
 @Component({
     selector: 'app-carousel',
     templateUrl: './carousel.component.html',
     styleUrls: ['./carousel.component.css']
 })
-export class CarouselComponent implements OnInit, AfterContentInit, OnDestroy {
+export class CarouselComponent implements AfterContentInit, OnDestroy {
+    public panelData: Panel[];
 
-    @ContentChildren('panel') public set panels(pnls: QueryList<TemplateRef<any>>) {
-        this.panelData = pnls.map(p => new Panel(p, false, ''));
+    @Input()
+    public interval: number = 3000;
+
+    private index: number = 0;
+    private intervalHandle: number;
+    private previousPanel: Panel;
+
+    @ContentChildren('panel')
+    public set panels(templates: QueryList<TemplateRef<any>>) {
+        this.panelData = templates.map(p => new Panel(p, false, ''));
     }
 
     public get currentPanel(): Panel {
         return this.panelData[this.index];
-    }
-    public index: number = 0;
-
-    private intervalId: number;
-    public panelData: Panel[];
-
-    public constructor() {
-    }
-
-    public ngOnInit(): void {
     }
 
     public ngAfterContentInit(): void {
         this.currentPanel.visible = true;
         this.currentPanel.classes = 'current';
 
-        setInterval(() => {
-            const previousPanel = this.currentPanel;
+        this.intervalHandle = setInterval(() => {
+            if (this.previousPanel !== undefined) {
+                this.previousPanel.visible = false;
+            }
+
+            this.previousPanel = this.currentPanel;
             this.increaseIndex();
             this.currentPanel.visible = true;
             this.currentPanel.classes = 'next';
 
             setTimeout(() => {
                 this.currentPanel.classes = 'current';
-                previousPanel.classes = 'previous';
-                setTimeout(() => {
-                    previousPanel.visible = false;
-                }, 1000);
+                this.previousPanel.classes = 'previous';
             });
 
-        }, 2000);
+        }, this.interval);
     }
 
     public increaseIndex(): void {
@@ -53,6 +53,7 @@ export class CarouselComponent implements OnInit, AfterContentInit, OnDestroy {
     }
 
     public ngOnDestroy(): void {
+        clearInterval(this.intervalHandle);
     }
 
 }
