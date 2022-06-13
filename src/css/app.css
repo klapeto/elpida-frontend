@@ -783,6 +783,10 @@ td:last-child {
 /*Home*/
 
 /*Carousel*/
+.carousel-container{
+    overflow: hidden;
+}
+
 .carousel-panel.next {
     transform: translateX(100%);
 }

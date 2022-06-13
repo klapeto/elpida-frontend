@@ -20,7 +20,7 @@ export class CarouselComponent implements AfterContentInit, OnDestroy {
         this.panelData = templates.map(p => new Panel(p, false, ''));
     }
 
-    public get currentPanel(): Panel {
+    private get currentPanel(): Panel {
         return this.panelData[this.index];
     }
 
@@ -46,19 +46,21 @@ export class CarouselComponent implements AfterContentInit, OnDestroy {
         }, this.interval);
     }
 
-    public increaseIndex(): void {
+    public ngOnDestroy(): void {
+        clearInterval(this.intervalHandle);
+    }
+
+    private increaseIndex(): void {
         if (++this.index >= this.panelData.length) {
             this.index = 0;
         }
     }
 
-    public ngOnDestroy(): void {
-        clearInterval(this.intervalHandle);
-    }
-
 }
 
 class Panel {
-    public constructor(public readonly template: TemplateRef<any>, public visible: boolean, public classes: string) {
+    public constructor(public readonly template: TemplateRef<any>,
+                       public visible: boolean,
+                       public classes: string) {
     }
 }

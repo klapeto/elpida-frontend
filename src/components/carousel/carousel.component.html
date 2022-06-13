@@ -1,4 +1,4 @@
-<div style="position: relative;width: 100%;overflow: hidden;">
+<div class="carousel-container">
     <div *ngFor="let panel of panelData" [ngClass]="{'visible': panel.visible}" [class]="panel.classes" class="carousel-panel">
         <ng-container *ngTemplateOutlet="panel.template; context: {context: panel}">
         </ng-container>
