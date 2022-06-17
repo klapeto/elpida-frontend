@@ -9,11 +9,17 @@ import {JumpToPageComponent} from './jump-to-page/jump-to-page.component';
 })
 export class PagingComponent implements OnInit {
 
-    @Input() public readonly maxPagerButtons = 5;
-    @Input() public readonly pagesCount: number;
-    @Output() public readonly pageChanged = new EventEmitter<number>();
+    @Input()
+    public readonly maxPagerButtons: number = 5;
 
-    @ViewChild('jumpToPageTemplate') public jumpToPageTemplate: TemplateRef<number>;
+    @Input()
+    public readonly pagesCount: number;
+
+    @Output()
+    public readonly pageChanged: EventEmitter<number> = new EventEmitter<number>();
+
+    @ViewChild('jumpToPageTemplate')
+    public jumpToPageTemplate: TemplateRef<number>;
 
     public pages: number[];
     public currentPage: number;
