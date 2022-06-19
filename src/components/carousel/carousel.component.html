@@ -1,6 +1,11 @@
 <div class="carousel-container">
-    <div *ngFor="let panel of panelData" [ngClass]="{'visible': panel.visible}" [class]="panel.classes" class="carousel-panel">
+    <div *ngFor="let panel of panelData"
+         [class]="panel.classes"
+         (animationend)="animationEnd()"
+         class="carousel-panel">
         <ng-container *ngTemplateOutlet="panel.template; context: {context: panel}">
         </ng-container>
     </div>
 </div>
+<button (click)="onPreviousClicked()">Prev</button>
+<button (click)="onNextClicked()">Next</button>

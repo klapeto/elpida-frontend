@@ -12,55 +12,86 @@ export class CarouselComponent implements AfterContentInit, OnDestroy {
     public interval: number = 3000;
 
     private index: number = 0;
+
     private intervalHandle: number;
-    private previousPanel: Panel;
+    private currentPanel: Panel = null;
+    private previousPanel: Panel = null;
+    private canChange: boolean = true;
 
     @ContentChildren('panel')
     public set panels(templates: QueryList<TemplateRef<any>>) {
-        this.panelData = templates.map(p => new Panel(p, false, ''));
+        this.panelData = templates.map(p => new Panel(p, ''));
     }
 
-    private get currentPanel(): Panel {
-        return this.panelData[this.index];
+    public animationEnd(): void {
+        if (this.previousPanel.classes !== null) {
+            this.previousPanel.classes = null;
+            this.canChange = true;
+        }
     }
 
     public ngAfterContentInit(): void {
-        this.currentPanel.visible = true;
-        this.currentPanel.classes = 'current';
+        this.changePanel(() => this.panelData[0]);
 
         this.intervalHandle = setInterval(() => {
-            if (this.previousPanel !== undefined) {
-                this.previousPanel.visible = false;
-            }
-
-            this.previousPanel = this.currentPanel;
-            this.increaseIndex();
-            this.currentPanel.visible = true;
-            this.currentPanel.classes = 'next';
-
-            setTimeout(() => {
-                this.currentPanel.classes = 'current';
-                this.previousPanel.classes = 'previous';
-            });
-
+            this.onNextClicked();
         }, this.interval);
+    }
+
+    public onNextClicked(): void {
+        this.changePanel(() => this.panelData[this.increaseIndex()]);
+    }
+
+    public onPreviousClicked(): void {
+        this.changePanel(() => this.panelData[this.decreaseIndex()], false);
     }
 
     public ngOnDestroy(): void {
         clearInterval(this.intervalHandle);
     }
 
-    private increaseIndex(): void {
+    private changePanel(panelGenerator: () => Panel, fromLeftToRight: boolean = true): void {
+
+        if (!this.canChange) {
+            return;
+        }
+
+        const targetPanel = panelGenerator();
+        if (this.currentPanel === null) {
+            this.currentPanel = targetPanel;
+            this.currentPanel.classes = 'initial';
+            return;
+        }
+
+        this.canChange = false;
+
+        this.previousPanel = this.currentPanel;
+        this.currentPanel = targetPanel;
+        this.currentPanel.classes = fromLeftToRight ? 'next-new' : 'previous-new';
+        this.previousPanel.classes = fromLeftToRight ? 'next-old' : 'previous-old';
+    }
+
+    private increaseIndex(): number {
         if (++this.index >= this.panelData.length) {
             this.index = 0;
         }
+
+        return this.index;
+    }
+
+
+    private decreaseIndex(): number {
+        if (--this.index < 0) {
+            this.index = this.panelData.length - 1;
+        }
+
+        return this.index;
     }
 
 }
 
 class Panel {
     public constructor(public readonly template: TemplateRef<any>,
-                       public visible: boolean,
                        public classes: string) {
     }
 }
