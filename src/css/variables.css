@@ -27,5 +27,7 @@
     --group-box-header-color: #cbc7f7;
     --group-box-bg-color: #edf4f9;
 
-    --shadow: 0 .2rem .4rem 0 rgba(0,0,0,.14);
+    --shadow-spread: .4rem;
+    --shadow-blur: .2rem;
+    --shadow: 0 var(--shadow-blur) var(--shadow-spread) 0 rgba(0,0,0,.14);
 }

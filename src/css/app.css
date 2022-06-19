@@ -804,6 +804,10 @@ td:last-child {
 }
 
 .carousel-container {
+    position: relative;
+}
+
+.carousel-panel-container {
     overflow: hidden;
 }
 
@@ -842,4 +846,36 @@ td:last-child {
     float: left;
     display: none;
 }
+
+.carousel-next-button,
+.carousel-previous-button {
+    position: absolute;
+    bottom: 45%;
+    z-index: 10;
+}
+
+.carousel-next-button {
+    right: var(--shadow-spread);
+}
+
+.carousel-previous-button {
+    left: var(--shadow-spread);
+}
+
+.carousel-tab-button {
+    list-style: none;
+}
+
+.carousel-tab-button-container {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding-left: 0;
+    z-index: 11;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
 /*Carousel*/

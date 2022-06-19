@@ -30,24 +30,46 @@ export class CarouselComponent implements AfterContentInit, OnDestroy {
         }
     }
 
-    public ngAfterContentInit(): void {
-        this.changePanel(() => this.panelData[0]);
+    public pause(): void {
+        clearInterval(this.intervalHandle);
+    }
 
+    public resume(): void {
         this.intervalHandle = setInterval(() => {
             this.onNextClicked();
         }, this.interval);
     }
 
+    public ngAfterContentInit(): void {
+        this.changePanel(() => this.panelData[0]);
+
+        this.resume();
+    }
+
     public onNextClicked(): void {
+        this.pause();
         this.changePanel(() => this.panelData[this.increaseIndex()]);
+        this.resume();
     }
 
     public onPreviousClicked(): void {
+        this.pause();
         this.changePanel(() => this.panelData[this.decreaseIndex()], false);
+        this.resume();
+    }
+
+    public onPanelButtonClicked(panel: Panel): void {
+        this.pause();
+        this.changePanel(() => panel);
+        this.resume();
     }
 
     public ngOnDestroy(): void {
         clearInterval(this.intervalHandle);
+    }
+
+    public isThePanelCurrent(panel: Panel): boolean {
+        return this.currentPanel === panel;
     }
 
     private changePanel(panelGenerator: () => Panel, fromLeftToRight: boolean = true): void {
@@ -60,6 +82,10 @@ export class CarouselComponent implements AfterContentInit, OnDestroy {
         if (this.currentPanel === null) {
             this.currentPanel = targetPanel;
             this.currentPanel.classes = 'initial';
+            return;
+        }
+
+        if (this.currentPanel === targetPanel) {
             return;
         }
 

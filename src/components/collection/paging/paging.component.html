@@ -9,7 +9,7 @@
     <div class="pager-pages">
         <button *ngFor="let page of pages"
                 class="small pager-page-button"
-                [ngClass]="{'active': page == currentPage}"
+                [ngClass]="{'active': page === currentPage}"
                 (click)="changePage(page)">
             {{page + 1}}
         </button>
