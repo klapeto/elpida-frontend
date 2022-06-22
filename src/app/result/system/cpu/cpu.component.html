@@ -1,0 +1,38 @@
+<div class="details-grid">
+
+    <strong>Vendor:</strong>
+    <div>{{cpu.vendor}}</div>
+
+    <strong>Brand:</strong>
+    <div>{{cpu.brand}}</div>
+
+    <strong>Frequency:</strong>
+    <div>{{valueConverter.convertToSI(cpu.frequency)}}Hz</div>
+
+    <strong>SMT:</strong>
+    <div>{{cpu.smt}}</div>
+
+    <strong>Additional Info:</strong>
+    <div>
+        <div *ngFor="let pair of getInfoPairs()" class="additional-info-record">
+            <strong>{{pair.name}}:</strong>
+            <div class="additional-info-record-value">{{pair.value}}</div>
+        </div>
+    </div>
+
+    <strong>Features:</strong>
+    <div>
+        <span *ngFor="let feature of cpu.features">
+          {{feature}}
+        </span>
+    </div>
+</div>
+
+<div class="row">
+    <app-group-box [title]="cpuCache.name" *ngFor="let cpuCache of cpu.caches">
+        <app-cpu-cache [cache]="cpuCache"></app-cpu-cache>
+    </app-group-box>
+</div>
+
+
+

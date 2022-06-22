@@ -1,0 +1,16 @@
+<div class="cpuNode" [ngClass]="getBaseClass()">
+    <div class="node-info">
+        <strong>{{node.name}}</strong>
+        <div *ngIf="node.osIndex !== null">: {{node.osIndex}} </div>
+        <div *ngIf="node.value !== null">: {{valueConverter.convertToSI(node.value)}}B</div>
+        <div *ngIf="isUsed()" class="node-badge node-used">&#10004;</div>
+    </div>
+    <div *ngIf="node.memoryChildren" class="node-children">
+        <app-cpu-node *ngFor="let child of node.memoryChildren" [node]="child"
+                      [affinity]="affinity" class="node-child"></app-cpu-node>
+    </div>
+    <div *ngIf="node.children" class="node-children">
+        <app-cpu-node *ngFor="let child of node.children" [node]="child" [affinity]="affinity"
+                      class="node-child"></app-cpu-node>
+    </div>
+</div>

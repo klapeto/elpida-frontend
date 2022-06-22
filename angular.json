@@ -23,10 +23,7 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": ["src/assets", "src/manifest.webmanifest"],
             "styles": [
-              "src/styles.css",
-              "src/css/variables.css",
-              "src/css/layout-styles.css",
-              "src/css/app.css"
+              "src/styles.css"
             ],
             "scripts": []
           },
@@ -55,31 +52,6 @@
               "buildOptimizer": true,
               "serviceWorker": true,
               "ngswConfigPath": "ngsw-config.json"
-            },
-            "staging": {
-              "budgets": [
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ],
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.stage.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "serviceWorker": true,
-              "ngswConfigPath": "ngsw-config.json"
             }
           }
         },
@@ -91,9 +63,6 @@
           "configurations": {
             "production": {
               "browserTarget": "Elpida.FrontEnd:build:production"
-            },
-            "staging": {
-              "browserTarget": "Elpida.FrontEnd:build:staging"
             }
           }
         },
@@ -110,7 +79,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
-            "styles": ["src/styles.css", "src/css/variables.css", "src/css/layout-styles.css", "src/css/app.css"],
+            "styles": ["src/styles.css"],
             "scripts": [],
             "assets": ["src/assets", "src/manifest.webmanifest"]
           }

@@ -1,0 +1,10 @@
+.screenshot {
+    max-width: 100%;
+}
+
+.screenshot-container {
+    display: inline-flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+}
