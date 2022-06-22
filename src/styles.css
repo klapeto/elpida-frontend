@@ -1,0 +1,186 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", Ubuntu, Cantarell, "Helvetica Neue", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
+    font-weight: 400;
+    color: #454545;
+    background-color: rgb(229, 232, 253);
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    background-size: contain;
+    background-attachment: fixed;
+    background-image: url("./assets/Elpida.svg");
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: auto;
+    grid-auto-rows: auto 1fr;
+    margin: 0;
+    overflow: hidden;
+}
+
+app-root {
+    max-height: 100vh;
+    overflow: auto;
+    background: rgba(229, 232, 253, 0.75);
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-container {
+
+}
+
+.container-sized {
+    width: 100%;
+}
+
+.contentContainer {
+    padding: 1rem;
+    background-color: rgba(229, 232, 253, 0.85);
+    -webkit-box-shadow: 0 0 29px 32px rgba(229, 232, 253, 0.85);
+    -moz-box-shadow: 0 0 29px 32px rgba(229, 232, 253, 0.85);
+    box-shadow: 0 0 29px 32px rgba(229, 232, 253, 0.85);
+    border-radius: 0.5rem;
+}
+
+@media (min-width: 768px) {
+    .container-sized {
+        max-width: 95%;
+    }
+}
+
+@media (min-width: 992px) {
+    .container-sized {
+        max-width: 90%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container-sized {
+        max-width: 65%;
+    }
+}
+
+@media (min-width: 1600px) {
+    .container-sized {
+        max-width: 50%;
+    }
+}
+
+div {
+    background: transparent;
+}
+
+code {
+    color: #e01a76;
+    font-size: 90%;
+}
+
+.button {
+    display: flex;
+    background-color: rgb(203, 199, 247);
+    border: 0.05rem solid rgb(158, 159, 238);
+    min-width: 8rem;
+    text-align: center;
+    border-radius: 0;
+    align-items: center;
+    justify-content: center;
+    color: #454545;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+.button:hover {
+    background-color: rgb(221, 219, 243);
+    color: black;
+}
+
+.button.active {
+    background-color: rgb(137, 142, 226);
+    color: white;
+}
+
+.button.disabled, .button.disabled:hover {
+    background-color: rgb(212, 219, 224);
+}
+
+.non-a-button {
+    user-select: none;
+    cursor: pointer;
+}
+
+.button-default-size {
+    padding: 1rem;
+    min-width: auto;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+}
+
+strong {
+    font-weight: 600;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0.25rem;
+}
+
+hr {
+    border: 0.05rem rgb(171, 173, 228) solid;
+}
+
+.filter-group-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filter-group-label {
+    flex-grow: 1;
+}
+
+code {
+    display: inline-block;
+    font-family: monospace;
+    white-space: normal;
+    word-wrap: normal;
+    background-color: #edf4f9;
+    padding: 1rem;
+    border-radius: 0.4rem;
+}
+
+input {
+    border: 0.05em rgb(169, 172, 217)  solid;
+    padding: 0.2em;
+}
+
+select {
+    border: 0.05em rgb(169, 172, 217)  solid;
+    padding: 0.2em;
+    background-color: rgb(244, 244, 248);
+}
+
+.spinner {
+    display: inline-block;
+    vertical-align: text-bottom;
+    width: 2rem;
+    height: 2rem;
+    border: 0.25em solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spinner .75s linear infinite;
+}
+@keyframes spinner {
+    to {
+        transform: rotate(360deg);
+    }
+}

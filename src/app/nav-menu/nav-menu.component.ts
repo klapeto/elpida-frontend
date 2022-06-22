@@ -6,9 +6,9 @@ import {Component} from '@angular/core';
     styleUrls: ['./nav-menu.component.css']
 })
 export class NavMenuComponent {
-    public isExpanded: boolean = false;
+    public isExpanded = false;
 
-    public toggle(): void {
+    public toggle() {
         this.isExpanded = !this.isExpanded;
     }
 }

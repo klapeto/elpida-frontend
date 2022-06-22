@@ -1,0 +1,34 @@
+<h2 *ngIf="!result">Loading Result...</h2>
+
+<div *ngIf="result">
+
+    <app-group-box [title]="'Results'">
+        <app-benchmark-result [benchmarkResult]="result.result"></app-benchmark-result>
+    </app-group-box>
+
+    <app-group-box [title]="'Info'">
+        <div class="details-grid">
+
+            <strong>Name:</strong>
+            <div>{{result.result.name}}</div>
+
+            <strong>Date:</strong>
+            <div>{{result.timeStamp.toDateString()}} {{result.timeStamp.toLocaleTimeString()}}</div>
+
+            <strong>Elpida Version:</strong>
+            <div>{{result.elpida.version.major}}.{{result.elpida.version.minor}}.{{result.elpida.version.revision}}
+                _{{result.elpida.version.build}}</div>
+
+            <strong>Compiler:</strong>
+            <div>{{result.elpida.compiler.name}} {{result.elpida.compiler.version}}</div>
+
+        </div>
+    </app-group-box>
+
+
+</div>
+
+<app-group-box [title]="'System'" *ngIf="result">
+    <app-system [system]="result.system" [affinity]="result.affinity"></app-system>
+</app-group-box>
+
