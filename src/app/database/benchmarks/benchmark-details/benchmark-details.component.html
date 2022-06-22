@@ -1,0 +1,5 @@
+<app-loading-indicator *ngIf="!benchmark; else elseBlock">
+</app-loading-indicator>
+<ng-template #elseBlock>
+    <app-benchmark-view [benchmark]="benchmark"></app-benchmark-view>
+</ng-template>

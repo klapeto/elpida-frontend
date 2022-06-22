@@ -1,0 +1,9 @@
+<app-loading-indicator *ngIf="!elpidaVersion; else elseBlock">
+</app-loading-indicator>
+<ng-template #elseBlock>
+    <div class="flex-center row">
+        <app-elpida-view [elpida]="elpidaVersion"
+                         [largeLogo]="true">
+        </app-elpida-view>
+    </div>
+</ng-template>

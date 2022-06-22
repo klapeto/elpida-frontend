@@ -1,0 +1,24 @@
+<app-paged-collection [service]="topologyService"
+                      [name]="'Topologies'"
+                      [showFilters]="true"
+                      [showSearchBox]="true">
+
+    <ng-template #itemTemplate let-model="context">
+        <ng-container *ngIf="toItem(model); let item">
+            <a class="button collection-item-link" [routerLink]="['/Database/Topology/', item.id]">
+                <img [alt]="item.cpuVendor +  'logo'" [src]="imageLinksService.getCpuImageLink(item.cpuVendor)"
+                     class="collection-item-icon" loading="lazy">
+                <span class="collection-item-name">
+                    {{item.cpuModelName}} <br>
+                    {{item.totalPackages}}xP/{{item.totalNumaNodes}}xN/{{item.totalPhysicalCores}}xC/{{item.totalLogicalCores}}xT
+                </span>
+            </a>
+        </ng-container>
+    </ng-template>
+</app-paged-collection>
+<b>
+    Legend:
+</b>
+<div>
+    <b>P</b>=Packages, <b>N</b>=Numa Nodes, <b>C</b>=Cores, <b>T</b>=Threads
+</div>

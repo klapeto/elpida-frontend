@@ -1,0 +1,67 @@
+<div class="flex-center column">
+    <div class="collection-controls flex-center row">
+
+        <button *ngIf="showFilters"
+                (click)="onFiltersButtonClick()"
+                [ngClass]="{'active': filtersPanelShown}"
+                class="button non-a-button medium">
+            Show Filters
+        </button>
+
+        <button class="button non-a-button medium" (click)="revertPage()">
+            Revert page
+        </button>
+
+        <label *ngIf="showSearchBox">
+            Search:
+            <input (keyup)="onSearch($event)"
+                   [(ngModel)]="searchString"
+                   [placeholder]="searchName + ' (Enter)'"
+                   type="search">
+        </label>
+    </div>
+
+    <app-group-box *ngIf="filtersPanelShown" [title]="'Query editor'">
+        <div class="flex-center row">
+            <button style="margin: 1em" class="button non-a-button medium @SimpleButtonActiveClass"
+                    [ngClass]="{'active': !advancedShown}" (click)="onSimpleClicked()">
+                Simple
+            </button>
+            <button class="button non-a-button medium" [ngClass]="{'active': advancedShown}"
+                    (click)="onAdvancedClicked()">
+                Advanced
+            </button>
+        </div>
+
+        <div *ngIf="filtersPanelShown">
+            <app-collection-filters *ngIf="!advancedShown; else filterPool" (submitted)="onFiltersSubmitted($event)"
+                                    [query]="currentQuery">
+            </app-collection-filters>
+            <ng-template #filterPool>
+                <app-filter-pool [availableFilters]="service.createAdvancedQuery().filters"
+                                 (submitted)="onFiltersSubmitted($event)"></app-filter-pool>
+            </ng-template>
+        </div>
+
+    </app-group-box>
+    <p *ngIf="pagedResult">Records found: {{valueConverter.toStringSI(pagedResult.totalCount, '', 0)}},
+        Pages: {{maxResultPages}}</p>
+</div>
+
+<div *ngIf="pagedResult; else elseBlock">
+
+    <ul>
+        <li *ngFor="let item of pagedResult.items" class="collection-item">
+            <ng-container *ngTemplateOutlet="itemTemplate; context: {context: item}"></ng-container>
+        </li>
+    </ul>
+</div>
+
+<ng-template #elseBlock>
+    <app-loading-indicator></app-loading-indicator>
+</ng-template>
+
+<app-paging *ngIf="pagedResult"
+            (pageChanged)="onPageChange($event)"
+            [pagesCount]="maxResultPages">
+</app-paging>
