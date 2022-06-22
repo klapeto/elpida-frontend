@@ -1,53 +1,33 @@
-import {ComponentFactoryResolver, Injectable, ViewContainerRef} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {CollectionService} from './collection-service';
 import {HttpClient} from '@angular/common/http';
-import {Benchmark} from '../models/benchmark/benchmark';
-import {BenchmarkPreview} from '../models/benchmark/benchmark-preview';
-import {Filter} from '../models/filter';
-import {StringFilter} from '../models/filters/string-filter';
-import {BenchmarkItemComponent} from '../components/collection/items/benchmark-item/benchmark-item.component';
+import {BenchmarkModel} from '../models/benchmark/benchmark.model';
+import {BenchmarkPreviewModel} from '../models/benchmark/benchmark-preview.model';
+import {StringFilterModel} from '../models/filters/string-filter.model';
+import {DtoService} from './dto.service';
+import {QueryModel} from '../models/query.model';
 
 @Injectable({
     providedIn: 'root'
 })
-export class BenchmarkService extends CollectionService<Benchmark, BenchmarkPreview> {
-
-    public constructor(http: HttpClient) {
-        super(http);
-    }
+export class BenchmarkService extends CollectionService<BenchmarkModel, BenchmarkPreviewModel> {
 
     protected readonly baseRoute: string = 'benchmark';
 
-    createAdvancedFilters(): Filter[] {
-        return [
-            new StringFilter('Benchmark name', 'benchmarkName', true)
-        ];
+    public constructor(http: HttpClient, dtoService: DtoService) {
+        super(http, dtoService);
     }
 
-    createCollectionItemComponent(item: BenchmarkPreview, componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef, customRoutePrefix: string): any {
-        const component = viewContainerRef.createComponent<BenchmarkItemComponent>(
-            componentFactoryResolver.resolveComponentFactory<BenchmarkItemComponent>(BenchmarkItemComponent)
-        );
 
-        component.instance.item = item;
-
-        if (customRoutePrefix !== undefined) {
-            component.instance.routePrefix = customRoutePrefix;
-        }
-
-
-        return component;
+    public createAdvancedQuery(): QueryModel {
+        return new QueryModel([this.createSearchFilter()]);
     }
 
-    createOrderByFilters(): Filter[] {
-        return this.createAdvancedFilters();
+    public createSimpleQuery(): QueryModel {
+        return this.createAdvancedQuery();
     }
 
-    createSearchFilter(): StringFilter {
-        return new StringFilter('Benchmark name', 'benchmarkName', true);
-    }
-
-    createSimpleFilters(): Filter[] {
-        return this.createAdvancedFilters();
+    public createSearchFilter(): StringFilterModel | null {
+        return new StringFilterModel('Benchmark name', 'benchmarkName');
     }
 }

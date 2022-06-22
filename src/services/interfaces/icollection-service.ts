@@ -1,10 +1,9 @@
-import {Observable} from 'rxjs';
-import {PageRequest} from '../../models/page-request';
-import {Query} from '../../models/query';
-import {PagedResult} from '../../models/paged-result';
-import {IFilters} from './ifilters';
+import {PageDto} from '../../dtos/page.dto';
+import {QueryModel} from '../../models/query.model';
+import {PagedResultDto} from '../../dtos/paged-result.dto';
+import {IQueries} from './iqueries';
 
-export interface ICollectionService<TModel, TPreviewModel> extends IFilters {
-    getSingle(id: string): Observable<TModel>;
-    getPreviews(page: PageRequest, query: Query): Observable<PagedResult<TPreviewModel>>;
+export interface ICollectionService<TModel, TPreviewModel> extends IQueries {
+    getSingle(id: string): Promise<TModel>;
+    getPreviews(page: PageDto, query: QueryModel): Promise<PagedResultDto<TPreviewModel>>;
 }

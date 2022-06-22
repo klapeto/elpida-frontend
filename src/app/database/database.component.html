@@ -1,75 +1,12 @@
-<h2>Choose what data you want to see</h2>
-<div>
-
-    <a [routerLink]="['/results']" class="collection-item collection-item-container">
-        <img [src]="'./assets/categories/results.svg'"
-             [alt]="'results'"
-             loading="lazy"
-             class="collection-item-img">
-        <div>
-            <h3 class="collection-item-detail">
-                Results
-            </h3>
-        </div>
-    </a>
-
-    <a [routerLink]="['/cpus']" class="collection-item collection-item-container">
-        <img [src]="'./assets/categories/cpus.svg'"
-             [alt]="'results'"
-             loading="lazy"
-             class="collection-item-img">
-        <div>
-            <h3 class="collection-item-detail">
-                Cpus
-            </h3>
-        </div>
-    </a>
-
-    <a [routerLink]="['/topologies']" class="collection-item collection-item-container">
-        <img [src]="'./assets/categories/topologies.svg'"
-             [alt]="'topologies'"
-             loading="lazy"
-             class="collection-item-img">
-        <div>
-            <h3 class="collection-item-detail">
-                Topologies
-            </h3>
-        </div>
-    </a>
-
-    <a [routerLink]="['/benchmarks']" class="collection-item collection-item-container">
-        <img [src]="'./assets/categories/benchmarks.svg'"
-             [alt]="'results'"
-             loading="lazy"
-             class="collection-item-img">
-        <div>
-            <h3 class="collection-item-detail">
-                Benchmarks
-            </h3>
-        </div>
-    </a>
-
-    <a [routerLink]="['/oses']" class="collection-item collection-item-container">
-        <img [src]="'./assets/categories/operating-systems.svg'"
-             [alt]="'results'"
-             loading="lazy"
-             class="collection-item-img">
-        <div>
-            <h3 class="collection-item-detail">
-                Operating Systems
-            </h3>
-        </div>
-    </a>
-
-    <a [routerLink]="['/elpida-versions']" class="collection-item collection-item-container">
-        <img [src]="'./assets/categories/elpida-versions.svg'"
-             [alt]="'results'"
-             loading="lazy"
-             class="collection-item-img">
-        <div>
-            <h3 class="collection-item-detail">
-                Elpida Versions
-            </h3>
-        </div>
-    </a>
-</div>
+<h1>Choose what data you want to see</h1>
+<ul class="collection-container">
+    <li class="collection-item" *ngFor="let category of categories">
+        <a [routerLink]="[category.link]" class="collection-item-link button">
+            <img [alt]="category.name"
+                 [src]="category.icon"
+                 class="collection-item-icon"
+                 loading="lazy">
+            <span class="collection-item-name">{{category.name}}</span>
+        </a>
+    </li>
+</ul>

@@ -1,64 +1,51 @@
-import {ComponentFactoryResolver, Injectable, ViewContainerRef} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {CollectionService} from './collection-service';
-import {ElpidaVersion} from '../models/elpida/elpidaVersion';
+import {ElpidaVersionModel} from '../models/elpida/elpida-version.model';
 import {HttpClient} from '@angular/common/http';
-import {Filter} from '../models/filter';
-import {StringFilter} from '../models/filters/string-filter';
-import {NumberFilter} from '../models/filters/number-filter';
-import {OptionFilter} from '../models/filters/option-filter';
-import {OsItemComponent} from '../components/collection/items/os-item/os-item.component';
-import {ElpidaItemComponent} from '../components/collection/items/elpida-item/elpida-item.component';
+import {StringFilterModel} from '../models/filters/string-filter.model';
+import {NumberFilterModel} from '../models/filters/number-filter.model';
+import {OptionFilterModel} from '../models/filters/option-filter.model';
+import {QueryModel} from '../models/query.model';
+import {DtoService} from './dto.service';
+import {OptionModel} from '../models/option.model';
 
 @Injectable({
     providedIn: 'root'
 })
-export class ElpidaVersionService extends CollectionService<ElpidaVersion, ElpidaVersion> {
-
-    public constructor(http: HttpClient) {
-        super(http);
-    }
+export class ElpidaVersionService extends CollectionService<ElpidaVersionModel, ElpidaVersionModel> {
 
     protected readonly baseRoute: string = 'ElpidaVersion';
 
-    private compilers = [
-        'GNU'
+    private compilers: OptionModel[] = [
+        new OptionModel('GNU')
     ];
 
-    createAdvancedFilters(): Filter[] {
-        return [
-            new NumberFilter('Major version', 'majorVersion', true),
-            new NumberFilter('Minor version', 'minorVersion', true),
-            new NumberFilter('Revision version', 'revisionVersion', true),
-            new NumberFilter('Build version', 'buildVersion', true),
-            new StringFilter('Compiler name', 'compilerName', true),
-            new StringFilter('Compiler version', 'compilerVersion', true),
-        ];
+    public constructor(http: HttpClient, dtoService: DtoService) {
+        super(http, dtoService);
     }
 
-    createCollectionItemComponent(item: ElpidaVersion, componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef): any {
-        const component = viewContainerRef.createComponent<ElpidaItemComponent>(
-            componentFactoryResolver.resolveComponentFactory<ElpidaItemComponent>(ElpidaItemComponent)
-        );
-
-        component.instance.item = item;
-        return component;
-    }
-
-    createOrderByFilters(): Filter[] {
-        return this.createAdvancedFilters();
-    }
-
-    createSearchFilter(): StringFilter {
+    public createSearchFilter(): StringFilterModel {
         return undefined;
     }
 
-    createSimpleFilters(): Filter[] {
-        return [
-          new OptionFilter('Compiler', 'compilerName', this.compilers),
-          new NumberFilter('Major version', 'majorVersion', true),
-          new NumberFilter('Minor version', 'minorVersion', true),
-          new NumberFilter('Revision version', 'revisionVersion', true),
-          new NumberFilter('Build version', 'buildVersion', true),
-        ];
+    public createAdvancedQuery(): QueryModel {
+        return new QueryModel([
+            new NumberFilterModel('Major version', 'majorVersion'),
+            new NumberFilterModel('Minor version', 'minorVersion'),
+            new NumberFilterModel('Revision version', 'revisionVersion'),
+            new NumberFilterModel('Build version', 'buildVersion'),
+            new StringFilterModel('Compiler name', 'compilerName'),
+            new StringFilterModel('Compiler version', 'compilerVersion'),
+        ]);
+    }
+
+    public createSimpleQuery(): QueryModel {
+        return new QueryModel([
+            new OptionFilterModel('Compiler', 'compilerName', this.compilers),
+            new NumberFilterModel('Major version', 'majorVersion'),
+            new NumberFilterModel('Minor version', 'minorVersion'),
+            new NumberFilterModel('Revision version', 'revisionVersion'),
+            new NumberFilterModel('Build version', 'buildVersion'),
+        ]);
     }
 }

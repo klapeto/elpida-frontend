@@ -1,138 +1,109 @@
-import {
-    AfterViewInit,
-    Component,
-    ComponentFactoryResolver,
-    EventEmitter,
-    Input,
-    OnInit,
-    Output,
-    ViewChild,
-    ViewContainerRef
-} from '@angular/core';
-import {PagedResult} from '../../../models/paged-result';
-import {Query} from '../../../models/query';
-import {PageRequest} from '../../../models/page-request';
+import {AfterViewInit, Component, ContentChild, EventEmitter, Input, OnInit, Output, TemplateRef} from '@angular/core';
+import {PagedResultDto} from '../../../dtos/paged-result.dto';
+import {QueryModel} from '../../../models/query.model';
+import {PageDto} from '../../../dtos/page.dto';
 import {ValueConverter} from '../../../services/value-converter';
 import {CollectionService} from '../../../services/collection-service';
-import {Filter} from '../../../models/filter';
-import {StringFilter} from '../../../models/filters/string-filter';
-import {Router} from '@angular/router';
-import {HttpErrorResponse} from '@angular/common/http';
-import {ErrorHandlerService} from '../../../services/error-handler.service';
+import {FilterModel} from '../../../models/filter.model';
+import {ModalService} from '../../../services/modal.service';
 
 @Component({
     selector: 'app-paged-collection',
     templateUrl: './paged-collection.component.html',
     styleUrls: ['./paged-collection.component.css']
 })
-export class PagedCollectionComponent implements AfterViewInit, OnInit {
+export class PagedCollectionComponent<TPreview, TModel> implements AfterViewInit, OnInit {
 
-    public pagedResult: PagedResult<any>;
+    public pagedResult: PagedResultDto<TPreview>;
     public maxResultPages: number;
     public searchString: string;
 
-    private resultsPerPage = 10;
-    private curPage = 0;
+    public currentQuery: QueryModel;
 
-    private currentQuery: Query;
+    public advancedShown: boolean;
 
-    searchName: string;
+    public searchName: string;
 
-    filtersPanelShown: boolean;
+    public filtersPanelShown: boolean;
 
-    @Input() service: CollectionService<any, any>;
-    @Input() showSearchBox: boolean;
-    @Input() showFilters: boolean;
-    @Input() name: string;
+    @Input()
+    public service: CollectionService<TModel, TPreview>;
 
-    @Input() lockedFilters: Filter[];
-    @Input() lockedOrderBy;
+    @Input()
+    public showSearchBox: boolean;
 
-    @Input() customRoutePrefix: string;
+    @Input()
+    public showFilters: boolean;
 
-    @Output() pageChanged: EventEmitter<PagedResult<any>> = new EventEmitter<PagedResult<any>>();
+    @Input()
+    public name: string;
 
-    @ViewChild('itemContainer', {read: ViewContainerRef}) itemContainer: ViewContainerRef;
+    @Input()
+    public lockedFilters: FilterModel[];
 
-    constructor(public valueConverter: ValueConverter, private componentFactoryResolver: ComponentFactoryResolver) {
+    @Input()
+    public lockedOrderBy: string;
+
+    @Input()
+    public initialQuery: QueryModel;
+
+    @Output()
+    public pageChanged: EventEmitter<PagedResultDto<TPreview>> = new EventEmitter<PagedResultDto<TPreview>>();
+
+    @ContentChild('itemTemplate')
+    public itemTemplate: TemplateRef<TPreview>;
+
+    private resultsPerPage: number = 10;
+    private curPage: number = 0;
+
+    public constructor(public valueConverter: ValueConverter,
+                       private modalService: ModalService) {
 
     }
 
-    ngAfterViewInit(): void {
-        this.currentQuery = this.service.createDefaultQuery();
+    public onSimpleClicked(): void {
+        this.advancedShown = false;
+        this.currentQuery = this.service.createSimpleQuery();
+    }
+
+    public onAdvancedClicked(): void {
+        this.advancedShown = true;
+        this.currentQuery = this.service.createAdvancedQuery();
+    }
+
+    public ngAfterViewInit(): void {
+        if (this.initialQuery !== undefined) {
+            this.currentQuery = this.initialQuery;
+        } else {
+            this.onSimpleClicked();
+        }
 
         this.appendLockedFilters();
         this.replaceOrderByIfNeeded();
         this.reloadPageSafe();
+        this.currentQuery = this.service.createSimpleQuery();   // revert to simple
     }
 
-    public onFiltersButtonClick() {
+    public onFiltersButtonClick(): void {
         this.filtersPanelShown = !this.filtersPanelShown;
     }
 
-    private appendLockedFilters() {
-        if (this.lockedFilters !== undefined) {
-            this.currentQuery.filters = this.currentQuery.filters.concat(this.lockedFilters);
-        }
-    }
-
-    private replaceOrderByIfNeeded() {
-        if (this.lockedOrderBy !== undefined) {
-            this.currentQuery.orderBy = this.lockedOrderBy;
-        }
-    }
-
-    public onFiltersSubmitted(query: Query): void {
-        Object.assign(this.currentQuery, query);
+    public onFiltersSubmitted(query: QueryModel): void {
+        this.currentQuery = query;
         this.appendLockedFilters();
         this.replaceOrderByIfNeeded();
         this.reloadPageSafe();
     }
 
-    private reloadPageSafe(): void {
-        const previousResult = this.pagedResult,
-            prevMaxPages = this.maxResultPages,
-            prevCurPage = this.curPage;
-        this.pagedResult = undefined;
-        this.maxResultPages = undefined;
-        this.curPage = 0;
-        try {
-            this.getPageResults(this.curPage);
-        } catch (e) {
-            alert(e);
-            this.pagedResult = previousResult;
-            this.maxResultPages = prevMaxPages;
-            this.curPage = prevCurPage;
-        }
-    }
-
-    private getPageResults(page: number): void {
-        this.service.getPreviews(new PageRequest(page * this.resultsPerPage, this.resultsPerPage), this.currentQuery)
-            .subscribe(result => {
-                this.curPage = page;
-                if (this.maxResultPages === undefined) {
-                    this.maxResultPages = Math.ceil(result.totalCount / this.resultsPerPage);
-                }
-                this.pagedResult = result;
-                this.fillItems();
-                this.pageChanged.emit(this.pagedResult);
-            });
-    }
-
-    private fillItems() {
-        this.itemContainer.clear();
-        if (this.pagedResult !== undefined) {
-            this.pagedResult.items.forEach(i => {
-                this.service.createCollectionItemComponent(i, this.componentFactoryResolver, this.itemContainer, this.customRoutePrefix);
-            });
-        }
+    public revertPage(): void {
+        this.ngAfterViewInit();
     }
 
     public onSearch(ev: KeyboardEvent): void {
         if (ev.key === 'Enter') {
             const filter = this.service.createSearchFilter();
             filter.value = this.searchString;
-            this.currentQuery = new Query(
+            this.currentQuery = new QueryModel(
                 [filter],
                 this.currentQuery.orderBy,
                 this.currentQuery.descending
@@ -143,20 +114,56 @@ export class PagedCollectionComponent implements AfterViewInit, OnInit {
         }
     }
 
-    public onPageChange(page: number): void {
+    public async onPageChange(page: number): Promise<void> {
         if (this.curPage !== page) {    // avoid multiple API Calls from initialisation
-            this.getPageResults(page);
+            await this.getPageResults(page);
         }
-
-        this.itemContainer.element.nativeElement.scrollIntoView({behavior: 'smooth', block: 'end', inline: 'nearest'});
     }
 
-    ngOnInit(): void {
+    public ngOnInit(): void {
         const searchFilter = this.service.createSearchFilter();
-        if (searchFilter === undefined) {
+        if (searchFilter === undefined || searchFilter === null) {
             this.showSearchBox = false;
         } else {
             this.searchName = searchFilter.title;
         }
+    }
+
+    private appendLockedFilters(): void {
+        if (this.lockedFilters !== undefined) {
+            this.currentQuery.filters = this.currentQuery.filters.concat(this.lockedFilters);
+        }
+    }
+
+    private replaceOrderByIfNeeded(): void {
+        if (this.lockedOrderBy !== undefined) {
+            this.currentQuery.orderBy = this.lockedOrderBy;
+        }
+    }
+
+    private async reloadPageSafe(): Promise<void> {
+        const previousResult = this.pagedResult,
+            prevMaxPages = this.maxResultPages,
+            prevCurPage = this.curPage;
+        this.pagedResult = undefined;
+        this.maxResultPages = undefined;
+        this.curPage = 0;
+        try {
+            await this.getPageResults(this.curPage);
+        } catch (e) {
+            this.pagedResult = previousResult;
+            this.maxResultPages = prevMaxPages;
+            this.curPage = prevCurPage;
+        }
+    }
+
+    private async getPageResults(page: number): Promise<void> {
+        const result = await this.service.getPreviews(new PageDto(page * this.resultsPerPage, this.resultsPerPage), this.currentQuery);
+        this.curPage = page;
+        if (this.maxResultPages === undefined) {
+            this.maxResultPages = Math.ceil(result.totalCount / this.resultsPerPage);
+        }
+        this.pagedResult = result;
+        this.pageChanged.emit(this.pagedResult);
     }
 }

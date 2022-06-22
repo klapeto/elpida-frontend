@@ -1,38 +1,39 @@
-<h1>Dowload Elpida</h1>
-<p>
-    You can download Elpida application binaries for Windows and Linux:
-</p>
-<div class="groups-container">
+<h1>Downloads</h1>
 
+<h2>
+    Binaries
+</h2>
+
+<p>We provide standalone binaries for a variety of operating systems and cpu architectures:</p>
+
+<div class="flex-center row space-evenly download-links">
     <app-group-box *ngFor="let download of linksService.binariesLinks" [title]="download.name">
-        <div class="group-content">
-            <a *ngFor="let mainLink of download.mainLinks" class="button" [href]="mainLink.url">{{mainLink.name}}</a>
-            <a *ngFor="let secLink of download.secondaryLinks" [href]="secLink.url">{{secLink.name}}</a>
-        </div>
+        <a *ngFor="let mainLink of download.mainLinks" class="button" [href]="mainLink.url">{{mainLink.name}}</a>
+        <br>
+        <a *ngFor="let secLink of download.secondaryLinks" [href]="secLink.url">{{secLink.name}}</a>
     </app-group-box>
 </div>
 <p>
     Or you can download the sources:
 </p>
-<div class="groups-container">
-
+<div class="flex-center row space-evenly download-links">
     <app-group-box *ngFor="let download of linksService.sourcesLinks" [title]="download.name">
-        <div class="group-content">
-            <a *ngFor="let mainLink of download.mainLinks" class="button" [href]="mainLink.url">{{mainLink.name}}</a>
-            <a *ngFor="let secLink of download.secondaryLinks" [href]="secLink.url">{{secLink.name}}</a>
-        </div>
+        <a *ngFor="let mainLink of download.mainLinks" class="button" [href]="mainLink.url">{{mainLink.name}}</a>
+        <br>
+        <a *ngFor="let secLink of download.secondaryLinks" [href]="secLink.url">{{secLink.name}}</a>
     </app-group-box>
 </div>
+
 <hr/>
-<h1>
+<h2>
     How to check the files for integrity
-</h1>
+</h2>
 <p>
     It is advised to check the downloaded files for integrity. For this we provide checksums for each binary file.
 </p>
-<h2>
+<h3>
     For Linux:
-</h2>
+</h3>
 <p>
     Download the app image and SHA256SUMS(via the link bellow each download button) and place them on the same
     directory.
@@ -62,9 +63,9 @@
     with your setup (eg. Network connection, bad storage etc). Please report it to us by opening a ticket at the
     <a href="https://gitlab.com/dev-hood/elpida/elpida">repository</a>
 </p>
-<h2>
+<h3>
     For Windows:
-</h2>
+</h3>
 <p>
     Download the app image and SHA256SUMS(via the link bellow each download button) and place them on the same
     directory.

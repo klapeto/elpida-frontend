@@ -1,0 +1,8 @@
+<img class="details-image"
+     [ngClass]="{'large': largeLogo}"
+     [src]="imageLinksService.getElpidaMonochromeAvatarLink()"
+     alt="Elpida monochrome stylized mascot">
+<div class="details-grid">
+    <b>Version:</b><span>{{elpida.version.major}}.{{elpida.version.minor}}.{{elpida.version.revision}}.{{elpida.version.build}}</span>
+    <b>Compiler:</b><span>{{elpida.compiler.name}} {{elpida.compiler.version}}</span>
+</div>

@@ -1,6 +1,19 @@
 <h2>Choose what type of statistics you want to see</h2>
-<div class="groups-container">
-    <app-group-box class="expanding" [title]="'Top CPUs by benchmark'">
-        <app-benchmarks class="group-content" [customRoute]="'top-cpus-by-benchmark'"></app-benchmarks>
-    </app-group-box>
-</div>
+
+<h3>Top cpus by benchmark</h3>
+<app-paged-collection [service]="benchmarkService"
+                      [name]="'Benchmarks'"
+                      [showFilters]="true"
+                      [showSearchBox]="true">
+    <ng-template #itemTemplate let-model="context">
+        <ng-container *ngIf="toItem(model); let item">
+            <a class="button collection-item-link" [routerLink]="['/Statistics/Top-Cpus-By-Benchmark/', item.id]">
+                <img [alt]="item.name +  'image'" [src]="imageLinksService.getBenchmarkImage(item.uuid)"
+                     class="collection-item-icon" loading="lazy">
+                <span class="collection-item-name">
+                {{item.name}}
+            </span>
+            </a>
+        </ng-container>
+    </ng-template>
+</app-paged-collection>

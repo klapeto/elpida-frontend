@@ -1,0 +1,9 @@
+<img class="details-image"
+     [ngClass]="{'large': largeLogo}"
+     [src]="imageLinksService.getOperatingSystemImageLink(operatingSystem.category)"
+     [alt]="operatingSystem.category + 'logo'">
+<div class="details-grid">
+    <b>Category:</b><span>{{operatingSystem.category}}</span>
+    <b>Name:</b><span>{{operatingSystem.name}}</span>
+    <b>Version:</b><span>{{operatingSystem.version}}</span>
+</div>

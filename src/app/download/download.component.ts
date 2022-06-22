@@ -7,7 +7,7 @@ import {LinksService} from '../../services/links.service';
     styleUrls: ['./download.component.css']
 })
 export class DownloadComponent {
-    constructor(public readonly linksService: LinksService) {
+    public constructor(public readonly linksService: LinksService) {
 
     }
 }
