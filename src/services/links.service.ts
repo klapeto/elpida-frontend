@@ -85,8 +85,4 @@ export class LinksService {
                 )
             ]
         )];
-
-    public constructor() {
-
-    }
 }

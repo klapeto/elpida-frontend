@@ -10,7 +10,8 @@ import {ValueConverter} from '../../../../services/value-converter';
 })
 export class BenchmarkResultSummaryComponent implements OnInit {
 
-    @Input() public readonly result: BenchmarkResultModel;
+    @Input()
+    public readonly result: BenchmarkResultModel;
 
     public data: object[];
 

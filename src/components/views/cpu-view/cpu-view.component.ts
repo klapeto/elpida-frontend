@@ -10,7 +10,8 @@ import {ImageLinksService} from '../../../services/image-links.service';
 })
 export class CpuViewComponent {
 
-    @Input() public cpu: CpuModel;
+    @Input()
+    public cpu: CpuModel;
 
     public constructor(
         public readonly imageLinksService: ImageLinksService,

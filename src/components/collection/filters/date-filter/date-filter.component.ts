@@ -8,8 +8,11 @@ import {DateFilterModel} from '../../../../models/filters/date-filter.model';
     styleUrls: ['./date-filter.component.css']
 })
 export class DateFilterComponent extends FilterComponent<DateFilterModel> {
-    @Input() public filter: DateFilterModel;
-    @Input() public allowComparison: boolean;
+    @Input()
+    public filter: DateFilterModel;
+
+    @Input()
+    public allowComparison: boolean;
 
     public constructor() {
         super();

@@ -11,7 +11,8 @@ import {BenchmarkResultModel} from '../../../../models/result/benchmark-result.m
 })
 export class TaskResultsComponent {
 
-    @Input() public readonly benchmarkResult: BenchmarkResultModel;
+    @Input()
+    public readonly benchmarkResult: BenchmarkResultModel;
 
     public selectedResult: TaskResultModel;
 

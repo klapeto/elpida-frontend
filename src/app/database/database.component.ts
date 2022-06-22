@@ -15,7 +15,4 @@ export class DatabaseComponent {
         {name: 'Operating systems', link: '/Database/Operating-System', icon: './assets/categories/operating-systems.svg'},
         {name: 'Elpida versions', link: '/Database/Elpida-Version', icon: './assets/categories/elpida-versions.svg'},
     ];
-
-    public constructor() {
-    }
 }

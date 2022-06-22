@@ -42,7 +42,6 @@ export abstract class CollectionService<TModel, TPreview> implements ICollection
 
     public abstract createSearchFilter(): StringFilterModel | null;
 
-
     protected getUrl(route: string): string {
         return `${this.baseUrl + this.baseRoute}/${route}`;
     }

@@ -26,18 +26,32 @@ export class PagedCollectionComponent<TPreview, TModel> implements AfterViewInit
 
     public filtersPanelShown: boolean;
 
-    @Input() public service: CollectionService<TModel, TPreview>;
-    @Input() public showSearchBox: boolean;
-    @Input() public showFilters: boolean;
-    @Input() public name: string;
+    @Input()
+    public service: CollectionService<TModel, TPreview>;
 
-    @Input() public lockedFilters: FilterModel[];
-    @Input() public lockedOrderBy: string;
-    @Input() public initialQuery: QueryModel;
+    @Input()
+    public showSearchBox: boolean;
 
-    @Output() public pageChanged: EventEmitter<PagedResultDto<TPreview>> = new EventEmitter<PagedResultDto<TPreview>>();
+    @Input()
+    public showFilters: boolean;
 
-    @ContentChild('itemTemplate') public itemTemplate: TemplateRef<TPreview>;
+    @Input()
+    public name: string;
+
+    @Input()
+    public lockedFilters: FilterModel[];
+
+    @Input()
+    public lockedOrderBy: string;
+
+    @Input()
+    public initialQuery: QueryModel;
+
+    @Output()
+    public pageChanged: EventEmitter<PagedResultDto<TPreview>> = new EventEmitter<PagedResultDto<TPreview>>();
+
+    @ContentChild('itemTemplate')
+    public itemTemplate: TemplateRef<TPreview>;
 
     private resultsPerPage: number = 10;
     private curPage: number = 0;
@@ -100,9 +114,9 @@ export class PagedCollectionComponent<TPreview, TModel> implements AfterViewInit
         }
     }
 
-    public onPageChange(page: number): void {
+    public async onPageChange(page: number): Promise<void> {
         if (this.curPage !== page) {    // avoid multiple API Calls from initialisation
-            this.getPageResults(page);
+            await this.getPageResults(page);
         }
     }
 

@@ -26,6 +26,5 @@ export class LatestBenchmarkResultsComponent {
 
     public getTimestampString(timestamp: string): string {
         return new Date(timestamp).toLocaleString();
-
     }
 }

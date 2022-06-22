@@ -8,9 +8,9 @@ import {OptionFilterModel} from '../../../../models/filters/option-filter.model'
 })
 export class OptionFilterComponent {
 
-    @Input() public filter: OptionFilterModel;
-    @Input() public allowComparison: boolean;
+    @Input()
+    public filter: OptionFilterModel;
 
-    public constructor() {
-    }
+    @Input()
+    public allowComparison: boolean;
 }

@@ -4,7 +4,8 @@ import {FilterModel} from '../filter.model';
 
 export class StringFilterModel extends ValueFilterModel<string> {
 
-    protected defaultValue = '';
+    protected defaultValue: string = '';
+
     public constructor(title: string,
                 internalName: string,
                 comparison: ComparisonModel = ComparisonModel.contains(),

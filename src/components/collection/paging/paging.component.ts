@@ -90,7 +90,7 @@ export class PagingComponent implements OnInit {
         }
     }
 
-    public ngOnInit() {
+    public ngOnInit(): void {
         this.changePage(0);
     }
 

@@ -6,7 +6,8 @@ import {IconService} from '../services/icon.service';
 })
 export class IconTemplateDirective implements OnInit, OnDestroy {
 
-    @Input('appIconTemplate') public name: string;
+    @Input('appIconTemplate')
+    public name: string;
 
     public constructor(private iconService: IconService,
                 private template: TemplateRef<any>) {
@@ -16,7 +17,7 @@ export class IconTemplateDirective implements OnInit, OnDestroy {
         this.iconService.templateMap[this.name] = this.template;
     }
 
-    public ngOnDestroy() {
+    public ngOnDestroy(): void {
         delete this.iconService.templateMap[this.name];
     }
 }

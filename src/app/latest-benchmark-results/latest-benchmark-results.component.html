@@ -17,10 +17,10 @@
                     <span class="collection-item-name">{{item.cpuModelName}}</span>
                 </div>
                 <div class="collection-item-details-container">
-                    <span class="collection-item-name">
-                        {{item.benchmarkName}}
-                    </span>
-                    <span class="result-value">{{valueConverter.toStringSI(item.score, item.benchmarkScoreUnit)}}</span>
+                    <b class="collection-item-name">
+                        {{item.benchmarkName}} &#8773;
+                    </b>
+                    <b class="badge">{{valueConverter.toStringSI(item.score, item.benchmarkScoreUnit)}}</b>
                 </div>
             </a>
         </ng-container>

@@ -11,8 +11,11 @@ import {QueryModel} from '../../../models/query.model';
 })
 export class FilterPoolComponent implements OnInit {
 
-    @Input() public availableFilters: FilterModel[];
-    @Output() public submitted: EventEmitter<QueryModel> = new EventEmitter<QueryModel>();
+    @Input()
+    public availableFilters: FilterModel[];
+
+    @Output()
+    public submitted: EventEmitter<QueryModel> = new EventEmitter<QueryModel>();
 
     public filters: FilterModel[] = [];
 
@@ -30,15 +33,15 @@ export class FilterPoolComponent implements OnInit {
         this._availableFilters = this.availableFilters.map(f => f.clone());
     }
 
-    public onCloseClick(filter: FilterModel) {
+    public onCloseClick(filter: FilterModel): void {
         this.filters = this.filters.filter(f => f !== filter);
     }
 
-    public onSearchClick() {
+    public onSearchClick(): void {
         this.submitted.emit(new QueryModel(this.filters, this.orderBy, this.descending));
     }
 
-    public onAddClick() {
+    public onAddClick(): void {
         this.modalService.show<NewFilterComponent>('Add filter', NewFilterComponent, c => {
             c.availableFilters = this.availableFilters.map(f => f.clone());
             const subscription = c.filterAdded.subscribe(f => {

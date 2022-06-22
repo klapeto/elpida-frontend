@@ -8,11 +8,16 @@ import {ChildContainerDirective} from '../../directives/child-container.directiv
 })
 export class ModalComponent {
 
-    @Input() public title: string;
-    @ViewChild(ChildContainerDirective, {static: true}) public modalContent: ChildContainerDirective;
-    @ViewChild('messageTemplate') public messageTemplate: TemplateRef<{ context: string }>;
+    @Input()
+    public title: string;
 
-    public isShown = false;
+    @ViewChild(ChildContainerDirective, {static: true})
+    public modalContent: ChildContainerDirective;
+
+    @ViewChild('messageTemplate')
+    public messageTemplate: TemplateRef<{ context: string }>;
+
+    public isShown: boolean = false;
 
     public constructor(private componentResolver: ComponentFactoryResolver) {
     }
@@ -44,7 +49,7 @@ export class ModalComponent {
         this.isShown = true;
     }
 
-    public showMessage(title: string, message: string) {
+    public showMessage(title: string, message: string): void {
         this.title = title;
 
         const viewContainerRef = this.modalContent.viewContainerRef;

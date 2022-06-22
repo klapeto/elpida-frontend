@@ -8,12 +8,10 @@ import {TabModel} from '../../models/tab.model';
 })
 export class TabControlComponent implements OnInit {
 
-    @Input() public tabs: TabModel[];
+    @Input()
+    public tabs: TabModel[];
 
     public activeTab: TabModel;
-
-    public constructor() {
-    }
 
     public ngOnInit(): void {
         this.activeTab = this.tabs[0];

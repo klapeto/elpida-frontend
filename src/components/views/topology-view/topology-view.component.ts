@@ -10,8 +10,11 @@ import {ValueConverter} from '../../../services/value-converter';
 })
 export class TopologyViewComponent {
 
-    @Input() public topology: TopologyModel;
-    @Input() public affinity: number[];
+    @Input()
+    public topology: TopologyModel;
+
+    @Input()
+    public affinity: number[];
 
     public constructor(public readonly valueConverter: ValueConverter) {
     }

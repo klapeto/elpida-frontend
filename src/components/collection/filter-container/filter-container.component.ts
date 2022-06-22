@@ -34,11 +34,13 @@ export class FilterContainerComponent {
 
     }
 
-    @Input() public set filter(f: FilterModel) {
+    @Input()
+    public set filter(f: FilterModel) {
         this.onChange(f);
     }
 
-    @Input() public set allowComparisons(v: boolean) {
+    @Input()
+    public set allowComparisons(v: boolean) {
         if (this.component !== undefined) {
             this.component.instance.allowComparison = v;
         }
@@ -49,7 +51,7 @@ export class FilterContainerComponent {
         return this._allowComparisons;
     }
 
-    public onChange(filter: FilterModel) {
+    public onChange(filter: FilterModel): void {
         if (filter instanceof DateFilterModel) {
             const component = this.createComponent<DateFilterModel, DateFilterComponent>(DateFilterComponent, filter);
             component.instance.allowComparison = this.allowComparisons;

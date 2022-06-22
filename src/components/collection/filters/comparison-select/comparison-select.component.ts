@@ -8,12 +8,10 @@ import {ValueFilterModel} from '../../../../models/value-filter.model';
 })
 export class ComparisonSelectComponent implements OnInit {
 
-    @Input() public filter: ValueFilterModel<any>;
+    @Input()
+    public filter: ValueFilterModel<any>;
 
     private _selectedComparison: string;
-
-    public constructor() {
-    }
 
     public set selectedComparison(s: string) {
         this.filter.comparison = this.filter.allowedComparisons.find(f => f.displayName === s);
@@ -27,5 +25,4 @@ export class ComparisonSelectComponent implements OnInit {
     public ngOnInit(): void {
         this._selectedComparison = this.filter.comparison?.displayName ?? null;
     }
-
 }

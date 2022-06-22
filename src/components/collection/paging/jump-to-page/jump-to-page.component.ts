@@ -8,9 +8,14 @@ import {ModalService} from '../../../../services/modal.service';
 })
 export class JumpToPageComponent implements OnInit {
 
-    @Input() public pagesCount: number;
-    @Input() public currentPage: number;
-    @Output() public currentPageChanged: EventEmitter<number> = new EventEmitter<number>();
+    @Input()
+    public pagesCount: number;
+
+    @Input()
+    public currentPage: number;
+
+    @Output()
+    public currentPageChanged: EventEmitter<number> = new EventEmitter<number>();
 
     public pageToJump: number;
 
@@ -23,7 +28,7 @@ export class JumpToPageComponent implements OnInit {
 
     public onJumpToPageSubmitted(): void {
         if (this.pageToJump < 1 || this.pageToJump > this.pagesCount) {
-            this.modalService.showMessage('Invalid page', 'Page must be between 1 and ' + this.pagesCount + '.');
+            this.modalService.showMessage('Invalid page', `Page must be between 1 and ${this.pagesCount}.`);
             return;
         }
         this.currentPageChanged.emit(this.pageToJump - 1);

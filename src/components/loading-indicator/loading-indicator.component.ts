@@ -6,7 +6,4 @@ import {Component} from '@angular/core';
     styleUrls: ['./loading-indicator.component.css']
 })
 export class LoadingIndicatorComponent {
-
-    public constructor() {
-    }
 }

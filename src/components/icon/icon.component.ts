@@ -13,7 +13,8 @@ export class IconComponent {
 
     }
 
-    @Input() public set iconName(s: string) {
+    @Input()
+    public set iconName(s: string) {
         const template = this.iconService.templateMap[s];
         if (template !== undefined) {
             this.container.clear();

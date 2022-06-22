@@ -9,8 +9,11 @@ import {ImageLinksService} from '../../../services/image-links.service';
 })
 export class ElpidaViewComponent {
 
-    @Input() public elpida: ElpidaVersionModel;
-    @Input() public largeLogo: boolean = false;
+    @Input()
+    public elpida: ElpidaVersionModel;
+
+    @Input()
+    public largeLogo: boolean = false;
 
     public constructor(public readonly imageLinksService: ImageLinksService) {
     }

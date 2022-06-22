@@ -7,9 +7,6 @@ import {Component, Input} from '@angular/core';
 })
 export class IconWithTextComponent {
 
-    @Input() public iconName: string;
-
-    public constructor() {
-    }
-
+    @Input()
+    public iconName: string;
 }

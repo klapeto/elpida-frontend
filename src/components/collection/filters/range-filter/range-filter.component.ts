@@ -10,14 +10,23 @@ import {RangeFilterModel} from '../../../../models/filters/range-filter.model';
 })
 export class RangeFilterComponent extends FilterComponent<RangeFilterModel> {
 
-    @Input() public filter: RangeFilterModel;
+    @Input()
+    public filter: RangeFilterModel;
 
-    @Input() public suffix: string;
-    @Input() public min: number;
-    @Input() public max: number;
-    @Input() public step: number;
+    @Input()
+    public suffix: string;
 
-    @Input() public allowComparison: boolean;
+    @Input()
+    public min: number;
+
+    @Input()
+    public max: number;
+
+    @Input()
+    public step: number;
+
+    @Input()
+    public allowComparison: boolean;
 
     public constructor(public readonly valueConverter: ValueConverter) {
         super();

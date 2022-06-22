@@ -11,7 +11,6 @@ import {ValueConverter} from '../../../services/value-converter';
 import {BenchmarkComparison} from '../../../models/benchmark/benchmark-score-specification.model';
 import {ComparisonModel} from '../../../models/comparison.model';
 import {ImageLinksService} from '../../../services/image-links.service';
-import {BenchmarkPreviewModel} from '../../../models/benchmark/benchmark-preview.model';
 
 @Component({
     selector: 'app-top-cpus-by-benchmark',

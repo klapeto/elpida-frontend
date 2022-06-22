@@ -16,18 +16,41 @@ export class BenchmarkResultComponent implements OnInit, AfterViewInit {
 
     public result: BenchmarkResultModel;
 
-    @ViewChild('summaryTitle') public summaryTitle: TemplateRef<any>;
-    @ViewChild('summaryContent') public summaryContent: TemplateRef<any>;
-    @ViewChild('cpuTitle') public cpuTitle: TemplateRef<any>;
-    @ViewChild('cpuContent') public cpuContent: TemplateRef<any>;
-    @ViewChild('topologyTitle') public topologyTitle: TemplateRef<any>;
-    @ViewChild('topologyContent') public topologyContent: TemplateRef<any>;
-    @ViewChild('osTitle') public osTitle: TemplateRef<any>;
-    @ViewChild('osContent') public osContent: TemplateRef<any>;
-    @ViewChild('elpidaTitle') public elpidaTitle: TemplateRef<any>;
-    @ViewChild('elpidaContent') public elpidaContent: TemplateRef<any>;
-    @ViewChild('taskResultsTitle') public taskResultsTitle: TemplateRef<any>;
-    @ViewChild('taskResultsContent') public taskResultsContent: TemplateRef<any>;
+    @ViewChild('summaryTitle')
+    public summaryTitle: TemplateRef<any>;
+
+    @ViewChild('summaryContent')
+    public summaryContent: TemplateRef<any>;
+
+    @ViewChild('cpuTitle')
+    public cpuTitle: TemplateRef<any>;
+
+    @ViewChild('cpuContent')
+    public cpuContent: TemplateRef<any>;
+
+    @ViewChild('topologyTitle')
+    public topologyTitle: TemplateRef<any>;
+
+    @ViewChild('topologyContent')
+    public topologyContent: TemplateRef<any>;
+
+    @ViewChild('osTitle')
+    public osTitle: TemplateRef<any>;
+
+    @ViewChild('osContent')
+    public osContent: TemplateRef<any>;
+
+    @ViewChild('elpidaTitle')
+    public elpidaTitle: TemplateRef<any>;
+
+    @ViewChild('elpidaContent')
+    public elpidaContent: TemplateRef<any>;
+
+    @ViewChild('taskResultsTitle')
+    public taskResultsTitle: TemplateRef<any>;
+
+    @ViewChild('taskResultsContent')
+    public taskResultsContent: TemplateRef<any>;
 
     public tabs: TabModel[];
 

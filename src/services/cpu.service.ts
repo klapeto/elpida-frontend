@@ -66,9 +66,4 @@ export class CpuService extends CollectionService<CpuModel, CpuPreviewModel> {
                 2_500_000_000)
         ], null, false);
     }
-
-    // public getStatisticsPreviews(cpuId: number, page: PageRequest, query: Query): Observable<PagedResult<BenchmarkStatisticsPreview>> {
-    //     return this.http.post<PagedResult<BenchmarkStatisticsPreview>>(this.getUrl(cpuId.toString() + this.statisticsRoute),
-    //         new QueryRequest(page, query.orderBy, query.descending, query.filters));
-    // }
 }

@@ -6,7 +6,4 @@ import {Injectable, TemplateRef} from '@angular/core';
 export class IconService {
 
     public templateMap: { [name: string]: TemplateRef<any> } = {};
-
-    public constructor() {
-    }
 }

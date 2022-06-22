@@ -7,5 +7,4 @@ export class ChildContainerDirective {
 
     public constructor(public readonly viewContainerRef: ViewContainerRef) {
     }
-
 }

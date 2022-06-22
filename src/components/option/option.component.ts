@@ -9,10 +9,12 @@ import {Observable} from 'rxjs';
 })
 export class OptionComponent {
 
-    @Input() public displayName: string;
-    @Input() public options: OptionModel[];
-    @Input() public selectedOption: Observable<string>;
+    @Input()
+    public displayName: string;
 
-    public constructor() {
-    }
+    @Input()
+    public options: OptionModel[];
+
+    @Input()
+    public selectedOption: Observable<string>;
 }
