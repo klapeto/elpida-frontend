@@ -21,7 +21,6 @@ export class GlobalHttpErrorInterceptor implements HttpInterceptor {
             .pipe(
                 catchError((error) => {
                     let handled = false;
-                    console.log(error);
                     if (error instanceof HttpErrorResponse) {
                         switch (error.status) {
                             case 404:

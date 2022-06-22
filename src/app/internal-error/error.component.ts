@@ -23,7 +23,6 @@ export class ErrorComponent implements OnInit {
 
     public ngOnInit(): void {
         if (this.errorHandler.lastError) {
-            console.error(this.errorHandler.lastError);
             if (this.errorHandler.lastError instanceof HttpErrorResponse) {
                 this.showHttpError(this.errorHandler.lastError);
             } else {

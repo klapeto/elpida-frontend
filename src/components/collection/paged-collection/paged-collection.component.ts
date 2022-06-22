@@ -141,7 +141,7 @@ export class PagedCollectionComponent<TPreview, TModel> implements AfterViewInit
         }
     }
 
-    private reloadPageSafe(): void {
+    private async reloadPageSafe(): Promise<void> {
         const previousResult = this.pagedResult,
             prevMaxPages = this.maxResultPages,
             prevCurPage = this.curPage;
@@ -149,9 +149,8 @@ export class PagedCollectionComponent<TPreview, TModel> implements AfterViewInit
         this.maxResultPages = undefined;
         this.curPage = 0;
         try {
-            this.getPageResults(this.curPage);
+            await this.getPageResults(this.curPage);
         } catch (e) {
-            this.modalService.showMessage('Error', e);
             this.pagedResult = previousResult;
             this.maxResultPages = prevMaxPages;
             this.curPage = prevCurPage;

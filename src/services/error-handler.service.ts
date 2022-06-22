@@ -13,6 +13,6 @@ export class ErrorHandlerService {
 
     public async handle(error: Error): Promise<void> {
         this.lastError = error;
-        await this.router.navigate(['/internal-error']);
+        await this.router.navigate(['/Internal-Error']);
     }
 }
