@@ -1,0 +1,27 @@
+<div *ngFor="let filter of filters">
+    <app-filter-container [filter]="filter"></app-filter-container>
+    <hr/>
+</div>
+
+<div>
+    <div class="filter-group-row">
+        <label for="orderBy-select"><strong>Order by:</strong></label>
+        <select #orderBy id="orderBy-select" (change)="onOrderByChanged($event)">
+            <option *ngFor="let option of orderByFilters">
+                {{option.title}}
+            </option>
+        </select>
+    </div>
+    <hr/>
+</div>
+
+<div>
+    <input type="checkbox" id="descending-chk" name="descending" value="Descending" [(ngModel)]="descending">
+    <label for="descending-chk"><strong>Descending</strong></label>
+    <hr/>
+</div>
+
+<div class="buttons-container">
+    <div (click)="onSubmit()" class="button button-default-size non-a-button">Search</div>
+    <div (click)="onReset()" class="button button-default-size non-a-button">Clear Filters</div>
+</div>

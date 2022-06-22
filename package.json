@@ -6,7 +6,6 @@
     "start": "ng serve",
     "build": "ng build",
     "buildProd": "ng build --prod",
-    "buildStag": "ng build --configuration=staging",
     "build:ssr": "ng run Elpida.FrontEnd:server:dev",
     "test": "ng test",
     "lint": "ng lint",
@@ -27,7 +26,6 @@
     "@angular/router": "10.1.2",
     "@angular/service-worker": "10.1.2",
     "@swimlane/ngx-charts": "^16.0.0",
-    "d3": "^6.7.0",
     "rxjs": "^6.6.3",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
