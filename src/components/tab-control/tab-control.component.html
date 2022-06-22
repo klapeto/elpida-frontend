@@ -1,0 +1,13 @@
+<div class="tab-button-container">
+    <button *ngFor="let tab of tabs"
+            class="button non-a-button medium tab-button"
+            (click)="activeTab = tab"
+            [ngClass]="{'active': activeTab === tab}">
+        <ng-container *ngTemplateOutlet="tab.title"></ng-container>
+    </button>
+</div>
+<div class="tab-container">
+    <ng-container *ngIf="activeTab">
+        <ng-container *ngTemplateOutlet="activeTab.content"></ng-container>
+    </ng-container>
+</div>

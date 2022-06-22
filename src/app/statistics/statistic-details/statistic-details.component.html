@@ -1,0 +1,106 @@
+<app-loading-indicator *ngIf="!statistics; else elseBlock"></app-loading-indicator>
+<ng-template #elseBlock>
+
+    <h2>{{statistics.benchmark.name}} statistics for {{statistics.cpu.modelName}}</h2>
+    <div class="flex-center">
+        <img [src]="imageLinksService.getCpuImageLink(statistics.cpu.vendor)"
+             [alt]="statistics.cpu.vendor"
+             loading="lazy"
+             class="details-image">
+        <h3>{{statistics.cpu.modelName}}</h3>
+    </div>
+
+    <hr class="thick-hr"/>
+
+    <div class="flex-center">
+        <img [src]="imageLinksService.getBenchmarkImage(statistics.benchmark.uuid)"
+             [alt]="statistics.benchmark.name"
+             loading="lazy"
+             class="details-image">
+        <h3>{{statistics.benchmark.name}}</h3>
+        <h3 class="boxed-value">
+            <span style="margin-right: 0.2em">&#8773;</span>
+            <span style="margin-right: 0.2em">{{score}}</span>
+        </h3>
+    </div>
+
+    <hr/>
+
+    <div class="flex-center row">
+        <caption>Score distribution</caption>
+        <div style="height: 20em; width: 100%">
+            <ngx-charts-line-chart
+                    [curve]="curve"
+                    [autoScale]="true"
+                    [legend]="false"
+                    [showXAxisLabel]="false"
+                    [showYAxisLabel]="true"
+                    [xAxis]="true"
+                    [yAxis]="true"
+                    [xAxisLabel]="'Score bins'"
+                    [yAxisLabel]="'Count'"
+                    [yAxisTickFormatting]="yTickFormatter"
+                    [results]="data"
+            >
+                <ng-template #seriesTooltipTemplate let-model="model">
+                    <div class="area-tooltip-container">
+                        <div *ngFor="let tooltipItem of model" class="tooltip-item">
+                                    <span class="tooltip-item-color"
+                                          [style.background-color]="tooltipItem.color">
+                                    </span>
+                            {{ formatNumberSI(tooltipItem.value) }}
+                        </div>
+                    </div>
+                </ng-template>
+
+                <ng-template #tooltipTemplate let-model="model">
+                    <div class="area-tooltip-container">
+                        {{ formatNumberSI(model.value) }}
+                    </div>
+                </ng-template>
+            </ngx-charts-line-chart>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="flex-center row">
+        <table>
+            <caption>Score statistics</caption>
+            <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Value</th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+            <tr>
+                <td>Sample size</td>
+                <td>{{valueConverter.toStringSI(statistics.sampleSize, '', 0)}}</td>
+            </tr>
+            <tr>
+                <td>Min</td>
+                <td>{{valueConverter.toStringSI(statistics.min, statistics.benchmark.scoreSpecification.unit)}}</td>
+            </tr>
+
+            <tr>
+                <td>Max</td>
+                <td>{{valueConverter.toStringSI(statistics.max, statistics.benchmark.scoreSpecification.unit)}}</td>
+            </tr>
+
+            <tr>
+                <td>Margin of error</td>
+                <td>{{valueConverter.toStringSI(statistics.marginOfError, statistics.benchmark.scoreSpecification.unit)}}</td>
+            </tr>
+
+            <tr>
+                <td>Standard deviation</td>
+                <td>{{valueConverter.toStringSI(statistics.standardDeviation, statistics.benchmark.scoreSpecification.unit)}}</td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</ng-template>

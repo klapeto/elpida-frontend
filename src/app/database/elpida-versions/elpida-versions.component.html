@@ -1,0 +1,16 @@
+<app-paged-collection [service]="elpidaVersionService"
+                      [name]="'Elpida versions'"
+                      [showFilters]="true"
+                      [showSearchBox]="true">
+    <ng-template #itemTemplate let-model="context">
+        <ng-container *ngIf="toItem(model); let item">
+            <a class="button collection-item-link" [routerLink]="['/Database/Elpida-Version/', item.id]">
+                <img alt="Elpida logo" [src]="imageLinksService.getElpidaMonochromeAvatarLink()"
+                     class="collection-item-icon" loading="lazy">
+                <span class="collection-item-name">
+                    Elpida: {{item.version.major}}.{{item.version.minor}}.{{item.version.revision}}.{{item.version.build}} <br> {{item.compiler.name}} {{item.compiler.version}}
+                </span>
+            </a>
+        </ng-container>
+    </ng-template>
+</app-paged-collection>
