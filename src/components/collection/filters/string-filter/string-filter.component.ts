@@ -1,15 +1,21 @@
 import {Component, Input} from '@angular/core';
-import {ValueFilter} from '../../../../models/value-filter';
+import {FilterComponent} from '../filter-component';
+import {StringFilterModel} from '../../../../models/filters/string-filter.model';
 
 @Component({
-  selector: 'app-string-filter',
-  templateUrl: './string-filter.component.html',
-  styleUrls: ['./string-filter.component.css']
+    selector: 'app-string-filter',
+    templateUrl: './string-filter.component.html',
+    styleUrls: ['./string-filter.component.css']
 })
-export class StringFilterComponent {
+export class StringFilterComponent extends FilterComponent<StringFilterModel> {
 
-  @Input() filter: ValueFilter<string>;
+    @Input()
+    public filter: StringFilterModel;
 
-  constructor() {
-  }
+    @Input()
+    public allowComparison: boolean;
+
+    public constructor() {
+        super();
+    }
 }

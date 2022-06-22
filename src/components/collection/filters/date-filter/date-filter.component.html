@@ -1,9 +1,5 @@
-<label class="filter-group-row">
-    <strong class="filter-group-label">{{filter.title}}:</strong>
-    <select *ngIf="filter.allowComparison" [(ngModel)]="filter.comparison">
-        <option *ngFor="let option of filter.comparisonModes">
-            {{option}}
-        </option>
-    </select>
-    <input class="inputBox" type="date" [(ngModel)]="filter.value"/>
+<label class="raw-value-filter">
+    <span>{{filter.title}}:</span>
+    <app-comparison-select *ngIf="allowComparison" [filter]="filter"></app-comparison-select>
+    <input type="date" [(ngModel)]="filter.value"/>
 </label>

@@ -1,22 +1,35 @@
 import {Component, Input} from '@angular/core';
 import {ValueConverter} from '../../../../services/value-converter';
-import {ValueFilter} from '../../../../models/value-filter';
+import {FilterComponent} from '../filter-component';
+import {RangeFilterModel} from '../../../../models/filters/range-filter.model';
 
 @Component({
     selector: 'app-number-simple-filter',
     templateUrl: './range-filter.component.html',
     styleUrls: ['./range-filter.component.css']
 })
-export class RangeFilterComponent {
+export class RangeFilterComponent extends FilterComponent<RangeFilterModel> {
 
-    @Input() filter: ValueFilter<number>;
+    @Input()
+    public filter: RangeFilterModel;
 
-    @Input() suffix: string;
-    @Input() min: number;
-    @Input() max: number;
-    @Input() step: number;
+    @Input()
+    public suffix: string;
 
-    constructor(public valueConverter: ValueConverter) {
+    @Input()
+    public min: number;
+
+    @Input()
+    public max: number;
+
+    @Input()
+    public step: number;
+
+    @Input()
+    public allowComparison: boolean;
+
+    public constructor(public readonly valueConverter: ValueConverter) {
+        super();
     }
 
     public getDecimals(): number {

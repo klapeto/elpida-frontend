@@ -1,0 +1,51 @@
+.container {
+    width: 100%;
+    max-width: 95%;
+}
+
+.flex-start {
+    display: flex;
+    place-content: start;
+    align-items: center;
+}
+
+.flex-row {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    place-items: center;
+}
+
+.flex-center.row {
+    flex-flow: row wrap;
+}
+
+.flex-center.column {
+    flex-flow: column wrap;
+}
+
+.flex-center.space-evenly {
+    justify-content: space-evenly;
+}
+
+@media (min-width: 992px) {
+    .container {
+        max-width: 90%;
+    }
+}
+
+@media (min-width: 67rem) {
+    .container {
+        max-width: 65%;
+        min-width: 67rem;
+    }
+}
+
+.text-center {
+    text-align: center;
+}

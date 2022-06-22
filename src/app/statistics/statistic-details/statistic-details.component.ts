@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {BenchmarkStatisticsService} from '../../../services/benchmark-statistics.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {BenchmarkStatistics} from '../../../models/benchmark-statistics/benchmark-statistics';
+import {ActivatedRoute} from '@angular/router';
+import {BenchmarkStatisticsModel} from '../../../models/benchmark-statistics/benchmark-statistics.model';
 import {ValueConverter} from '../../../services/value-converter';
 
 import * as shape from 'd3-shape';
-import {FrequencyClass} from '../../../models/benchmark-statistics/frequency-class';
+import {FrequencyClassModel} from '../../../models/benchmark-statistics/frequency-class.model';
+import {ImageLinksService} from '../../../services/image-links.service';
 
 @Component({
     selector: 'app-statistic-details',
@@ -14,57 +15,43 @@ import {FrequencyClass} from '../../../models/benchmark-statistics/frequency-cla
 })
 export class StatisticDetailsComponent implements OnInit {
 
-    data: object[];
+    public data: object[];
 
-    curve = shape.curveBumpX;
+    public curve: any = shape.curveBumpX;
 
-    scoreMean: number;
-    scoreSuffix: string;
+    public score: string;
 
-    colorScheme = {
-        domain: ['#898ee2']
-    };
+    public statistics: BenchmarkStatisticsModel;
 
-    public statistics: BenchmarkStatistics;
-
-    constructor(private readonly statisticsService: BenchmarkStatisticsService,
-                private readonly route: ActivatedRoute,
-                private readonly valueConverter: ValueConverter) {
+    public constructor(private readonly statisticsService: BenchmarkStatisticsService,
+                       public readonly imageLinksService: ImageLinksService,
+                       private readonly route: ActivatedRoute,
+                       public readonly valueConverter: ValueConverter) {
     }
 
-    private getClassString(cls: FrequencyClass): string {
-        return this.valueConverter.convertToSI(cls.low, 2)
-            + ' - ' + this.valueConverter.convertToSI(cls.high, 2);
+    public yTickFormatter = (x: any) => this.valueConverter.toStringSI(x, '', 0);
+
+    public async ngOnInit(): Promise<void> {
+        this.statistics = await this.statisticsService.getSingle(this.route.snapshot.paramMap.get('id'));
+        this.score = this.valueConverter.toStringSI(this.statistics.mean, this.statistics.benchmark.scoreSpecification.unit);
+        this.data = [
+            {
+                'name': this.statistics.benchmark.name,
+                'series': this.statistics.classes.map(x => {
+                    return {
+                        'name': this.getClassString(x),
+                        'value': x.count
+                    };
+                })
+            }
+        ];
     }
 
     public formatNumberSI(arg: number): string {
-        return ValueConverter.convertToSI(arg, 0);
+        return this.valueConverter.toStringSI(arg, null, 0);  // Use static because charts call this before construction????
     }
 
-    getStringValue(value: number, suffix: string): string {
-        const result = this.valueConverter.getToSI(value);
-
-        return result.value + ' ' + result.suffix + suffix;
-    }
-
-    ngOnInit(): void {
-        this.statisticsService.getSingle(this.route.snapshot.paramMap.get('id')).subscribe(r => {
-            this.statistics = r;
-            const scoreData = this.valueConverter.getToSI(r.mean);
-            this.scoreMean = scoreData.value;
-            this.scoreSuffix = scoreData.suffix + this.statistics.benchmark.scoreSpecification.unit;
-
-            this.data = [
-                {
-                    'name': this.statistics.benchmark.name,
-                    'series': this.statistics.classes.map(x => {
-                        return {
-                            'name': this.getClassString(x),
-                            'value': x.count
-                        };
-                    })
-                }
-            ];
-        }, error => console.error(error));
+    private getClassString(cls: FrequencyClassModel): string {
+        return `${this.valueConverter.toStringSI(cls.low, this.statistics.benchmark.scoreSpecification.unit, 0)} - ${this.valueConverter.toStringSI(cls.high, this.statistics.benchmark.scoreSpecification.unit, 0)}`;
     }
 }

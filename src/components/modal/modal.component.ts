@@ -1,4 +1,4 @@
-import {Component, ComponentFactoryResolver, Input, Type, ViewChild} from '@angular/core';
+import {Component, ComponentFactoryResolver, Input, TemplateRef, Type, ViewChild} from '@angular/core';
 import {ChildContainerDirective} from '../../directives/child-container.directive';
 
 @Component({
@@ -8,11 +8,18 @@ import {ChildContainerDirective} from '../../directives/child-container.directiv
 })
 export class ModalComponent {
 
-    @Input() public title: string;
-    @ViewChild(ChildContainerDirective, {static: true}) modalContent: ChildContainerDirective;
-    public isShown: boolean;
+    @Input()
+    public title: string;
 
-    constructor(private componentResolver: ComponentFactoryResolver) {
+    @ViewChild(ChildContainerDirective, {static: true})
+    public modalContent: ChildContainerDirective;
+
+    @ViewChild('messageTemplate')
+    public messageTemplate: TemplateRef<{ context: string }>;
+
+    public isShown: boolean = false;
+
+    public constructor(private componentResolver: ComponentFactoryResolver) {
     }
 
     public hide(): void {
@@ -28,6 +35,27 @@ export class ModalComponent {
 
         const componentRef = viewContainerRef.createComponent<T>(factory);
         initializer(componentRef.instance);
+        this.isShown = true;
+    }
+
+    public showTemplate<T>(title: string, template: TemplateRef<T>, initializer: (template: T) => void): void {
+        this.title = title;
+
+        const viewContainerRef = this.modalContent.viewContainerRef;
+        viewContainerRef.clear();
+
+        const templateRef = viewContainerRef.createEmbeddedView(template);
+        initializer(templateRef.context);
+        this.isShown = true;
+    }
+
+    public showMessage(title: string, message: string): void {
+        this.title = title;
+
+        const viewContainerRef = this.modalContent.viewContainerRef;
+        viewContainerRef.clear();
+
+        viewContainerRef.createEmbeddedView(this.messageTemplate, { context: message});
         this.isShown = true;
     }
 }

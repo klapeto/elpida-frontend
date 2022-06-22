@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HttpErrorResponse} from '@angular/common/http';
 import {ErrorHandlerService} from '../../services/error-handler.service';
 import {LinksService} from '../../services/links.service';
@@ -10,9 +10,6 @@ import {LinksService} from '../../services/links.service';
 })
 export class ErrorComponent implements OnInit {
 
-    constructor(private errorHandler: ErrorHandlerService, private linksService: LinksService) {
-    }
-
     public status: number;
     public statusText: string;
     public message: string;
@@ -20,13 +17,12 @@ export class ErrorComponent implements OnInit {
     public responseData: string;
     public stackTrace: string;
 
-    private static sanitizeInternalError(str: string): string {
-        return str.replace(new RegExp('\n', 'g'), '<br/>');
+    public constructor(private readonly errorHandler: ErrorHandlerService,
+                       private readonly linksService: LinksService) {
     }
 
-    ngOnInit(): void {
+    public ngOnInit(): void {
         if (this.errorHandler.lastError) {
-            console.error(this.errorHandler.lastError);
             if (this.errorHandler.lastError instanceof HttpErrorResponse) {
                 this.showHttpError(this.errorHandler.lastError);
             } else {
@@ -35,6 +31,10 @@ export class ErrorComponent implements OnInit {
         } else {
             this.resetError();
         }
+    }
+
+    private static sanitizeInternalError(str: string): string {
+        return str.replace(new RegExp('\n', 'g'), '<br/>');
     }
 
     private resetError(): void {

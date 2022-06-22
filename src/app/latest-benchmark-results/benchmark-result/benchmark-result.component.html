@@ -1,0 +1,78 @@
+<ng-container *ngIf="result; else elseBlock">
+    <h2>
+        {{result.name}} for {{result.system.cpu.modelName}}
+    </h2>
+    <app-tab-control [tabs]="tabs"></app-tab-control>
+</ng-container>
+
+<ng-template #elseBlock>
+    <app-loading-indicator></app-loading-indicator>
+</ng-template>
+
+<ng-template #summaryTitle>
+    <app-icon-with-text [iconName]="'summary'">
+        Summary
+    </app-icon-with-text>
+</ng-template>
+<ng-template #summaryContent>
+    <app-benchmark-result-summary [result]="result"></app-benchmark-result-summary>
+</ng-template>
+
+<ng-template #cpuTitle>
+    <app-icon-with-text [iconName]="'cpu'">
+        CPU
+    </app-icon-with-text>
+</ng-template>
+<ng-template #cpuContent>
+    <div class="flex-center row" style="place-content: start;">
+        <app-cpu-view [cpu]="result.system.cpu"></app-cpu-view>
+    </div>
+</ng-template>
+
+
+<ng-template #topologyTitle>
+    <app-icon-with-text [iconName]="'topology'">
+        Topology
+    </app-icon-with-text>
+</ng-template>
+<ng-template #topologyContent>
+    <div class="flex-center row">
+        <app-topology-view [topology]="result.system.topology" [affinity]="result.affinity"></app-topology-view>
+    </div>
+</ng-template>
+
+<ng-template #osTitle>
+    <app-icon-with-text [iconName]="'os'">
+        Os
+    </app-icon-with-text>
+</ng-template>
+<ng-template #osContent>
+    <div class="flex-center row" style="place-content: start;">
+        <app-operating-system-view [operatingSystem]="result.system.os"></app-operating-system-view>
+    </div>
+</ng-template>
+
+
+<ng-template #elpidaTitle>
+    <app-icon-with-text [iconName]="'elpida'">
+        Elpida version
+    </app-icon-with-text>
+</ng-template>
+<ng-template #elpidaContent>
+    <div class="flex-center row" style="place-content: start;">
+        <app-elpida-view [elpida]="result.elpidaVersion"></app-elpida-view>
+    </div>
+</ng-template>
+
+<ng-template #taskResultsTitle>
+    <app-icon-with-text [iconName]="'benchmark'">
+        Task results
+    </app-icon-with-text>
+</ng-template>
+<ng-template #taskResultsContent>
+    <div class="flex-center row" style="place-content: start;">
+        <app-task-results [benchmarkResult]="result"></app-task-results>
+    </div>
+</ng-template>
+
+

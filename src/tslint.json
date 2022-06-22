@@ -12,6 +12,72 @@
             "element",
             "app",
             "kebab-case"
-        ]
+        ],
+        "member-access": {
+            "options": [
+                "check-accessor",
+                "check-constructor",
+                "check-parameter-property"
+            ]
+        },
+        "unified-signatures": true,
+        "switch-default": true,
+        "restrict-plus-operands": true,
+
+        "no-inferrable-types": false,
+        "arrow-return-shorthand": true,
+        "array-type": {
+            "options": "array"
+        },
+        "curly": true,
+        "deprecation": true,
+        "encoding": true,
+        "interface-name": {
+            "options": "always-prefix"
+        },
+        "linebreak-style": {
+            "options": "LF"
+        },
+        "member-ordering": {
+            "options": {
+                "order": [
+                    "static-field",
+                    "public-instance-field",
+                    "protected-instance-field",
+                    "private-instance-field",
+                    "constructor",
+                    "public-instance-accessor",
+                    "protected-instance-accessor",
+                    "private-instance-accessor",
+                    "public-static-method",
+                    "public-instance-method",
+                    "protected-static-method",
+                    "protected-instance-method",
+                    "private-static-method",
+                    "private-instance-method"
+                ]
+            }
+        },
+        "no-invalid-this": {
+            "options": "check-function-in-method"
+        },
+        "no-return-await": true,
+        "no-unsafe-finally": true,
+        "prefer-readonly": true,
+        "prefer-function-over-method": {
+            "options": "allow-public"
+        },
+        "prefer-template": true,
+        "semicolon": true,
+        "strict-boolean-expressions": true,
+        "triple-equals": true,
+        "typedef": {
+            "options": [
+                "member-variable-declaration",
+                "call-signature",
+                "parameter",
+                "property-declaration"
+            ]
+        }
     }
 }

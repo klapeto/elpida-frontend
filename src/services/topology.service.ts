@@ -1,96 +1,78 @@
-import {ComponentFactoryResolver, Injectable, ViewContainerRef} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {CollectionService} from './collection-service';
-import {Cpu} from '../models/cpu/cpu';
-import {CpuPreview} from '../models/cpu/cpu-preview';
 import {HttpClient} from '@angular/common/http';
-import {Filter} from '../models/filter';
-import {StringFilter} from '../models/filters/string-filter';
-import {Topology} from '../models/topology/topology';
-import {TopologyPreview} from '../models/topology/topology-preview';
-import {NumberComparisons, NumberFilter} from '../models/filters/number-filter';
-import {OptionFilter} from '../models/filters/option-filter';
-import {RangeFilter} from '../models/filters/range-filter';
-import {CpuItemComponent} from '../components/collection/items/cpu-item/cpu-item.component';
-import {TopologyItemComponent} from '../components/collection/items/topology-item/topology-item.component';
+import {StringFilterModel} from '../models/filters/string-filter.model';
+import {TopologyModel} from '../models/topology/topology.model';
+import {TopologyPreviewModel} from '../models/topology/topology-preview.model';
+import {NumberFilterModel} from '../models/filters/number-filter.model';
+import {RangeFilterModel} from '../models/filters/range-filter.model';
 import {CpuService} from './cpu.service';
+import {DtoService} from './dto.service';
+import {QueryModel} from '../models/query.model';
+import {ComparisonModel} from '../models/comparison.model';
 
 @Injectable({
     providedIn: 'root'
 })
-export class TopologyService extends CollectionService<Topology, TopologyPreview> {
-
-    public constructor(http: HttpClient, private cpuService: CpuService) {
-        super(http);
-    }
+export class TopologyService extends CollectionService<TopologyModel, TopologyPreviewModel> {
 
     protected readonly baseRoute: string = 'topology';
 
-    createAdvancedFilters(): Filter[] {
-        return this.cpuService.createAdvancedFilters()
+    public constructor(http: HttpClient, private cpuService: CpuService, dtoService: DtoService) {
+        super(http, dtoService);
+    }
+
+    public createAdvancedQuery(): QueryModel {
+        return new QueryModel(this.cpuService.createAdvancedQuery()
+            .filters
             .concat([
-            new NumberFilter('CPU Packages', 'cpuPackages', true),
-            new NumberFilter('CPU Numa Nodes', 'cpuNumaNodes', true),
-            new NumberFilter('CPU Cores', 'cpuCores', true),
-            new NumberFilter('CPU Logical Cores', 'cpuLogicalCores', true)
-        ]);
+                new NumberFilterModel('CPU Packages', 'cpuPackages'),
+                new NumberFilterModel('CPU Numa Nodes', 'cpuNumaNodes'),
+                new NumberFilterModel('CPU Cores', 'cpuCores'),
+                new NumberFilterModel('CPU Logical Cores', 'cpuLogicalCores')
+            ]));
     }
 
-    createCollectionItemComponent(item: TopologyPreview, componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef): any {
-
-        const component = viewContainerRef.createComponent<TopologyItemComponent>(
-            componentFactoryResolver.resolveComponentFactory<TopologyItemComponent>(TopologyItemComponent)
-        );
-
-        component.instance.item = item;
-        return component;
+    public createSimpleQuery(): QueryModel {
+        return new QueryModel(this.cpuService.createSimpleQuery()
+            .filters
+            .concat([
+                new RangeFilterModel('Min CPU Cores',
+                    'cpuCores',
+                    ComparisonModel.greaterEqual(),
+                    'c',
+                    1,
+                    512,
+                    1,
+                    1),
+                new RangeFilterModel('Max CPU Cores',
+                    'cpuCores',
+                    ComparisonModel.lessEqual(),
+                    'c',
+                    1,
+                    512,
+                    1,
+                    32),
+                new RangeFilterModel('Min CPU Logical Cores',
+                    'cpuLogicalCores',
+                    ComparisonModel.greaterEqual(),
+                    't',
+                    1,
+                    512,
+                    1,
+                    1),
+                new RangeFilterModel('Min CPU Logical Cores',
+                    'cpuLogicalCores',
+                    ComparisonModel.lessEqual(),
+                    't',
+                    1,
+                    512,
+                    1,
+                    32)
+            ]));
     }
 
-    createOrderByFilters(): Filter[] {
-        return this.createAdvancedFilters();
-    }
-
-    createSearchFilter(): StringFilter {
-        return this.cpuService.createSearchFilter();
-    }
-
-    createSimpleFilters(): Filter[] {
-        return this.cpuService.createSimpleFilters().concat([
-            new RangeFilter('Min CPU Cores',
-                'cpuCores',
-                false,
-                NumberComparisons.GreaterEqual,
-                'c',
-                1,
-                512,
-                1,
-                1),
-            new RangeFilter('Max CPU Cores',
-                'cpuCores',
-                false,
-                NumberComparisons.LessEqual,
-                'c',
-                1,
-                512,
-                1,
-                32),
-            new RangeFilter('Min CPU Logical Cores',
-                'cpuLogicalCores',
-                false,
-                NumberComparisons.GreaterEqual,
-                't',
-                1,
-                512,
-                1,
-                1),
-            new RangeFilter('Min CPU Logical Cores',
-                'cpuLogicalCores',
-                false,
-                NumberComparisons.LessEqual,
-                't',
-                1,
-                512,
-                1,
-                32)
-        ]);
+    public createSearchFilter(): StringFilterModel | null {
+        return null;
     }
 }

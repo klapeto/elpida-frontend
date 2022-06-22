@@ -1,0 +1,20 @@
+<label>
+    Select filter:
+    <select (change)="onSelectionChange($event)">
+        <option></option>
+        <option *ngFor="let option of availableFilters" [value]="option.title">
+            {{option.title}}
+        </option>
+    </select>
+</label>
+<div style="margin-top: 0.25em"></div>
+<app-filter-container *ngIf="selectedFilter"
+                      [filter]="selectedFilter"
+                      [allowComparisons]="true">
+</app-filter-container>
+<div style="margin-top: 0.25em"></div>
+<div class="flex-center row">
+    <button class="button medium" [ngClass]="{'disabled': !selectedFilter || !selectedFilter.isSet()}" (click)="onAddClick()">
+        Add filter
+    </button>
+</div>

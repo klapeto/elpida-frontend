@@ -8,17 +8,15 @@ import {
 import {Observable, of, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {Router} from '@angular/router';
-import {ModalService} from './modal.service';
-import {ErrorComponent} from '../app/internal-error/error.component';
 import {ErrorHandlerService} from './error-handler.service';
 
 @Injectable()
 export class GlobalHttpErrorInterceptor implements HttpInterceptor {
 
-    constructor(private router: Router, private errorHandlerService: ErrorHandlerService) {
+    public constructor(private router: Router, private errorHandlerService: ErrorHandlerService) {
     }
 
-    intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    public intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
         return next.handle(request)
             .pipe(
                 catchError((error) => {

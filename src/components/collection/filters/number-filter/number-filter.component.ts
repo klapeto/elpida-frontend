@@ -1,15 +1,21 @@
 import {Component, Input} from '@angular/core';
-import {ValueFilter} from '../../../../models/value-filter';
+import {FilterComponent} from '../filter-component';
+import {NumberFilterModel} from '../../../../models/filters/number-filter.model';
 
 @Component({
     selector: 'app-number-filter',
     templateUrl: './number-filter.component.html',
     styleUrls: ['./number-filter.component.css']
 })
-export class NumberFilterComponent {
+export class NumberFilterComponent extends FilterComponent<NumberFilterModel> {
 
-    @Input() filter: ValueFilter<number>;
+    @Input()
+    public filter: NumberFilterModel;
 
-    constructor() {
+    @Input()
+    public allowComparison: boolean;
+
+    public constructor() {
+        super();
     }
 }

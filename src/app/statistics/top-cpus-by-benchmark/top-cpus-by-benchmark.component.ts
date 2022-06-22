@@ -2,13 +2,15 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {BenchmarkStatisticsService} from '../../../services/benchmark-statistics.service';
 import {BenchmarkService} from '../../../services/benchmark.service';
-import {Benchmark} from '../../../models/benchmark/benchmark';
-import {NumberComparisons, NumberFilter} from '../../../models/filters/number-filter';
-import {Filter} from '../../../models/filter';
-import {PagedResult} from '../../../models/paged-result';
-import {BenchmarkStatisticsPreview} from '../../../models/benchmark-statistics/benchmark-statistics-preview';
+import {BenchmarkModel} from '../../../models/benchmark/benchmark.model';
+import {NumberFilterModel} from '../../../models/filters/number-filter.model';
+import {FilterModel} from '../../../models/filter.model';
+import {PagedResultDto} from '../../../dtos/paged-result.dto';
+import {BenchmarkStatisticsPreviewModel} from '../../../models/benchmark-statistics/benchmark-statistics-preview.model';
 import {ValueConverter} from '../../../services/value-converter';
-import {BenchmarkComparison} from '../../../models/benchmark/benchmark-score-specification';
+import {BenchmarkComparison} from '../../../models/benchmark/benchmark-score-specification.model';
+import {ComparisonModel} from '../../../models/comparison.model';
+import {ImageLinksService} from '../../../services/image-links.service';
 
 @Component({
     selector: 'app-top-cpus-by-benchmark',
@@ -17,29 +19,38 @@ import {BenchmarkComparison} from '../../../models/benchmark/benchmark-score-spe
 })
 export class TopCpusByBenchmarkComponent implements OnInit {
 
-    public benchmark: Benchmark;
+    public benchmark: BenchmarkModel;
 
-    public filters: Filter[];
-    public orderBy: Filter;
+    public filters: FilterModel[];
+    public orderBy: string;
 
     public chartXAxisLabel: string;
 
     public chartData: any;
 
-    public colourScheme = {domain: ['#898EE2FF']};
+    public colourScheme: { domain: string[] } = {domain: ['#898EE2FF']};
 
-    constructor(private route: ActivatedRoute,
-                private benchmarkService: BenchmarkService,
-                public statisticsService: BenchmarkStatisticsService,
-                public valueConverter: ValueConverter) {
+    public constructor(private readonly route: ActivatedRoute,
+                private readonly benchmarkService: BenchmarkService,
+                public readonly imageLinksService: ImageLinksService,
+                public readonly statisticsService: BenchmarkStatisticsService,
+                public readonly valueConverter: ValueConverter) {
     }
 
-    async ngOnInit() {
-        this.benchmark = await this.benchmarkService.getSingle(this.route.snapshot.paramMap.get('id')).toPromise();
+    public calculateActualStatisticValue(preview: BenchmarkStatisticsPreviewModel): string {
+        return this.valueConverter.toStringSI(preview.mean, preview.benchmarkScoreUnit);
+    }
+
+    public toItem(context: any): BenchmarkStatisticsPreviewModel  {
+        return context as BenchmarkStatisticsPreviewModel;
+    }
+
+    public async ngOnInit(): Promise<void> {
+        this.benchmark = await this.benchmarkService.getSingle(this.route.snapshot.paramMap.get('id'));
         this.filters = [
-            new NumberFilter('', 'benchmarkId', true, NumberComparisons.Equal, '', this.benchmark.id)
+            new NumberFilterModel('', 'benchmarkId', ComparisonModel.equals(), null, this.benchmark.id)
         ];
-        this.orderBy = this.statisticsService.createBenchmarkScoreMeanFilter();
+        this.orderBy = this.statisticsService.createBenchmarkScoreMeanFilter().internalName;
     }
 
     public getComparisonDescription(): string {
@@ -48,7 +59,7 @@ export class TopCpusByBenchmarkComponent implements OnInit {
             : 'Higher is better';
     }
 
-    public pageLoaded(page: PagedResult<BenchmarkStatisticsPreview>) {
+    public pageLoaded(page: PagedResultDto<BenchmarkStatisticsPreviewModel>): void {
         if (this.chartData === undefined) {
             if (page.items.length > 0) {
                 const value = this.valueConverter.getValueScaleSI(page.items[0].mean);
