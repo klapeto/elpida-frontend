@@ -89,6 +89,7 @@ export class PagedCollectionComponent<TPreview, TModel> implements AfterViewInit
     }
 
     public onFiltersSubmitted(query: QueryModel): void {
+        this.filtersPanelShown = false;
         this.currentQuery = query;
         this.appendLockedFilters();
         this.replaceOrderByIfNeeded();

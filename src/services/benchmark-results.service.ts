@@ -50,14 +50,16 @@ export class BenchmarkResultsService extends CollectionService<BenchmarkResultMo
     }
 
     public createAdvancedQuery(): QueryModel {
-        return new QueryModel([
+        return new QueryModel(this.cpuService.createAdvancedQuery()
+            .filters
+            .concat([
             new StringFilterModel('Benchmark Name', 'benchmarkName'),
             new NumberFilterModel('Main Memory Size', 'memorySize'),
             new StringFilterModel('Os Category', 'osCategory'),
             new StringFilterModel('Os Name', 'osName'),
             new StringFilterModel('Os Version', 'osVersion'),
             new DateFilterModel('Timestamp', 'timeStamp'),
-        ]);
+        ]));
     }
 
     public createSearchFilter(): StringFilterModel {

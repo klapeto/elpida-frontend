@@ -10,7 +10,9 @@
         </thead>
         <tbody>
 
-        <tr class="result-record" (click)="selectedResult = result"
+        <tr class="result-record"
+            [ngClass]="{'active': selectedResult === result}"
+            (click)="selectedResult = result"
             *ngFor="let result of benchmarkResult.taskResults">
             <td>{{result.name}}</td>
             <td>{{valueConverter.toStringSI(result.inputSize)}}</td>
