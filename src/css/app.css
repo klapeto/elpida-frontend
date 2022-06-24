@@ -879,3 +879,14 @@ td:last-child {
 }
 
 /*Carousel*/
+
+/*Statistics*/
+.statistics-graph-container {
+    height: 20em;
+    width: 100%
+}
+
+.statistics-value-part {
+    margin-right: 0.2em;
+}
+/*Statistics*/

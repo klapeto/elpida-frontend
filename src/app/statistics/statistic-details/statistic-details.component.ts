@@ -29,7 +29,7 @@ export class StatisticDetailsComponent implements OnInit {
                        public readonly valueConverter: ValueConverter) {
     }
 
-    public yTickFormatter = (x: any) => this.valueConverter.toStringSI(x, '', 0);
+    public yTickFormatter = (x: any) => this.valueConverter.toStringSI(x, '');
 
     public async ngOnInit(): Promise<void> {
         this.statistics = await this.statisticsService.getSingle(this.route.snapshot.paramMap.get('id'));
@@ -48,7 +48,7 @@ export class StatisticDetailsComponent implements OnInit {
     }
 
     public formatNumberSI(arg: number): string {
-        return this.valueConverter.toStringSI(arg, null, 0);  // Use static because charts call this before construction????
+        return this.valueConverter.toStringSI(arg, null);  // Use static because charts call this before construction????
     }
 
     private getClassString(cls: FrequencyClassModel): string {

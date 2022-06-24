@@ -17,7 +17,7 @@ import {OptionModel} from '../models/option.model';
 })
 export class BenchmarkResultsService extends CollectionService<BenchmarkResultModel, BenchmarkResultPreviewModel> {
 
-    protected readonly baseRoute: string = 'result';
+    protected readonly baseRoute: string = 'benchmarkresult';
 
     private oses: OptionModel[] = [
         new OptionModel('Windows'),

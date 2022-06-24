@@ -7,7 +7,7 @@ tbody {
 }
 
 table {
-    max-height: 20em;
+    max-height: 30em;
     display: block;
     overflow-y: scroll;
 }
@@ -15,6 +15,11 @@ table {
 th {
     position: sticky;
     top: 0;
+}
+
+caption {
+    border-bottom: 1px var(--hr-color) solid;;
+    font-weight: bold;
 }
 
 .active {

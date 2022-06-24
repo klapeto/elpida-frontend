@@ -19,8 +19,8 @@
              class="details-image">
         <h3>{{statistics.benchmark.name}}</h3>
         <h3 class="boxed-value">
-            <span style="margin-right: 0.2em">&#8773;</span>
-            <span style="margin-right: 0.2em">{{score}}</span>
+            <span class="statistics-value-part">&#8773;</span>
+            <span class="statistics-value-part">{{score}}</span>
         </h3>
     </div>
 
@@ -28,7 +28,7 @@
 
     <div class="flex-center row">
         <caption>Score distribution</caption>
-        <div style="height: 20em; width: 100%">
+        <div class="statistics-graph-container">
             <ngx-charts-line-chart
                     [curve]="curve"
                     [autoScale]="true"
@@ -78,28 +78,27 @@
 
             <tr>
                 <td>Sample size</td>
-                <td>{{valueConverter.toStringSI(statistics.sampleSize, '', 0)}}</td>
+                <td [title]="statistics.sampleSize">{{valueConverter.toStringSI(statistics.sampleSize, '')}}</td>
             </tr>
             <tr>
                 <td>Min</td>
-                <td>{{valueConverter.toStringSI(statistics.min, statistics.benchmark.scoreSpecification.unit)}}</td>
+                <td [title]="statistics.min">{{valueConverter.toStringSI(statistics.min, statistics.benchmark.scoreSpecification.unit)}}</td>
             </tr>
 
             <tr>
                 <td>Max</td>
-                <td>{{valueConverter.toStringSI(statistics.max, statistics.benchmark.scoreSpecification.unit)}}</td>
+                <td [title]="statistics.max">{{valueConverter.toStringSI(statistics.max, statistics.benchmark.scoreSpecification.unit)}}</td>
             </tr>
 
             <tr>
                 <td>Margin of error</td>
-                <td>{{valueConverter.toStringSI(statistics.marginOfError, statistics.benchmark.scoreSpecification.unit)}}</td>
+                <td [title]="statistics.marginOfError">{{valueConverter.toStringSI(statistics.marginOfError, statistics.benchmark.scoreSpecification.unit)}}</td>
             </tr>
 
             <tr>
                 <td>Standard deviation</td>
-                <td>{{valueConverter.toStringSI(statistics.standardDeviation, statistics.benchmark.scoreSpecification.unit)}}</td>
+                <td [title]="statistics.standardDeviation">{{valueConverter.toStringSI(statistics.standardDeviation, statistics.benchmark.scoreSpecification.unit)}}</td>
             </tr>
-
             </tbody>
         </table>
     </div>

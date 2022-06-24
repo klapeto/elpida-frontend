@@ -83,11 +83,14 @@ export class ValueConverter {
         return `${result.value}${spaceBetween ? ' ' : ''}${result.suffix}${unit !== null ? unit : ''}`;
     }
 
-
-    private static getValueScaleStringImpl(value: number, denominators: number[], prefixes: string[], decimals: number): { value: string, suffix: string } {
-        if (value === 0) {
+    private static getValueScaleStringImpl(value: number,
+                                           denominators: number[],
+                                           prefixes: string[],
+                                           decimals: number): { value: string, suffix: string } {
+        if (value === 0.0) {
             return {value: value.toString(), suffix: ''};
         }
+
         let i = prefixes.length - 1;
         while (i > 0) {
             if (value >= denominators[i]) {
@@ -95,7 +98,17 @@ export class ValueConverter {
             }
             i--;
         }
-        return {value: (value / denominators[i]).toFixed(decimals), suffix: prefixes[i]};
+
+        const returnValue = (value / denominators[i]);
+        let returnString: string;
+
+        if (returnValue - (Math.trunc(returnValue)) > 0.0) {
+            returnString = returnValue.toFixed(decimals);
+        } else {
+            returnString = returnValue.toString();
+        }
+
+        return {value: returnString, suffix: prefixes[i]};
     }
 
     private static getValueScale(value: number, denominators: number[], prefixes: string[]): { value: number, suffix: string } {

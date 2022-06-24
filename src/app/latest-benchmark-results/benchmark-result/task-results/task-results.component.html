@@ -1,4 +1,4 @@
-<h3>Select task to view the details:</h3>
+<h3>Click task to view the details:</h3>
 <div class="flex-start row">
     <table>
         <thead>
@@ -20,20 +20,56 @@
         </tr>
         </tbody>
     </table>
-    <div class="details-grid">
-        <b>Name:</b><span>{{selectedResult?.name}}</span>
-        <b>Description:</b><span>{{selectedResult?.description}}</span>
-        <b>Input
-            size:</b><span>{{selectedResult !== undefined ? valueConverter.toStringSI(selectedResult.inputSize, selectedResult.input?.unit) : ''}}</span>
-        <b>Result:</b><span>{{selectedResult !== undefined ? valueConverter.toStringSI(selectedResult.value, selectedResult.result?.unit) : ''}}</span>
-        <b>Total Time:</b><span>{{selectedResult !== undefined ? valueConverter.toStringSI(selectedResult.time, 's') : ''}}</span>
-        <b>Runs:</b><span>{{selectedResult !== undefined ? valueConverter.toStringSI(selectedResult.statistics.sampleSize, null, 0) : ''}}</span>
-        <b>Max:</b><span>{{selectedResult !== undefined ? valueConverter.toStringSI(selectedResult.statistics.max, 's') : ''}}</span>
-        <b>Min:</b><span>{{selectedResult !== undefined ? valueConverter.toStringSI(selectedResult.statistics.min, 's') : ''}}</span>
-        <b>Mean:</b><span>{{selectedResult !== undefined ? valueConverter.toStringSI(selectedResult.statistics.mean, 's') : ''}}</span>
-        <b>Standard
-            deviation:</b><span>{{selectedResult !== undefined ? valueConverter.toStringSI(selectedResult.statistics.standardDeviation, 's') : ''}}</span>
-        <b>Margin of error:</b><span>{{selectedResult !== undefined ? valueConverter.toStringSI(selectedResult.statistics.marginOfError, 's') : ''}}</span>
-        <b>Tau:</b><span>{{selectedResult !== undefined ? valueConverter.toStringSI(selectedResult.statistics.tau) : ''}}</span>
-    </div>
+
+    <table *ngIf="selectedResult">
+        <caption>Hover over rows to view value explanations.</caption>
+        <tr title="The name of the task">
+            <td><b>Name</b></td>
+            <td>{{selectedResult.name}}</td>
+        </tr>
+        <tr title="The description of the task">
+            <td><b>Description</b></td>
+            <td>{{selectedResult.description}}</td>
+        </tr>
+        <tr title="The input size of the data the task was supplied from the previous one">
+            <td><b>Input size</b></td>
+            <td>{{valueConverter.toStringSI(selectedResult.inputSize, selectedResult.input?.unit)}}</td>
+        </tr>
+        <tr title="The result of the task">
+            <td><b>Result</b></td>
+            <td>{{calculateActualResultValue(selectedResult)}}</td>
+        </tr>
+        <tr title="The time used to calculate the score. It is a processed time of all the iterations. It might be the average or least time of iterations etc.">
+            <td><b>Post processed time</b></td>
+            <td>{{valueConverter.toStringSI(selectedResult.time, 's')}}</td>
+        </tr>
+        <tr title="How many iterations of this task were run at this step">
+            <td><b>Iterations</b></td>
+            <td>{{valueConverter.toStringSI(selectedResult.statistics.sampleSize, null, 0)}}</td>
+        </tr>
+        <tr title="The maximum time of iterations">
+            <td><b>Max time</b></td>
+            <td>{{valueConverter.toStringSI(selectedResult.statistics.max, 's')}}</td>
+        </tr>
+        <tr title="The minimum time of iterations">
+            <td><b>Min time</b></td>
+            <td>{{valueConverter.toStringSI(selectedResult.statistics.min, 's')}}</td>
+        </tr>
+        <tr title="The arithmetic average of time of iterations">
+            <td><b>Mean time</b></td>
+            <td>{{valueConverter.toStringSI(selectedResult.statistics.mean, 's')}}</td>
+        </tr>
+        <tr title="The standard deviation of time of iterations">
+            <td><b>Standard deviation</b></td>
+            <td>{{valueConverter.toStringSI(selectedResult.statistics.standardDeviation, 's')}}</td>
+        </tr>
+        <tr title="The margin of error of time of iterations">
+            <td><b>Margin of error</b></td>
+            <td>{{valueConverter.toStringSI(selectedResult.statistics.marginOfError, 's')}}</td>
+        </tr>
+        <tr title="The statistic Tau of the iterations">
+            <td><b>Tau</b></td>
+            <td>{{valueConverter.toStringSI(selectedResult.statistics.tau)}}</td>
+        </tr>
+    </table>
 </div>
