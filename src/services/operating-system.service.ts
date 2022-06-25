@@ -13,7 +13,7 @@ import {OptionModel} from '../models/option.model';
 })
 export class OperatingSystemService extends CollectionService<OperatingSystemModel, OperatingSystemModel> {
 
-    protected readonly baseRoute: string = 'Os';
+    protected readonly baseRoute: string = 'operatingsystem';
 
     private oses: OptionModel[] = [
         new OptionModel('Windows'),

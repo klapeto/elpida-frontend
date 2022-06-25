@@ -43,7 +43,7 @@
             <td><b>Post processed time</b></td>
             <td>{{valueConverter.toStringSI(selectedResult.time, 's')}}</td>
         </tr>
-        <tr title="How many iterations of this task were run at this step">
+        <tr title="How many iterations of this task were used to calculate the score. The actual iterations that were run may be more since some might be ignored if assumed as outliers">
             <td><b>Iterations</b></td>
             <td>{{valueConverter.toStringSI(selectedResult.statistics.sampleSize, null, 0)}}</td>
         </tr>
