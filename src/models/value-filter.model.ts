@@ -45,6 +45,8 @@ export abstract class ValueFilterModel<T> extends FilterModel {
         this.defaultComparison = comparison;
     }
 
+    public abstract trySetValue(value: any): boolean;
+
     public isSet(): boolean {
         return this.comparison !== null
             && this.value !== undefined

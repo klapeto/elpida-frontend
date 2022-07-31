@@ -45,7 +45,7 @@
 
     </app-group-box>
     <p *ngIf="pagedResult">Records found: {{valueConverter.toStringSI(pagedResult.totalCount, '')}},
-        Pages: {{maxResultPages}}</p>
+        Pages: {{pageCount}}</p>
 </div>
 
 <div *ngIf="pagedResult; else elseBlock">
@@ -63,5 +63,7 @@
 
 <app-paging *ngIf="pagedResult"
             (pageChanged)="onPageChange($event)"
-            [pagesCount]="maxResultPages">
+            [currentPage]="currentPage"
+            [pagesCount]="pageCount"
+>
 </app-paging>

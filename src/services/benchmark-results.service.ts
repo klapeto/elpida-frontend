@@ -9,7 +9,6 @@ import {DateFilterModel} from '../models/filters/date-filter.model';
 import {CpuService} from './cpu.service';
 import {NumberFilterModel} from '../models/filters/number-filter.model';
 import {QueryModel} from '../models/query.model';
-import {DtoService} from './dto.service';
 import {OptionModel} from '../models/option.model';
 
 @Injectable({
@@ -36,8 +35,8 @@ export class BenchmarkResultsService extends CollectionService<BenchmarkResultMo
         new OptionModel('Png Decoding'),
     ];
 
-    public constructor(http: HttpClient, private readonly cpuService: CpuService, dtoService: DtoService) {
-        super(http, dtoService);
+    public constructor(http: HttpClient, private readonly cpuService: CpuService) {
+        super(http);
     }
 
     public createSimpleQuery(): QueryModel {

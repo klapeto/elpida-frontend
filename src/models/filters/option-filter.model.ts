@@ -15,4 +15,15 @@ export class OptionFilterModel extends StringFilterModel {
     public clone(): FilterModel {
         return new OptionFilterModel(this.title, this.internalName, this.options, this.value);
     }
+
+    public trySetValue(value: any): boolean {
+        if (typeof value === 'string') {
+            if (this.options.findIndex(o => o.internalName === value || o.displayName === value) !== -1) {
+                this.value = value;
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

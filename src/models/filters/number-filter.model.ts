@@ -21,4 +21,21 @@ export class NumberFilterModel extends ValueFilterModel<number> {
     public clone(): FilterModel {
         return new NumberFilterModel(this.title, this.internalName, this.comparison, this.suffix, this.value);
     }
+
+    public trySetValue(value: any): boolean {
+        if (typeof value === 'number') {
+            this.value = value;
+            return true;
+        }
+
+        if (typeof value === 'string') {
+            const parsed = Number.parseFloat(value);
+            if (!isNaN(parsed)) {
+                this.value = parsed;
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

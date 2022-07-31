@@ -16,20 +16,12 @@ export abstract class CollectionService<TModel, TPreview> implements ICollection
 
     protected readonly abstract baseRoute: string;
 
-    protected constructor(protected readonly http: HttpClient, protected readonly dtoService: DtoService) {
+    protected constructor(protected readonly http: HttpClient) {
 
     }
 
-    public getPreviews(page: PageDto, query: QueryModel): Promise<PagedResultDto<TPreview>> {
-        const queryRequest = new QueryDto(
-            page,
-            query.orderBy,
-            query.descending,
-            query.filters
-                .filter(f => f.isSet())
-                .map(f => this.dtoService.createFromFilter(f))
-        );
-        return this.http.post<PagedResultDto<TPreview>>(this.getUrl(this.searchRoute), queryRequest).toPromise();
+    public getPreviews(query: QueryDto): Promise<PagedResultDto<TPreview>> {
+        return this.http.post<PagedResultDto<TPreview>>(this.getUrl(this.searchRoute), query).toPromise();
     }
 
     public getSingle(id: string): Promise<TModel> {

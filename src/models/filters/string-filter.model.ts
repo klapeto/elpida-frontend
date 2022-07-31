@@ -21,4 +21,9 @@ export class StringFilterModel extends ValueFilterModel<string> {
     public clone(): FilterModel {
         return new StringFilterModel(this.title, this.internalName, this.comparison, this.value);
     }
+
+    public trySetValue(value: any): boolean {
+        this.value = value.toString();
+        return true;
+    }
 }
