@@ -2,7 +2,6 @@ import {Component} from '@angular/core';
 import {BenchmarkResultsService} from '../../services/benchmark-results.service';
 import {BenchmarkResultPreviewModel} from '../../models/result/benchmark-result-preview.model';
 import {ValueConverter} from '../../services/value-converter';
-import {QueryModel} from '../../models/query.model';
 
 @Component({
     selector: 'app-latest-benchmark-results',
@@ -10,9 +9,6 @@ import {QueryModel} from '../../models/query.model';
     styleUrls: ['./latest-benchmark-results.component.css']
 })
 export class LatestBenchmarkResultsComponent {
-
-    public initialQuery: QueryModel = new QueryModel([], 'timestamp', true);
-
     public constructor(
         public readonly resultService: BenchmarkResultsService,
         public readonly valueConverter: ValueConverter,

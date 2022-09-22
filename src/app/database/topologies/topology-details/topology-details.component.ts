@@ -21,7 +21,8 @@ export class TopologyDetailsComponent implements OnInit {
 
 
     public async ngOnInit(): Promise<void> {
-        this.topology = await this.topologyService.getSingle(this.route.snapshot.paramMap.get('id'));
+        this.route.params.subscribe(async p => {
+            this.topology = await this.topologyService.getSingle(p['id']);
+        });
     }
-
 }

@@ -20,8 +20,8 @@ export class ElpidaVersionService extends CollectionService<ElpidaVersionModel, 
         new OptionModel('GNU')
     ];
 
-    public constructor(http: HttpClient, dtoService: DtoService) {
-        super(http, dtoService);
+    public constructor(http: HttpClient) {
+        super(http);
     }
 
     public createSearchFilter(): StringFilterModel {

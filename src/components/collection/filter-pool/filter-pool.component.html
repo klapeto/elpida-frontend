@@ -1,28 +1,28 @@
 <div class="flex-center column">
     <span>Search for records that:</span>
-    <div *ngFor="let filter of filters; index as i" class="flex-center column">
+    <div *ngFor="let filter of query.filters; index as i" class="flex-center column">
         <div class="pool-filter">
             <app-filter-container [filter]="filter" [allowComparisons]="true"></app-filter-container>
             <button class="button small close" (click)="onCloseClick(filter)" style="margin: 0.4em;">🗙</button>
         </div>
-        <strong *ngIf="filters.length > 1 && i < filters.length - 1">and</strong>
+        <strong *ngIf="query.filters.length > 1 && i < query.filters.length - 1">and</strong>
     </div>
-    <label *ngIf="filters.length > 0">
+    <label *ngIf="query.filters.length > 0">
         Sort by:
-        <select [(ngModel)]="orderBy">
+        <select [(ngModel)]="query.orderBy">
             <option></option>
             <option *ngFor="let filter of _availableFilters" [value]="filter.internalName">
                 {{filter.title}}
             </option>
         </select>
     </label>
-    <label *ngIf="filters.length > 0">
+    <label *ngIf="query.filters.length > 0">
         Descending:
-        <input type="checkbox" [(ngModel)]="descending"/>
+        <input type="checkbox" [(ngModel)]="query.descending"/>
     </label>
 </div>
 <div class="flex-center row">
     <button class="button medium" (click)="onAddClick()">Add filter</button>
-    <button class="button medium" (click)="onSearchClick()" [ngClass]="{'disabled': filters.length === 0 }">Search
+    <button class="button medium" (click)="onSearchClick()" [ngClass]="{'disabled': query.filters.length === 0 }">Search
     </button>
 </div>

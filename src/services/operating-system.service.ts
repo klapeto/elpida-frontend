@@ -4,7 +4,6 @@ import {HttpClient} from '@angular/common/http';
 import {OperatingSystemModel} from '../models/operating-system.model';
 import {StringFilterModel} from '../models/filters/string-filter.model';
 import {OptionFilterModel} from '../models/filters/option-filter.model';
-import {DtoService} from './dto.service';
 import {QueryModel} from '../models/query.model';
 import {OptionModel} from '../models/option.model';
 
@@ -20,8 +19,8 @@ export class OperatingSystemService extends CollectionService<OperatingSystemMod
         new OptionModel('Linux'),
     ];
 
-    public constructor(http: HttpClient, dtoService: DtoService) {
-        super(http, dtoService);
+    public constructor(http: HttpClient) {
+        super(http);
     }
 
 

@@ -21,7 +21,8 @@ export class ElpidaVersionDetailsComponent implements OnInit {
     }
 
     public async ngOnInit(): Promise<void> {
-        this.elpidaVersion = await this.elpidaVersionService.getSingle(this.route.snapshot.paramMap.get('id'));
+        this.route.params.subscribe(async p => {
+            this.elpidaVersion = await this.elpidaVersionService.getSingle(p['id']);
+        });
     }
-
 }

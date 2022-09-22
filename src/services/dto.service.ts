@@ -6,6 +6,9 @@ import {StringFilterModel} from '../models/filters/string-filter.model';
 import {OptionFilterModel} from '../models/filters/option-filter.model';
 import {NumberFilterModel} from '../models/filters/number-filter.model';
 import {ComparisonModel} from '../models/comparison.model';
+import {QueryModel} from '../models/query.model';
+import {QueryDto} from '../dtos/query.dto';
+import {PageDto} from '../dtos/page.dto';
 
 @Injectable({
     providedIn: 'root'
@@ -13,6 +16,17 @@ import {ComparisonModel} from '../models/comparison.model';
 export class DtoService {
 
     public constructor() {
+    }
+
+    public createQueryDto(query: QueryModel, page: number, resultsPerPage: number = 10): QueryDto {
+        return new QueryDto(
+            new PageDto(page * resultsPerPage, resultsPerPage),
+            query.orderBy,
+            query.descending,
+            query.filters
+                .filter(f => f.isSet())
+                .map(f => this.createFromFilter(f))
+        );
     }
 
     public createFromFilter(filter: FilterModel): FilterDto {

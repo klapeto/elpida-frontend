@@ -27,7 +27,7 @@
                         Statistics
                     </app-icon-with-text>
                 </a>
-                <a [routerLinkActive]="['active']" [routerLink]="['/Database/Result']" class="button">
+                <a [routerLinkActive]="['active']" [routerLink]="['/Database/Result']" [queryParams]="{descending: true, orderBy: 'timeStamp'}" class="button">
                     <app-icon-with-text [iconName]="'result'">
                         Results
                     </app-icon-with-text>

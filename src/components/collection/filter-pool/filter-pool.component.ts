@@ -11,41 +11,39 @@ import {QueryModel} from '../../../models/query.model';
 })
 export class FilterPoolComponent implements OnInit {
 
-    @Input()
-    public availableFilters: FilterModel[];
-
     @Output()
     public submitted: EventEmitter<QueryModel> = new EventEmitter<QueryModel>();
 
-    public filters: FilterModel[] = [];
+    @Input()
+    public query: QueryModel;
+
+    @Input()
+    public availableFilters: FilterModel[];
 
     // This is needed because for some reason angular reverts the selection to ui after change
     public _availableFilters: FilterModel[];
-
-    public orderBy?: string = null;
-
-    public descending: boolean;
 
     public constructor(private modalService: ModalService) {
     }
 
     public ngOnInit(): void {
         this._availableFilters = this.availableFilters.map(f => f.clone());
+        this.query.filters = this.query.filters.filter(f => f.isSet());
     }
 
     public onCloseClick(filter: FilterModel): void {
-        this.filters = this.filters.filter(f => f !== filter);
+        this.query.filters = this.query.filters.filter(f => f !== filter);
     }
 
     public onSearchClick(): void {
-        this.submitted.emit(new QueryModel(this.filters, this.orderBy, this.descending));
+        this.submitted.emit(this.query);
     }
 
     public onAddClick(): void {
         this.modalService.show<NewFilterComponent>('Add filter', NewFilterComponent, c => {
-            c.availableFilters = this.availableFilters.map(f => f.clone());
+            c.availableFilters = this._availableFilters.map(f => f.clone());
             const subscription = c.filterAdded.subscribe(f => {
-                this.filters.push(f);
+                this.query.filters.push(f);
                 this.modalService.hide();
                 subscription.unsubscribe();
             });

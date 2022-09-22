@@ -26,7 +26,9 @@ export class CpuDetailsComponent implements OnInit {
     }
 
     public async ngOnInit(): Promise<void> {
-        this.cpu = await this.cpuService.getSingle(this.route.snapshot.paramMap.get('id'));
+        this.route.params.subscribe(async p => {
+            this.cpu = await this.cpuService.getSingle(p['id']);
+        });
     }
 
 }

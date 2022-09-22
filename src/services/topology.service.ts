@@ -7,7 +7,6 @@ import {TopologyPreviewModel} from '../models/topology/topology-preview.model';
 import {NumberFilterModel} from '../models/filters/number-filter.model';
 import {RangeFilterModel} from '../models/filters/range-filter.model';
 import {CpuService} from './cpu.service';
-import {DtoService} from './dto.service';
 import {QueryModel} from '../models/query.model';
 import {ComparisonModel} from '../models/comparison.model';
 
@@ -18,8 +17,8 @@ export class TopologyService extends CollectionService<TopologyModel, TopologyPr
 
     protected readonly baseRoute: string = 'topology';
 
-    public constructor(http: HttpClient, private cpuService: CpuService, dtoService: DtoService) {
-        super(http, dtoService);
+    public constructor(http: HttpClient, private cpuService: CpuService) {
+        super(http);
     }
 
     public createAdvancedQuery(): QueryModel {
@@ -61,7 +60,7 @@ export class TopologyService extends CollectionService<TopologyModel, TopologyPr
                     512,
                     1,
                     1),
-                new RangeFilterModel('Min CPU Logical Cores',
+                new RangeFilterModel('Max CPU Logical Cores',
                     'cpuLogicalCores',
                     ComparisonModel.lessEqual(),
                     't',

@@ -2,8 +2,7 @@
 <app-paged-collection [service]="resultService"
                       [showFilters]="true"
                       [name]="'Results'"
-                      [showSearchBox]="true"
-                      [initialQuery]="initialQuery">
+                      [showSearchBox]="true">
     <ng-template #itemTemplate let-model="context">
         <ng-container *ngIf="toItem(model); let item">
             <a class="button collection-item-link" [routerLink]="['/Database/Result/', item.id]">

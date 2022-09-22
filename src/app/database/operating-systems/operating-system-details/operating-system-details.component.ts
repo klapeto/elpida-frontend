@@ -20,7 +20,8 @@ export class OperatingSystemDetailsComponent implements OnInit {
     }
 
     public async ngOnInit(): Promise<void> {
-        this.operatingSystem = await this.osService.getSingle(this.route.snapshot.paramMap.get('id'));
+        this.route.params.subscribe(async p => {
+            this.operatingSystem = await this.osService.getSingle(p['id']);
+        });
     }
-
 }

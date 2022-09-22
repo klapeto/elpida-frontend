@@ -7,7 +7,6 @@ import {StringFilterModel} from '../models/filters/string-filter.model';
 import {CpuService} from './cpu.service';
 import {QueryModel} from '../models/query.model';
 import {NumberFilterModel} from '../models/filters/number-filter.model';
-import {DtoService} from './dto.service';
 
 @Injectable({
     providedIn: 'root'
@@ -16,8 +15,8 @@ export class BenchmarkStatisticsService extends CollectionService<BenchmarkStati
 
     protected readonly baseRoute: string = 'BenchmarkStatistics';
 
-    public constructor(http: HttpClient, private readonly cpuService: CpuService, dtoService: DtoService) {
-        super(http, dtoService);
+    public constructor(http: HttpClient, private readonly cpuService: CpuService) {
+        super(http);
     }
 
     public createSearchFilter(): StringFilterModel {

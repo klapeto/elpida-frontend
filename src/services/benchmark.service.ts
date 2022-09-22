@@ -4,7 +4,6 @@ import {HttpClient} from '@angular/common/http';
 import {BenchmarkModel} from '../models/benchmark/benchmark.model';
 import {BenchmarkPreviewModel} from '../models/benchmark/benchmark-preview.model';
 import {StringFilterModel} from '../models/filters/string-filter.model';
-import {DtoService} from './dto.service';
 import {QueryModel} from '../models/query.model';
 
 @Injectable({
@@ -14,8 +13,8 @@ export class BenchmarkService extends CollectionService<BenchmarkModel, Benchmar
 
     protected readonly baseRoute: string = 'benchmark';
 
-    public constructor(http: HttpClient, dtoService: DtoService) {
-        super(http, dtoService);
+    public constructor(http: HttpClient) {
+        super(http);
     }
 
 

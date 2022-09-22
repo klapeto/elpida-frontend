@@ -22,7 +22,8 @@ export class BenchmarkDetailsComponent implements OnInit {
     }
 
     public async ngOnInit(): Promise<void> {
-        this.benchmark = await this.benchmarkService.getSingle(this.route.snapshot.paramMap.get('id'));
+        this.route.params.subscribe(async p => {
+            this.benchmark = await this.benchmarkService.getSingle(p['id']);
+        });
     }
-
 }

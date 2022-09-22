@@ -37,8 +37,8 @@ export class CpuService extends CollectionService<CpuModel, CpuPreviewModel> {
         new OptionModel('Intel Xeon', 'Intel(R) Xeon(TM)')
     ];
 
-    public constructor(http: HttpClient, dtoService: DtoService) {
-        super(http, dtoService);
+    public constructor(http: HttpClient) {
+        super(http);
     }
 
     public createAdvancedQuery(): QueryModel {

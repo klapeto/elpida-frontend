@@ -14,7 +14,7 @@
 
         <label *ngIf="showSearchBox">
             Search:
-            <input (keyup)="onSearch($event)"
+            <input (keyup)="onSearchAsync($event)"
                    [(ngModel)]="searchString"
                    [placeholder]="searchName + ' (Enter)'"
                    type="search">
@@ -35,10 +35,11 @@
 
         <div *ngIf="filtersPanelShown">
             <app-collection-filters *ngIf="!advancedShown; else filterPool" (submitted)="onFiltersSubmitted($event)"
-                                    [query]="currentQuery">
+                                    [query]="simpleQuery">
             </app-collection-filters>
             <ng-template #filterPool>
-                <app-filter-pool [availableFilters]="service.createAdvancedQuery().filters"
+                <app-filter-pool [query]="advancedQuery"
+                                 [availableFilters]="service.createAdvancedQuery().filters"
                                  (submitted)="onFiltersSubmitted($event)"></app-filter-pool>
             </ng-template>
         </div>
